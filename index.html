@@ -1,4 +1,20 @@
 <script src="https://apis.google.com/js/api.js"></script>
 <script src="scripts.js"></script>
-<button onclick="authenticate().then(loadClient)">authorize and load</button>
-<button onclick="execute()">execute</button>
+
+<h2>Steg 1</h2>
+<button onclick="authenticate().then(loadClient)">Klicka här</button> för att autentisera dig med Google-konto och ladda allt framtida innehåll från WCJ's kalender
+
+<h2>Steg 2</h2>
+Välj kurser: 
+<input type="checkbox"/> Kurs 1 <br>
+<input type="checkbox"/> Kurs 2 <br>
+...
+
+<h2>Steg 3</h2>
+<button onclick="export_ical()">Klicka här</button> för att ladda ner en fil
+
+<h2>Steg 4</h2>
+Importera filen till din kalender enligt bild
+<img src="./import.png" alt="Bild kan inte visas, fråga JP om hjälp"/>
+
+
