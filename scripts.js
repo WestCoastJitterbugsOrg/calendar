@@ -1,8 +1,5 @@
-/**
- * Sample JavaScript code for calendar.events.list
- * See instructions for running APIs Explorer code samples locally:
- * https://developers.google.com/explorer-help/guides/code_samples#javascript
- */
+var calendar;
+var allUniqueEvents;
 
 function loadClient() {
   gapi.client.setApiKey("AIzaSyCMeXBPWfEvrxH4-U8y3VpWhDPZnwYqRMc");
@@ -18,17 +15,22 @@ function execute() {
     "timeMin": "2020-09-10T10:43:14.507Z"
   })
     .then(function (response) {
-      const events = response.result.items;
-      var uniqueEvents = [];
-      $.each(events, function (i, el) {
-        if ($.inArray(el, uniqueEvents) === -1) uniqueEvents.push(el);
+      console.log(response.result.items);
+      const gcEvents = response.result.items;
+      allUniqueEvents = [];
+      $.each(gcEvents, function (i, el) {
+        if ($.inArray(el, allUniqueEvents) === -1) {
+          allUniqueEvents.push(gcToFcEvent(el));
+        }
       });
 
-      $.each(uniqueEvents, function (i, el) {
-        $("#courseList").append(`<label><input type="checkbox">${el}</label>`)
-      })
+      $.each(allUniqueEvents, function (i, el) {
+        const checkboxEl = $(`<input type="checkbox" class="courseCheckbox" id="course-${el.id}">`).change(reloadCalendar)
+        $("#courseList").append($(`<label>${el.title}</label>`).prepend(checkboxEl))
+      });
+
       var calendarEl = $('#calendar').get(0);
-      var calendar = new FullCalendar.Calendar(calendarEl, {
+      calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         firstDay: 1 // Monday
       });
@@ -37,12 +39,35 @@ function execute() {
       function (err) { console.error("Execute error", err); });
 }
 
+function reloadCalendar() {
+  // Each time I reload the calendar, I remove all old events and add the checked ones again
+  for (const event of calendar.getEvents()) {
+    event.remove();
+  }
+
+  $(".courseCheckbox").each((i, el) => {
+    const elem = $(el);
+    if (!elem.prop("checked")) { return; }
+    const id = el.id.replace("course-", "");
+    const event = allUniqueEvents.find(e => e.id === id);
+    calendar.addEvent(event);
+  })
+  calendar.render();
+
+}
+
+function gcToFcEvent(gcEvent) {
+  return {
+    id: gcEvent.summary,
+    title: gcEvent.summary,
+    start: gcEvent.start.dateTime,
+    end: gcEvent.end.dateTime
+  }
+}
+
 
 function handleClientLoad() {
   gapi.load("client", () => {
-
     loadClient().then(execute);
-
-
   });
 }
