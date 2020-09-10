@@ -1,20 +1,36 @@
-<script src="https://apis.google.com/js/api.js"></script>
-<script src="scripts.js"></script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>This is a title</title>
+    <meta charset="utf-8" />
+    <script
+        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+        crossorigin="anonymous"></script>    
+    
+        <script src="scripts.js"  type="text/javascript"></script>
+        
+    <script async defer src="https://apis.google.com/js/api.js"
+        onload="this.onload=function(){};handleClientLoad()"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+    
+  </head>
+<body>
 
-<h2>Steg 1</h2>
-<button onclick="authenticate().then(loadClient)">Klicka här</button> för att autentisera dig med Google-konto så den här sidan kan få data från WCJ's kalender
+    <h2>Steg 1</h2>
+    Välj kurser: <br/>
+    <div id="courseList">
 
-<h2>Steg 2</h2>
-Välj kurser: <br>
-<input type="checkbox"/> Kurs 1 <br>
-<input type="checkbox"/> Kurs 2 <br>
-...
+    </div>
 
-<h2>Steg 3</h2>
-<button onclick="export_ical()">Klicka här</button> för att ladda ner en fil
+    <h2>Steg 2</h2>
+    <button onclick="export_ical()">Klicka här</button> för att ladda ner en fil
 
-<h2>Steg 4</h2>
-Importera filen till din kalender enligt bild <br>
-<img src="./import.png" alt="Bild kan inte visas, fråga JP om hjälp"/>
+    <h2>Steg 3</h2>
+    Importera filen till din kalender enligt bild <br>
+    <img src="./import.png" alt="Bild kan inte visas, fråga JP om hjälp"/>
 
 
+</body>
+</html>
