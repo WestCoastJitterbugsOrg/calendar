@@ -19,7 +19,7 @@ function execute() {
       const gcEvents = response.result.items;
       allUniqueEvents = [];
       $.each(gcEvents, function (i, el) {
-        if ($.inArray(el, allUniqueEvents) === -1) {
+        if(!allUniqueEvents.find(e => e.id === el.summary)) {
           allUniqueEvents.push(gcToFcEvent(el));
         }
       });
