@@ -1,0 +1,23 @@
+{
+  "name": "personalized-wcj-calendar",
+  "version": "1.0.0",
+  "description": "Get an overview of your classes at WCJ",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PooSham/Personalized-WCJ-Calendar.git"
+  },
+  "author": "Jean-Philippe Green",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PooSham/Personalized-WCJ-Calendar/issues"
+  },
+  "homepage": "https://github.com/PooSham/Personalized-WCJ-Calendar#readme",
+  "dependencies": {
+    "jquery": "^3.5.1",
+    "node-static": "^0.7.11"
+  }
+}
