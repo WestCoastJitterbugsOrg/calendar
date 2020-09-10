@@ -32,7 +32,13 @@ function execute() {
       var calendarEl = $('#calendar').get(0);
       calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
-        firstDay: 1 // Monday
+        firstDay: 1, // Monday
+        eventTimeFormat: {
+          hour: '2-digit',
+          minute: '2-digit',
+          meridiem: false,
+          hour12: false
+        }
       });
       calendar.render();
     },
