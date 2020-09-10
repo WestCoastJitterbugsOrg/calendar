@@ -19,20 +19,33 @@
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
   </script>
 
+  <style>
+    #courseList{
+      float: left;
+      border: solid 1px lightgray;
+      margin: 1em;
+    }
+    #courseList label{
+      display: block;
+    }
+  </style>
+
 </head>
 
 <body>
 
-  <h2>Välj kurser</h2>
-  <div id="courseList" style="float:left; max-width: 500px;"></div>
+  <fieldset id="courseList">
+    <label>Välj kurser</label>
+  </fieldset>
 
 
   <div id="calendar" style="min-width: 500px; max-height: 500px;"></div>
 
-  <div id="import" style="clear:both; padding-top: 50px">
+  <div id="import" style="clear:both">
+  <hr>
     <h2>Importera till din kalender</h2>
     <button onclick="export_ical()">Klicka här</button> för att ladda ner en fil. Importera sedan filen till din
-    kalender enligt bild <br>
+    kalender. På Google-calender i webbläsaren ser det ut såhär: <br>
     <img src="./import.png" alt="Bild kan inte visas, fråga JP om hjälp" /> -->
   </div>
 
