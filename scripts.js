@@ -18,17 +18,21 @@ function execute() {
     "timeMin": "2020-09-10T10:43:14.507Z"
   })
     .then(function (response) {
-      // Handle the results here (response.result has the parsed body).
-      console.log("Response", response);
-      const summaries = response.result.items.map(x => x.summary);
-      var uniqueSummaries = [];
-      $.each(summaries, function (i, el) {
-        if ($.inArray(el, uniqueSummaries) === -1) uniqueSummaries.push(el);
+      const events = response.result.items;
+      var uniqueEvents = [];
+      $.each(events, function (i, el) {
+        if ($.inArray(el, uniqueEvents) === -1) uniqueEvents.push(el);
       });
 
-      $.each(uniqueSummaries, function (i, el) {
-        $("#courseList").append(`<div><input type="checkbox" id="course-summary-${i}"> <label for="course-summary-${i}">${el}</label></div>`)
+      $.each(uniqueEvents, function (i, el) {
+        $("#courseList").append(`<label><input type="checkbox">${el}</label>`)
       })
+      var calendarEl = $('#calendar').get(0);
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        firstDay: 1 // Monday
+      });
+      calendar.render();
     },
       function (err) { console.error("Execute error", err); });
 }
@@ -36,12 +40,9 @@ function execute() {
 
 function handleClientLoad() {
   gapi.load("client", () => {
+
     loadClient().then(execute);
-    var calendarEl = $('#calendar').get(0);
-    // var calendarEl = document.getElementById("calendar")
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth'
-    });
-    calendar.render();
+
+
   });
 }
