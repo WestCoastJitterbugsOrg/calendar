@@ -1,39 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>This is a title</title>
-    <meta charset="utf-8" />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?">
-    <script
-        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
-        crossorigin="anonymous"></script>    
-    
-        <script src="scripts.js"  type="text/javascript"></script>
-        
-    <script async defer src="https://apis.google.com/js/api.js"
-        onload="this.onload=function(){};handleClientLoad()"
-        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+
+<head>
+  <title>Personalized WCJ Calendar</title>
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+  <script src="scripts.js" type="text/javascript"></script>
+
+  <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
+    onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
 
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.css" rel="stylesheet" ></link>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
-    </script>
-    
-  </head>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.css" rel="stylesheet">
+  </link>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
+  </script>
+
+</head>
+
 <body>
 
-    <h2>Välj kurser</h2>
-    <div id="courseList" style="float:left; max-width: 500px;"></div>
+  <h2>Välj kurser</h2>
+  <div id="courseList" style="float:left; max-width: 500px;"></div>
 
 
-    <div id="calendar" style="min-width: 500px; max-height: 500px;"></div>
+  <div id="calendar" style="min-width: 500px; max-height: 500px;"></div>
 
-    <div id="import" style="clear:both; padding-top: 50px">
+  <div id="import" style="clear:both; padding-top: 50px">
     <h2>Importera till din kalender</h2>
-    <button onclick="export_ical()">Klicka här</button> för att ladda ner en fil. Importera sedan filen till din kalender enligt bild <br>
-    <img src="./import.png" alt="Bild kan inte visas, fråga JP om hjälp"/> -->
+    <button onclick="export_ical()">Klicka här</button> för att ladda ner en fil. Importera sedan filen till din
+    kalender enligt bild <br>
+    <img src="./import.png" alt="Bild kan inte visas, fråga JP om hjälp" /> -->
   </div>
 
 </body>
+
 </html>
