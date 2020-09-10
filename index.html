@@ -14,23 +14,27 @@
         onload="this.onload=function(){};handleClientLoad()"
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
+
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.css" rel="stylesheet" ></link>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
+    </script>
     
   </head>
 <body>
 
-    <h2>Steg 1</h2>
-    Välj kurser: <br/>
-    <div id="courseList">
+    <h2>Välj kurser</h2>
+    <div id="courseList" style="float:left; max-width: 500px;"></div>
 
-    </div>
 
-    <h2>Steg 2</h2>
+    <div id="calendar" style="min-width: 500px; max-height: 500px;"></div>
+
+    <div id="import" style="clear:both; padding-top: 50px">
+    <h2>Importera till din kalender</h2>
     <button onclick="export_ical()">Klicka här</button> för att ladda ner en fil
 
-    <h2>Steg 3</h2>
     Importera filen till din kalender enligt bild <br>
-    <img src="./import.png" alt="Bild kan inte visas, fråga JP om hjälp"/>
-
+    <img src="./import.png" alt="Bild kan inte visas, fråga JP om hjälp"/> -->
+  </div>
 
 </body>
 </html>

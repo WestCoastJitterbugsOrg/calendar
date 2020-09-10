@@ -27,7 +27,6 @@
                 });
 
                 $.each(uniqueSummaries, function(i, el) {
-                  console.log(i);
                   $("#courseList").append(`<div><input type="checkbox" id="course-summary-${i}"> <label for="course-summary-${i}">${el}</label></div>`)
                 })
               },
@@ -38,5 +37,11 @@
   function handleClientLoad() {
       gapi.load("client", () => {
         loadClient().then(execute);
+        var calendarEl = $('#calendar').get(0);
+        // var calendarEl = document.getElementById("calendar")
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
       });
   }
