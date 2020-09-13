@@ -4,7 +4,10 @@
 <head>
   <title>Personalized WCJ Calendar</title>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?">
+  <link href="/styling.css" rel="stylesheet" type="text/css">
+  </link>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
 
@@ -19,37 +22,29 @@
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
   </script>
 
-  <style>
-    #courseList {
-      float: left;
-      border: solid 1px lightgray;
-      margin: 1em;
-    }
-
-    #courseList label {
-      display: block;
-    }
-  </style>
 
 </head>
 
 <body>
 
-  <fieldset id="courseList">
-    <label>Välj kurser</label>
-  </fieldset>
+  <div class="container">
+    <div class="courseList-container">
+      <ul id="courseList"></ul>
+    </div>
 
 
-  <div id="calendar" style="min-width: 500px; max-height: 500px;"></div>
+    <div class="calendar-container">
+      <div id="calendar"></div>
+    </div>
 
-  <!-- <div id="import" style="clear:both">
+    <!-- <div id="import" style="clear:both">
   <hr>
     <h2>Importera till din kalender</h2>
     <button onclick="export_ical()">Klicka här</button> för att ladda ner en fil. Importera sedan filen till din
     kalender. På Google-calender i webbläsaren ser det ut såhär: <br>
     <img src="./import.png" alt="Bild kan inte visas, fråga JP om hjälp" /> 
   </div> -->
-
+  </div>
 </body>
 
 </html>
