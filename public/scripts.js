@@ -19,7 +19,7 @@ function execute() {
       const gcEvents = response.result.items;
       allUniqueEvents = [];
       $.each(gcEvents, function (i, el) {
-        if(!allUniqueEvents.find(e => e.id === el.summary)) {
+        if (!allUniqueEvents.find(e => e.id === el.summary)) {
           allUniqueEvents.push(gcToFcEvent(el));
         }
       });
@@ -30,10 +30,89 @@ function execute() {
         const liContent = checkboxEl.add(`<label for="${id}">${el.title}</label>`);
         $("#courseList").append($("<li></li>").append(liContent));
       });
+      var calendarTimeFrame = 'month';
+      var calendarViewType = 'grid';
+
+      const calendarViews = {
+        'month': {
+          'grid': 'dayGridMonth',
+          'list': 'listMonth'
+        },
+        'week': {
+          'grid': 'timeGridWeek',
+          'list': 'listWeek'
+        }
+      }
+
+      function changeCalendarView() {
+        var timeFrame = calendarViews[calendarTimeFrame]
+        var newView = timeFrame && timeFrame[calendarViewType];
+        if (!newView) {
+          alert(`Unexpected view ${calendarTimeFrame} ${calendarViewType}. Contact Jean-Philippe!`);
+          return;
+        } else {
+          calendar.changeView(newView);
+        }
+      }
+
+      function selectDeselect(select, deselect) {
+        console.log(select, deselect);
+        calendarEl.querySelectorAll('.fc-button').forEach((button) => {
+          if (button.innerText === select) {
+            button.classList.add('fc-button-active')
+          } else if (button.innerText === deselect) {
+            button.classList.remove('fc-button-active');
+          }
+          calendar.render();
+        });
+      }
 
       var calendarEl = $('#calendar').get(0);
+      var isInited = false;
       calendar = new FullCalendar.Calendar(calendarEl, {
-        headerToolbar: {center: 'dayGridMonth,timeGridWeek,listMonth,listWeek'},
+        customButtons: {
+          myMonth: {
+            text: "Month",
+            click: () => {
+              calendarTimeFrame = 'month';
+              selectDeselect('Month', 'Week');
+              changeCalendarView();
+            }
+          },
+          myWeek: {
+            text: "Week",
+            click: () => {
+              calendarTimeFrame = 'week';
+              selectDeselect('Week', 'Month');
+              changeCalendarView();
+            }
+          },
+          myGrid: {
+            text: "Grid",
+            click: () => {
+              calendarViewType = 'grid';
+              selectDeselect('Grid', 'List');
+              changeCalendarView();
+            }
+          },
+          myList: {
+            text: "List",
+            click: () => {
+              calendarViewType = 'list';
+              selectDeselect('List', 'Grid');
+              changeCalendarView();
+            }
+          }
+        },
+        viewDidMount: function (info) {
+          if (isInited) {
+            return;
+          }
+          selectDeselect('Month', 'Week');
+          selectDeselect('Grid', 'List');
+          isInited = true;
+        },
+        headerToolbar: { center: 'myMonth,myWeek myGrid,myList', end: 'prev,next' },
         nowIndicator: true,
         buttonText: {
           dayGridMonth: 'Month grid',
