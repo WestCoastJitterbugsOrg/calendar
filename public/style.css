@@ -1,0 +1,58 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.courseList-container {
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+.calendar-container {
+    flex-grow: 1;
+
+}
+
+.calendar-container .fc .fc-button {
+    padding: .2em .4em;
+}
+
+.calendar-container .fc .fc-button-group {
+    margin-bottom: 2px;
+}
+
+.calendar-container .fc-view-harness.fc-view-harness-active {
+    min-height: 20em;
+}
+
+button.button-link {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+    outline: none;
+}
+
+ul {
+    margin: 12px;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+}
+
+ul li {
+    padding: 0.25em 0;
+    margin-right: .75em;
+    position: relative;
+    white-space: nowrap;
+}
+
+ul li:hover {
+    background-color: #fafafa;
+}
