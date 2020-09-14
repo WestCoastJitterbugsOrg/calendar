@@ -1,5 +1,6 @@
 var calendar;
-var allUniqueEvents;
+var uniqueEvents = [];
+var selectedEvents = [];
 var currentCalendarTimeFrame = 'month'; // 'month' or 'week'
 var currentCalendarViewType = 'grid'; // 'grid' or 'list'
 
@@ -25,30 +26,41 @@ async function execute() {
 function setupCheckboxList(gcEvents) {
   // Courses that have the same summary (name) are the same courses on different time slots. 
   // Let's find the unique ones!
-  allUniqueEvents = [];
+  uniqueEvents = [];
   for (let el of gcEvents) {
-    if (!allUniqueEvents.find(e => e.summary === el.summary)) {
-      allUniqueEvents.push(el);
+    if (!uniqueEvents.find(e => e.summary === el.summary)) {
+      uniqueEvents.push(el);
     }
   };
 
   // Create all checkboxes out of the unique events
-  for (let el of allUniqueEvents) {
-    const id = `course-${el.summary}`;
-    const checkboxEl = $(`<input type="checkbox" class="courseCheckbox" id="${id}">`)
-                       .on("click",reloadCalendar); // Call reloadCalendar() when a checkbox is clicked
-    const liContent = checkboxEl.add(`<label for="${id}">${el.summary}</label>`); 
+  for (let el of uniqueEvents) {
+    const checkboxEl = $(`<input type="checkbox" class="courseCheckbox" id="course-${el.summary}">`)
+                       .on("change",function() {
+                         if(this.checked) {
+                          // Checkbox has been set to "checked", so we add it to selectedEvents
+                          const foundEvents = gcEvents.filter(x => x.summary === el.summary)
+                          selectedEvents.push(...foundEvents);
+                         }else {
+                          // Checkbox has been set to "unchecked", so we remove it from selectedEvents
+                           selectedEvents = selectedEvents.filter(x => x.summary !== el.summary);
+                         }
+                         reloadCalendar(this);
+                        }); 
+    const liContent = checkboxEl.add(`<label for="course-${el.summary}">${el.summary}</label>`); 
     $("#courseList").append($("<li></li>").append(liContent));
   };
 
   // Setup events for "select all" button
   $("#selectAllCourses").on("click", () => {
     $(".courseCheckbox").prop("checked", true);
+    selectedEvents = [...gcEvents];
     reloadCalendar();
   });
   // Setup events for "deselect all" button
   $("#deselectAllCourses").on("click", () => {
     $(".courseCheckbox").prop("checked", false);
+    selectedEvents = [];
     reloadCalendar();
   });
 }
@@ -127,18 +139,16 @@ function setupFullCalendar() {
 }
 
 function reloadCalendar() {
+
   // Each time I reload the calendar, I remove all old events and add the checked ones again
   for (const event of calendar.getEvents()) {
     event.remove();
   }
 
-  $(".courseCheckbox").each((i, el) => {
-    const elem = $(el);
-    if (!elem.prop("checked")) { return; }
-    const id = el.id.replace("course-", "");
-    const event = allUniqueEvents.find(e => e.summary === id);
+  for(const event of selectedEvents) {
     calendar.addEvent(gcToFcEvent(event));
-  })
+  }
+
   calendar.render();
 
 }
