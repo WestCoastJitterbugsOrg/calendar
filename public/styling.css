@@ -24,6 +24,10 @@ body {
       margin-bottom: 2px;
   }
 
+  .calendar-container .fc-view-harness.fc-view-harness-active {
+      min-height: 20em;
+  }
+
   button.button-link {
       background: none;
       border:none;

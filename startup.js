@@ -1,9 +1,7 @@
-var static = require('node-static');
- 
-var fileServer = new static.Server('./public');
- 
-require('http').createServer(function (request, response) {
-    request.addListener('end', function () {
-        fileServer.serve(request, response);
-    }).resume();
-}).listen(8080);
+const express = require('express');
+const app = express();
+const path = require('path');
+
+app.use("/personal-calendar", express.static(path.join(__dirname, 'public')));
+
+app.listen('8080');
