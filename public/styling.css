@@ -24,8 +24,13 @@ body {
       margin-bottom: 2px;
   }
 
-  .calendar-container .fc-scroller.fc-scroller-liquid-absolute {
-      display:contents;
+  button.button-link {
+      background: none;
+      border:none;
+      padding: 0;
+        color: #069;
+        text-decoration: underline;
+        cursor: pointer;
   }
 
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
@@ -175,6 +180,7 @@ body {
   }
   ul li {
     padding: 0.25em 0;
+    margin-right: .75em;
     position: relative;
     white-space: nowrap;
   }
