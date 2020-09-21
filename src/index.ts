@@ -62,22 +62,22 @@ function setupCheckboxList(gcEvents: MyEvent[]) {
   for (const el of uniqueEvents) {
     const checkboxEl = $(`<input type="checkbox" class="courseCheckbox" id="course-${el.id}">`)
       .on("change", function () {
+        const label = $(this.parentElement).children("label")[0];
         if ((this as HTMLInputElement).checked) {
           // Checkbox has been set to "checked", so we add it to selectedEvents
           const foundEvents = gcEvents.filter(x => x.summary === el.summary)
           selectedEvents.push(...foundEvents.map(x => x));
-          this.parentElement.style.backgroundColor = el.bgColor;
-          this.parentElement.style.color = el.textColor;
+          label.style.backgroundColor = el.bgColor;
+          label.style.color = el.textColor;
         } else {
           // Checkbox has been set to "unchecked", so we remove it from selectedEvents
           selectedEvents = selectedEvents.filter(x => x.summary !== el.summary);
-          this.parentElement.style.backgroundColor = "inherit";
-          this.parentElement.style.color = "inherit";
+          label.style.backgroundColor = "inherit";
+          label.style.color = "inherit";
         }
         reloadCalendar();
       });
-    const liContent = checkboxEl.add(`<label for="course-${el.id}">${el.summary}</label>`);
-    //const indicator = $(`<div class="indicator" style="background-color: ${el.bgColor}"></div>`);
+    const liContent = checkboxEl.add(`<label for="course-${el.id}" class="courseCheckboxLabel">${el.summary}</label>`);
     const li = $(`<li></li>`).append(liContent);
     $("#courseList").append(li);
   }
@@ -86,10 +86,11 @@ function setupCheckboxList(gcEvents: MyEvent[]) {
   $("#selectAllCourses").on("click", () => {
     $(".courseCheckbox").prop("checked", true);
     for (const event of uniqueEvents) {
-      const liEl = $(`#course-${event.id}`).parent()[0];
-      if (!liEl) { continue; }
-      liEl.style.backgroundColor = event.bgColor;
-      liEl.style.color = event.textColor;
+      const liEl = $(`#course-${event.id}`)[0]?.parentElement;
+      const labelEl = liEl && $(liEl).children("label")[0];
+      if (!labelEl) { continue; }
+      labelEl.style.backgroundColor = event.bgColor;
+      labelEl.style.color = event.textColor;
     }
     selectedEvents = [...gcEvents];
     reloadCalendar();
@@ -98,10 +99,11 @@ function setupCheckboxList(gcEvents: MyEvent[]) {
   $("#deselectAllCourses").on("click", () => {
     $(".courseCheckbox").prop("checked", false);
     for (const event of uniqueEvents) {
-      const liEl = $(`#course-${event.id}`).parent()[0];
-      if (!liEl) { continue; }
-      liEl.style.backgroundColor = "inherit";
-      liEl.style.color = "inherit";
+      const liEl = $(`#course-${event.id}`)[0]?.parentElement;
+      const labelEl = liEl && $(liEl).children("label")[0];
+      if (!labelEl) { continue; }
+      labelEl.style.backgroundColor = "inherit";
+      labelEl.style.color = "inherit";
     }
 
     selectedEvents = [];
