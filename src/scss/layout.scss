@@ -5,6 +5,7 @@
     width: 400px;
     height: 100%;
     overflow: auto;
+    //box-shadow: -5px 0px 10px inset #00000026;
 }
 
 .courseList-actions {
@@ -32,10 +33,11 @@
 .calendar-container {
     // flex-grow: 1;
     position: absolute;
-    right: 20px;
-    left: 420px;
-    top: 20px;
-    bottom: 20px;
+    right: 0;
+    left: 400px;
+    top: 0;
+    bottom: 0;
+    box-shadow: 50px 0 50px -50px #00000029 inset;
 }
 
 #calendar {
@@ -55,6 +57,7 @@
 
     .calendar-container {
         position: static;
+        box-shadow: none;
     }
 
 

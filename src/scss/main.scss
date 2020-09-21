@@ -1,8 +1,8 @@
 @import '../../node_modules/fullcalendar/main.min.css';
-@import './mixins.scss';
-@import './form-controls.scss';
-@import './layout.scss';
-@import './fullcalendar-custom.scss';
+@import 'mixins.scss';
+@import 'form-controls.scss';
+@import 'layout.scss';
+@import 'fullcalendar-custom.scss';
 
 body {
     font-family: 'Roboto', 'Roboto Slab', Helvetica, Verdana, Geneva, Tahoma, sans-serif;
