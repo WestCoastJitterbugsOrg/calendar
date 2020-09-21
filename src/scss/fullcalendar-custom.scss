@@ -1,0 +1,41 @@
+.fc {
+
+    .fc-button {
+        padding: .2em .4em;
+    }
+
+    .fc-button-group {
+        margin-bottom: 2px;
+    }
+
+    .fc-view-harness.fc-view-harness-active {
+        min-height: 20em;
+    }
+
+    .fc-scrollgrid-section-liquid>td {
+        border: none;
+        overflow: hidden;
+    }
+
+    .fc-scroller-liquid-absolute {
+        @include scrollbars(5px, gray, white);
+    }
+
+    .fc-scroller {
+        overflow-y: auto !important;
+    }
+
+    table.fc-scrollgrid.fc-scrollgrid-liquid {
+        border: none;
+    }
+
+    &.fc-theme-standard {
+        .fc-list {
+            border: none;
+        }
+
+        td {
+            border-right: none;
+        }
+    }
+}

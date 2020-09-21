@@ -1,0 +1,66 @@
+// #region CourseList
+
+.courseList-container {
+    position: absolute;
+    width: 400px;
+    height: 100%;
+    overflow: auto;
+}
+
+.courseList-actions {
+    margin: 12px;
+    margin-bottom: 0;
+}
+
+#courseList {
+    padding-inline-start: 12px;
+    list-style: none;
+
+    li {
+        white-space: nowrap;
+
+        &:hover {
+            background-color: #fafafa;
+        }
+    }
+}
+
+// #endregion
+
+
+// #region Calendar
+.calendar-container {
+    // flex-grow: 1;
+    position: absolute;
+    right: 20px;
+    left: 420px;
+    top: 20px;
+    bottom: 20px;
+}
+
+#calendar {
+    height: 100%;
+}
+
+// #endregion
+
+
+// #region Small screen
+
+@media only screen and (max-width: 1000px) {
+    .courseList-container {
+        position: static;
+        width: 100%;
+    }
+
+    .calendar-container {
+        position: static;
+    }
+
+
+    #courseList {
+        padding-inline-end: 12px;
+    }
+}
+
+// endregion
