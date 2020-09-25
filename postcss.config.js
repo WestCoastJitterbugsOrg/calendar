@@ -1,5 +1,4 @@
 module.exports = {
-  modules: true,
   plugins: [
     require('autoprefixer')({
       "grid": true
