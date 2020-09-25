@@ -1,7 +1,7 @@
 import $ from 'jquery';
-import ColorHash from 'color-hash';
 import pageHandler from './page-handler';
-const colorHash = new ColorHash({ saturation: 0.3 });
+import colorHashFactory from './color-hash-factory';
+const colorHash = colorHashFactory({saturation: 0.35}); // {/*hue: [150, 210], saturation: [0.3, 0.7], lightness:[0.55, 0.75]*/}
 
 function handleClientLoad() {
   gapi.load("client", async () => {
@@ -20,7 +20,7 @@ function handleClientLoad() {
       bgColor: colorHash.hex(x.summary),
       textColor: colorHash.hsl(x.summary)[2] > 0.5 ? "black" : "white"
     }));
-
+    console.log(events.map(e => colorHash.hsl(e.summary)));
     pageHandler(events);
   });
 }

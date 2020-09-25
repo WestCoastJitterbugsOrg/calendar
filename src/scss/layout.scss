@@ -5,23 +5,44 @@
     width: 400px;
     height: 100%;
     overflow: auto;
-    background-color: #dee6ed;
+    background-color: #d8dae3;
+    color: #494949;
 }
 
 .courseList-actions {
-    margin: 12px;
-    margin-bottom: 0;
+    margin-top: 12px;
+    text-align: center;
 }
 
 #courseList {
-    padding-inline-start: 12px;
     list-style: none;
+    padding: 0;
+    margin-bottom: 0;
 
-    li {
-        white-space: nowrap;
+    > li {
+        display: list-item;
+        border-top: 1px solid;
+        height: 3em;
+        padding: 0.25em;
+        border-left: 1em solid transparent;
+        border-right: 2em solid transparent;
+        position: relative;
+        .courseCheckbox {
+            margin: .5rem;
+            float: right;
+            position: absolute;
+            right: -2.125em;
+            top: 0.75em;
+        }
 
+        .courseCheckboxLabel {
+            cursor: pointer;
+            display: block;
+            height: 100%;
+            overflow: hidden;
+        }
         &:hover {
-            background-color: #fafafa;
+            background-color: #9e9e9e;
         }
     }
 }
@@ -31,17 +52,19 @@
 
 // #region Calendar
 .calendar-container {
-    // flex-grow: 1;
+    min-height: 100vh;
     position: absolute;
     right: 0;
     left: 400px;
     top: 0;
     bottom: 0;
-    box-shadow: 50px 0 50px -50px #00000029 inset;
+    //box-shadow: 50px 0 50px -50px #00000029 inset;
 }
 
 #calendar {
+    position: absolute;
     height: 100%;
+    width: 100%;
 }
 
 // #endregion
@@ -49,7 +72,7 @@
 
 // #region Small screen
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: $mobile_breakpoint) {
     .courseList-container {
         position: relative;
         width: 100%;
@@ -61,13 +84,10 @@
     }
 
 
-    #courseList {
-        padding-inline-end: 12px;
-    }
+    // #courseList {
+    //     padding-inline-end: 12px;
+    // }
 
-    .fc-button-group{
-        margin-bottom: 5px;
-    }
 }
 
 // endregion

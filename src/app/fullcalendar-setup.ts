@@ -118,7 +118,7 @@ export default function FullCalendarFactory(): FullCalendarHandler {
                     isInited = true;
                 }
             },
-            headerToolbar: { center: 'myMonth,myWeek myGrid,myList', end: 'prev,next' },
+            headerToolbar: { start: 'myMonth,myWeek', center: 'prev,title,next', end: 'myGrid,myList' },
             nowIndicator: true,
             aspectRatio: 2,
             initialView: 'dayGridMonth',
@@ -127,8 +127,7 @@ export default function FullCalendarFactory(): FullCalendarHandler {
                 hour: '2-digit',
                 minute: '2-digit',
                 meridiem: false,
-                hour12: false,
-
+                hour12: false
             }
         });
 

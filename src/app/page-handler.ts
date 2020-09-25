@@ -28,23 +28,22 @@ export default function pageHandler(gcEvents: MyEvent[]): void {
     for (const el of uniqueEvents) {
         const checkboxEl = $(`<input type="checkbox" class="courseCheckbox" id="course-${el.id}">`)
             .on("change", function () {
-                const label = $(this.parentElement).children("label")[0];
+                const liElement = this.parentElement.parentElement;
                 if ((this as HTMLInputElement).checked) {
                     // Checkbox has been set to "checked", so we add it to selectedEvents
                     const foundEvents = gcEvents.filter(x => x.summary === el.summary)
                     selectedEvents.push(...foundEvents.map(x => x));
-                    label.style.backgroundColor = el.bgColor;
-                    label.style.color = el.textColor;
+                    liElement.style.borderLeftColor = el.bgColor;
                 } else {
                     // Checkbox has been set to "unchecked", so we remove it from selectedEvents
                     selectedEvents = selectedEvents.filter(x => x.summary !== el.summary);
-                    label.style.backgroundColor = "inherit";
-                    label.style.color = "inherit";
+                    liElement.style.borderLeftColor = null;
                 }
                 fcHandler.setEvents(selectedEvents);
             });
-        const liContent = checkboxEl.add(`<label for="course-${el.id}" class="courseCheckboxLabel">${el.summary}</label>`);
-        const li = $(`<li></li>`).append(liContent);
+        const labelEl = $(`<label for="course-${el.id}" class="courseCheckboxLabel">${el.summary}</label>`);
+        labelEl.append(checkboxEl);
+        const li = $(`<li></li>`).append(labelEl);
         $("#courseList").append(li);
     }
 
@@ -52,11 +51,10 @@ export default function pageHandler(gcEvents: MyEvent[]): void {
     $("#selectAllCourses").on("click", () => {
         $(".courseCheckbox").prop("checked", true);
         for (const event of uniqueEvents) {
-            const liEl = $(`#course-${event.id}`)[0]?.parentElement;
-            const labelEl = liEl && $(liEl).children("label")[0];
-            if (!labelEl) { continue; }
-            labelEl.style.backgroundColor = event.bgColor;
-            labelEl.style.color = event.textColor;
+            const liEl = $(`#course-${event.id}`)[0]?.parentElement.parentElement;
+            if (liEl) {
+                liEl.style.borderLeftColor = event.bgColor;
+            }
         }
         selectedEvents = [...gcEvents];
         fcHandler.setEvents(selectedEvents);
@@ -65,11 +63,10 @@ export default function pageHandler(gcEvents: MyEvent[]): void {
     $("#deselectAllCourses").on("click", () => {
         $(".courseCheckbox").prop("checked", false);
         for (const event of uniqueEvents) {
-            const liEl = $(`#course-${event.id}`)[0]?.parentElement;
-            const labelEl = liEl && $(liEl).children("label")[0];
-            if (!labelEl) { continue; }
-            labelEl.style.backgroundColor = "inherit";
-            labelEl.style.color = "inherit";
+            const liEl = $(`#course-${event.id}`)[0]?.parentElement.parentElement;
+            if (liEl) {
+                liEl.style.borderLeftColor = null;
+            }
         }
 
         selectedEvents = [];
