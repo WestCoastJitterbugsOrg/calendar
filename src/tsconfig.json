@@ -7,8 +7,6 @@
       "moduleResolution": "Node",
       "module": "ES6",
       "allowSyntheticDefaultImports": true,
-      "typeRoots": ["./node_modules/@types", "./src/app/types"]
-    },
-  "include": ["./src/**/*"],
-  "exclude": ["src/app/types"]
+      "typeRoots": ["../node_modules/@types"]
+    }
 }
