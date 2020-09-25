@@ -34,9 +34,7 @@ export default function ColorFactory(hslSetting: HSLSetting): ColorHashFactoryTy
 
     function hex(input: string) {
         const rgbOut = rgb(input);
-        console.log('rgbOut', rgbOut);
-        const ret = '#' + rgbOut.map(x => x.toString(16)).join('')
-        console.log(ret);
+        const ret = '#' + rgbOut.map(x => x.toString(16)).join('');
         return ret;
     }
 

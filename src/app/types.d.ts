@@ -1,4 +1,4 @@
-import { GCalendar } from './google-calendar-tools';
+import { GCalendar } from "./google-calendar-tools";
 
 export type CalendarTimeFrame = 'Month' | 'Week';
 export type CalendarViewType = 'Grid' | 'List';
@@ -8,3 +8,5 @@ export type MyEvent = GCalendar.Event & {
   bgColor: string,
   textColor: string
 };
+
+export {GCalendar};

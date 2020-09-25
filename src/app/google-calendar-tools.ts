@@ -1,5 +1,4 @@
 import ics, { DateArray, EventStatus } from 'ics';
-// eslint-disable-next-line no-undef
 import GCalendar = gapi.client.calendar;
 
 function gc2icsDate(gcDate: string): DateArray {
