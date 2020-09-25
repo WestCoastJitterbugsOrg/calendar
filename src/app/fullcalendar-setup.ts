@@ -1,5 +1,6 @@
 import { CalendarButtonCategory, CalendarTimeFrame, CalendarViewType, MyEvent } from "./types";
 import { Calendar as FullCalendar, EventInput } from '@fullcalendar/core';
+import '@fullcalendar/common/';
 import DayGridPlugin from '@fullcalendar/daygrid';
 import ListPlugin from '@fullcalendar/list';
 import TimeGridPlugin from '@fullcalendar/timegrid';
