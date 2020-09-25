@@ -1,6 +1,6 @@
+import $ from "jquery";
 import { MyEvent } from "./types.d";
 import FCSetupFactory from './fullcalendar-setup';
-import '../style/main.scss';
 
 const fcHandler = FCSetupFactory();
 let uniqueEvents: MyEvent[] = [];

@@ -1,0 +1,58 @@
+@import "./variables.scss";
+
+
+.fc {
+
+  // #region toolbar
+  .fc-button {
+    padding: $wcj-button-padding;
+    border-radius: $wcj-button-border-radius;
+    border-width: $wcj-button-border-width;
+  }
+
+  .fc-header-toolbar.fc-toolbar {
+    padding: 1em 1em 0.5em 1em;
+    border-bottom: 1px solid darken($wcj-background, 10%);
+    margin-bottom: 0;
+
+
+    .fc-toolbar-chunk {
+      margin-bottom: 0.5em;
+
+
+
+      .fc-toolbar-title {
+        font-size: medium;
+        display: inline;
+        margin: 0 0.5em;
+      }
+    }
+  }
+
+  // #endregion
+
+  // Remove ugly unused scrollers that FullCalendar adds for some reason
+  .fc-scroller {
+    overflow-y: auto !important;
+  }
+
+
+  .fc-view,
+  .fc-list,
+  .fc-scrollgrid-liquid,
+  .fc-scrollgrid-liquid .fc-scrollgrid-section>td {
+    border: none;
+  }
+
+  .fc-scrollgrid-liquid .fc-scrollgrid-section-liquid>td .fc-scroller-liquid-absolute {
+    // Add custom scrollbar in Firefox and other browsers that support 
+    @include thin_scrollbar(gray, white);
+  }
+}
+
+@media only screen and (max-width: $wcj-responsive-breakpoint-1) {
+  .fc-header-toolbar {
+    align-items: center;
+    flex-direction: column;
+  }
+}

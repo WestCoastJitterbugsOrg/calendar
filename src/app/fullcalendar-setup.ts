@@ -1,6 +1,5 @@
 import { CalendarButtonCategory, CalendarTimeFrame, CalendarViewType, MyEvent } from "./types";
 import { Calendar as FullCalendar, EventInput } from '@fullcalendar/core';
-import '@fullcalendar/common/';
 import DayGridPlugin from '@fullcalendar/daygrid';
 import ListPlugin from '@fullcalendar/list';
 import TimeGridPlugin from '@fullcalendar/timegrid';
@@ -121,7 +120,6 @@ export default function FullCalendarFactory(): FullCalendarHandler {
             },
             headerToolbar: { start: 'myMonth,myWeek', center: 'prev,title,next', end: 'myGrid,myList' },
             nowIndicator: true,
-            aspectRatio: 2,
             initialView: 'dayGridMonth',
             firstDay: 1, // Monday
             eventTimeFormat: {

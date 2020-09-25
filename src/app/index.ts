@@ -1,6 +1,7 @@
-import $ from 'jquery';
+import $ from "jquery";
 import pageHandler from './page-handler';
 import colorHashFactory from './color-hash-factory';
+import '../style/main.scss';
 const colorHash = colorHashFactory({ saturation: 0.35 }); // {/*hue: [150, 210], saturation: [0.3, 0.7], lightness:[0.55, 0.75]*/}
 
 function handleClientLoad() {

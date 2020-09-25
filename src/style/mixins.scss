@@ -1,8 +1,11 @@
-@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
+@mixin thin_scrollbar($foreground-color, $background-color: mix($foreground-color, white,  50%)) {
+
+  scrollbar-width: thin;
+  scrollbar-color: $foreground-color $background-color;
     // For Google Chrome
     &::-webkit-scrollbar {
-      width:  $size;
-      height: $size;
+      width:  5px;
+      height: 5px;
     }
   
     &::-webkit-scrollbar-thumb {

@@ -1,3 +1,3 @@
 {
-  "includePaths": ["node_modules", "src/style"]
+  "includePaths": ["node_modules"]
 }

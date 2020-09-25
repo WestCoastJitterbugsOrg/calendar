@@ -1,11 +1,38 @@
-
 @import 'variables';
 @import 'mixins.scss';
 @import 'layout.scss';
+@import './fullcalendar-custom.scss';
+
 
 body {
     font-family: 'Roboto', 'Roboto Slab', Helvetica, Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
     overflow-x: hidden;
+    color: #{$wcj-black};
+
+    
 }
 
+// Changing button style here won't change FullCalendar's button style. See fullcalendar-custom.scss for that.
+button {
+    padding: $wcj-button-padding;
+    border: $wcj-button-border-width solid transparent;
+    border-radius: $wcj-button-border-radius;
+
+    color: $wcj-button-text-color;
+    background-color: $wcj-button-bg-color;
+
+    cursor: pointer;
+
+    line-height: 1.5;
+    font-size: 1em;
+
+    &:hover {
+        background-color: lighten($wcj-green, 5%);
+    }
+
+    &:active {
+        background-color: $wcj-button-active-bg-color;
+        border-color: $wcj-button-bg-color;
+    }
+}
