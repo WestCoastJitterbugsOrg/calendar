@@ -14,6 +14,8 @@ $wcj-background: white;
 $wcj-button-padding: 0 0.4em;
 $wcj-button-border-radius: 1em;
 $wcj-button-border-width: 2px;
+$wcj-button-line-height: 1.5;
+$wcj-button-font-size: 1em;
 $wcj-button-text-color: white;
 $wcj-button-bg-color: $wcj-green;
 $wcj-button-active-bg-color: darken($wcj-button-bg-color, 10%);
@@ -28,53 +30,5 @@ $wcj-button-hover-bg-color: lighten($wcj-button-bg-color, 5%);
     --wcj-flamingo: #{$wcj-flamingo};
     --wcj-green: #{$wcj-green};
     --wcj-yellow: #{$wcj-yellow};
-    // #endregion
-
-    // #region FullCalendar
-    // General
-    --fc-small-font-size: .85em;
-    --fc-page-bg-color: #{$wcj-background};
-    --fc-neutral-bg-color: #{darken($wcj-background, 10%)};
-    --fc-neutral-text-color: black; // Where is this used?
-    --fc-border-color: #{darken($wcj-background, 10%)};
-
-    // Buttons
-    --fc-button-text-color: #{$wcj-button-text-color};
-    --fc-button-bg-color: #{$wcj-button-bg-color};
-    --fc-button-border-color: #{$wcj-button-bg-color};
-    --fc-button-hover-bg-color: #{$wcj-button-hover-bg-color};
-    --fc-button-hover-border-color: transparent;
-    --fc-button-active-bg-color: #{$wcj-button-active-bg-color};
-    --fc-button-active-border-color: #{$wcj-button-bg-color};
-
-
-    // List view
-    --fc-list-event-dot-width: 10px;
-    --fc-list-event-hover-bg-color: #{darken($wcj-background, 5%)};
-
-    // #region Unused
-    // Default event color. Usually not needed because we make custom colors for each
-    --fc-event-bg-color: #3788d8;
-    --fc-event-border-color: #3788d8;
-    --fc-event-text-color: #fff;
-    --fc-event-selected-overlay-color: rgba(0, 0, 0, 0.25);
-
-    // Probably not needed because we don't have any resizers
-    --fc-event-resizer-thickness: 8px;
-    --fc-event-resizer-dot-total-width: 8px;
-    --fc-event-resizer-dot-border-width: 1px;
-
-    // Not sure what these are
-    --fc-non-business-color: rgba(215, 215, 215, 0.3);
-    --fc-bg-event-color: rgb(143, 223, 130);
-    --fc-bg-event-opacity: 0.3;
-    --fc-highlight-color: rgba(188, 232, 241, 0.3);
-    --fc-today-bg-color: rgba(255, 220, 40, 0.15);
-    --fc-now-indicator-color: red;
-
-    // Probably not needed because we don't have a daygrid
-    --fc-daygrid-event-dot-width: 8px;
-
-    // #endregion
     // #endregion
 }

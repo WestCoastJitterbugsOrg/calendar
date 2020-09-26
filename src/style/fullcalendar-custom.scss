@@ -1,5 +1,61 @@
-@import "./variables.scss";
+@use "variables" as *;
+@use "mixins";
+@use "sass:color";
 
+// #region CSS Variables
+//
+// The default values for these variables can be found on the following lins:
+//
+// https://github.com/fullcalendar/fullcalendar/blob/master/packages/common/src/styles/vars.css
+// https://github.com/fullcalendar/fullcalendar/blob/master/packages/daygrid/src/styles/vars.css
+// https://github.com/fullcalendar/fullcalendar/blob/master/packages/list/src/styles/vars.css
+// 
+:root {
+  // General
+  --fc-small-font-size: .85em;
+  --fc-page-bg-color: #{$wcj-background};
+  --fc-neutral-bg-color: #{darken($wcj-background, 10%)};
+  --fc-border-color: #{darken($wcj-background, 10%)};
+  --fc-now-indicator-color: #{$wcj-flamingo};
+  --fc-today-bg-color: #{color.change($wcj-yellow, $alpha: 0.1)};
+
+  // Buttons
+  --fc-button-text-color: #{$wcj-button-text-color};
+  --fc-button-bg-color: #{$wcj-button-bg-color};
+  --fc-button-border-color: #{$wcj-button-bg-color};
+  --fc-button-hover-bg-color: #{$wcj-button-hover-bg-color};
+  --fc-button-hover-border-color: transparent;
+  --fc-button-active-bg-color: #{$wcj-button-active-bg-color};
+  --fc-button-active-border-color: #{$wcj-button-bg-color};
+  
+  // List view
+  --fc-list-event-dot-width: 10px;
+  --fc-list-event-hover-bg-color: #{darken($wcj-background, 5%)};
+
+  // #region Unused
+  // Default event color. Usually not needed because we make custom colors for each
+  --fc-event-bg-color: #3788d8;
+  --fc-event-border-color: #3788d8;
+  --fc-event-text-color: #fff;
+  --fc-event-selected-overlay-color: rgba(0, 0, 0, 0.25);
+  --fc-bg-event-color: rgb(143, 223, 130);
+  --fc-bg-event-opacity: 0.3;
+  --fc-daygrid-event-dot-width: 8px;
+
+  // Probably not needed because we don't have any resizers
+  --fc-event-resizer-thickness: 8px;
+  --fc-event-resizer-dot-total-width: 8px;
+  --fc-event-resizer-dot-border-width: 1px;
+
+  // Misc.
+  --fc-non-business-color: rgba(215, 215, 215, 0.3);
+  --fc-neutral-text-color: black;
+  --fc-highlight-color: rgba(188, 232, 241, 0.3);
+
+  // #endregion
+}
+
+// #endregion
 
 .fc {
 
@@ -8,6 +64,8 @@
     padding: $wcj-button-padding;
     border-radius: $wcj-button-border-radius;
     border-width: $wcj-button-border-width;
+    line-height: $wcj-button-line-height;
+    font-size: $wcj-button-font-size;
   }
 
   .fc-header-toolbar.fc-toolbar {
@@ -36,7 +94,6 @@
     overflow-y: auto !important;
   }
 
-
   .fc-view,
   .fc-list,
   .fc-scrollgrid-liquid,
@@ -46,7 +103,7 @@
 
   .fc-scrollgrid-liquid .fc-scrollgrid-section-liquid>td .fc-scroller-liquid-absolute {
     // Add custom scrollbar in Firefox and other browsers that support 
-    @include scrollbar(true);
+    @include mixins.scrollbar(true);
   }
 }
 
