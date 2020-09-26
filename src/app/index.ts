@@ -1,8 +1,8 @@
 import $ from "jquery";
 import pageHandler from './page-handler';
-import colorHashFactory from './color-hash-factory';
 import '../style/main.scss';
-const colorHash = colorHashFactory({ saturation: 0.35 }); // {/*hue: [150, 210], saturation: [0.3, 0.7], lightness:[0.55, 0.75]*/}
+import { WcjEvent } from "./types";
+import { gc2wcjEvent } from "./google-calendar-tools";
 
 function handleClientLoad() {
   gapi.load("client", async () => {
@@ -11,17 +11,13 @@ function handleClientLoad() {
     await gapi.client.load("https://content.googleapis.com/discovery/v1/apis/calendar/v3/rest", undefined)
       .catch((err) => { alert("Error loading GAPI client for API: " + err); });
     // Load from Google calendar
-    const response= await gapi.client.calendar.events.list({
+    const response = await gapi.client.calendar.events.list({
       "calendarId": "wcj.se_57n2cj034c49cirl0rl20t3io4@group.calendar.google.com",
       "alwaysIncludeEmail": false,
       "timeMin": new Date().toISOString() // "2020-09-10T10:43:14.507Z"
     });
 
-    const events = response.result.items.map(x => ({
-      ...x,
-      bgColor: colorHash.hex(x.summary),
-      textColor: colorHash.hsl(x.summary)[2] > 0.5 ? "black" : "white"
-    }));
+    const events: WcjEvent[] = response.result.items.map(gc2wcjEvent);
     pageHandler(events);
   });
 }

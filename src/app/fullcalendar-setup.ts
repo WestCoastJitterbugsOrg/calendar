@@ -1,5 +1,6 @@
-import { CalendarButtonCategory, CalendarTimeFrame, CalendarViewType, MyEvent } from "./types";
+import { CalendarButtonCategory, CalendarTimeFrame, CalendarViewType, WcjEvent } from "./types";
 import { Calendar as FullCalendar, EventInput } from '@fullcalendar/core';
+
 import DayGridPlugin from '@fullcalendar/daygrid';
 import ListPlugin from '@fullcalendar/list';
 import TimeGridPlugin from '@fullcalendar/timegrid';
@@ -20,18 +21,18 @@ type FullCalendarHandler = {
     getTimeFrame: () => CalendarTimeFrame;
     getViewType: () => CalendarViewType;
     changeView: () => void;
-    setEvents: (_: MyEvent[]) => void;
+    setEvents: (_: WcjEvent[]) => void;
     setup: (_: HTMLElement) => void;
 }
 
-export function toFcEvent(gcEvent: MyEvent): EventInput {
+export function toFcEvent(gcEvent: WcjEvent): EventInput {
 
     return {
         id: gcEvent.id,
-        title: gcEvent.summary,
-        start: gcEvent.start.dateTime,
-        end: gcEvent.end.dateTime,
-        groupId: gcEvent.summary,
+        title: gcEvent.title,
+        start: gcEvent.start,
+        end: gcEvent.end,
+        groupId: gcEvent.title,
         backgroundColor: gcEvent.bgColor, // Gives each course its own background color to better distinguish them
         borderColor: gcEvent.bgColor,
         textColor: gcEvent.textColor
@@ -54,7 +55,7 @@ export default function FullCalendarFactory(): FullCalendarHandler {
         }
     }
 
-    function reloadCalendar(selectedEvents: MyEvent[]) {
+    function reloadCalendar(selectedEvents: WcjEvent[]) {
 
         // Each time I reload the calendar, I remove all old events and add the checked ones again
         for (const event of calendar.getEvents()) {

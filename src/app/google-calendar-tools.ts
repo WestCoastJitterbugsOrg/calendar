@@ -1,5 +1,8 @@
 import ics, { DateArray, EventStatus } from 'ics';
-import GCalendar = gapi.client.calendar;
+import { WcjEvent } from './types';
+import colorHashFactory from './color-hash-factory';
+const colorHash = colorHashFactory({ saturation: 0.35 }); // {/*hue: [150, 210], saturation: [0.3, 0.7], lightness:[0.55, 0.75]*/}
+
 
 function gc2icsDate(gcDate: string): DateArray {
   const jsDate = new Date(gcDate);
@@ -10,7 +13,7 @@ function gc2icsDate(gcDate: string): DateArray {
     jsDate.getMinutes()];
 }
 
-function gc2icsEvent(calName: string, gcEvent: GCalendar.Event): ics.EventAttributes {
+function gc2icsEvent(calName: string, gcEvent: gapi.client.calendar.Event): ics.EventAttributes {
   return {
     start: gc2icsDate(gcEvent.start.dateTime),
     end: gc2icsDate(gcEvent.end.dateTime),
@@ -29,13 +32,24 @@ function gc2icsEvent(calName: string, gcEvent: GCalendar.Event): ics.EventAttrib
   };
 }
 
-function gc2ics(calName: string, gcEvents: GCalendar.Event[]): ics.ReturnObject {
+function gc2ics(calName: string, gcEvents: gapi.client.calendar.Event[]): ics.ReturnObject {
   return ics.createEvents(gcEvents.map((e) => gc2icsEvent(calName, e)));
 }
 
-export default gc2ics;
+function gc2wcjEvent(gcEvent: gapi.client.calendar.Event): WcjEvent {
+  return {
+    ...gcEvent,
+    title: gcEvent.summary,
+    start: new Date(gcEvent.start.dateTime),
+    end: new Date(gcEvent.end.dateTime),
+    bgColor: colorHash.hex(gcEvent.summary),
+    textColor: colorHash.hsl(gcEvent.summary)[2] > 0.5 ? "black" : "white"
+  };
+}
+
 export {
+  gc2ics,
   gc2icsEvent,
   gc2icsDate,
-  GCalendar,
+  gc2wcjEvent
 }

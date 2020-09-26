@@ -1,13 +1,13 @@
 {
     "compilerOptions": {
-      "baseUrl": ".",
+      "baseUrl": "",
       "paths": {
         "~*": ["./*"],
-        "@app": ["app/*"],
-        "@helpers/*": ["helpers/*"]
+        "@app*": ["./app/*"],
+        "@helpers*": ["./helpers/*"]
       },
-      "moduleResolution": "Node",
-      "module": "ES6",
+      "moduleResolution": "node",
+      "module": "ES2020",
       "allowSyntheticDefaultImports": true,
       "typeRoots": ["../node_modules/@types"]
     }
