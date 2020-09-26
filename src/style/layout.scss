@@ -6,6 +6,7 @@
     height: 100%;
     overflow: auto;
     background-color: white;
+    @include scrollbar(true);
 }
 
 .courseList-actions {
@@ -65,7 +66,7 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    outline: 2px solid $wcj-green;
+    
 }
 
 // #endregion
@@ -83,7 +84,9 @@
         position: static;
         box-shadow: none;
     }
-
+    #calendar {
+        outline: 2px solid $wcj-green;
+    }
 }
 
 // endregion

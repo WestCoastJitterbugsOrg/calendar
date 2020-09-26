@@ -4,6 +4,7 @@
   "description": "Get an overview of your classes at WCJ",
   "main": "server.js",
   "scripts": {
+    "gitpull": "git pull",
     "test": "ava",
     "build:prod": "parcel build src/index.html --public-url=/personal-calendar",
     "serve:prod": "node server.js",

@@ -46,7 +46,7 @@
 
   .fc-scrollgrid-liquid .fc-scrollgrid-section-liquid>td .fc-scroller-liquid-absolute {
     // Add custom scrollbar in Firefox and other browsers that support 
-    @include thin_scrollbar(gray, white);
+    @include scrollbar(true);
   }
 }
 

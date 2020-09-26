@@ -1,24 +1,46 @@
-@mixin thin_scrollbar($foreground-color, $background-color: mix($foreground-color, white,  50%)) {
+@mixin scrollbar($thin, $foreground-color: $wcj-black, $background-color: lighten($foreground-color, 60%), $button-color: $foreground-color) {
 
-  scrollbar-width: thin;
   scrollbar-color: $foreground-color $background-color;
-    // For Google Chrome
-    &::-webkit-scrollbar {
-      width:  5px;
-      height: 5px;
-    }
+  $width: 15px;
   
-    &::-webkit-scrollbar-thumb {
-      background: $foreground-color;
+  @if $thin {
+    $width: 5px;
+    scrollbar-width: thin;
+  } 
+
+  // For Google Chrome
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $width;
+  }
+
+
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+    // border-radius: 1em;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+
+  &::-webkit-scrollbar-button {
+    background: $button-color;
+    width: $width;
+    height: $width;
+
+    &:start {
+      border-top-left-radius: $width;
     }
-  
-    &::-webkit-scrollbar-track {
-      background: $background-color;
-    }
-  
-    // For Internet Explorer
-    & {
-      scrollbar-face-color: $foreground-color;
-      scrollbar-track-color: $background-color;
+
+    &:end {
+      border-bottom-left-radius: $width;
     }
   }
+
+  // For Internet Explorer
+  & {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
