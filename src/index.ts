@@ -1,8 +1,8 @@
 import $ from "jquery";
-import pageHandler from './page-handler';
-import '../style/main.scss';
-import { WcjEvent } from "./types";
-import { gc2wcjEvent } from "./google-calendar-tools";
+import pageHandler from './app/page-handler';
+import './style/main.scss';
+import { WcjEvent } from "./app/types";
+import { gc2wcjEvent } from "./app/google-calendar-tools";
 
 function handleClientLoad() {
   gapi.load("client", async () => {

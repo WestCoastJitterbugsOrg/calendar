@@ -1,15 +1,14 @@
 {
   "name": "personalized-wcj-calendar",
   "version": "1.0.0",
-  "description": "Get an overview of your classes at WCJ",
-  "main": "server.js",
-  "type": "module",
+  "description": "Get an overview of your schedule",
+  "private": "true",
   "scripts": {
     "gitpull": "git pull",
     "test": "ava",
-    "build:prod": "parcel build src/index.html --public-url=/personal-calendar",
+    "build:prod": "webpack build",
     "serve:prod": "node server.js",
-    "serve:dev": "parcel serve src/index.html"
+    "serve:dev": "webpack serve"
   },
   "repository": {
     "type": "git",
@@ -31,12 +30,12 @@
     "@types/gapi.calendar": "^3.0.4",
     "@types/jquery": "^3.5.1",
     "color-hash": "^1.0.3",
+    "dayjs": "^1.8.36",
     "express": "^4.17.1",
     "fullcalendar": "^5.3.2",
     "ics": "^2.24.0",
     "jquery": "^3.5.1",
-    "md5": "^2.3.0",
-    "dayjs": "^1.8.36"
+    "md5": "^2.3.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.8",
@@ -45,13 +44,18 @@
     "@typescript-eslint/parser": "^4.1.1",
     "autoprefixer": "^9.8.6",
     "ava": "^3.12.1",
+    "css-loader": "^5.0.1",
     "eslint": "^7.9.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
-    "parcel-bundler": "^1.12.4",
-    "sass": "^1.26.11",
+    "sass": "^1.29.0",
+    "sass-loader": "^10.1.0",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^8.0.11",
     "ts-node": "^9.0.0",
-    "typescript": "^4.0.3"
+    "typescript": "^4.0.5",
+    "webpack": "^5.5.0",
+    "webpack-cli": "^4.2.0"
   },
   "ava": {
     "extensions": [
