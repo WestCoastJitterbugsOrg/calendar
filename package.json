@@ -4,11 +4,12 @@
   "description": "Get an overview of your schedule",
   "private": "true",
   "scripts": {
-    "gitpull": "git pull",
     "test": "ava",
-    "build:prod": "webpack",
-    "serve:prod": "node server.js",
-    "serve:dev": "webpack serve"
+    "build": "webpack --config webpack.dev.js",
+    "watch": "webpack --watch --config webpack.dev.js",
+    "start": "webpack serve --config webpack.dev.js",
+    "build:prod": "webpack --config webpack.prod.js",
+    "start:prod": "webpack --config webpack.prod.js && node server.js"
   },
   "repository": {
     "type": "git",
@@ -32,7 +33,6 @@
     "color-hash": "^1.0.3",
     "dayjs": "^1.9.6",
     "express": "^4.17.1",
-    "fullcalendar": "^5.4.0",
     "ics": "^2.26.1",
     "jquery": "^3.5.1",
     "md5": "^2.3.0"
@@ -44,10 +44,12 @@
     "@typescript-eslint/parser": "^4.8.1",
     "autoprefixer": "^10.0.2",
     "ava": "^3.13.0",
+    "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.1",
     "eslint": "^7.13.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
+    "html-webpack-plugin": "^4.5.0",
     "sass": "^1.29.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
@@ -55,7 +57,9 @@
     "ts-node": "^9.0.0",
     "typescript": "^4.1.2",
     "webpack": "^5.6.0",
-    "webpack-cli": "^4.2.0"
+    "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.4.0"
   },
   "ava": {
     "extensions": [

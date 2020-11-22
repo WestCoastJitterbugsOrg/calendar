@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="courseList-container">
+      <div class="courseList-actions"><button id="selectAllCourses">Select all</button> <button class="button-link"
+          id="deselectAllCourses">Deselect all</button></div>
+      <ul id="courseList"></ul>
+    </div>
+
+
+    <div class="calendar-container">
+      <div id="calendar"></div>
+    </div>
+
+    <!-- <div id="import" style="clear:both">
+          <hr>
+          <h2>Importera till din kalender</h2>
+          <button onclick="export_ical()">Klicka här</button> för att ladda ner en fil. Importera sedan filen till din
+          kalender. På Google-calender i webbläsaren ser det ut såhär: <br>
+          <img src="./import.png" alt="Bild kan inte visas, fråga JP om hjälp" /> 
+        </div> -->
+  </div>
+</body>
+
+</html>
