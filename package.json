@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PooSham/Personalized-WCJ-Calendar.git"
+    "url": "git+https://github.com/WestCoastJitterbugsOrg/Personalized-Calendar.git"
   },
   "author": "Jean-Philippe Green",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/PooSham/Personalized-WCJ-Calendar/issues"
+    "url": "https://github.com/WestCoastJitterbugsOrg/Personalized-Calendar/issues"
   },
-  "homepage": "https://github.com/PooSham/Personalized-WCJ-Calendar#readme",
+  "homepage": "https://the-wcj.guru/personal-calendar/",
   "dependencies": {
     "@fullcalendar/core": "^5.4.0",
     "@fullcalendar/daygrid": "^5.4.0",

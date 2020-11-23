@@ -3,14 +3,16 @@
 
 ## Setup
 
-Make sure you have NodeJS installed. At the time of writing, I'm using v14.9.0, which is the only version that has been tested so far.
+Make sure you have NodeJS installed. At the time of writing, I'm using v14.9.0.
 
 With NodeJS installed, run `npm i` in the root directory of this project. This will install all dependencies you need.
 
 ## Run in local development environment
 
-Simply run `npm run serve:dev` and go to `http://localhost:1234/` in your browser. As soon as you make a change in a file, the server will reload the website. 
+Simply run `npm start` and go to `http://localhost:8080/personal-calendar` in your browser. As soon as you make a change in a file, the server will reload the website. 
 
 ## Run in production environment
 
-Run `npm run build:prod` to build the project and generate files in `dist`. If successful, you should be able to run `npm run serve:prod` and go to `http://localhost:8080`
+Run `npm run start:prod` and go to `http://localhost:8080/personal-calendar` in your browser. 
+This should build the project and generate files in `dist`, and then serve the using server.js. Unlike in development, 
+this won't reload the website when you make a change in a file.
