@@ -55,41 +55,41 @@ test('First event has id event_1', t => {
 
 
 
-// #region AVA Typescript recipes
+// #region AVA Typescript recipes (for reference)
 // From here https://github.com/avajs/ava/blob/master/docs/recipes/typescript.md
 // There is more, click the link to learn about typing t.context and throws-assertions
 
-// Simple test
-const fn = () => 'foo';
+// // Simple test
+// const fn = () => 'foo';
 
-test('fn() returns foo', t => {
-	t.is(fn(), 'foo');
-});
+// test('fn() returns foo', t => {
+// 	t.is(fn(), 'foo');
+// });
 
-// Using ExecutionContext macro
-const hasLength = (t: ExecutionContext, input: string, expected: number) => {
-	t.is(input.length, expected);
-};
+// // Using ExecutionContext macro
+// const hasLength = (t: ExecutionContext, input: string, expected: number) => {
+// 	t.is(input.length, expected);
+// };
 
-test('bar has length 3', hasLength, 'bar', 3);
+// test('bar has length 3', hasLength, 'bar', 3);
 
-// Assigning title property to macro
-const macro: Macro<[string, number]> = (t, input, expected) => {
-	t.is(eval(input), expected);
-};
-macro.title = (providedTitle = '', input, expected) => `${providedTitle} ${input} = ${expected}`.trim();
+// // Assigning title property to macro
+// const macro: Macro<[string, number]> = (t, input, expected) => {
+// 	t.is(eval(input), expected);
+// };
+// macro.title = (providedTitle = '', input, expected) => `${providedTitle} ${input} = ${expected}`.trim();
 
-test(macro, '2 + 2', 4);
-test(macro, '2 * 3', 6);
-test('providedTitle', macro, '3 * 3', 9);
+// test(macro, '2 + 2', 4);
+// test(macro, '2 * 3', 6);
+// test('providedTitle', macro, '3 * 3', 9);
 
-// Expecting macro to be used with callback test
-const cbmacro: CbMacro<[]> = t => {
-	t.pass();
-	setTimeout(t.end, 100);
-};
+// // Expecting macro to be used with callback test
+// const cbmacro: CbMacro<[]> = t => {
+// 	t.pass();
+// 	setTimeout(t.end, 100);
+// };
 
-test.cb('providedTitle 2', cbmacro);
+// test.cb('providedTitle 2', cbmacro);
 
 
 //#endregion
