@@ -24,7 +24,7 @@
 
     > li {
         display: list-item;
-        border-top: 1px solid darken($wcj-background, 10%);
+        border-top: 1px solid darken($wcj-white, 10%);
         height: 3em;
         padding: 0.25em;
         padding-right: 2em;
@@ -88,7 +88,7 @@
         box-shadow: none;
     }
     #calendar {
-        outline: 2px solid $wcj-green;
+        outline: 2px solid $wcj-cyan;
     }
 }
 

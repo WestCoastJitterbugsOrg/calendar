@@ -9,7 +9,7 @@
 body {
     margin: 0;
     overflow-x: hidden;
-    color: $wcj-black;
+    color: black;
 }
 
 // Changing button style here won't change FullCalendar's button style. See fullcalendar-custom.scss for that.
@@ -27,7 +27,7 @@ button {
     font-size: $wcj-button-font-size;
 
     &:hover {
-        background-color: lighten($wcj-green, 5%);
+        background-color: lighten($wcj-cyan, 5%);
     }
 
     &:active {

@@ -2,14 +2,10 @@
 $wcj-responsive-breakpoint-1: 600px;
 $wcj-responsive-breakpoint-2: 900px;
 
-$wcj-black: #231f20;
-$wcj-blue: #1F5367;
-$wcj-winered: #a32926;
-$wcj-flamingo: #e65349;
-$wcj-green: #579e7c;
-$wcj-yellow: #e4b14d;
+$wcj-cyan: #60a7a2;
+$wcj-red: #AB2814;
+$wcj-white: #FFFBF3;
 
-$wcj-background: white;
 
 $wcj-button-padding: 0 0.4em;
 $wcj-button-border-radius: 1em;
@@ -17,18 +13,15 @@ $wcj-button-border-width: 2px;
 $wcj-button-line-height: 1.5;
 $wcj-button-font-size: 1em;
 $wcj-button-text-color: white;
-$wcj-button-bg-color: $wcj-green;
+$wcj-button-bg-color: $wcj-cyan;
 $wcj-button-active-bg-color: darken($wcj-button-bg-color, 10%);
 $wcj-button-hover-bg-color: lighten($wcj-button-bg-color, 5%);
 
 // Then define CSS variables
 :root {
     // #region WCJ colors
-    --wcj-black: #{$wcj-black};
-    --wcj-blue: #{$wcj-blue};
-    --wcj-winered: #{$wcj-winered};
-    --wcj-flamingo: #{$wcj-flamingo};
-    --wcj-green: #{$wcj-green};
-    --wcj-yellow: #{$wcj-yellow};
+    --wcj-cyan: #{$wcj-cyan};
+    --wcj-red: #{$wcj-red};
+    --wcj-white: #{$wcj-white};
     // #endregion
 }

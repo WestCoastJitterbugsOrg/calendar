@@ -2,6 +2,8 @@
 @use "mixins";
 @use "sass:color";
 
+$wcj-fc-border-color: #eee;
+
 // #region CSS Variables
 //
 // The default values for these variables can be found on the following lins:
@@ -13,11 +15,11 @@
 :root {
   // General
   --fc-small-font-size: .85em;
-  --fc-page-bg-color: #{$wcj-background};
-  --fc-neutral-bg-color: #{darken($wcj-background, 10%)};
-  --fc-border-color: #{darken($wcj-background, 10%)};
-  --fc-now-indicator-color: #{$wcj-flamingo};
-  --fc-today-bg-color: #{color.change($wcj-yellow, $alpha: 0.1)};
+  --fc-page-bg-color: white;
+  --fc-neutral-bg-color: ;
+  --fc-border-color: #{$wcj-fc-border-color};
+  --fc-now-indicator-color: #{$wcj-cyan};
+  --fc-today-bg-color: #{color.change(yellow, $alpha: 0.1)};
 
   // Buttons
   --fc-button-text-color: #{$wcj-button-text-color};
@@ -30,7 +32,7 @@
   
   // List view
   --fc-list-event-dot-width: 10px;
-  --fc-list-event-hover-bg-color: #{darken($wcj-background, 5%)};
+  --fc-list-event-hover-bg-color: #{$wcj-fc-border-color};
 
   // #region Unused
   // Default event color. Usually not needed because we make custom colors for each
@@ -70,7 +72,7 @@
 
   .fc-header-toolbar.fc-toolbar {
     padding: 1em 1em 0.5em 1em;
-    border-bottom: 1px solid darken($wcj-background, 10%);
+    border-bottom: 1px solid #{$wcj-fc-border-color};
     margin-bottom: 0;
 
 
@@ -88,9 +90,9 @@
   }
 
   // #endregion
-
-  // Remove ugly unused scrollers that FullCalendar adds for some reason
+  
   .fc-scroller {
+    // Remove ugly unused scrollers that FullCalendar adds for some reason
     overflow-y: auto !important;
   }
 
@@ -98,6 +100,7 @@
   .fc-list,
   .fc-scrollgrid-liquid,
   .fc-scrollgrid-liquid .fc-scrollgrid-section>td {
+    // Remove border around FullCalendar
     border: none;
   }
 
