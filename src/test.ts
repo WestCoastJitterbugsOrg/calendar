@@ -3,7 +3,7 @@ import { WcjEvent } from './app/types';
 import * as dayjs from 'dayjs';
 import FullCalendarFactory from './app/fullcalendar-setup';
 
-type TestData = { events: WcjEvent [] }
+type TestData = { events: WcjEvent[] }
 type TestContext = {
 	// All mock data
 	data: TestData,
@@ -11,6 +11,48 @@ type TestContext = {
 	testTime: Date
 };
 const test = anyTest as TestInterface<TestContext>;
+
+function generateUniqueData(currentTime: Date): TestData {
+	const now = dayjs(currentTime);
+	const start = now.subtract(1, 'hour').toDate();
+	const end = now.add(1, 'hour').toDate();
+
+	return {
+		events: [{
+			title: "Event 1",
+			id: "event_1",
+			start: start,
+			end: end,
+			bgColor: "black",
+			textColor: "white"
+		}]
+	}
+}
+
+
+test.beforeEach(t => {
+	t.context.testTime = new Date();
+	t.context.data = generateUniqueData(t.context.testTime);
+	document.body.innerHTML =
+		`<div class="container">
+	<div class="courseList-container">
+	  <div class="courseList-actions"><button id="selectAllCourses">Select all</button> <button class="button-link"
+		  id="deselectAllCourses">Deselect all</button></div>
+	  <ul id="courseList"></ul>
+	</div>
+	<div class="calendar-container">
+	  <div id="calendar"></div>
+	</div>`;
+});
+
+test('First event has id event_1', t => {
+	const calendar = FullCalendarFactory();
+	const container = document.body.getElementsByClassName('container')[0] as HTMLElement;
+	calendar.setup(container);
+	calendar.setEvents(t.context.data.events);
+	t.is(t.context.data.events[0].id, calendar.getCalendar().getEvents()[0].id);
+})
+
 
 
 // #region AVA Typescript recipes
@@ -51,32 +93,3 @@ test.cb('providedTitle 2', cbmacro);
 
 
 //#endregion
-
-function generateUniqueData(currentTime: Date): TestData {
-	const now = dayjs(currentTime);
-	const start = now.subtract(1, 'hour').toDate();
-	const end = now.add(1, 'hour').toDate();
-
-	return {
-		events: [{
-			title: "Event 1",
-			id: "event_1",
-			start: start,
-			end: end,
-			bgColor: "black",
-			textColor: "white"
-		}]
-	}
-}
-
-test.beforeEach(t => {
-	t.context.testTime = new Date();
-	t.context.data = generateUniqueData(t.context.testTime);
-});
-
-test('First event has id event_1', t => {
-	const calendar = FullCalendarFactory();
-	calendar.setup(new HTMLElement());
-	calendar.setEvents(t.context.data.events);
-	t.is(t.context.data.events[0].id, calendar.getCalendar().getEvents()[0].id);
-})
