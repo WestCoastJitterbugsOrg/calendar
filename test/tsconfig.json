@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "baseUrl": "../src",
+      "paths": {
+        "~*": ["/*"],
+        "@app*": ["/app/*"],
+        "@helpers*": ["/helpers/*"]
+      },
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "module": "ES2020",
+      "allowSyntheticDefaultImports": true,
+      "typeRoots": ["../node_modules/@types"]
+    }
+}

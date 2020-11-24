@@ -4,7 +4,7 @@
   "description": "Get an overview of your schedule",
   "private": "true",
   "scripts": {
-    "test": "ava",
+    "test": "nyc ava",
     "build": "webpack --config webpack.dev.js",
     "watch": "webpack --watch --config webpack.dev.js",
     "start": "webpack serve --config webpack.dev.js",
@@ -22,14 +22,11 @@
   },
   "homepage": "https://the-wcj.guru/personal-calendar/",
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@fullcalendar/core": "^5.4.0",
     "@fullcalendar/daygrid": "^5.4.0",
     "@fullcalendar/list": "^5.4.0",
     "@fullcalendar/timegrid": "^5.4.0",
-    "@types/color-hash": "^1.0.0",
-    "@types/gapi": "0.0.39",
-    "@types/gapi.calendar": "^3.0.4",
-    "@types/jquery": "^3.5.4",
     "color-hash": "^1.0.3",
     "dayjs": "^1.9.6",
     "express": "^4.17.1",
@@ -38,12 +35,24 @@
     "md5": "^2.3.0"
   },
   "devDependencies": {
+    "@ava/babel": "^1.0.1",
+    "@babel/cli": "^7.12.7",
+    "@babel/core": "^7.12.7",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-typescript": "^7.12.7",
+    "@babel/register": "^7.12.1",
+    "@istanbuljs/nyc-config-babel": "^3.0.0",
+    "@types/color-hash": "^1.0.0",
     "@types/express": "^4.17.9",
+    "@types/gapi": "0.0.39",
+    "@types/gapi.calendar": "^3.0.4",
+    "@types/jquery": "^3.5.4",
     "@types/md5": "^2.2.1",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
     "autoprefixer": "^10.0.2",
     "ava": "^3.13.0",
+    "babel-plugin-istanbul": "^6.0.0",
     "browser-env": "^3.3.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.1",
@@ -51,6 +60,7 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "html-webpack-plugin": "^4.5.0",
+    "nyc": "^15.1.0",
     "sass": "^1.29.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
@@ -63,12 +73,34 @@
     "webpack-merge": "^5.4.0"
   },
   "ava": {
+    "babel": {
+      "testOptions": {
+        "plugins": [
+          "istanbul"
+        ],
+        "presets": [
+          "@babel/preset-typescript"
+        ]
+      }
+    },
+    "verbose": true,
     "extensions": [
       "ts"
     ],
     "require": [
       "ts-node/register",
-			"./src/test/_setup-browser-env.ts"
+      "./test/_setup-browser-env.js"
     ]
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-typescript"
+    ]
+  },
+  "nyc": {
+    "extends": "@istanbuljs/nyc-config-babel",
+    "sourceMap": false,
+    "instrument": false,
+    "include": ["src/**"]
   }
 }

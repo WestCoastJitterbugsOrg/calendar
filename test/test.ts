@@ -1,7 +1,7 @@
 import anyTest, { ExecutionContext, Macro, CbMacro, TestInterface } from 'ava';
-import { WcjEvent } from './app/types';
-import * as dayjs from 'dayjs';
-import FullCalendarFactory from './app/fullcalendar-setup';
+import { WcjEvent } from '../src/app/types';
+import dayjs from 'dayjs';
+import FullCalendarFactory from '../src/app/fullcalendar-setup';
 
 type TestData = { events: WcjEvent[] }
 type TestContext = {
@@ -93,3 +93,5 @@ test('First event has id event_1', t => {
 
 
 //#endregion
+
+
