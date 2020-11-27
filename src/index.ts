@@ -1,8 +1,10 @@
 import $ from "jquery";
-import pageHandler from './app/page-handler';
+import PageHandlerFactoryCreator from './app/page-handler';
 import './style/main.scss';
 import { WcjEvent } from "./app/types";
 import { gc2wcjEvent } from "./app/google-calendar-tools";
+const PageHandlerFactory = PageHandlerFactoryCreator($);
+
 
 function handleClientLoad() {
   gapi.load("client", async () => {
@@ -18,7 +20,7 @@ function handleClientLoad() {
     });
 
     const events: WcjEvent[] = response.result.items.map(gc2wcjEvent);
-    pageHandler(events);
+    PageHandlerFactory(events);
   });
 }
 

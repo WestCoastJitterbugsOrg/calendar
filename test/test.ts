@@ -1,7 +1,7 @@
 import anyTest, { ExecutionContext, Macro, CbMacro, TestInterface } from 'ava';
 import { WcjEvent } from '../src/app/types';
 import dayjs from 'dayjs';
-import FullCalendarFactory from '../src/app/fullcalendar-setup';
+import FullCalendarFactoryCreator from '../src/app/fullcalendar-setup';
 
 type TestData = { events: WcjEvent[] }
 type TestContext = {
@@ -33,20 +33,23 @@ function generateUniqueData(currentTime: Date): TestData {
 test.beforeEach(t => {
 	t.context.testTime = new Date();
 	t.context.data = generateUniqueData(t.context.testTime);
-	document.body.innerHTML =
-		`<div class="container">
+	document.body.innerHTML =`
+<div class="container">
 	<div class="courseList-container">
-	  <div class="courseList-actions"><button id="selectAllCourses">Select all</button> <button class="button-link"
-		  id="deselectAllCourses">Deselect all</button></div>
-	  <ul id="courseList"></ul>
+		<div class="courseList-actions">
+			<button id="selectAllCourses">Select all</button> 
+			<button class="button-link" id="deselectAllCourses">Deselect all</button>
+		</div>
+		<ul id="courseList"></ul>
 	</div>
 	<div class="calendar-container">
-	  <div id="calendar"></div>
-	</div>`;
+		<div id="calendar"></div>
+	</div>
+</div>`;
 });
 
 test('First event has id event_1', t => {
-	const calendar = FullCalendarFactory();
+	const calendar = FullCalendarFactoryCreator();
 	const container = document.body.getElementsByClassName('container')[0] as HTMLElement;
 	calendar.setup(container);
 	calendar.setEvents(t.context.data.events);

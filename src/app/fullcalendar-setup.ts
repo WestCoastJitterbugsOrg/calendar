@@ -1,5 +1,5 @@
 import { CalendarButtonCategory, CalendarTimeFrame, CalendarViewType, WcjEvent } from "./types";
-import { Calendar as FullCalendar, EventInput } from '@fullcalendar/core';
+import { Calendar as FullCalendar, CalendarOptions, EventInput } from '@fullcalendar/core';
 
 import DayGridPlugin from '@fullcalendar/daygrid';
 import ListPlugin from '@fullcalendar/list';
@@ -16,13 +16,15 @@ const calendarViews = {
     }
 }
 
+/** 
+ * @param calendarEl The HTMLElement that the FullCalendar will be rendered on.
+ */
 type FullCalendarHandler = {
     getCalendar: () => FullCalendar;
     getTimeFrame: () => CalendarTimeFrame;
     getViewType: () => CalendarViewType;
     changeView: () => void;
     setEvents: (_: WcjEvent[]) => void;
-    setup: (_: HTMLElement) => void;
 }
 
 export function toFcEvent(gcEvent: WcjEvent): EventInput {
@@ -39,107 +41,120 @@ export function toFcEvent(gcEvent: WcjEvent): EventInput {
     }
 }
 
-export default function FullCalendarFactory(): FullCalendarHandler {
-    let calendar: FullCalendar;
+// A type that describes a function that creates a FullCalendar. See below for more info
+export type FullCalendarCreator = (el: HTMLElement, optionOverrides?: CalendarOptions) => FullCalendar;
+type FullCallendarHandlerCreator = { createHandler: (el: HTMLElement) => FullCalendarHandler };
+
+// Default for dependency injection into FullCalendarFactory below
+const defaultFCCreator: FullCalendarCreator =
+    (el: HTMLElement, optionOverrides: CalendarOptions) =>
+        new FullCalendar(el, optionOverrides);
+
+/**
+ * Initiates a FullCalendar and returns relevant handler methods for it
+ * @param fcCreator A function that creates a FullCalendar given a HTMLElement and some options.
+ * We use Dependency Injection to simplify testing. 
+ * Normally, this will be the 2 parameter FullCalendar constructor.
+ */
+export default function FullCalendarHandlerFactory(fcCreator: FullCalendarCreator = defaultFCCreator) : FullCallendarHandlerCreator {
+    let isInited = false;
     let currentCalendarTimeFrame: CalendarTimeFrame = 'Month';
     let currentCalendarViewType: CalendarViewType = 'Grid';
 
-    function changeCalendarView() {
-        const timeFrame = calendarViews[currentCalendarTimeFrame]
-        const newView = timeFrame && timeFrame[currentCalendarViewType];
-        if (!newView) {
-            alert(`Unexpected view ${currentCalendarTimeFrame} ${currentCalendarViewType}. Contact Jean-Philippe!`);
-            return;
-        } else {
-            calendar.changeView(newView);
-        }
-    }
+    return {
+        createHandler: calendarEl => {
+            // Select one button and deselect the other (Used for month/week and grid/list switches)
+            const handleCustomClickEvent = (select: CalendarTimeFrame | CalendarViewType,
+                deselect: CalendarTimeFrame | CalendarViewType,
+                category: CalendarButtonCategory) => {
+                if (category === 'TimeFrame') {
+                    currentCalendarTimeFrame = select as CalendarTimeFrame;
+                } else if (category === 'ViewType') {
+                    currentCalendarViewType = select as CalendarViewType;
+                }
+                calendarEl.querySelectorAll('.fc-button').forEach((button: HTMLButtonElement) => {
+                    if (button.innerText === select) {
+                        button.classList.add('fc-button-active')
+                    } else if (button.innerText === deselect) {
+                        button.classList.remove('fc-button-active');
+                    }
+                });
 
-    function reloadCalendar(selectedEvents: WcjEvent[]) {
-
-        // Each time I reload the calendar, I remove all old events and add the checked ones again
-        for (const event of calendar.getEvents()) {
-            event.remove();
-        }
-
-
-        for (const event of selectedEvents) {
-            calendar.addEvent(toFcEvent(event));
-        }
-
-        calendar.render();
-
-    }
-
-    function setupFullCalendar(calendarEl: HTMLElement) {
-        let isInited = false;
-
-        // Select one button and deselect the other (Used for month/week and grid/list switches)
-        const handleCustomClickEvent = (select: CalendarTimeFrame | CalendarViewType,
-            deselect: CalendarTimeFrame | CalendarViewType,
-            category: CalendarButtonCategory) => {
-            if (category === "TimeFrame") {
-                currentCalendarTimeFrame = select as CalendarTimeFrame;
-            } else if (category === "ViewType") {
-                currentCalendarViewType = select as CalendarViewType;
+                changeCalendarView();
             }
-            calendarEl.querySelectorAll('.fc-button').forEach((button: HTMLButtonElement) => {
-                if (button.innerText === select) {
-                    button.classList.add('fc-button-active')
-                } else if (button.innerText === deselect) {
-                    button.classList.remove('fc-button-active');
+
+            const createCustomButton = (buttonName: CalendarTimeFrame | CalendarViewType,
+                deselect: CalendarTimeFrame | CalendarViewType,
+                category: CalendarButtonCategory) => {
+                return {
+                    text: buttonName,
+                    click: () => handleCustomClickEvent(buttonName, deselect, category)
+                }
+            }
+
+            const calendar = fcCreator(calendarEl, {
+                plugins: [DayGridPlugin, ListPlugin, TimeGridPlugin],
+                customButtons: {
+                    myMonth: createCustomButton("Month", "Week", "TimeFrame"),
+                    myWeek: createCustomButton("Week", "Month", "TimeFrame"),
+                    myGrid: createCustomButton("Grid", "List", "ViewType"),
+                    myList: createCustomButton("List", "Grid", "ViewType")
+                },
+                viewDidMount: () => {
+                    if (!isInited) {
+                        handleCustomClickEvent("Month", "Week", "TimeFrame");
+                        handleCustomClickEvent("Grid", "List", "ViewType");
+                        isInited = true;
+                    }
+                },
+                headerToolbar: { start: 'myMonth,myWeek', center: 'prev,title,next', end: 'myGrid,myList' },
+                nowIndicator: true,
+                initialView: 'dayGridMonth',
+                firstDay: 1, // Monday
+                eventTimeFormat: {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    meridiem: false,
+                    hour12: false
                 }
             });
 
-            changeCalendarView();
-        }
-
-        const createCustomButton = (buttonName: CalendarTimeFrame | CalendarViewType,
-            deselect: CalendarTimeFrame | CalendarViewType,
-            category: CalendarButtonCategory) => {
-            return {
-                text: buttonName,
-                click: () => handleCustomClickEvent(buttonName, deselect, category)
-            }
-        }
-
-        // Setup calendar
-        calendar = new FullCalendar(calendarEl, {
-            plugins: [DayGridPlugin, ListPlugin, TimeGridPlugin],
-            customButtons: {
-                myMonth: createCustomButton("Month", "Week", "TimeFrame"),
-                myWeek: createCustomButton("Week", "Month", "TimeFrame"),
-                myGrid: createCustomButton("Grid", "List", "ViewType"),
-                myList: createCustomButton("List", "Grid", "ViewType")
-            },
-            viewDidMount: () => {
-                if (!isInited) {
-                    handleCustomClickEvent("Month", "Week", "TimeFrame");
-                    handleCustomClickEvent("Grid", "List", "ViewType");
-                    isInited = true;
+            const changeCalendarView = () => {
+                const timeFrame = calendarViews[currentCalendarTimeFrame]
+                const newView = timeFrame && timeFrame[currentCalendarViewType];
+                if (!newView) {
+                    alert(`Unexpected view ${currentCalendarTimeFrame} ${currentCalendarViewType}. Contact Jean-Philippe!`);
+                    return;
+                } else {
+                    calendar.changeView(newView);
                 }
-            },
-            headerToolbar: { start: 'myMonth,myWeek', center: 'prev,title,next', end: 'myGrid,myList' },
-            nowIndicator: true,
-            initialView: 'dayGridMonth',
-            firstDay: 1, // Monday
-            eventTimeFormat: {
-                hour: '2-digit',
-                minute: '2-digit',
-                meridiem: false,
-                hour12: false
             }
-        });
 
-        calendar.render();
-    }
+            const reloadCalendar = (selectedEvents: WcjEvent[]) => {
 
-    return {
-        getCalendar: () => calendar,
-        getTimeFrame: () => currentCalendarTimeFrame,
-        getViewType: () => currentCalendarViewType,
-        changeView: changeCalendarView,
-        setEvents: reloadCalendar,
-        setup: setupFullCalendar
+                // Each time I reload the calendar, I remove all old events and add the checked ones again
+                for (const event of calendar.getEvents()) {
+                    event.remove();
+                }
+
+
+                for (const event of selectedEvents) {
+                    calendar.addEvent(toFcEvent(event));
+                }
+
+                calendar.render();
+
+            }
+
+            calendar.render();
+
+            return {
+                getCalendar: () => calendar,
+                getTimeFrame: () => currentCalendarTimeFrame,
+                getViewType: () => currentCalendarViewType,
+                changeView: changeCalendarView,
+                setEvents: reloadCalendar
+            }
+        }
     }
 }
