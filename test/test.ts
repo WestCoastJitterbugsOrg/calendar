@@ -1,12 +1,12 @@
 import anyTest, { ExecutionContext, Macro, CbMacro, TestInterface } from 'ava';
 import { WcjEvent } from '../src/app/types';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import FullCalendarHandlerFactory, { FullCalendarCreator } from '../src/app/fullcalendar-setup';
 import { Calendar, EventApi } from '@fullcalendar/core';
 
 import { fixture } from 'ava-browser-fixture'
 
-import * as jqueryProxy from 'jquery'
+import jqueryProxy from 'jquery'
 
 
 
@@ -37,38 +37,26 @@ function generateUniqueData(currentTime: Date): TestData {
 	}
 }
 
+test.beforeEach(fixture("src/index.html"));
+
 test.beforeEach(t => {
 	t.context.testTime = new Date();
 	t.context.data = generateUniqueData(t.context.testTime);
-
-	return fixture("src/index.html")(t);
-	// 	document.body.innerHTML = `
-	// <div class="container">
-	// 	<div class="courseList-container">
-	// 		<div class="courseList-actions">
-	// 			<button id="selectAllCourses">Select all</button> 
-	// 			<button class="button-link" id="deselectAllCourses">Deselect all</button>
-	// 		</div>
-	// 		<ul id="courseList"></ul>
-	// 	</div>
-	// 	<div class="calendar-container">
-	// 		<div id="calendar"></div>
-	// 	</div>
-	// </div>`;
 });
 
-test.cb("Test JQuery", t => {
-	jqueryProxy(t.context.document)
-		.ready(function ($) {
-			try {
-				$('.container').append("test");
-				t.log(t.context.document.body.innerHTML);
-				t.end();
-			} catch (e) {
-				t.log('failed', e);
-				t.end(e);
-			}
-		})
+
+test.cb("Example test for JQuery", t => {
+	jqueryProxy(function ($: JQueryStatic) {
+		try {
+			const body = $('body');
+			body.append('test');
+			t.true(body.get(0).innerHTML.endsWith('test'));
+			t.end();
+		} catch (e) {
+			t.log('failed', e);
+			t.end(e);
+		}
+	})
 });
 
 
