@@ -1,14 +1,22 @@
 import anyTest, { ExecutionContext, Macro, CbMacro, TestInterface } from 'ava';
 import { WcjEvent } from '../src/app/types';
-import dayjs from 'dayjs';
-import FullCalendarFactoryCreator from '../src/app/fullcalendar-setup';
+import * as dayjs from 'dayjs';
+import FullCalendarHandlerFactory, { FullCalendarCreator } from '../src/app/fullcalendar-setup';
+import { Calendar, EventApi } from '@fullcalendar/core';
+
+import { fixture } from 'ava-browser-fixture'
+
+import * as jqueryProxy from 'jquery'
+
+
 
 type TestData = { events: WcjEvent[] }
 type TestContext = {
 	// All mock data
 	data: TestData,
 	// I set the time the test begins so that the same time is used everywhere throughout the test
-	testTime: Date
+	testTime: Date,
+	document: Document
 };
 const test = anyTest as TestInterface<TestContext>;
 
@@ -29,31 +37,64 @@ function generateUniqueData(currentTime: Date): TestData {
 	}
 }
 
-
 test.beforeEach(t => {
 	t.context.testTime = new Date();
 	t.context.data = generateUniqueData(t.context.testTime);
-	document.body.innerHTML =`
-<div class="container">
-	<div class="courseList-container">
-		<div class="courseList-actions">
-			<button id="selectAllCourses">Select all</button> 
-			<button class="button-link" id="deselectAllCourses">Deselect all</button>
-		</div>
-		<ul id="courseList"></ul>
-	</div>
-	<div class="calendar-container">
-		<div id="calendar"></div>
-	</div>
-</div>`;
+
+	return fixture("src/index.html")(t);
+	// 	document.body.innerHTML = `
+	// <div class="container">
+	// 	<div class="courseList-container">
+	// 		<div class="courseList-actions">
+	// 			<button id="selectAllCourses">Select all</button> 
+	// 			<button class="button-link" id="deselectAllCourses">Deselect all</button>
+	// 		</div>
+	// 		<ul id="courseList"></ul>
+	// 	</div>
+	// 	<div class="calendar-container">
+	// 		<div id="calendar"></div>
+	// 	</div>
+	// </div>`;
 });
 
+test.cb("Test JQuery", t => {
+	jqueryProxy(t.context.document)
+		.ready(function ($) {
+			try {
+				$('.container').append("test");
+				t.log(t.context.document.body.innerHTML);
+				t.end();
+			} catch (e) {
+				t.log('failed', e);
+				t.end(e);
+			}
+		})
+});
+
+
+
+const MockFcFactory: FullCalendarCreator = el => {
+	let events: EventApi[] = [];
+	return <Calendar>{
+		render: () => { },
+		getEvents: () => events,
+		addEvent: (eventInput, _) => {
+			const event = <EventApi>{
+				id: eventInput.id,
+				remove: () => { events = events.filter(x => x.id !== eventInput.id) }
+			}
+			events.push(event);
+			return event;
+		}
+	};
+}
+
 test('First event has id event_1', t => {
-	const calendar = FullCalendarFactoryCreator();
 	const container = document.body.getElementsByClassName('container')[0] as HTMLElement;
-	calendar.setup(container);
-	calendar.setEvents(t.context.data.events);
-	t.is(t.context.data.events[0].id, calendar.getCalendar().getEvents()[0].id);
+	const fcHandlerCreator = FullCalendarHandlerFactory(MockFcFactory);
+	const fcHandler = fcHandlerCreator.createHandler(container);
+	fcHandler.setEvents(t.context.data.events);
+	t.is(t.context.data.events[0].id, fcHandler.getCalendar().getEvents()[0].id);
 })
 
 

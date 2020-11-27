@@ -6,10 +6,10 @@
         "@app*": ["/app/*"],
         "@helpers*": ["/helpers/*"]
       },
-      "esModuleInterop": true,
       "moduleResolution": "node",
       "module": "ES2020",
-      "allowSyntheticDefaultImports": true,
+      "allowSyntheticDefaultImports": false,
+      "esModuleInterop": false,
       "typeRoots": ["../node_modules/@types"]
     }
 }

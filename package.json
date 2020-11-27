@@ -52,6 +52,7 @@
     "@typescript-eslint/parser": "^4.8.1",
     "autoprefixer": "^10.0.2",
     "ava": "^3.13.0",
+    "ava-browser-fixture": "^2.0.2",
     "babel-plugin-istanbul": "^6.0.0",
     "browser-env": "^3.3.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -88,8 +89,7 @@
       "ts"
     ],
     "require": [
-      "ts-node/register",
-      "./test/_setup-browser-env.js"
+      "ts-node/register"
     ]
   },
   "babel": {
@@ -101,6 +101,8 @@
     "extends": "@istanbuljs/nyc-config-babel",
     "sourceMap": false,
     "instrument": false,
-    "include": ["src/**"]
+    "include": [
+      "src/**"
+    ]
   }
 }
