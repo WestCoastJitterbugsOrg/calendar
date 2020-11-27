@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "~*": [
+        "./*"
+      ],
+      "@app*": [
+        "./app/*"
+      ],
+      "@helpers*": [
+        "./helpers/*"
+      ]
+    },
+    "moduleResolution": "node",
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "ESNext",
+      "DOM",
+      "ESNext.AsyncIterable"
+    ],
+    "outDir": "tsc_build",
+    "skipLibCheck": true
+  },
+  "include": [
+    "src/**/*",
+    "test/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
