@@ -23,7 +23,6 @@
       "DOM",
       "ESNext.AsyncIterable"
     ],
-    "outDir": "tsc_build",
     "skipLibCheck": true
   },
   "include": [
