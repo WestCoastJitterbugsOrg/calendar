@@ -1,12 +1,14 @@
 import anyTest, { ExecutionContext, Macro, CbMacro, TestInterface } from 'ava';
-import { WcjEvent } from '../src/app/types';
+import { WcjEvent } from '~app/types';
 import dayjs from 'dayjs';
-import FullCalendarHandlerFactory, { FullCalendarCreator } from '../src/app/fullcalendar-setup';
+import { FullCalendarCreator } from '~app/fullercalendar/fullercalendar';
+import FullerCalendarFactory from '~app/fullercalendar/fullercalendar.factory';
 import { Calendar, EventApi } from '@fullcalendar/core';
 
 import { fixture } from 'ava-browser-fixture'
 
 import jqueryProxy from 'jquery'
+import { setEvents } from '~app/fullercalendar/fullercalendar.helpers';
 
 
 
@@ -79,10 +81,10 @@ const MockFcFactory: FullCalendarCreator = el => {
 
 test('First event has id event_1', t => {
 	const container = document.body.getElementsByClassName('container')[0] as HTMLElement;
-	const fcHandlerCreator = FullCalendarHandlerFactory(MockFcFactory);
-	const fcHandler = fcHandlerCreator.createHandler(container);
-	fcHandler.setEvents(t.context.data.events);
-	t.is(t.context.data.events[0].id, fcHandler.getCalendar().getEvents()[0].id);
+	const fcHandlerCreator = FullerCalendarFactory(MockFcFactory);
+	const calendar = fcHandlerCreator.createCalendar(container);
+	setEvents(calendar, t.context.data.events);
+	t.is(t.context.data.events[0].id, calendar.getEvents()[0].id);
 })
 
 

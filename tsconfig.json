@@ -19,9 +19,7 @@
       "node_modules/@types"
     ],
     "lib": [
-      "ESNext",
-      "DOM",
-      "ESNext.AsyncIterable"
+      "ESNext"
     ],
     "skipLibCheck": true
   },

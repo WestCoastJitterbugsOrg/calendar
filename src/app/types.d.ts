@@ -1,7 +1,3 @@
-export type CalendarTimeFrame = 'Month' | 'Week';
-export type CalendarViewType = 'Grid' | 'List';
-export type CalendarButtonCategory = 'TimeFrame' | 'ViewType';
-
 export type WcjEvent = {
   title: string,
   id: string,
