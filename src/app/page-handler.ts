@@ -1,10 +1,11 @@
 import defaultJQuery from "jquery";
 import { WcjEvent } from "./types.d";
-import FullCalendarHandlerFactory from './fullcalendar-setup';
+import FullerCalendarFactory from './fullercalendar';
+import { setEvents } from "./fullercalendar/helpers";
 
 let uniqueEvents: WcjEvent[] = [];
 let selectedEvents: WcjEvent[] = [];
-const fcHandlerFactory = FullCalendarHandlerFactory();
+const fcHandlerFactory = FullerCalendarFactory();
 
 type PageHandlerFactory = (gcEvents: WcjEvent[]) => void;
 
@@ -15,7 +16,7 @@ type PageHandlerFactory = (gcEvents: WcjEvent[]) => void;
 export default function PageHandlerFactoryCreator($: JQueryStatic = defaultJQuery): PageHandlerFactory {
 
     return (gcEvents: WcjEvent[]) => {
-        const fcHandler = fcHandlerFactory.createHandler($('#calendar').get(0));
+        const calendar = fcHandlerFactory.createCalendar($('#calendar').get(0));
         // Courses that have the same summary (name) are the same courses on different time slots. 
         // Let's find the unique ones by filtering by summary
         // (Yes, there are more efficient ways to do this, deal with it! 😎)
@@ -42,7 +43,7 @@ export default function PageHandlerFactoryCreator($: JQueryStatic = defaultJQuer
                         selectedEvents = selectedEvents.filter(x => x.title !== el.title);
                         liElement.style.borderLeftColor = null;
                     }
-                    fcHandler.setEvents(selectedEvents);
+                    setEvents(calendar, selectedEvents);
                 });
             const labelEl = $(`<label for="course-${el.id}" class="courseCheckboxLabel">${el.title}</label>`);
             labelEl.append(checkboxEl);
@@ -60,7 +61,7 @@ export default function PageHandlerFactoryCreator($: JQueryStatic = defaultJQuer
                 }
             }
             selectedEvents = [...gcEvents];
-            fcHandler.setEvents(selectedEvents);
+            setEvents(calendar, selectedEvents);
         });
         // Setup events for "deselect all" button
         $("#deselectAllCourses").on("click", () => {
@@ -73,7 +74,7 @@ export default function PageHandlerFactoryCreator($: JQueryStatic = defaultJQuer
             }
 
             selectedEvents = [];
-            fcHandler.setEvents(selectedEvents);
+            setEvents(calendar, selectedEvents);
         });
     }
 }

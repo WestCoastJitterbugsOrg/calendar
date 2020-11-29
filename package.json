@@ -86,7 +86,10 @@
       "src"
     ],
     "exclude": [
-      "src/index.ts"
+      "src/index.ts",
+      "src/app/default-objects.ts",
+      "**/*.d.ts",
+      "**/*types.ts"
     ],
     "reporter": [
       "html",
