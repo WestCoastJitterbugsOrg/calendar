@@ -2,12 +2,12 @@ import anyTest, { ExecutionContext, Macro, CbMacro, TestInterface } from 'ava';
 import { WcjEvent } from '~app/types';
 import dayjs from 'dayjs';
 import FullerCalendarFactory from '~app/fullercalendar';
-import { Calendar, EventApi } from '@fullcalendar/core';
+import { Calendar, EventApi, MountArg, ViewApi, ViewContentArg } from '@fullcalendar/core';
 
 import { fixture } from 'ava-browser-fixture'
 
 import jqueryProxy from 'jquery'
-import { setEvents } from '~app/fullercalendar/helpers';
+import { CalendarTimeFrame, CalendarViewType, setEvents } from '~app/fullercalendar/helpers';
 import { FullCalendarCreator } from '~app/fullercalendar/types';
 
 
@@ -18,7 +18,8 @@ type TestContext = {
 	data: TestData,
 	// I set the time the test begins so that the same time is used everywhere throughout the test
 	testTime: Date,
-	document: Document
+	document: Document,
+	fcFactory: FullCalendarCreator
 };
 const test = anyTest as TestInterface<TestContext>;
 
@@ -42,8 +43,43 @@ function generateUniqueData(currentTime: Date): TestData {
 test.beforeEach(fixture("src/index.html"));
 
 test.beforeEach(t => {
-	t.context.testTime = new Date();
-	t.context.data = generateUniqueData(t.context.testTime);
+	const currentTime = new Date();
+
+	const mockFcFactory: FullCalendarCreator = (el, opts) => {
+		let events: EventApi[] = [];
+		let view: ViewApi = <ViewApi>{
+			activeStart: currentTime,
+			activeEnd: dayjs(currentTime).add(7, 'day').toDate(),
+			calendar: null,
+			currentStart: currentTime,
+			currentEnd: dayjs(currentTime).add(7, 'day').toDate(),
+			title: 'Day Grid Month',
+			type: 'dayGridMonth'
+		};
+		return <Calendar>{
+			render: () => { opts.viewDidMount({ el: el, view: view }) },
+			getEvents: () => events,
+			addEvent: (eventInput, _) => {
+				const event = <EventApi>{
+					id: eventInput.id,
+					remove: () => { events = events.filter(x => x.id !== eventInput.id) }
+				}
+				events.push(event);
+				return event;
+			},
+			changeView: (viewType, dateOrRange) => {
+				Object.assign(view, { type: viewType })
+			},
+
+			view: view,
+			getOption: (opt) => opts[opt]
+
+		};
+	}
+
+	t.context.testTime = currentTime;
+	t.context.data = generateUniqueData(currentTime);
+	t.context.fcFactory = mockFcFactory;
 });
 
 
@@ -63,32 +99,26 @@ test.cb("Example test for JQuery", t => {
 
 
 
-const MockFcFactory: FullCalendarCreator = el => {
-	let events: EventApi[] = [];
-	return <Calendar>{
-		render: () => { },
-		getEvents: () => events,
-		addEvent: (eventInput, _) => {
-			const event = <EventApi>{
-				id: eventInput.id,
-				remove: () => { events = events.filter(x => x.id !== eventInput.id) }
-			}
-			events.push(event);
-			return event;
-		},
-		
-	};
-}
 
-test('First event has id event_1', t => {
+
+test('`setEvents` sets selected events in the calendar', t => {
 	const container = document.body.getElementsByClassName('container')[0] as HTMLElement;
-	const fcHandlerCreator = FullerCalendarFactory(MockFcFactory);
+	const fcHandlerCreator = FullerCalendarFactory(t.context.fcFactory);
 	const calendar = fcHandlerCreator.createCalendar(container);
 	setEvents(calendar, t.context.data.events);
-	t.is(t.context.data.events[0].id, calendar.getEvents()[0].id);
+	t.deepEqual(t.context.data.events.map(x => x.id), calendar.getEvents().map(x => x.id));
 });
 
+test('Clicking "week" and "list" buttons changes properties', t => {
+	const container = jqueryProxy('.container')[0];
+	const fcHandlerCreator = FullerCalendarFactory(t.context.fcFactory);
+	const calendar = fcHandlerCreator.createCalendar(container);
 
+	calendar.getOption("customButtons")["myWeek"].click(new MouseEvent("click"), container);
+	calendar.getOption("customButtons")["myList"].click(new MouseEvent("click"), container);
+
+	t.is(calendar.view.type, "listWeek");
+})
 
 
 // #region AVA Typescript recipes (for reference)

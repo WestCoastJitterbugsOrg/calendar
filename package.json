@@ -4,7 +4,7 @@
   "description": "Get an overview of your schedule",
   "private": "true",
   "scripts": {
-    "test": "tsc --outDir dist/test && nyc ava",
+    "test": "tsc --outDir dist/test && nyc ava --verbose",
     "build": "webpack --config webpack.dev.js",
     "watch": "webpack --watch --config webpack.dev.js",
     "start": "webpack serve --config webpack.dev.js",

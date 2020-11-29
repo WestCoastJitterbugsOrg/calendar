@@ -36,6 +36,7 @@ export function fcButtonGroup<T extends FcBtnGroupButtons>(element: HTMLElement,
 
     return {
         click: (btn: keyof T) => {
+
             element.querySelectorAll('.fc-button').forEach((button: HTMLButtonElement) => {
                 if (button.innerText === buttons[btn].toString()) {
                     button.classList.add('fc-button-active')
@@ -45,7 +46,7 @@ export function fcButtonGroup<T extends FcBtnGroupButtons>(element: HTMLElement,
             });
             selected = btn;
         },
-        selected: selected
+        getSelected: () => selected
     }
 }
 
