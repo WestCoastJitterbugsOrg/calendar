@@ -1,4 +1,4 @@
-@use "variables" as *;
+@use "variables"as *;
 @use "mixins";
 @use "sass:color";
 
@@ -29,7 +29,7 @@ $wcj-fc-border-color: #eee;
   --fc-button-hover-border-color: transparent;
   --fc-button-active-bg-color: #{$wcj-button-active-bg-color};
   --fc-button-active-border-color: #{$wcj-button-bg-color};
-  
+
   // List view
   --fc-list-event-dot-width: 10px;
   --fc-list-event-hover-bg-color: #{$wcj-fc-border-color};
@@ -68,12 +68,19 @@ $wcj-fc-border-color: #eee;
     border-width: $wcj-button-border-width;
     line-height: $wcj-button-line-height;
     font-size: $wcj-button-font-size;
+
+    .fc-icon {
+      font-size: 1.4em;
+    }
   }
+
 
   .fc-header-toolbar.fc-toolbar {
     padding: 1em 1em 0.5em 1em;
     border-bottom: 1px solid #{$wcj-fc-border-color};
     margin-bottom: 0;
+    background-color: $wcj-red;
+    color: white;
 
 
     .fc-toolbar-chunk {
@@ -90,7 +97,7 @@ $wcj-fc-border-color: #eee;
   }
 
   // #endregion
-  
+
   .fc-scroller {
     // Remove ugly unused scrollers that FullCalendar adds for some reason
     overflow-y: auto !important;

@@ -1,4 +1,4 @@
-@use "variables" as *;
+@use "variables"as *;
 @use "mixins";
 
 // #region CourseList
@@ -10,11 +10,13 @@
     overflow: auto;
     background-color: white;
     @include mixins.scrollbar(true);
+    background-color: $wcj-white;
 }
 
 .courseList-actions {
     text-align: center;
-    margin: 1em;
+    padding: 1em;
+    background-color: $wcj-red;
 }
 
 #courseList {
@@ -22,7 +24,7 @@
     padding: 0;
     margin: 0;
 
-    > li {
+    >li {
         display: list-item;
         border-top: 1px solid darken($wcj-white, 10%);
         height: 3em;
@@ -30,7 +32,7 @@
         padding-right: 2em;
         border-left: 1em solid transparent;
         position: relative;
-        
+
         &:hover {
             background-color: #e6e7ec;
         }
@@ -69,7 +71,7 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    
+
 }
 
 // #endregion
@@ -87,6 +89,7 @@
         position: static;
         box-shadow: none;
     }
+
     #calendar {
         outline: 2px solid $wcj-cyan;
     }
