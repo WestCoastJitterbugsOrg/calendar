@@ -1,5 +1,5 @@
 import { Calendar as FullCalendar } from "@fullcalendar/core";
-import { WcjEvent } from "~app/types";
+import { WcjEvent } from "~app/event/types";
 import { FcBtnGroup, FcBtnGroupButtons } from "./types";
 
 export enum CalendarTimeFrame {

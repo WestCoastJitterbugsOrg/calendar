@@ -73,7 +73,7 @@
       "tsconfig-paths/register"
     ],
     "files": [
-      "test/**/*.ts"
+      "test/**/*.spec.ts"
     ],
     "extensions": [
       "ts"

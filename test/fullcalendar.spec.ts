@@ -1,16 +1,13 @@
 import anyTest, { ExecutionContext, Macro, CbMacro, TestInterface } from 'ava';
-import { WcjEvent } from '~app/types';
+import { WcjEvent } from '~app/event/types';
 import dayjs from 'dayjs';
 import FullerCalendarFactory from '~app/fullercalendar';
-import { Calendar, EventApi, MountArg, ViewApi, ViewContentArg } from '@fullcalendar/core';
-
 import { fixture } from 'ava-browser-fixture'
-
 import jqueryProxy from 'jquery'
-import { CalendarTimeFrame, CalendarViewType, setEvents } from '~app/fullercalendar/helpers';
+import { setEvents } from '~app/fullercalendar/helpers';
 import { FullCalendarCreator } from '~app/fullercalendar/types';
-
-
+import { MockFcCreator } from './mocks/fuller-calendar.mock';
+import { readFile } from "fs"
 
 type TestData = { events: WcjEvent[] }
 type TestContext = {
@@ -19,7 +16,7 @@ type TestContext = {
 	// I set the time the test begins so that the same time is used everywhere throughout the test
 	testTime: Date,
 	document: Document,
-	fcFactory: FullCalendarCreator
+	fcCreator: FullCalendarCreator
 };
 const test = anyTest as TestInterface<TestContext>;
 
@@ -40,48 +37,33 @@ function generateUniqueData(currentTime: Date): TestData {
 	}
 }
 
-test.beforeEach(fixture("src/index.html"));
+test.before.cb(t => {
+	fixture("src/index.html")(t);
+
+	readFile("test/mocks/rendered-calendar.html", (err, data) => {
+		if (err) {
+			t.log('Loading rendered-calendar.html failed', err);
+			t.end(err);
+		} else {
+			try {
+				const calendarEl = t.context.document.body.querySelectorAll(".calendar-container").item(0);
+				calendarEl.innerHTML = data.toString().trim();
+				t.end();
+			} catch (e) {
+				t.log('Replacing calendar element in DOM failed', e);
+				t.end(e);
+			}
+		}
+	});
+}
+);
 
 test.beforeEach(t => {
 	const currentTime = new Date();
-
-	const mockFcFactory: FullCalendarCreator = (el, opts) => {
-		let events: EventApi[] = [];
-		let view: ViewApi = <ViewApi>{
-			activeStart: currentTime,
-			activeEnd: dayjs(currentTime).add(7, 'day').toDate(),
-			calendar: null,
-			currentStart: currentTime,
-			currentEnd: dayjs(currentTime).add(7, 'day').toDate(),
-			title: 'Day Grid Month',
-			type: 'dayGridMonth'
-		};
-		return <Calendar>{
-			render: () => { opts.viewDidMount({ el: el, view: view }) },
-			getEvents: () => events,
-			addEvent: (eventInput, _) => {
-				const event = <EventApi>{
-					id: eventInput.id,
-					remove: () => { events = events.filter(x => x.id !== eventInput.id) }
-				}
-				events.push(event);
-				return event;
-			},
-			changeView: (viewType, dateOrRange) => {
-				Object.assign(view, { type: viewType })
-			},
-
-			view: view,
-			getOption: (opt) => opts[opt]
-
-		};
-	}
-
 	t.context.testTime = currentTime;
 	t.context.data = generateUniqueData(currentTime);
-	t.context.fcFactory = mockFcFactory;
+	t.context.fcCreator = MockFcCreator(currentTime);
 });
-
 
 test.cb("Example test for JQuery", t => {
 	jqueryProxy(function ($: JQueryStatic) {
@@ -97,13 +79,9 @@ test.cb("Example test for JQuery", t => {
 	})
 });
 
-
-
-
-
 test('`setEvents` sets selected events in the calendar', t => {
 	const container = document.body.getElementsByClassName('container')[0] as HTMLElement;
-	const fcHandlerCreator = FullerCalendarFactory(t.context.fcFactory);
+	const fcHandlerCreator = FullerCalendarFactory(t.context.fcCreator);
 	const calendar = fcHandlerCreator.createCalendar(container);
 	setEvents(calendar, t.context.data.events);
 	t.deepEqual(t.context.data.events.map(x => x.id), calendar.getEvents().map(x => x.id));
@@ -111,7 +89,7 @@ test('`setEvents` sets selected events in the calendar', t => {
 
 test('Clicking "week" and "list" buttons changes properties', t => {
 	const container = jqueryProxy('.container')[0];
-	const fcHandlerCreator = FullerCalendarFactory(t.context.fcFactory);
+	const fcHandlerCreator = FullerCalendarFactory(t.context.fcCreator);
 	const calendar = fcHandlerCreator.createCalendar(container);
 
 	calendar.getOption("customButtons")["myWeek"].click(new MouseEvent("click"), container);
@@ -159,5 +137,3 @@ test('Clicking "week" and "list" buttons changes properties', t => {
 
 
 //#endregion
-
-
