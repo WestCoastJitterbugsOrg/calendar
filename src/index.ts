@@ -1,9 +1,12 @@
 import $ from "jquery";
-import PageHandlerFactoryCreator from './app/page-handler';
+import PageHandlerFactory from './app/page-handler/page-handler';
 import './style/main.scss';
-import { WcjEvent } from "./app/types";
-import { gc2wcjEvent } from "./app/google-calendar-tools";
-const PageHandlerFactory = PageHandlerFactoryCreator($);
+import { WcjEvent } from "./app/event/types";
+import { WCJEventFactory } from "~app/event/wcj";
+
+const pageHandlerCreator = PageHandlerFactory($);
+
+const wcjEventCreator = WCJEventFactory();
 
 
 function handleClientLoad() {
@@ -19,8 +22,9 @@ function handleClientLoad() {
       "timeMin": new Date().toISOString() // "2020-09-10T10:43:14.507Z"
     });
 
-    const events: WcjEvent[] = response.result.items.map(gc2wcjEvent);
-    PageHandlerFactory(events);
+
+    const events: WcjEvent[] = response.result.items.map(wcjEventCreator.createFromGC);
+    pageHandlerCreator.createPageHandler(events);
   });
 }
 

@@ -1,7 +1,7 @@
 import { FullCalendarCreator, FullCallendarHandlerCreator as FullerCalendarCreator } from "./types";
 import { CalendarTimeFrame, calendarViews, CalendarViewType } from "./helpers";
 
-import { defaultFCCreator } from "~app/default-objects";
+import { defaultFCCreator } from "../default-objects";
 import DayGridPlugin from '@fullcalendar/daygrid';
 import ListPlugin from '@fullcalendar/list';
 import TimeGridPlugin from '@fullcalendar/timegrid';
