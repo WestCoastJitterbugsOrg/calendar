@@ -1,5 +1,5 @@
 import $ from "jquery";
-import PageHandlerFactory from './app/page-handler/page-handler';
+import PageHandlerFactory from './app/page-handler';
 import './style/main.scss';
 import { WcjEvent } from "./app/event/types";
 import { WCJEventFactory } from "~app/event/wcj";

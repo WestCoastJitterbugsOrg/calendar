@@ -8,7 +8,7 @@ export interface FullerCalendar extends FullCalendar {
 
 // A type that describes a function that creates a FullCalendar. See below for more info
 export type FullCalendarCreator = (el: HTMLElement, optionOverrides?: CalendarOptions) => FullCalendar;
-export type FullCallendarHandlerCreator = { createCalendar: (el: HTMLElement) => FullerCalendar };
+export type FullerCalendarCreator = { createCalendar: (el: HTMLElement) => FullerCalendar };
 
 
 export type FcBtnGroupButtons = typeof CalendarTimeFrame | typeof CalendarViewType;

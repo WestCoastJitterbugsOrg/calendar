@@ -1,12 +1,9 @@
-import ColorHash from "color-hash";
 import ColorFactory from "~app/color-hash";
-import { customHash } from "~app/color-hash/helpers";
 import { WCJEventCreator } from "./types";
 
-export function WCJEventFactory(colorFactory = ColorFactory, colorHash = new ColorHash({ hash: customHash })): WCJEventCreator {
+export function WCJEventFactory(colorHashCreator = ColorFactory()): WCJEventCreator {
     return {
         createFromGC: gcEvent => {
-            const colorHashCreator = colorFactory(colorHash);
             const hslSettings = { saturation: 0.35 }; // {/*hue: [150, 210], saturation: [0.3, 0.7], lightness:[0.55, 0.75]*/}
             const hash = colorHashCreator.createColorHash(hslSettings);
             return {

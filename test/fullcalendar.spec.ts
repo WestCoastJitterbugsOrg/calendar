@@ -1,4 +1,4 @@
-import anyTest, { ExecutionContext, Macro, CbMacro, TestInterface } from 'ava';
+import anyTest, { TestInterface } from 'ava';
 import { WcjEvent } from '~app/event/types';
 import dayjs from 'dayjs';
 import FullerCalendarFactory from '~app/fullercalendar';

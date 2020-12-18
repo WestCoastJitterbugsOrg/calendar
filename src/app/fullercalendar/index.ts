@@ -1,4 +1,4 @@
-import { FullCalendarCreator, FullCallendarHandlerCreator as FullerCalendarCreator } from "./types";
+import { FullCalendarCreator, FullerCalendarCreator } from "./types";
 import { CalendarTimeFrame, calendarViews, CalendarViewType } from "./helpers";
 
 import { defaultFCCreator } from "../default-objects";
@@ -32,7 +32,7 @@ export default function FullerCalendarFactory(fcCreator: FullCalendarCreator = d
                     calendar.changeView(newView);
                 }
             }
-
+            
             const createTimeFrameButton = (timeFrame: CalendarTimeFrame) =>
                 ({
                     text: CalendarTimeFrame[timeFrame].toString(),

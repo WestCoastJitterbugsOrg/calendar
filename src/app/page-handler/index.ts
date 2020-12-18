@@ -2,32 +2,20 @@ import defaultJQuery from "jquery";
 import { WcjEvent } from "../event/types";
 import FullerCalendarFactory from '../fullercalendar';
 import { setEvents } from "../fullercalendar/helpers";
+import { getUniqueEvents } from "./helpers";
 import { PageHandlerCreator } from "./types";
-
-let uniqueEvents: WcjEvent[] = [];
-let selectedEvents: WcjEvent[] = [];
-const fcHandlerFactory = FullerCalendarFactory();
-
 
 /**
  * Sets up the view and event listeners. Basically the main logic of the whole page/plugin.
  * @param gcEvents Array of all events that exist
  */
-export default function PageHandlerFactory($: JQueryStatic = defaultJQuery): PageHandlerCreator {
+export default function PageHandlerFactory($: JQueryStatic = defaultJQuery, fcHandlerFactory = FullerCalendarFactory()): PageHandlerCreator {
 
     return {
         createPageHandler: (events: WcjEvent[]) => {
             const calendar = fcHandlerFactory.createCalendar($('#calendar').get(0));
-            // Courses that have the same summary (name) are the same courses on different time slots. 
-            // Let's find the unique ones by filtering by summary
-            // (Yes, there are more efficient ways to do this, deal with it! 😎)
-            uniqueEvents = [];
-            for (const el of events) {
-                if (!uniqueEvents.find(e => e.title === el.title)) {
-                    el.id = el.title.replace(/[^A-Za-z0-9-_]/g, ''); // Create id valid for HTML
-                    uniqueEvents.push(el);
-                }
-            }
+            const uniqueEvents = getUniqueEvents(events)
+            let selectedEvents: WcjEvent[] = [];
 
             // Create all checkboxes out of the unique events
             for (const el of uniqueEvents) {
