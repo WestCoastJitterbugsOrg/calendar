@@ -1,13 +1,7 @@
-import $ from "jquery";
-import PageHandlerFactory from './app/page-handler';
 import './style/main.scss';
-import { WcjEvent } from "./app/event/types";
-import { WCJEventFactory } from "~app/event/wcj";
-
-const pageHandlerCreator = PageHandlerFactory($);
-
-const wcjEventCreator = WCJEventFactory();
-
+import deps from './app/default-objects';
+const gapi = deps.gapi;
+const $ = deps.$;
 
 function handleClientLoad() {
   gapi.load("client", async () => {
@@ -22,9 +16,7 @@ function handleClientLoad() {
       "timeMin": new Date().toISOString() // "2020-09-10T10:43:14.507Z"
     });
 
-
-    const events: WcjEvent[] = response.result.items.map(wcjEventCreator.createFromGC);
-    pageHandlerCreator.createPageHandler(events);
+    deps.pageHandler(response.result.items.map(deps.wcjEvent.createFromGC));
   });
 }
 

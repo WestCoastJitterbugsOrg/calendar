@@ -1,5 +1,5 @@
 import { Calendar as FullCalendar } from "@fullcalendar/core";
-import { WcjEvent } from "~app/event/types";
+import { WcjEvent } from "../event/types";
 import { FcBtnGroup, FcBtnGroupButtons } from "./types";
 
 export enum CalendarTimeFrame {
@@ -56,7 +56,9 @@ export function fcButtonGroup<T extends FcBtnGroupButtons>(element: HTMLElement,
 export function setEvents(calendar: FullCalendar, selectedEvents: WcjEvent[]): void {
 
     // Each time I reload the calendar, I remove all old events and add the checked ones again
-    for (const event of calendar.getEvents()) {
+    const events = calendar.getEvents();
+    console.log(events)
+    for (const event of events) {
         event.remove();
     }
 
