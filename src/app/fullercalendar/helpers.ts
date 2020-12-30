@@ -1,6 +1,6 @@
-import { Calendar as FullCalendar } from "@fullcalendar/core";
-import { WcjEvent } from "../event/types";
-import { FcBtnGroup, FcBtnGroupButtons } from "./types";
+import {Calendar as FullCalendar} from "@fullcalendar/core";
+import {WcjEvent} from "../event/types";
+import {FcBtnGroup, FcBtnGroupButtons} from "./types";
 
 export enum CalendarTimeFrame {
     Month = 'Month',
@@ -12,7 +12,7 @@ export enum CalendarViewType {
     List = 'List'
 }
 
-export const calendarViews: { [key in CalendarTimeFrame]: { [key in CalendarViewType]: string } } =
+export const calendarViews: {[key in CalendarTimeFrame]: {[key in CalendarViewType]: string}} =
 {
     'Month': {
         'Grid': 'dayGridMonth',
@@ -57,11 +57,9 @@ export function setEvents(calendar: FullCalendar, selectedEvents: WcjEvent[]): v
 
     // Each time I reload the calendar, I remove all old events and add the checked ones again
     const events = calendar.getEvents();
-    console.log(events)
     for (const event of events) {
         event.remove();
     }
-
 
     for (const gcEvent of selectedEvents) {
         calendar.addEvent({

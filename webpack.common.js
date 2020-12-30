@@ -55,7 +55,7 @@ module.exports = {
   resolve: {
     // Makes it possible to import without extensions, as follows:
     // import File from '../path/to/file';
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.ts', '.js'],
   },
   output: {
     filename: '[name].bundle.js'

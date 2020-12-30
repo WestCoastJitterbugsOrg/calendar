@@ -1,18 +1,14 @@
-import { EventApi } from '@fullcalendar/core';
-import { FullCalendarCreator } from './../src/app/fullercalendar/types';
-import { Dependencies } from './../src/app/types';
-import anyTest, { TestInterface } from 'ava';
-import { WcjEvent } from '~app/event/types';
+import {EventApi} from '@fullcalendar/core';
+import {Dependencies} from './../src/app/types';
+import anyTest, {TestInterface} from 'ava';
+import {WcjEvent} from '~app/event/types';
 import dayjs from 'dayjs';
-import { fixture } from 'ava-browser-fixture'
+import {fixture} from 'ava-browser-fixture'
 import jqueryProxy from 'jquery'
-import { FullerCalendar, FullerCalendarCreator } from '~app/fullercalendar/types';
-import { readFile } from "fs"
-import PageHandlerFactory from '~app/page-handler';
-import { setEvents } from '~app/fullercalendar/helpers';
-import { getUniqueEvents } from '~app/page-handler/helpers';
+import makeInitPageHandler from '~app/page-handler';
+import {getUniqueEvents} from '~app/page-handler/helpers';
 
-type TestData = { events: (WcjEvent & Partial<EventApi>)[] }
+type TestData = {events: (WcjEvent & Partial<EventApi>)[]}
 type TestContext = {
     // All mock data
     data: TestData,
@@ -38,7 +34,7 @@ function generateUniqueData(currentTime: Date): TestData {
         remove: () => events.shift()
     }]
 
-    return { events }
+    return {events}
 }
 
 
@@ -50,16 +46,15 @@ test.before.cb(t => {
     fixture("src/index.html")(t).then(() => {
         jqueryProxy(function ($: JQueryStatic) {
             let calendarEvents: EventApi[] = []
-            t.context.deps = {
-                fullerCalendar: (el => ({
+            t.context.deps = <Dependencies>{
+                initFullerCalendar: (el => ({
                     //TODO: Add more
                     timeFrame: () => 'Month',
                     viewType: () => 'Grid',
                     getEvents: () => calendarEvents
                 })),
-                setEvents: (calendar, events) => {calendarEvents = [{ id: 'event_1' } as EventApi]},
                 $: $
-            } as Dependencies;
+            } ;
             t.end();
         }.bind(t.context.document));
     })
@@ -72,7 +67,7 @@ test('`getUniqueEvents` work', t => {
 
 test('courses gets added to course list on init', t => {
     // init page handler
-    PageHandlerFactory(t.context.deps)(t.context.data.events);
+    makeInitPageHandler(t.context.deps)(t.context.data.events);
     const courseListEl = t.context.deps.$('#courseList', t.context.document);
     const noOfChildren = courseListEl.get(0).children.length;
     t.is(noOfChildren, t.context.data.events.length);
@@ -81,7 +76,7 @@ test('courses gets added to course list on init', t => {
 
 test('clicking `selectAllCourses` button selects all courses', t => {
     // init page handler
-    PageHandlerFactory(t.context.deps)(t.context.data.events);
+    makeInitPageHandler(t.context.deps)(t.context.data.events);
     t.context.deps.$('#selectAllCourses', t.context.document).trigger('click');
-    
+
 });

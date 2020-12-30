@@ -1,7 +1,7 @@
-import { WcjEvent } from './../event/types';
-import { EventGroupList } from './types';
+import {WcjEvent} from './../event/types';
+import {EventGroupList} from './types';
 
-const EventGroupList: EventGroupList = allEvents => {
+const eventGroupList: EventGroupList = allEvents => {
     let selectedEvents: WcjEvent[] = [];
     const select = (id: string) => {
         const foundEvents = allEvents.filter(x => x.id === id);
@@ -20,4 +20,4 @@ const EventGroupList: EventGroupList = allEvents => {
     }
 }
 
-export { EventGroupList }
+export {eventGroupList}

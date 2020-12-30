@@ -16,7 +16,7 @@ function handleClientLoad() {
       "timeMin": new Date().toISOString() // "2020-09-10T10:43:14.507Z"
     });
 
-    deps.pageHandler(response.result.items.map(deps.wcjEvent.createFromGC));
+    deps.initPageHandler(response.result.items.map(deps.wcjEventCreator.createFromGC));
   });
 }
 

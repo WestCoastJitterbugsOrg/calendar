@@ -1,4 +1,4 @@
-import { WcjEvent } from "../event/types";
+import {WcjEvent} from "../event/types";
 
 export function getUniqueEvents(events: WcjEvent[]): WcjEvent[] {
     // Courses that have the same summary (name) are the same courses on different time slots. 

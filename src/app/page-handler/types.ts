@@ -1,4 +1,4 @@
-import { WcjEvent } from "../event/types";
+import {WcjEvent} from "../event/types";
 
 export type PageHandlerCreator = (events: WcjEvent[]) => void
 export type EventGroupList = (allEvents: WcjEvent[]) => {
