@@ -1,20 +1,19 @@
-import {getUniqueEvents} from './page-handler/helpers';
 import makeInitColorConverter from './color';
-import makeInitPageHandler from './page-handler';
 import makeInitFullerCalendar from './fullercalendar';
 import ColorHash from 'color-hash';
 import {Dependencies} from './types';
 import {Calendar as FullCalendar} from "@fullcalendar/core";
 import makeWcjEventCreator from './event/wcj';
-import {eventGroupList as eventGroupList} from './page-handler/event-group-list';
+import {makeWcjEventListCreator} from './event-group-list';
 import {FullCalendarCreator, FullerCalendarCreator} from './fullercalendar/types';
-import {PageHandlerCreator} from './page-handler/types';
+import {WcjEventListCreator} from './event-group-list/types';
 import {WcjColorHashCreator} from './color/types';
 import {WCJEventCreator} from './event/types';
+import $ from 'jquery';
 
 const initFullCalendar: FullCalendarCreator = (el, optionOverrides) => new FullCalendar(el, optionOverrides);
 const initFullerCalendar: FullerCalendarCreator = makeInitFullerCalendar({initFullCalendar: initFullCalendar});
-const initPageHandler: PageHandlerCreator = makeInitPageHandler({$: $, eventGroupList, initFullerCalendar: initFullerCalendar, getUniqueEvents});
+const initWcjEventList: WcjEventListCreator = makeWcjEventListCreator({initFullerCalendar, $ });
 const colorHash: ColorHash = new ColorHash();
 const initWcjColorHash: WcjColorHashCreator = makeInitColorConverter({colorHash});
 const wcjEventCreator: WCJEventCreator = makeWcjEventCreator({initWcjColorHash});
@@ -23,14 +22,12 @@ const wcjEventCreator: WCJEventCreator = makeWcjEventCreator({initWcjColorHash})
 const dependencies: Dependencies = {
     initFullCalendar,
     initFullerCalendar,
-    initPageHandler,
-    colorHash,
     initWcjColorHash,
+    initWcjEventList,
+    colorHash,
     wcjEventCreator,
     $,
-    gapi,
-    getUniqueEvents,
-    eventGroupList
+    gapi
 }
 
 

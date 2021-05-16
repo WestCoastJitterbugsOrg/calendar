@@ -7,10 +7,11 @@ module.exports = merge(common, {
     mode: 'development',
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: path.join(__dirname, 'dist/dev'),
+        contentBase: path.join(__dirname, 'dist'),
         publicPath: '/personal-calendar',
     },
     output: {
-        path: path.resolve(__dirname, 'dist/dev')
-    }
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist')
+      }
 });

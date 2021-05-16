@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -46,7 +46,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
+    new CleanWebpackPlugin({cleanStaleWebpackAssets: false}),
     new HtmlWebpackPlugin({
       title: 'Personal calendar',
       favicon: "./src/favicon.ico",
@@ -56,9 +56,6 @@ module.exports = {
     // Makes it possible to import without extensions, as follows:
     // import File from '../path/to/file';
     extensions: ['.ts', '.js'],
-  },
-  output: {
-    filename: '[name].bundle.js'
   },
   optimization: {
     runtimeChunk: 'single'

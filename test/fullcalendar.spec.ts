@@ -1,15 +1,15 @@
-import { Dependencies } from './../src/app/types';
+import {Dependencies} from './../src/app/types';
 import "@fullcalendar/core";
-import { MockFcCreator } from './mocks/fuller-calendar.mock';
-import anyTest, { TestInterface } from 'ava';
-import { WcjEvent } from '~app/event/types';
+import {MockFcCreator} from './mocks/fuller-calendar.mock';
+import anyTest, {TestInterface} from 'ava';
+import {WcjEvent} from '~app/event/types';
 import dayjs from 'dayjs';
 import makeInitFullCalendar from '~app/fullercalendar';
-import { fixture } from 'ava-browser-fixture'
+import {fixture} from 'ava-browser-fixture'
 import jqueryProxy from 'jquery'
-import { readFile } from "fs"
+import {readFile} from "fs"
 
-type TestData = { events: WcjEvent[] }
+type TestData = {events: WcjEvent[]}
 type TestContext = {
 	// All mock data
 	data: TestData,
@@ -29,8 +29,11 @@ function generateUniqueData(currentTime: Date): TestData {
 		events: [{
 			title: "Event 1",
 			id: "event_1",
-			start: start,
-			end: end,
+			occasions: [{
+				start: start,
+				end: end,
+			}],
+			showInCalendar: true,
 			bgColor: "black",
 			textColor: "white"
 		}]
@@ -61,7 +64,7 @@ test.beforeEach(t => {
 	const currentTime = new Date();
 	t.context.testTime = currentTime;
 	t.context.data = generateUniqueData(currentTime);
-	t.context.deps = { initFullCalendar: MockFcCreator(currentTime) } as Dependencies;
+	t.context.deps = {initFullCalendar: MockFcCreator(currentTime)} as Dependencies;
 });
 
 test('`setEvents` sets selected events in the calendar', t => {

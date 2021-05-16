@@ -1,13 +1,19 @@
+import GCEvent = gapi.client.calendar.Event;
+
 export interface WCJEventCreator {
-    createFromGC: (gcEvent: gapi.client.calendar.Event) => WcjEvent
+    createFromGoogleCal: (gcEvents: GCEvent[]) => {[id: string]: WcjEvent}
 }
 
 export type WcjEvent = {
-    title: string,
     id: string,
-    start: Date,
-    end: Date,
+    title: string,
+    occasions: {
+        start: Date,
+        end: Date
+    }[],
     /* colors in hex rgb */
     bgColor: string,
     textColor: string
+    /* state */
+    showInCalendar: boolean,
 };

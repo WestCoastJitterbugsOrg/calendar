@@ -14,14 +14,17 @@
     },
     "moduleResolution": "node",
     "module": "CommonJS",
+    "target": "es6",
     "esModuleInterop": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "typeRoots": [],
+    "types": ["node", "gapi", "gapi.calendar"],
     "lib": [
       "ESNext"
     ],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "sourceMap": true,
+    "allowJs": true
   },
   "include": [
     "src/**/*",

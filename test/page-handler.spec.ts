@@ -5,10 +5,9 @@ import {WcjEvent} from '~app/event/types';
 import dayjs from 'dayjs';
 import {fixture} from 'ava-browser-fixture'
 import jqueryProxy from 'jquery'
-import makeInitPageHandler from '~app/page-handler';
-import {getUniqueEvents} from '~app/page-handler/helpers';
+import {makeWcjEventListCreator} from '~app/event-group-list';
 
-type TestData = {events: (WcjEvent & Partial<EventApi>)[]}
+type TestData = {events: {[key: string]: (WcjEvent & Partial<EventApi>)}}
 type TestContext = {
     // All mock data
     data: TestData,
@@ -24,15 +23,19 @@ function generateUniqueData(currentTime: Date): TestData {
     const start = now.subtract(1, 'hour').toDate();
     const end = now.add(1, 'hour').toDate();
 
-    const events = [{
-        title: "Event 1",
-        id: "event_1",
-        start: start,
-        end: end,
-        bgColor: "black",
-        textColor: "white",
-        remove: () => events.shift()
-    }]
+    const events = {
+        event_1: {
+            title: "Event 1",
+            id: "event_1",
+            occasions: [{
+                start: start,
+                end: end
+            }],
+            bgColor: "black",
+            textColor: "white",
+            showInCalendar: true
+        }
+    }
 
     return {events}
 }
@@ -54,29 +57,25 @@ test.before.cb(t => {
                     getEvents: () => calendarEvents
                 })),
                 $: $
-            } ;
+            };
             t.end();
         }.bind(t.context.document));
     })
 });
 
-test('`getUniqueEvents` work', t => {
-    const unique = getUniqueEvents(t.context.data.events);
-    t.deepEqual(unique, t.context.data.events);
-})
 
 test('courses gets added to course list on init', t => {
     // init page handler
-    makeInitPageHandler(t.context.deps)(t.context.data.events);
+    makeWcjEventListCreator(t.context.deps)(t.context.data.events);
     const courseListEl = t.context.deps.$('#courseList', t.context.document);
     const noOfChildren = courseListEl.get(0).children.length;
-    t.is(noOfChildren, t.context.data.events.length);
+    t.is(noOfChildren, Object.keys(t.context.data.events).length);
 })
 
 
 test('clicking `selectAllCourses` button selects all courses', t => {
     // init page handler
-    makeInitPageHandler(t.context.deps)(t.context.data.events);
+    makeWcjEventListCreator(t.context.deps)(t.context.data.events);
     t.context.deps.$('#selectAllCourses', t.context.document).trigger('click');
 
 });
