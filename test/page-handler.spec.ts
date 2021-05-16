@@ -4,7 +4,6 @@ import { Dependencies } from './../src/app/types';
 
 import dayjs from 'dayjs';
 import { WcjEvent } from '../src/app/event/types';
-import makeWcjEventCreator from '~app/event/wcj';
 
 
 jest.mock('jquery');

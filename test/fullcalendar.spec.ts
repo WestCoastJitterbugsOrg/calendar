@@ -1,4 +1,3 @@
-import { Dependencies } from './../src/app/types';
 import { Calendar, CalendarOptions, PluginDef } from "@fullcalendar/core";
 import DayGridPlugin from "@fullcalendar/daygrid";
 import ListPlugin from "@fullcalendar/list";
@@ -8,7 +7,6 @@ import { WcjEvent } from '../src/app/event/types';
 import dayjs from 'dayjs';
 import FullerCalendarFactory from '../src/app/fullercalendar';
 import { setEvents } from '../src/app/fullercalendar/helpers';
-import dependencies from '~app/default-objects';
 
 jest.mock('@fullcalendar/core',
 	() => {
@@ -75,17 +73,23 @@ describe('Full Calendar', () => {
 	});
 
 	test('`setEvents` sets selected events in the calendar', t => {
-		const calendar = FullerCalendarFactory(dependencies)(<HTMLElement>{});
+		const calendar = FullerCalendarFactory(<HTMLElement>{});
 		setEvents(calendar, data.events);
 		expect(data.events.map(x => x.id)).toBe(calendar.getEvents().map(x => x.id));
 	});
 
 	test('Clicking "week" and "list" buttons changes properties', t => {
 		const container = <HTMLElement>{};
-		const calendar = FullerCalendarFactory(dependencies)(container);
+		const calendar = FullerCalendarFactory(container);
 
-		calendar.getOption("customButtons")["myWeek"].click(new MouseEvent("click"), container);
-		calendar.getOption("customButtons")["myList"].click(new MouseEvent("click"), container);
+		const customButtons = calendar.getOption("customButtons");
+		const myWeekClick = customButtons?.myWeek?.click;
+		myWeekClick && myWeekClick(new MouseEvent("click"), container);
+
+		const myListClick = customButtons?.myList?.click;
+
+		myListClick && myListClick(new MouseEvent("click"), container);
+
 
 		expect(calendar.view.type).toEqual("listWeek");
 	})

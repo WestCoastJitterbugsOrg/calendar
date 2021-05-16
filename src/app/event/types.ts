@@ -1,6 +1,6 @@
 import GCEvent = gapi.client.calendar.Event;
 
-export interface WCJEventCreator {
+export type WCJEventCreator = {
     createFromGoogleCal: (gcEvents: GCEvent[]) => {[id: string]: WcjEvent}
 }
 

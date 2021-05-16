@@ -1,38 +1,14 @@
 {
+  "$schema": "http://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "baseUrl": "src",
-    "paths": {
-      "~*": [
-        "./*"
-      ],
-      "@app*": [
-        "./app/*"
-      ],
-      "@helpers*": [
-        "./helpers/*"
-      ]
-    },
+    "module": "ES2015",
+    "target": "ES2017",
     "moduleResolution": "node",
-    "module": "CommonJS",
-    "target": "es6",
-    "esModuleInterop": true,
-    "typeRoots": ["node_modules/@types", "types"],
-    "types": ["node", "gapi", "gapi.calendar", "ts-jest"],
-    "lib": [
-      "ESNext",
-      "DOM",
-      "ESNext.Array"
-    ],
-    "skipLibCheck": true,
-    "outDir": "./dist",
+    "importHelpers": true,
+    "noEmitHelpers": true,
     "sourceMap": true,
-    "allowJs": true
-  },
-  "include": [
-    "src/**/*",
-    "test/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "esModuleInterop": true,
+    "lib": ["DOM", "DOM.Iterable", "ES2017"],
+    "types": ["jest", "gapi.calendar"]
+  }
 }

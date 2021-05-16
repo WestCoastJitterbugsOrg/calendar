@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const path = require('path');
 
 module.exports = {
   entry: {
@@ -41,15 +41,10 @@ module.exports = {
         // Translates CSS into CommonJS
         "css-loader"
       ]
-    },
-    {
-      test: /\.html$/i,
-      type: "asset/source"
     }
     ],
   },
   plugins: [
-    new CleanWebpackPlugin({cleanStaleWebpackAssets: false}),
     new HtmlWebpackPlugin({
       title: 'Personal calendar',
       favicon: "./src/favicon.ico",
@@ -63,5 +58,9 @@ module.exports = {
   },
   optimization: {
     runtimeChunk: 'single'
+  },
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist'),
   }
 };

@@ -1,10 +1,11 @@
-import {Factory} from "../types";
+import ColorHash from "color-hash";
 import {hsl2rgb} from "./helpers";
 import {WcjColorHashCreator} from "./types";
 
-const initWcjColorHash: Factory<WcjColorHashCreator, "colorHash">
-  = ({colorHash}) => hslSetting => {
-
+const initColorConverter: WcjColorHashCreator
+  = hslSetting => {
+    const colorHash = new ColorHash(hslSetting);
+    
     const hsl = (input: string) => {
       const hslVal = colorHash.hsl(input);
       hslVal[0] = hslSetting.hue || hslVal[0];
@@ -29,4 +30,4 @@ const initWcjColorHash: Factory<WcjColorHashCreator, "colorHash">
     return {...colorHash, hsl, rgb, hex};
   };
 
-export default initWcjColorHash;
+export default initColorConverter;
