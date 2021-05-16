@@ -1,6 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -42,11 +41,15 @@ module.exports = {
         // Translates CSS into CommonJS
         "css-loader"
       ]
+    },
+    {
+      test: /\.html$/i,
+      type: "asset/source"
     }
     ],
   },
   plugins: [
-    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
+    new CleanWebpackPlugin({cleanStaleWebpackAssets: false}),
     new HtmlWebpackPlugin({
       title: 'Personal calendar',
       favicon: "./src/favicon.ico",
@@ -56,11 +59,7 @@ module.exports = {
   resolve: {
     // Makes it possible to import without extensions, as follows:
     // import File from '../path/to/file';
-    extensions: ['.tsx', '.ts', '.js'],
-    plugins: [new TsconfigPathsPlugin({})]
-  },
-  output: {
-    filename: '[name].bundle.js'
+    extensions: ['.ts', '.js'],
   },
   optimization: {
     runtimeChunk: 'single'

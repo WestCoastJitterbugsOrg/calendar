@@ -1,9 +1,11 @@
-import { Calendar as FullCalendar, CalendarOptions } from "@fullcalendar/core";
-import { CalendarTimeFrame, CalendarViewType } from "./helpers";
+import {Calendar as FullCalendar, CalendarOptions} from "@fullcalendar/core";
+import {WcjEvent} from "~app/event/types";
+import {CalendarTimeFrame, CalendarViewType} from "./helpers";
 
 export interface FullerCalendar extends FullCalendar {
     timeFrame: () => keyof typeof CalendarTimeFrame;
     viewType: () => keyof typeof CalendarViewType;
+    setEvents: (events: WcjEvent[]) => void;
 }
 
 
@@ -14,4 +16,4 @@ export type FullerCalendarCreator = (el: HTMLElement) => FullerCalendar;
 
 export type FcBtnGroupButtons = typeof CalendarTimeFrame | typeof CalendarViewType;
 
-export type FcBtnGroup<T extends FcBtnGroupButtons> = { click: (title: keyof T) => void, getSelected: () => keyof T }
+export type FcBtnGroup<T extends FcBtnGroupButtons> = {click: (title: keyof T) => void, getSelected: () => keyof T}

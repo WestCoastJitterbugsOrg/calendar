@@ -4,12 +4,12 @@
   "description": "Get an overview of your schedule",
   "private": "true",
   "scripts": {
-    "test": "jest",
     "build": "webpack --config webpack.dev.js",
     "watch": "webpack --watch --config webpack.dev.js",
     "start": "webpack serve --config webpack.dev.js",
     "build:prod": "webpack --config webpack.prod.js",
-    "start:prod": "webpack --config webpack.prod.js && node server.js"
+    "start:prod": "webpack --config webpack.prod.js && node server.js",
+    "test": "jest --config jest.config.js"
   },
   "repository": {
     "type": "git",
@@ -34,7 +34,6 @@
     "md5": "^2.3.0"
   },
   "devDependencies": {
-    "@ava/typescript": "^1.1.1",
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/color-hash": "^1.0.0",
     "@types/express": "^4.17.11",
@@ -66,21 +65,6 @@
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.7.3"
-  },
-  "ava": {
-    "verbose": true,
-    "require": [
-      "ts-node/register",
-      "source-map-support/register",
-      "tsconfig-paths/register"
-    ],
-    "files": [
-      "test/**/*.spec.ts"
-    ],
-    "extensions": [
-      "ts"
-    ],
-    "timeout": "1m"
   },
   "nyc": {
     "extends": "@istanbuljs/nyc-config-typescript",

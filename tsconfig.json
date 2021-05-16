@@ -13,15 +13,20 @@
       ]
     },
     "moduleResolution": "node",
-    "module": "ES6",
+    "module": "CommonJS",
+    "target": "es6",
     "esModuleInterop": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "typeRoots": ["node_modules/@types", "types"],
+    "types": ["node", "gapi", "gapi.calendar", "ts-jest"],
     "lib": [
-      "ESNext"
+      "ESNext",
+      "DOM",
+      "ESNext.Array"
     ],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "sourceMap": true,
+    "allowJs": true
   },
   "include": [
     "src/**/*",

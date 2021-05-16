@@ -1,27 +1,15 @@
+import 'jquery'
 import { EventApi } from '@fullcalendar/core';
-import { FullCalendarCreator } from './../src/app/fullercalendar/types';
 import { Dependencies } from './../src/app/types';
-import anyTest, { TestInterface } from 'ava';
-import { WcjEvent } from '~app/event/types';
+
 import dayjs from 'dayjs';
-import { fixture } from 'ava-browser-fixture'
-import jqueryProxy from 'jquery'
-import { FullerCalendar, FullerCalendarCreator } from '~app/fullercalendar/types';
-import { readFile } from "fs"
-import PageHandlerFactory from '~app/page-handler';
-import { setEvents } from '~app/fullercalendar/helpers';
-import { getUniqueEvents } from '~app/page-handler/helpers';
+import { WcjEvent } from '../src/app/event/types';
+import makeWcjEventCreator from '~app/event/wcj';
+
+
+jest.mock('jquery');
 
 type TestData = { events: (WcjEvent & Partial<EventApi>)[] }
-type TestContext = {
-    // All mock data
-    data: TestData,
-    // I set the time the test begins so that the same time is used everywhere throughout the test
-    testTime: Date,
-    document: Document,
-    deps: Dependencies
-};
-const test = anyTest as TestInterface<TestContext>;
 
 function generateUniqueData(currentTime: Date): TestData {
     const now = dayjs(currentTime);
@@ -31,57 +19,54 @@ function generateUniqueData(currentTime: Date): TestData {
     const events = [{
         title: "Event 1",
         id: "event_1",
-        start: start,
-        end: end,
+        occasions: [{
+            start: start,
+            end: end
+        }],
         bgColor: "black",
         textColor: "white",
+        showInCalendar: true,
         remove: () => events.shift()
-    }]
+    }
+    ]
 
     return { events }
 }
 
+describe('Page handler', () => {
+    let testTime: Date;
+    let data: TestData;
+    let dependencies: Dependencies;
 
-test.before.cb(t => {
-    const currentTime = new Date();
-    t.context.testTime = currentTime;
-    t.context.data = generateUniqueData(currentTime);
+    beforeEach(() => {
+        testTime = new Date();
+        data = generateUniqueData(testTime);
 
-    fixture("src/index.html")(t).then(() => {
-        jqueryProxy(function ($: JQueryStatic) {
-            let calendarEvents: EventApi[] = []
-            t.context.deps = {
-                fullerCalendar: (el => ({
-                    //TODO: Add more
-                    timeFrame: () => 'Month',
-                    viewType: () => 'Grid',
-                    getEvents: () => calendarEvents
-                })),
-                setEvents: (calendar, events) => {calendarEvents = [{ id: 'event_1' } as EventApi]},
-                $: $
-            } as Dependencies;
-            t.end();
-        }.bind(t.context.document));
+        let calendarEvents: EventApi[] = []
+        dependencies = {
+            initFullerCalendar: (el => ({
+                //TODO: Add more
+                timeFrame: () => 'Month',
+                viewType: () => 'Grid',
+                getEvents: () => calendarEvents
+            }))
+        } as Dependencies;
     })
-});
 
-test('`getUniqueEvents` work', t => {
-    const unique = getUniqueEvents(t.context.data.events);
-    t.deepEqual(unique, t.context.data.events);
+
+    test('courses gets added to course list on init', t => {
+        // init page handler
+        //makeWcjEventCreator(dependencies).createFromGoogleCal(data.events);
+        const courseListEl = $('#courseList');
+        const noOfChildren = courseListEl.get(0).children.length;
+        expect(noOfChildren).toBe(data.events.length);
+    })
+
+
+    test('clicking `selectAllCourses` button selects all courses', t => {
+        // init page handler
+        // makeWcjEventCreator(dependencies).createFromGoogleCal(data.events);
+        $('#selectAllCourses').trigger('click');
+
+    });
 })
-
-test('courses gets added to course list on init', t => {
-    // init page handler
-    PageHandlerFactory(t.context.deps)(t.context.data.events);
-    const courseListEl = t.context.deps.$('#courseList', t.context.document);
-    const noOfChildren = courseListEl.get(0).children.length;
-    t.is(noOfChildren, t.context.data.events.length);
-})
-
-
-test('clicking `selectAllCourses` button selects all courses', t => {
-    // init page handler
-    PageHandlerFactory(t.context.deps)(t.context.data.events);
-    t.context.deps.$('#selectAllCourses', t.context.document).trigger('click');
-    
-});

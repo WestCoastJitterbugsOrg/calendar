@@ -1,26 +1,33 @@
-import { getUniqueEvents } from '~app/page-handler/helpers';
-import { setEvents } from '~app/fullercalendar/helpers';
-import ColorFactory from './color';
-import PageHandlerFactory from './page-handler';
-import FullerCalendarFactory from './fullercalendar';
+import makeInitColorConverter from './color';
+import makeInitFullerCalendar from './fullercalendar';
 import ColorHash from 'color-hash';
-import { Dependencies } from './types';
-import { Calendar as FullCalendar, CalendarOptions } from "@fullcalendar/core";
-import WCJEventFactory from './event/wcj';
-import { EventGroupList } from './page-handler/event-group-list';
+import {Dependencies} from './types';
+import {Calendar as FullCalendar} from "@fullcalendar/core";
+import makeWcjEventCreator from './event/wcj';
+import {makeWcjEventListCreator} from './event-group-list';
+import {FullCalendarCreator, FullerCalendarCreator} from './fullercalendar/types';
+import {WcjEventListCreator} from './event-group-list/types';
+import {WcjColorHashCreator} from './color/types';
+import {WCJEventCreator} from './event/types';
+import $ from 'jquery';
+
+const initFullCalendar: FullCalendarCreator = (el, optionOverrides) => new FullCalendar(el, optionOverrides);
+const initFullerCalendar: FullerCalendarCreator = makeInitFullerCalendar({initFullCalendar: initFullCalendar});
+const initWcjEventList: WcjEventListCreator = makeWcjEventListCreator({initFullerCalendar, $ });
+const colorHash: ColorHash = new ColorHash();
+const initWcjColorHash: WcjColorHashCreator = makeInitColorConverter({colorHash});
+const wcjEventCreator: WCJEventCreator = makeWcjEventCreator({initWcjColorHash});
+
 
 const dependencies: Dependencies = {
-    fullerCalendar: (() => FullerCalendarFactory(dependencies))(),
-    fullCalendar: (el: HTMLElement, optionOverrides: CalendarOptions) => new FullCalendar(el, optionOverrides),
-    pageHandler: (() => PageHandlerFactory(dependencies))(),
-    color: (() => ColorFactory(dependencies))(),
-    wcjEvent: (() => WCJEventFactory(dependencies))(),
-    $: $,
-    colorHash: new ColorHash(),
-    gapi: gapi,
-    setEvents: setEvents,
-    getUniqueEvents: getUniqueEvents,
-    eventGroupList: EventGroupList
+    initFullCalendar,
+    initFullerCalendar,
+    initWcjColorHash,
+    initWcjEventList,
+    colorHash,
+    wcjEventCreator,
+    $,
+    gapi
 }
 
 
