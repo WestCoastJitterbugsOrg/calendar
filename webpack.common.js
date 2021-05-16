@@ -1,6 +1,6 @@
-const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -51,11 +51,13 @@ module.exports = {
       title: 'Personal calendar',
       favicon: "./src/favicon.ico",
       template: './src/index.html'
-    })],
+    }),
+  ],
   resolve: {
     // Makes it possible to import without extensions, as follows:
     // import File from '../path/to/file';
     extensions: ['.tsx', '.ts', '.js'],
+    plugins: [new TsconfigPathsPlugin({})]
   },
   output: {
     filename: '[name].bundle.js'

@@ -13,7 +13,7 @@
       ]
     },
     "moduleResolution": "node",
-    "module": "CommonJS",
+    "module": "ES6",
     "esModuleInterop": true,
     "typeRoots": [
       "node_modules/@types"
