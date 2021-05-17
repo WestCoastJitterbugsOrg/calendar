@@ -49,13 +49,12 @@ const initEventList: WcjEventListCreator =
 
         // Setup events for "select all" button
         $("#selectAllCourses").on("click", () => {
-            $(".courseCheckbox").prop("checked", true);
+            $(".courseCheckbox").prop("checked", true).trigger("change");
         });
         // Setup events for "deselect all" button
         $("#deselectAllCourses").on("click", () => {
-            $(".courseCheckbox").prop("checked", false);
+            $(".courseCheckbox").prop("checked", false).trigger("change");
         });
-        calendar.render();
         return {
             getSelected: () => selectedEvents,
             select,
@@ -64,4 +63,4 @@ const initEventList: WcjEventListCreator =
     }
 
 
-export default initEventList 
+export default initEventList;

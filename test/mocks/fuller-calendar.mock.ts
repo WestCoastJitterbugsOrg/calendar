@@ -16,7 +16,28 @@ export const MockFcCreator: FullCalendarCreator = (el, opts) => {
         type: 'dayGridMonth'
     };
     return <Calendar>{
-        render: () => { opts.viewDidMount({ el: el, view: view }) },
+        render: () => {
+
+            const createFcBtn = (text: string) => {
+                const btn = document.createElement('button');
+                btn.classList.add('fc-button');
+                btn.innerHTML = text;
+                return btn;
+            }
+
+            const weekBtn = createFcBtn('Week');
+            const monthBtn = createFcBtn('Month');
+            const listBtn = createFcBtn('List');
+            const gridBtn = createFcBtn('Grid');
+
+            el.appendChild(weekBtn);
+            el.appendChild(monthBtn);
+            el.appendChild(listBtn);
+            el.appendChild(gridBtn);
+
+            opts.viewDidMount({ el: el, view: view });
+
+        },
         getEvents: () => events,
         addEvent: (eventInput, _) => {
             const event = <EventApi>{

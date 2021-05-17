@@ -1,31 +1,32 @@
-import 'jquery'
+import $ from 'jquery'
 import { EventApi } from '@fullcalendar/core';
 import { Dependencies } from './../src/app/types';
 
 import dayjs from 'dayjs';
 import { WcjEvent } from '../src/app/event/types';
+import makeWcjEventCreator from '../src/app/event/wcj';
+import initEventList from '../src/app/event-group-list';
+
+type GCalEvent = gapi.client.calendar.Event;
 
 
-jest.mock('jquery');
+type TestData = { events: GCalEvent[] }
 
-type TestData = { events: (WcjEvent & Partial<EventApi>)[] }
-
-function generateUniqueData(currentTime: Date): TestData {
-    const now = dayjs(currentTime);
+function generateUniqueData(time: Date): TestData {
+    const now = dayjs(time);
     const start = now.subtract(1, 'hour').toDate();
     const end = now.add(1, 'hour').toDate();
 
-    const events = [{
-        title: "Event 1",
+    const events: GCalEvent[] = [<GCalEvent>{
+        summary: "Event 1",
         id: "event_1",
-        occasions: [{
-            start: start,
-            end: end
-        }],
-        bgColor: "black",
-        textColor: "white",
-        showInCalendar: true,
-        remove: () => events.shift()
+        start: {
+            dateTime: start.toISOString()
+        },
+        end: {
+            dateTime: end.toISOString()
+        },
+
     }
     ]
 
@@ -35,10 +36,11 @@ function generateUniqueData(currentTime: Date): TestData {
 describe('Page handler', () => {
     let testTime: Date;
     let data: TestData;
+    let wcjEvents: WcjEvent[];
     let dependencies: Dependencies;
 
     beforeEach(() => {
-        testTime = new Date();
+        testTime = new Date(2020, 1, 1);
         data = generateUniqueData(testTime);
 
         let calendarEvents: EventApi[] = []
@@ -47,25 +49,49 @@ describe('Page handler', () => {
                 //TODO: Add more
                 timeFrame: () => 'Month',
                 viewType: () => 'Grid',
-                getEvents: () => calendarEvents
+                getEvents: () => calendarEvents,
+                setEvents: events => { wcjEvents = events }
+            })),
+            initWcjColorHash: (_ => ({
+                hex: _ => '#000000',
+                hsl: _ => [0, 0, 0],
+                rgb: _ => [0, 0, 0]
             }))
         } as Dependencies;
+
+        document.body.innerHTML = `
+        <div class="container">
+            <div class="courseList-container">
+                <div class="courseList-actions">
+                    <button id="selectAllCourses">Select all</button>
+                    <button class="button-link" id="deselectAllCourses">Deselect all</button>
+                </div>
+                <ul id="courseList"></ul>
+            </div>
+            
+            <div class="calendar-container">
+                <div id="calendar"></div>
+            </div>
+        </div>`
     })
 
 
-    test('courses gets added to course list on init', t => {
+    test('createFromGoogleCal', () => {
         // init page handler
-        //makeWcjEventCreator(dependencies).createFromGoogleCal(data.events);
-        const courseListEl = $('#courseList');
-        const noOfChildren = courseListEl.get(0).children.length;
-        expect(noOfChildren).toBe(data.events.length);
+        const wcjEventDict = makeWcjEventCreator(dependencies).createFromGoogleCal(data.events);
+        expect(Object.keys(wcjEventDict).length).toEqual(data.events.length);
     })
 
 
-    test('clicking `selectAllCourses` button selects all courses', t => {
-        // init page handler
-        // makeWcjEventCreator(dependencies).createFromGoogleCal(data.events);
+    test('clicking `selectAllCourses` button selects all courses', () => {
+        jest.useFakeTimers();
+        const eventDict = makeWcjEventCreator(dependencies).createFromGoogleCal(data.events);
+        const eventList = initEventList(eventDict, dependencies.initFullerCalendar(document.body));
+
+        //        console.log(document.body.innerHTML);
         $('#selectAllCourses').trigger('click');
-
+        jest.runAllTicks();
+        jest.runAllTimers();
+        expect(eventList.getSelected().length).toEqual(Object.keys(eventDict).length);
     });
 })

@@ -1,10 +1,10 @@
-import {Factory} from '../types';
-import {WcjEvent, WCJEventCreator} from "./types";
+import { Factory } from '../types';
+import { WcjEvent, WCJEventCreator } from "./types";
 import GCEvent = gapi.client.calendar.Event;
 
 const makeWcjEventCreator: Factory<WCJEventCreator, 'initWcjColorHash'>
-    = ({initWcjColorHash}) => {
-        const hslSettings = {saturation: 0.35}; // {/*hue: [150, 210], saturation: [0.3, 0.7], lightness:[0.55, 0.75]*/}
+    = ({ initWcjColorHash }) => {
+        const hslSettings = { saturation: 0.35 }; // {/*hue: [150, 210], saturation: [0.3, 0.7], lightness:[0.55, 0.75]*/}
         const colorConverter = initWcjColorHash(hslSettings);
         const gc2wcjEvent = (gcEvent: GCEvent, id: string): WcjEvent =>
         ({
@@ -19,8 +19,8 @@ const makeWcjEventCreator: Factory<WCJEventCreator, 'initWcjColorHash'>
 
         return {
             createFromGoogleCal: gcEvents => {
-                const wcjEvents: {[id: string]: WcjEvent} = {};
-                
+                const wcjEvents: { [id: string]: WcjEvent } = {};
+
                 for (const gcEvent of gcEvents) {
                     const id = gcEvent.summary.replace(/[^A-Za-z0-9-_]/g, ''); // Create id valid for HTML
                     if (!wcjEvents[id]) {

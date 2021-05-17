@@ -20,7 +20,7 @@ const initFullerCalendar: FullerCalendarCreator
         const viewTypeButtonGroup = fcButtonGroup(calendarEl, CalendarViewType);
 
         const changeCalendarView = () => {
-            const timeFrame = calendarViews[timeFrameButtonGroup.getSelected()]
+            const timeFrame = calendarViews[timeFrameButtonGroup.getSelected()];
             const newView = timeFrame && timeFrame[viewTypeButtonGroup.getSelected()];
 
             if (!newView) {

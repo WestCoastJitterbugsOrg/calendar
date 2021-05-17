@@ -20,6 +20,7 @@ function handleClientLoad() {
     const wcjEvents = deps.wcjEventCreator.createFromGoogleCal(response.result.items);
     const calendar = deps.initFullerCalendar($("#calendar").get(0));
     deps.initEventList(wcjEvents, calendar);
+    calendar.render();
   });
 }
 

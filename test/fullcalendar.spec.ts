@@ -65,30 +65,40 @@ describe('Full Calendar', () => {
 	let testTime: Date;
 	let data: TestData;
 
-	beforeEach(t => {
+	beforeEach(() => {
 		const currentTime = new Date();
 		testTime = currentTime;
 		data = generateUniqueData(currentTime);
-
+        document.body.innerHTML = `
+        <div class="container">
+            <div class="courseList-container">
+                <div class="courseList-actions">
+                    <button id="selectAllCourses">Select all</button>
+                    <button class="button-link" id="deselectAllCourses">Deselect all</button>
+                </div>
+                <ul id="courseList"></ul>
+            </div>
+            
+            <div class="calendar-container">
+                <div id="calendar"></div>
+            </div>
+        </div>`
 	});
 
-	test('`setEvents` sets selected events in the calendar', t => {
-		const calendar = FullerCalendarFactory(<HTMLElement>{});
+	test('`setEvents` sets selected events in the calendar', () => {
+		const calendar = FullerCalendarFactory(document.getElementById('calendar'));
 		setEvents(calendar, data.events);
-		expect(data.events.map(x => x.id)).toBe(calendar.getEvents().map(x => x.id));
+		expect(data.events.map(x => x.id)).toEqual(calendar.getEvents().map(x => x.id));
 	});
 
-	test('Clicking "week" and "list" buttons changes properties', t => {
-		const container = <HTMLElement>{};
+	test('Clicking "week" and "list" buttons changes properties', () => {
+		const container = document.body.getElementsByClassName('calendar-container').item(0) as HTMLElement;
 		const calendar = FullerCalendarFactory(container);
+		calendar.render();
 
 		const customButtons = calendar.getOption("customButtons");
-		const myWeekClick = customButtons?.myWeek?.click;
-		myWeekClick && myWeekClick(new MouseEvent("click"), container);
-
-		const myListClick = customButtons?.myList?.click;
-
-		myListClick && myListClick(new MouseEvent("click"), container);
+		customButtons.myWeek.click(new MouseEvent("click"), container);
+		customButtons.myList.click(new MouseEvent("click"), container);
 
 
 		expect(calendar.view.type).toEqual("listWeek");

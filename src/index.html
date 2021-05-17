@@ -4,15 +4,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= htmlWebpackPlugin.options.title %></title>
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
   <script src="https://apis.google.com/js/api.js"></script>
 </head>
 
 <body>
   <div class="container">
     <div class="courseList-container">
-      <div class="courseList-actions"><button id="selectAllCourses">Select all</button> <button class="button-link"
-          id="deselectAllCourses">Deselect all</button></div>
+      <div class="courseList-actions">
+        <button id="selectAllCourses">Select all</button>
+        <button class="button-link" id="deselectAllCourses">Deselect all</button>
+      </div>
       <ul id="courseList"></ul>
     </div>
 
