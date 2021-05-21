@@ -1,47 +1,17 @@
 import $ from 'jquery'
 import { EventApi } from '@fullcalendar/core';
-import { Dependencies } from './../src/app/types';
-
-import dayjs from 'dayjs';
+import { Dependencies } from '../src/app/types';
 import { WcjEvent } from '../src/app/event/types';
-import makeWcjEventCreator from '../src/app/event/wcj';
 import initEventList from '../src/app/event-group-list';
+import { EventDict } from '../src/app/event-group-list/types';
 
-type GCalEvent = gapi.client.calendar.Event;
-
-
-type TestData = { events: GCalEvent[] }
-
-function generateUniqueData(time: Date): TestData {
-    const now = dayjs(time);
-    const start = now.subtract(1, 'hour').toDate();
-    const end = now.add(1, 'hour').toDate();
-
-    const events: GCalEvent[] = [<GCalEvent>{
-        summary: "Event 1",
-        id: "event_1",
-        start: {
-            dateTime: start.toISOString()
-        },
-        end: {
-            dateTime: end.toISOString()
-        },
-
-    }
-    ]
-
-    return { events }
-}
 
 describe('Page handler', () => {
-    let testTime: Date;
-    let data: TestData;
     let wcjEvents: WcjEvent[];
     let dependencies: Dependencies;
+    let eventDict: EventDict;
 
     beforeEach(() => {
-        testTime = new Date(2020, 1, 1);
-        data = generateUniqueData(testTime);
 
         let calendarEvents: EventApi[] = []
         dependencies = {
@@ -51,13 +21,19 @@ describe('Page handler', () => {
                 viewType: () => 'Grid',
                 getEvents: () => calendarEvents,
                 setEvents: events => { wcjEvents = events }
-            })),
-            initWcjColorHash: (_ => ({
-                hex: _ => '#000000',
-                hsl: _ => [0, 0, 0],
-                rgb: _ => [0, 0, 0]
             }))
         } as Dependencies;
+
+        eventDict = {
+            'event1': {
+                bgColor: '#FFFFFF',
+                textColor: '#000000',
+                id: 'event1',
+                occasions: [{ start: new Date(2020, 0, 0, 13), end: new Date(2020, 0, 0, 15) }],
+                showInCalendar: true,
+                title: 'Event 1'
+            }
+        }
 
         document.body.innerHTML = `
         <div class="container">
@@ -76,22 +52,13 @@ describe('Page handler', () => {
     })
 
 
-    test('createFromGoogleCal', () => {
-        // init page handler
-        const wcjEventDict = makeWcjEventCreator(dependencies).createFromGoogleCal(data.events);
-        expect(Object.keys(wcjEventDict).length).toEqual(data.events.length);
-    })
+
 
 
     test('clicking `selectAllCourses` button selects all courses', () => {
-        jest.useFakeTimers();
-        const eventDict = makeWcjEventCreator(dependencies).createFromGoogleCal(data.events);
         const eventList = initEventList(eventDict, dependencies.initFullerCalendar(document.body));
 
-        //        console.log(document.body.innerHTML);
         $('#selectAllCourses').trigger('click');
-        jest.runAllTicks();
-        jest.runAllTimers();
         expect(eventList.getSelected().length).toEqual(Object.keys(eventDict).length);
     });
 })

@@ -9,9 +9,5 @@ module.exports = merge(common, {
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         publicPath: '/personal-calendar',
-    },
-    output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist')
-      }
+    }
 });

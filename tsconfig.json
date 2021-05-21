@@ -9,6 +9,12 @@
     "sourceMap": true,
     "esModuleInterop": true,
     "lib": ["DOM", "DOM.Iterable", "ES2017"],
-    "types": ["jest", "gapi.calendar"]
-  }
+    "types": ["jest", "gapi.calendar"],
+    "outDir": "./dist",
+    "allowJs": true
+  },
+  "include": [
+    "src/**/*",
+    "test/**/*"
+  ]
 }

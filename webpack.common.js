@@ -11,13 +11,9 @@ module.exports = {
     'fc-core': ['@fullcalendar/core'],
     'fc-views': ['@fullcalendar/daygrid', '@fullcalendar/list', '@fullcalendar/timegrid']
   },
+  
   module: {
-    rules: [{
-      test: /\.m?js$/,
-      resolve: {
-        fullySpecified: false
-      }
-    },
+    rules: [
     {
       test: /\.tsx?$/,
       use: 'ts-loader',
@@ -48,9 +44,15 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Personal calendar',
       favicon: "./src/favicon.ico",
-      template: './src/index.html'
+      template: './src/index.html',
+      publicPath: 'personal-calendar'
     }),
   ],
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    clean: true
+  },
   resolve: {
     // Makes it possible to import without extensions, as follows:
     // import File from '../path/to/file';
@@ -58,9 +60,5 @@ module.exports = {
   },
   optimization: {
     runtimeChunk: 'single'
-  },
-  output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
   }
 };
