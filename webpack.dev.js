@@ -7,7 +7,8 @@ module.exports = merge(common, {
     mode: 'development',
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
-        publicPath: '/personal-calendar',
+        port: 8080,
+        publicPath: '/personal-calendar/',
+        contentBase: path.join(__dirname, './dist')
     }
 });

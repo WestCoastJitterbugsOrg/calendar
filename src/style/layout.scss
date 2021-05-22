@@ -10,7 +10,7 @@
     overflow: auto;
     background-color: white;
     @include mixins.scrollbar(true);
-    background-color: $wcj-white;
+    background-color: $wcj-sand;
 }
 
 .courseList-actions {
@@ -26,7 +26,6 @@
 
     >li {
         display: list-item;
-        border-top: 1px solid darken($wcj-white, 10%);
         height: 3em;
         padding: 0.25em;
         padding-right: 2em;
@@ -52,6 +51,7 @@
     display: block;
     height: 100%;
     overflow: hidden;
+    line-height: 3em;;
 }
 
 // #endregion

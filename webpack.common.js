@@ -43,14 +43,17 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Personal calendar',
+      template: "./src/index.html",
       favicon: "./src/favicon.ico",
-      template: './src/index.html',
-      publicPath: 'personal-calendar'
+      
+      // template: './src/index.html',
+      publicPath: '/personal-calendar/'
     }),
   ],
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/personal-calendar/',
     clean: true
   },
   resolve: {

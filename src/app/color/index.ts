@@ -8,9 +8,9 @@ const initColorConverter: WcjColorHashCreator
     
     const hsl = (input: string) => {
       const hslVal = colorHash.hsl(input);
-      hslVal[0] = hslSetting.hue || hslVal[0];
-      hslVal[1] = hslSetting.saturation || hslVal[1];
-      hslVal[2] = hslSetting.lightness || hslVal[2];
+      hslVal[0] = hslSetting?.hue || hslVal[0];
+      hslVal[1] = hslSetting?.saturation || hslVal[1];
+      hslVal[2] = hslSetting?.lightness || hslVal[2];
 
       return hslVal;
     }

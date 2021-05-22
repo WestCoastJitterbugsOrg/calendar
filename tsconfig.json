@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "module": "ES2015",
+    "module": "ESNext",
     "target": "ES2017",
     "moduleResolution": "node",
     "importHelpers": true,

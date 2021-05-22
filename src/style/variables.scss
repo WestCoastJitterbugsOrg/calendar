@@ -2,9 +2,13 @@
 $wcj-responsive-breakpoint-1: 600px;
 $wcj-responsive-breakpoint-2: 900px;
 
-$wcj-cyan: #60a7a2;
+$wcj-cyan: #349995;
 $wcj-red: #AB2814;
-$wcj-white: #FFFBF3;
+$wcj-sand: #FFFAF2;
+
+$wcj-black: black;
+$wcj-coral: #ec6350;
+$wcj-mint: #73bdba;
 
 
 $wcj-button-padding: 0 0.4em;
@@ -22,6 +26,6 @@ $wcj-button-hover-bg-color: lighten($wcj-button-bg-color, 5%);
     // #region WCJ colors
     --wcj-cyan: #{$wcj-cyan};
     --wcj-red: #{$wcj-red};
-    --wcj-white: #{$wcj-white};
+    --wcj-sand: #{$wcj-sand};
     // #endregion
 }
