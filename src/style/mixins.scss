@@ -19,7 +19,7 @@
 
   &::-webkit-scrollbar-thumb {
     background: $foreground-color;
-    // border-radius: 1em;
+    border-radius: 1em;
   }
 
   &::-webkit-scrollbar-track {
@@ -27,17 +27,7 @@
   }
 
   &::-webkit-scrollbar-button {
-    background: $button-color;
-    width: $width;
-    height: $width;
-
-    &:start {
-      border-top-left-radius: $width;
-    }
-
-    &:end {
-      border-bottom-left-radius: $width;
-    }
+    display: none;
   }
 
   // For Internet Explorer
