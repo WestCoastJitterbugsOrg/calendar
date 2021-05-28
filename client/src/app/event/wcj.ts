@@ -1,12 +1,11 @@
 import { Factory } from '../types';
-import { WcjEvent, WCJEventCreator } from "./types";
-import GCEvent = gapi.client.calendar.Event;
+import { WCJEventCreator } from "./types";
 
 const makeWcjEventCreator: Factory<WCJEventCreator, 'initWcjColorHash'>
     = ({ initWcjColorHash }) => {
         const hslSettings = null; // { saturation: 0.35 }; // {/*hue: [150, 210], saturation: [0.3, 0.7], lightness:[0.55, 0.75]*/}
         const colorConverter = initWcjColorHash(hslSettings);
-        const gc2wcjEvent = (gcEvent: GCEvent, id: string): WcjEvent =>
+        const gc2wcjEvent = (gcEvent: Wcj.GCEvent, id: string): Wcj.WcjEvent =>
         ({
             id: id,
             title: gcEvent.summary,
@@ -16,10 +15,10 @@ const makeWcjEventCreator: Factory<WCJEventCreator, 'initWcjColorHash'>
             textColor: colorConverter.hsl(gcEvent.summary)[2] > 0.5 ? "gray" : "white"
         })
 
- 
+
         return {
             createFromGoogleCal: gcEvents => {
-                const wcjEvents: { [id: string]: WcjEvent } = {};
+                const wcjEvents: { [id: string]: Wcj.WcjEvent } = {};
 
                 for (const gcEvent of gcEvents) {
                     const id = gcEvent.summary.replace(/[^A-Za-z0-9-_]/g, ''); // Create id valid for HTML
@@ -38,7 +37,7 @@ const makeWcjEventCreator: Factory<WCJEventCreator, 'initWcjColorHash'>
             },
             createFromDans: dansEvents => {
 
-                const wcjEvents: { [id: string]: WcjEvent } = {};
+                const wcjEvents: { [id: string]: Wcj.WcjEvent } = {};
 
                 for (const dansEvent of dansEvents) {
                     wcjEvents[dansEvent.eventId] = {
@@ -53,7 +52,7 @@ const makeWcjEventCreator: Factory<WCJEventCreator, 'initWcjColorHash'>
                         title: dansEvent.title
                     };
                 }
-             return wcjEvents;
+                return wcjEvents;
             }
         }
     }

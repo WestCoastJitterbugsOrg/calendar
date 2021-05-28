@@ -6,7 +6,7 @@ $wcj-fc-border-color: #eee;
 
 // #region CSS Variables
 //
-// The default values for these variables can be found on the following lins:
+// The default values for these variables can be found on the following links:
 //
 // https://github.com/fullcalendar/fullcalendar/blob/master/packages/common/src/styles/vars.css
 // https://github.com/fullcalendar/fullcalendar/blob/master/packages/daygrid/src/styles/vars.css
@@ -59,7 +59,7 @@ $wcj-fc-border-color: #eee;
 
 // #endregion
 
-.fc {
+#calendar.fc {
 
   // #region toolbar
   .fc-button {
@@ -74,6 +74,16 @@ $wcj-fc-border-color: #eee;
     }
   }
 
+  &.fc-direction-ltr .fc-button-group > .fc-button:not(:first-child) {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &.fc-direction-ltr .fc-button-group > .fc-button:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 
   .fc-header-toolbar.fc-toolbar {
     padding: 1em 1em 0.5em 1em;
@@ -118,7 +128,7 @@ $wcj-fc-border-color: #eee;
 }
 
 @media only screen and (max-width: $wcj-responsive-breakpoint-1) {
-  .fc-header-toolbar {
+  #calendar.fc .fc-header-toolbar {
     align-items: center;
     flex-direction: column;
   }

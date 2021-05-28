@@ -1,11 +1,10 @@
 import { FullerCalendarCreator } from "./types";
 import { CalendarTimeFrame, calendarViews, CalendarViewType, fcButtonGroup, setEvents } from "./helpers";
 
+import { Calendar as FullCalendar, CustomButtonInput } from "@fullcalendar/core";
 import DayGridPlugin from '@fullcalendar/daygrid';
 import ListPlugin from '@fullcalendar/list';
 import TimeGridPlugin from '@fullcalendar/timegrid';
-import { Calendar as FullCalendar, CustomButtonInput } from "@fullcalendar/core";
-import { WcjEvent } from '../event/types';
 
 /**
  * Initiates a FullCalendar and returns relevant handler methods for it
@@ -82,7 +81,7 @@ const initFullerCalendar: FullerCalendarCreator
             {
                 timeFrame: timeFrameButtonGroup.getSelected,
                 viewType: viewTypeButtonGroup.getSelected,
-                setEvents: (events: WcjEvent[]) => setEvents(calendar, events)
+                setEvents: (events: Wcj.WcjEvent[]) => setEvents(calendar, events)
             }
         );
     }

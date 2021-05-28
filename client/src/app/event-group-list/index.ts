@@ -1,10 +1,8 @@
-import { WcjEvent } from '../event/types';
 import { WcjEventListCreator } from './types';
-import $ from "jquery";
 
 const initEventList: WcjEventListCreator =
     (allEvents, calendar) => {
-        let selectedEvents: WcjEvent[] = [];
+        let selectedEvents: Wcj.WcjEvent[] = [];
         const select = (id: string) => {
             const foundEvent = allEvents[id];
             foundEvent.showInCalendar = true;
@@ -18,8 +16,8 @@ const initEventList: WcjEventListCreator =
             return foundEvent;
         }
 
-        const courseSelectionChange: (e: WcjEvent) => JQuery.TypeEventHandler<HTMLElement, undefined, HTMLElement, HTMLElement, "custom">
-            = (event: WcjEvent) => function (_, updateCalendar = true) {
+        const courseSelectionChange: (e: Wcj.WcjEvent) => JQuery.TypeEventHandler<HTMLElement, undefined, HTMLElement, HTMLElement, "custom">
+            = (event: Wcj.WcjEvent) => function (_, updateCalendar = true) {
                 const liStyle = this.closest("li")?.style;
                 if (!liStyle) {
                     throw "liStyle undefined";
@@ -36,6 +34,15 @@ const initEventList: WcjEventListCreator =
                 }
             }
 
+
+        $('.courseList-container').append(
+            `<div class="courseList-actions">
+                    <button id="selectAllCourses">Select all</button>
+                    <button id="deselectAllCourses">Deselect all</button>
+                </div>
+                <ul id="courseList"></ul>
+            `);
+
         // Create all checkboxes out of the unique events
         for (const event of Object.values(allEvents)) {
             const checkboxEl = $(
@@ -45,7 +52,7 @@ const initEventList: WcjEventListCreator =
                 `<label for="course-${event.id}" class="courseCheckboxLabel">${event.title}</label>`
             );
             labelEl.append(checkboxEl);
-            const li = $(`<li></li>`).append(labelEl).on("click", () => { 
+            const li = $(`<li></li>`).append(labelEl).on("click", () => {
                 checkboxEl.trigger("custom", [true]);
             });
             $("#courseList").append(li);

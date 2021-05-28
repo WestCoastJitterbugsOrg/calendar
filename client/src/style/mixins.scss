@@ -1,6 +1,6 @@
 @use "variables" as *;
 
-@mixin scrollbar($thin, $foreground-color: $wcj-cyan, $background-color: lighten($foreground-color, 60%), $button-color: $foreground-color) {
+@mixin scrollbar($thin, $foreground-color: $wcj-cyan, $background-color: $wcj-sand) {
 
   scrollbar-color: $foreground-color $background-color;
   $width: 15px;
