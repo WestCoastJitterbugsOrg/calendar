@@ -41,8 +41,8 @@ export const MockFcCreator: FullCalendarCreator = (el, opts) => {
         getEvents: () => events,
         addEvent: (eventInput, _) => {
             const event = <EventApi>{
-                id: eventInput.id,
-                remove: () => { events = events.filter(x => x.id !== eventInput.id) }
+                groupId: eventInput.groupId,
+                remove: () => { events = events.filter(x => x.groupId !== eventInput.groupId) }
             }
             events.push(event);
             return event;

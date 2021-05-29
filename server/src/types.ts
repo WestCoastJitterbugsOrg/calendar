@@ -1,7 +1,10 @@
 
-export type WCJEventCreator = {
-    createFromGoogleCal: (gcEvents: Wcj.GCEvent[]) => { [id: string]: Wcj.WcjEvent },
-    createFromDans: (dansEvents: DansSeEvent[]) => { [id: string]: Wcj.WcjEvent }
+export type DansSeReponse = {
+    cogwork: {
+        events: {
+            event: DansSeEvent
+        }[]
+    }
 }
 
 export type DansSeEvent = {
@@ -10,16 +13,16 @@ export type DansSeEvent = {
     longdescription: string,
     place: string,
     schedule: {
-        occasions?: [{
+        occasions?: {
             occasion: {
                 startDate: Date,
                 endDate: Date
             }
-        }],
+        }[],
         startDate?: Date,
         endDate?: Date
     },
-    categories: [{
+    categories: {
         category: string
-    }]
+    }[]
 }

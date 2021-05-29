@@ -1,6 +1,6 @@
 {
     "[typescript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features",
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     },
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
@@ -8,5 +8,6 @@
     "[scss]": {
         "editor.defaultFormatter": "vscode.css-language-features"
     },
-    "maven.view": "hierarchical"
+    "maven.view": "hierarchical",
+    "compile-hero.disable-compile-files-on-did-save-code": true
 }

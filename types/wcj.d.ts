@@ -1,5 +1,4 @@
 declare namespace Wcj {
-  export type GCEvent = gapi.client.calendar.Event;
   export type WcjEvent = {
     id: string,
     title: string,

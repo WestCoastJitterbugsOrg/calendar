@@ -3,7 +3,6 @@ import DayGridPlugin from "@fullcalendar/daygrid";
 import ListPlugin from "@fullcalendar/list";
 import TimeGridPlugin from "@fullcalendar/timegrid";
 import { MockFcCreator } from './mocks/fuller-calendar.mock';
-import { WcjEvent } from '../src/app/event/types';
 import dayjs from 'dayjs';
 import FullerCalendarFactory from '../src/app/fullercalendar';
 import { setEvents } from '../src/app/fullercalendar/helpers';
@@ -39,7 +38,7 @@ jest.mock('@fullcalendar/timegrid',
 			}));
 	});
 
-type TestData = { events: WcjEvent[] }
+type TestData = { events: Wcj.WcjEvent[] }
 
 function generateUniqueData(currentTime: Date): TestData {
 	const now = dayjs(currentTime);
@@ -88,7 +87,7 @@ describe('Full Calendar', () => {
 	test('`setEvents` sets selected events in the calendar', () => {
 		const calendar = FullerCalendarFactory(document.getElementById('calendar'));
 		setEvents(calendar, data.events);
-		expect(data.events.map(x => x.id)).toEqual(calendar.getEvents().map(x => x.id));
+		expect(data.events.map(x => x.id)).toEqual(calendar.getEvents().map(x => x.groupId));
 	});
 
 	test('Clicking "week" and "list" buttons changes properties', () => {

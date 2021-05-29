@@ -1,16 +1,22 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
-    "target": "es6",
+    "target": "es2017",
     "module": "commonjs",
-    "outDir": "./build",
-    "esModuleInterop": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "removeComments": true,
     "strict": true,
-    "typeRoots": ["node_modules/@types", "../types"],
-    "types": ["gapi.calendar"]
-  },
-  "include": [
-    "./src/**/*",
-    "../types/**/*"
-  ]
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": [
+      "jasmine",
+      "wcj"
+    ],
+    "typeRoots": [
+      "node_modules/@types",
+      "../types"
+    ],
+  }
 }

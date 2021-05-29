@@ -1,14 +1,13 @@
 import $ from 'jquery'
 import { EventApi } from '@fullcalendar/core';
-import { Dependencies } from '../src/app/types';
-import { WcjEvent } from '../src/app/event/types';
 import initEventList from '../src/app/event-group-list';
 import { EventDict } from '../src/app/event-group-list/types';
 
+window['$'] = window['jQuery'] = $;
 
 describe('Page handler', () => {
-    let wcjEvents: WcjEvent[];
-    let dependencies: Dependencies;
+    let wcjEvents: Wcj.WcjEvent[];
+    let dependencies: any;
     let eventDict: EventDict;
 
     beforeEach(() => {
@@ -22,7 +21,7 @@ describe('Page handler', () => {
                 getEvents: () => calendarEvents,
                 setEvents: events => { wcjEvents = events }
             }))
-        } as Dependencies;
+        };
 
         eventDict = {
             'event1': {
