@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { RequestHandler } from 'express'
-import { DansSeReponse } from './types'
 import { convertableToString, parseStringPromise } from 'xml2js'
 
 /**

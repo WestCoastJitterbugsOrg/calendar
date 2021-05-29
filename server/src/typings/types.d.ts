@@ -1,5 +1,5 @@
 
-export type DansSeReponse = {
+ type DansSeReponse = {
     cogwork: {
         events: {
             event: DansSeEvent
@@ -7,7 +7,7 @@ export type DansSeReponse = {
     }
 }
 
-export type DansSeEvent = {
+ type DansSeEvent = {
     eventId: string,
     title: string,
     longdescription: string,

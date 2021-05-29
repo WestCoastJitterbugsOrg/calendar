@@ -11,12 +11,12 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "types": [
-      "jasmine",
-      "wcj"
+      "jasmine"
     ],
     "typeRoots": [
       "node_modules/@types",
-      "../types"
+      "../types",
+      "src/typings"
     ],
   }
 }
