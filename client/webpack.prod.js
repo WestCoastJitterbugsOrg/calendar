@@ -21,7 +21,7 @@ module.exports = merge(common, {
       filename: 'css/[name].[chunkhash:8].css',
       chunkFilename: 'css/[id].[chunkhash:8].css',
     }),
-    new webpack.DefinePlugin({ API_URL: JSON.stringify('https://api.calendar.the-wcj.guru/') })
+    new webpack.DefinePlugin({ API_URL: JSON.stringify('https://calendar.the-wcj.guru/api') })
 
   ],
 });

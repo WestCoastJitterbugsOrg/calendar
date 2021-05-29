@@ -8,9 +8,6 @@ import TimeGridPlugin from '@fullcalendar/timegrid';
 
 /**
  * Initiates a FullCalendar and returns relevant handler methods for it
- * @param fcCreator A function that creates a FullCalendar given a HTMLElement and some options.
- * We use Dependency Injection to simplify testing. 
- * Normally, this will be the 2 parameter FullCalendar constructor.
  */
 const initFullerCalendar: FullerCalendarCreator
     = calendarEl => {
@@ -20,14 +17,8 @@ const initFullerCalendar: FullerCalendarCreator
 
         const changeCalendarView = () => {
             const timeFrame = calendarViews[timeFrameButtonGroup.getSelected()];
-            const newView = timeFrame && timeFrame[viewTypeButtonGroup.getSelected()];
-
-            if (!newView) {
-                alert(`Unexpected view ${timeFrameButtonGroup.getSelected()} ${viewTypeButtonGroup.getSelected()}. Contact Jean-Philippe!`);
-                return;
-            } else {
-                calendar.changeView(newView);
-            }
+            const newView = timeFrame?.[viewTypeButtonGroup.getSelected()];
+            calendar.changeView(newView);
         }
 
         const createTimeFrameButton = (timeFrame: CalendarTimeFrame) =>
@@ -47,7 +38,7 @@ const initFullerCalendar: FullerCalendarCreator
                 changeCalendarView();
             }
         });
-        
+
         const calendar = new FullCalendar(calendarEl, {
             plugins: [DayGridPlugin, ListPlugin, TimeGridPlugin],
             customButtons: {
@@ -75,7 +66,7 @@ const initFullerCalendar: FullerCalendarCreator
                 hour12: false
             }
         });
-        
+
         return Object.assign(
             calendar,
             {

@@ -1,27 +1,29 @@
-
-import cors from 'cors';
 import https from 'https';
 import { parseString } from 'xml2js';
 import fs from 'fs';
 import path from 'path';
 import express, { RequestHandler } from 'express';
-import {google} from 'googleapis'
+import { google } from 'googleapis'
 import gcal2wcj from './gcal';
-// rest of the code remains same
+import cors from 'cors';
+
+const isDev = process.env.NODE_ENV === 'development';
+
+
 const app = express();
-const PORT = 8081;
 
+if(isDev) {
+    console.log(isDev);
+    app.use(cors());
+}
 
-app.use(cors());
-
-
-app.get("/ma-events", handleDanSeData('https://dans.se/xml/?type=events&org=ma&pw='));
+app.get("/api/ma-events", handleDanSeData('https://dans.se/xml/?type=events&org=ma&pw='));
 
 var pw = fs.readFileSync(path.resolve(__dirname, 'wcjpassword'), 'utf8');
-app.get("/wcj-events", handleDanSeData(`https://dans.se/xml/?type=events&org=wcj&pw=${pw}`));
+app.get("/api/wcj-events", handleDanSeData(`https://dans.se/xml/?type=events&org=wcj&pw=${pw}`));
 // 
 
-app.get("/gcal", async function (req, res) {
+app.get("/api/gcal", async function (req, res) {
     try {
         const events = await google.calendar({
             version: "v3",
@@ -34,14 +36,18 @@ app.get("/gcal", async function (req, res) {
                 timeMax: req.query["to"]?.toString() || new Date(2019, 11, 1).toISOString()
             });
 
-        res.json(gcal2wcj(events.data.items));
+        const ret = gcal2wcj(events.data.items);
+        res.json(ret);
     } catch (x) {
         res.status(500).send(x); throw x;
     }
 });
+
+const PORT = isDev ? 8081 : 80;
 app.listen(PORT, () => {
     console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);
 });
+
 
 
 function handleDanSeData(url: string): RequestHandler {

@@ -54,20 +54,23 @@ export function fcButtonGroup<T extends FcBtnGroupButtons>(element: HTMLElement,
 
 export function setEvents(calendar: FullCalendar, selectedEvents: Wcj.WcjEvent[]): void {
 
-    // Each time I reload the calendar, I remove all old events and add the checked ones again
+    // Each time I reload the calendar, I remove non-selected events and add the checked ones again
     const events = calendar.getEvents();
-    for (const event of events) {
+    const nonSelectedEvents = events.filter(e => !selectedEvents.some(se => se.id === e.groupId));
+    for (const event of nonSelectedEvents) {
         event.remove();
     }
 
-    for (const wcjEvent of selectedEvents) {
+    // Find which events are selected but not yet rendered in the calendar
+    const nonRenderedSelectedEvents = selectedEvents.filter(se => !events.some(e => e.groupId === se.id));
+    for (const wcjEvent of nonRenderedSelectedEvents) {
         for (const occasion of wcjEvent.occasions) {
             calendar.addEvent({
-                id: wcjEvent.id,
+                id: `${wcjEvent.id}-${occasion.start}-${occasion.end}`,
                 title: wcjEvent.title,
                 start: occasion.start,
                 end: occasion.end,
-                groupId: wcjEvent.title,
+                groupId: wcjEvent.id,
                 backgroundColor: wcjEvent.bgColor, // Gives each course its own background color to better distinguish them
                 borderColor: wcjEvent.bgColor,
                 textColor: wcjEvent.textColor

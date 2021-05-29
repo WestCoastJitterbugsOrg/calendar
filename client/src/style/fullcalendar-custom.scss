@@ -121,6 +121,11 @@ $wcj-fc-border-color: #eee;
     border: none;
   }
 
+  .fc-scrollgrid-liquid .fc-scrollgrid-section-liquid {
+    // temporary fix for webkit on windows 10 
+    height: 1px;
+  }
+
   .fc-scrollgrid-liquid .fc-scrollgrid-section-liquid>td .fc-scroller-liquid-absolute {
     // Add custom scrollbar in Firefox and other browsers that support 
     @include mixins.scrollbar(true);

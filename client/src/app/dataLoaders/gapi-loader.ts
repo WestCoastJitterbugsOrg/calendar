@@ -1,19 +1,14 @@
 import dayjs from "dayjs";
-import { Dependencies } from '../types';
 
-export function loadGCalData(deps: Dependencies,
-    timeMin = dayjs(new Date()).subtract(6, "month").toDate(),
+export async function loadGCalData(timeMin = dayjs(new Date()).subtract(6, "month").toDate(),
     timeMax = dayjs(new Date()).add(1, "year").toDate(),
 ):
     Promise<{ [id: string]: Wcj.WcjEvent }> {
-    return new Promise((resolve, reject) => {
-        $.ajax({
-            
-            url: `${API_URL}/gcal?from=${timeMin.toISOString()}&to=${timeMax.toISOString()}`,
-            success: response => resolve(response),
-            error: reject,
-            async: true
-        });
+    const response = await fetch(`${API_URL}/gcal?from=${timeMin.toISOString()}&to=${timeMax.toISOString()}`);
 
-    });
+    if (response.ok) {
+        return response.json();
+    } else {
+        return Promise.reject("Could not load data");
+    }
 }

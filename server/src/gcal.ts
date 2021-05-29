@@ -1,4 +1,9 @@
-import colorConverter from './color';
+import ColorHash from "color-hash";
+
+const colorHash = new ColorHash({
+    saturation: [0.35, 0.5, 0.65],
+    lightness: [0.35, 0.5, 0.65]
+});
 
 const gc2wcjEvent = (gcEvent: any, id: string) =>
 ({
@@ -6,8 +11,8 @@ const gc2wcjEvent = (gcEvent: any, id: string) =>
     title: gcEvent.summary,
     occasions: [],
     showInCalendar: false,
-    bgColor: colorConverter.hex(gcEvent.summary),
-    textColor: colorConverter.hsl(gcEvent.summary)[2] > 0.5 ? "gray" : "white"
+    bgColor: colorHash.hex(gcEvent.summary),
+    textColor: colorHash.hsl(gcEvent.summary)[2] > 0.5 ? "gray" : "white"
 })
 
 

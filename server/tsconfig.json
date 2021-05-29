@@ -6,7 +6,8 @@
     "outDir": "./build",
     "esModuleInterop": true,
     "strict": true,
-    "typeRoots": ["node_modules/@types", "../types"]
+    "typeRoots": ["node_modules/@types", "../types"],
+    "types": ["gapi.calendar"]
   },
   "include": [
     "./src/**/*",
