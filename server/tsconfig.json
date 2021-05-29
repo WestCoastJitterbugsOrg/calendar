@@ -10,13 +10,11 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": [
-      "jasmine"
-    ],
     "typeRoots": [
       "node_modules/@types",
       "../types",
-      "src/typings"
-    ],
-  }
+      "typings"
+    ]
+  },
+  "include": ["src/**/*", "**/*.spec.ts", "typings/**/*", "../types/**/*"]
 }

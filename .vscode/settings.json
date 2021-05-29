@@ -9,5 +9,15 @@
         "editor.defaultFormatter": "vscode.css-language-features"
     },
     "maven.view": "hierarchical",
-    "compile-hero.disable-compile-files-on-did-save-code": true
+    "compile-hero.disable-compile-files-on-did-save-code": true,
+    "eslint.workingDirectories": [
+        {
+            "directory": "client",
+            "changeProcessCWD": true
+        },
+        {
+            "directory": "server",
+            "changeProcessCWD": true
+        }
+    ]
 }
