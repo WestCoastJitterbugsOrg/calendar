@@ -25,9 +25,11 @@ button {
 
     line-height: $wcj-button-line-height;
     font-size: $wcj-button-font-size;
+    font-weight: $wcj-button-font-weight;
+    max-height: $wcj-button-max-height;
 
     &:hover {
-        background-color: lighten($wcj-cyan, 5%);
+        background-color: lighten($wcj-button-bg-color, 5%);
     }
 
     &:active {

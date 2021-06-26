@@ -68,9 +68,22 @@ $wcj-fc-border-color: #eee;
     border-width: $wcj-button-border-width;
     line-height: $wcj-button-line-height;
     font-size: $wcj-button-font-size;
+    font-weight: $wcj-button-font-weight;
+    max-height: $wcj-button-max-height;
 
-    .fc-icon {
-      font-size: 1.4em;
+    &.fc-next-button, &.fc-prev-button {
+      padding: 5px;
+      background-color: transparent;
+      border-color: transparent;
+      color: $wcj-button-text-color;
+
+      .fc-icon {
+        font-weight: $wcj-button-font-weight;
+      }
+    }
+
+    &:focus {
+      box-shadow: none;
     }
   }
 
@@ -89,7 +102,7 @@ $wcj-fc-border-color: #eee;
     padding: 1em 1em 0.5em 1em;
     border-bottom: 1px solid #{$wcj-fc-border-color};
     margin-bottom: 0;
-    background-color: $wcj-red;
+    background-color: $wcj-black;
     color: white;
 
 

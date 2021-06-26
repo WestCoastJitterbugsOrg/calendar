@@ -6,18 +6,20 @@ $wcj-cyan: #349995;
 $wcj-red: #AB2814;
 $wcj-sand: #FFFAF2;
 
-$wcj-black: black;
+$wcj-black: #1d1d1b;
 $wcj-coral: #ec6350;
 $wcj-mint: #73bdba;
 
 
-$wcj-button-padding: 0 0.4em;
-$wcj-button-border-radius: 1em;
+$wcj-button-padding: 8px 18px;
+$wcj-button-border-radius: 30px;
 $wcj-button-border-width: 2px;
-$wcj-button-line-height: 1.5;
-$wcj-button-font-size: 1em;
+$wcj-button-line-height: 1;
+$wcj-button-max-height: 36px;
+$wcj-button-font-size: 16px;
 $wcj-button-text-color: white;
-$wcj-button-bg-color: $wcj-cyan;
+$wcj-button-bg-color: $wcj-red;
+$wcj-button-font-weight: bold;
 $wcj-button-active-bg-color: darken($wcj-button-bg-color, 10%);
 $wcj-button-hover-bg-color: lighten($wcj-button-bg-color, 5%);
 
