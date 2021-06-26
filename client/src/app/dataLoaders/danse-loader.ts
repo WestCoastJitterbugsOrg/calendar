@@ -1,10 +1,8 @@
 import dayjs from "dayjs";
 
-export async function loadDansseData(timeMin = dayjs(new Date()).subtract(6, "month").toDate(),
-    timeMax = dayjs(new Date()).add(1, "year").toDate()
-):
+export async function loadDansseData():
     Promise<{ [id: string]: Wcj.WcjEvent }> {
-    const response = await fetch(`${API_URL}/gcal?from=${timeMin.toISOString()}&to=${timeMax.toISOString()}`);
+    const response = await fetch(`${API_URL}/wcj-courses`);
 
     if (response.ok) {
         return response.json();

@@ -27,7 +27,8 @@ app.listen(PORT, () => {
 app.get('/api/ma-events', handleDanSeData('https://dans.se/xml/?type=events&org=ma'))
 
 const pw = fs.readFileSync(path.resolve(__dirname, 'wcjpassword'), 'utf8')
-app.get('/api/wcj-events', handleDanSeData(`https://dans.se/xml/?type=events&org=wcj&pw=${pw}`))
+
+app.get('/api/wcj-courses', handleDanSeData(`https://dans.se/xml/?type=courses&org=wcj&pw=${pw}&regStatus=0&dateInterval=future`))
 // #endregion
 
 // #region Google calendar endpoints

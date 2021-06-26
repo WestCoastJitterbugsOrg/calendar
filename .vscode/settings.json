@@ -8,7 +8,6 @@
     "[scss]": {
         "editor.defaultFormatter": "vscode.css-language-features"
     },
-    "maven.view": "hierarchical",
     "compile-hero.disable-compile-files-on-did-save-code": true,
     "eslint.workingDirectories": [
         {

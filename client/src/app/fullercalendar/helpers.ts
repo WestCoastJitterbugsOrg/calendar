@@ -30,7 +30,8 @@ export const calendarViews: {[key in CalendarTimeFrame]: {[key in CalendarViewTy
  * @param element HTMLElement to define a button group on. This function will apply on all FullCalendars under this element. 
  * @param buttons An enum that includes all buttons in the group. The values of the enum values are the titles.
  */
-export function fcButtonGroup<T extends FcBtnGroupButtons>(element: HTMLElement, buttons: T): FcBtnGroup<T> {
+export function 
+fcButtonGroup<T extends FcBtnGroupButtons>(element: HTMLElement, buttons: T): FcBtnGroup<T> {
     let selected: keyof T;
 
     return {

@@ -1,5 +1,3 @@
 {
-    "recommendations": [
-        "vscode.typescript-language-features"
-    ]
+    "recommendations": [ "dbaeumer.vscode-eslint" ]
 }

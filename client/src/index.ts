@@ -2,11 +2,12 @@ import './style/main.scss';
 import { loadGCalData } from './app/dataLoaders/gapi-loader';
 import initFullerCalendar from './app/fullercalendar';
 import initEventList from './app/event-group-list';
+import { loadDansseData } from './app/dataLoaders/danse-loader';
 
-const timeMin = new Date(2019, 8, 1);
+const timeMin = Date.now();
 
 // asynchronously load data first
-const loadData = loadGCalData(timeMin);
+const loadData = loadDansseData();
 
 //make sure that calendar is initialized
 const calendar = initFullerCalendar($("#calendar").get(0));
