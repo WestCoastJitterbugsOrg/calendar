@@ -11,9 +11,9 @@ declare namespace DansSe {
     }
 
     interface Schedule {
-            occasions?: {
-                occasion: [Occasion]
-            }[],
+            occasions?: [{
+                occasion: Occasion[]
+            }],
             startDate?: [{_: string}],
             startTime?: [string],
             endDate?: [{_: string}],

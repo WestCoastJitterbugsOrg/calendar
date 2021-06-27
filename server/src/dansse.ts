@@ -18,7 +18,7 @@ export default function handleDanSeData (url: string): RequestHandler {
       .map<Wcj.WcjEvent>(event => ({
         id: event.$.eventId,
         title: event.title[0],
-        occasions: event.schedule[0].occasions.map(occasion => getWcjOccasion(occasion.occasion[0])),
+        occasions: event.schedule[0].occasions[0].occasion.map(getWcjOccasion),
         showInCalendar: false,
         bgColor: colorHash.hex(event.title[0]),
         textColor: colorHash.hsl(event.title[0])[2] > 0.5 ? 'black' : 'white',
