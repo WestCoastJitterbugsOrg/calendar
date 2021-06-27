@@ -2,6 +2,7 @@ import axios from 'axios'
 import ColorHash from 'color-hash'
 import { RequestHandler } from 'express'
 import { convertableToString, parseStringPromise } from 'xml2js'
+import dayjs from 'dayjs'
 
 const colorHash = new ColorHash({
   saturation: [0.35, 0.5, 0.65],
@@ -39,7 +40,7 @@ function getWcjOccasion(occasion: DansSe.Occasion) {
   const start = occasion.startDateTime[0]._;
   const end = occasion.endDateTime[0]._;
 
-  return { start: new Date(start), end: new Date(end)};
+  return { start: dayjs(start, {utc: true}).toDate(), end: dayjs(end, {utc: true}).toDate()};
 }
  
 function getStart(dansEvent: Wcj.WcjEvent) {

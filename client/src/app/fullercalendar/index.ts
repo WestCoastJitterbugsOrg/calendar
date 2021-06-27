@@ -58,6 +58,7 @@ const initFullerCalendar: FullerCalendarCreator
             headerToolbar: { start: 'myMonth,myWeek', center: 'prev,title,next', end: 'myGrid,myList' },
             nowIndicator: true,
             initialView: 'dayGridMonth',
+            timeZone: 'UTC',
             firstDay: 1, // Monday
             eventTimeFormat: {
                 hour: '2-digit',
