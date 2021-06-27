@@ -15,6 +15,7 @@ body {
 // Changing button style here won't change FullCalendar's button style. See fullcalendar-custom.scss for that.
 button {
     padding: $wcj-button-padding;
+    margin: $wcj-button-margin;
     border: $wcj-button-border-width solid transparent;
     border-radius: $wcj-button-border-radius;
 

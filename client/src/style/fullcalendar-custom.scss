@@ -23,11 +23,11 @@ $wcj-fc-border-color: #eee;
 
   // Buttons
   --fc-button-text-color: #{$wcj-button-text-color};
-  --fc-button-bg-color: #{$wcj-button-bg-color};
-  --fc-button-border-color: #{$wcj-button-bg-color};
-  --fc-button-hover-bg-color: #{$wcj-button-hover-bg-color};
-  --fc-button-hover-border-color: transparent;
-  --fc-button-active-bg-color: #{$wcj-button-active-bg-color};
+  --fc-button-bg-color: transparent;
+  --fc-button-border-color: transparent;
+  --fc-button-hover-bg-color: transparent;
+  --fc-button-hover-border-color: #{$wcj-button-bg-color};
+  --fc-button-active-bg-color: transparent;
   --fc-button-active-border-color: #{$wcj-button-bg-color};
 
   // List view
@@ -64,7 +64,10 @@ $wcj-fc-border-color: #eee;
   // #region toolbar
   .fc-button {
     padding: $wcj-button-padding;
-    border-radius: $wcj-button-border-radius;
+    border-radius: 0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
     border-width: $wcj-button-border-width;
     line-height: $wcj-button-line-height;
     font-size: $wcj-button-font-size;
