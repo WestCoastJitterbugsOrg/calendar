@@ -5,10 +5,9 @@
 
 .courseList-container {
     position: absolute;
-    width: 400px;
+    width: $wcj-sidebar-maxwidth;
     height: 100%;
     overflow: auto;
-    background-color: white;
     @include mixins.scrollbar(true);
     background-color: $wcj-sand;
 }
@@ -59,10 +58,9 @@
 
 // #region Calendar
 .calendar-container {
-    min-height: 100vh;
     position: absolute;
     right: 0;
-    left: 400px;
+    left: $wcj-sidebar-maxwidth;
     top: 0;
     bottom: 0;
 }
@@ -84,14 +82,16 @@
         position: relative;
         width: 100%;
     }
-
+    
     .calendar-container {
         position: static;
         box-shadow: none;
     }
-
+    
     #calendar {
         outline: 2px solid $wcj-cyan;
+        max-height: $wcj-responsive-breakpoint-2;
+        position: relative;
     }
 }
 

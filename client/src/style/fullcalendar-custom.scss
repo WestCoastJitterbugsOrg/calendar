@@ -146,6 +146,10 @@ $wcj-fc-border-color: #eee;
     // Add custom scrollbar in Firefox and other browsers that support 
     @include mixins.scrollbar(true);
   }
+
+  .fc-daygrid-event{
+    white-space: normal;
+  }
 }
 
 @media only screen and (max-width: $wcj-responsive-breakpoint-1) {

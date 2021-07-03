@@ -1,6 +1,7 @@
 // First define SCSS variables
 $wcj-responsive-breakpoint-1: 600px;
 $wcj-responsive-breakpoint-2: 900px;
+$wcj-sidebar-maxwidth: 400px;
 
 $wcj-cyan: #349995;
 $wcj-red: #AB2814;
@@ -30,5 +31,9 @@ $wcj-button-hover-bg-color: lighten($wcj-button-bg-color, 5%);
     --wcj-cyan: #{$wcj-cyan};
     --wcj-red: #{$wcj-red};
     --wcj-sand: #{$wcj-sand};
+
+    --wcj-black: #{$wcj-black};
+    --wcj-coral: #{$wcj-coral};
+    --wcj-mint: #{$wcj-mint};
     // #endregion
 }
