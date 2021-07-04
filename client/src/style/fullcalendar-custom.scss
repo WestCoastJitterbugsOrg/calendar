@@ -16,7 +16,7 @@ $wcj-fc-border-color: #eee;
   // General
   --fc-small-font-size: .85em;
   --fc-page-bg-color: white;
-  --fc-neutral-bg-color: ;
+  --fc-neutral-bg-color: white;
   --fc-border-color: #{$wcj-fc-border-color};
   --fc-now-indicator-color: #{$wcj-cyan};
   --fc-today-bg-color: #{color.change(yellow, $alpha: 0.1)};
@@ -131,15 +131,20 @@ $wcj-fc-border-color: #eee;
 
   .fc-view,
   .fc-list,
-  .fc-scrollgrid-liquid,
   .fc-scrollgrid-liquid .fc-scrollgrid-section>td {
     // Remove border around FullCalendar
     border: none;
   }
 
+  .fc-scrollgrid-liquid {
+    border: none;
+    border-bottom: 1px solid #{$wcj-fc-border-color};
+  }
+
   .fc-scrollgrid-liquid .fc-scrollgrid-section-liquid {
     // temporary fix for webkit on windows 10 
     height: 1px;
+
   }
 
   .fc-scrollgrid-liquid .fc-scrollgrid-section-liquid>td .fc-scroller-liquid-absolute {
@@ -149,6 +154,11 @@ $wcj-fc-border-color: #eee;
 
   .fc-daygrid-event{
     white-space: normal;
+    cursor: default;
+  }
+
+  .fc-dayGridMonth-view .fc-event-title {
+    display: none;
   }
 }
 

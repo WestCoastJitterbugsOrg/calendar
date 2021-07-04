@@ -27,31 +27,12 @@
         display: flex;
         height: 3em;
         padding: 0.25em;
-        padding-right: 2em;
-        border-left: 1em solid transparent;
         position: relative;
-
-        &:hover {
-            background-color: #e6e7ec;
-        }
+        align-items: center;
     }
 }
 
-.courseCheckbox {
-    margin: .5rem;
-    float: right;
-    position: absolute;
-    right: 0;
-    top: 0.75em;
-}
 
-.courseCheckboxLabel {
-    cursor: pointer;
-    vertical-align: middle;
-    padding: 10px 0;
-    flex-grow: 1;
-    align-self: center;
-}
 
 // #endregion
 
@@ -89,9 +70,8 @@
     }
     
     #calendar {
-        outline: 2px solid $wcj-cyan;
-        max-height: $wcj-responsive-breakpoint-2;
-        position: relative;
+        height: auto;
+        min-height: 600px;
     }
 }
 

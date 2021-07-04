@@ -56,15 +56,28 @@ const initFullerCalendar: FullerCalendarCreator
                 }
             },
             headerToolbar: { start: 'myMonth,myWeek', center: 'prev,title,next', end: 'myGrid,myList' },
+            views: {
+                dayGridMonth: { 
+                  // Set HTML title attribute to the event title,
+                  // so that you can hover with the mouse
+                  eventDidMount: e => e.el.title = e.event.title
+                }
+            },
+
+            weekNumberDidMount: e => e.text = 'Week ' + e.text,
             nowIndicator: true,
             initialView: 'dayGridMonth',
             timeZone: 'UTC',
             firstDay: 1, // Monday
+            displayEventEnd: true,
+            weekText: 'Week',
             eventTimeFormat: {
-                hour: '2-digit',
-                minute: '2-digit',
-                meridiem: false,
-                hour12: false
+                hour: '2-digit', minute: '2-digit',
+                
+                meridiem: false, hour12: false
+            },
+            titleFormat: {
+                year: 'numeric', month: 'short', day: '2-digit',                
             }
         });
 

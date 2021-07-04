@@ -18,16 +18,17 @@ const initEventList: WcjEventListCreator =
 
         const courseSelectionChange: (e: Wcj.WcjEvent) => JQuery.TypeEventHandler<HTMLElement, undefined, HTMLElement, HTMLElement, "custom">
             = (event: Wcj.WcjEvent) => function (_, updateCalendar = true) {
-                const liStyle = this.closest("li")?.style;
-                if (!liStyle) {
-                    throw "liStyle undefined";
+                const checkmarkStyle = $(this).next('.checkmark')?.get(0)?.style;
+                if (!checkmarkStyle) {
+                    throw "checkmarkStyle undefined";
                 }
                 if ((this as HTMLInputElement).checked) {
                     select(event.id);
-                    liStyle.borderLeftColor = event.bgColor;
+                    
+                    checkmarkStyle.backgroundColor = event.bgColor;
                 } else {
                     deselect(event.id);
-                    liStyle.borderLeftColor = null;
+                    checkmarkStyle.backgroundColor = null;
                 }
                 if (updateCalendar) {
                     calendar.setEvents(selectedEvents);
@@ -48,14 +49,15 @@ const initEventList: WcjEventListCreator =
             const checkboxEl = $(
                 `<input type="checkbox" class="courseCheckbox" id="course-${event.id}">`
             ).on("custom", courseSelectionChange(event));
+
             const labelEl = $(
                 `<label for="course-${event.id}" class="courseCheckboxLabel">${event.title}</label>`
             );
-            labelEl.append(checkboxEl);
+            labelEl.append(checkboxEl, `<span class="checkmark" style="border-color: ${event.bgColor}"></span>`);
             const li = $(`<li></li>`).append(labelEl).on("click", () => {
                 checkboxEl.trigger("custom", [true]);
             });
-            $("#courseList").append(li);
+            $("#courseList").append(li.prepend('<div class="info-button">🛈</div>'));
         }
 
         // Setup events for "select all" button
