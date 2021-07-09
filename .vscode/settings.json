@@ -1,13 +1,4 @@
 {
-    "[typescript]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    },
-    "[html]": {
-        "editor.defaultFormatter": "vscode.html-language-features"
-    },
-    "[scss]": {
-        "editor.defaultFormatter": "vscode.css-language-features"
-    },
     "compile-hero.disable-compile-files-on-did-save-code": true,
     "eslint.workingDirectories": [
         {
