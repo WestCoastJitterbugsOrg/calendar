@@ -27,12 +27,7 @@ export default function handleDanSeData (url: string): RequestHandler {
     const sortedEvents = 
       events.sort((a, b) => getStart(a) - getStart(b));
 
-      const response = {};
-      for(const event of sortedEvents) {
-         response[event.id] = event; 
-      }
-
-    res.send(response)
+    res.send(sortedEvents)
   }
 }
 
@@ -44,7 +39,9 @@ function getWcjOccasion(occasion: DansSe.Occasion) {
 }
  
 function getStart(dansEvent: Wcj.WcjEvent) {
-  const start = dansEvent.occasions.sort((occ1, occ2) => occ1.start.getTime() - occ2.start.getTime())[0].start;
+  const start = dansEvent.occasions
+    .map(occ => ({start: new Date(occ.start),end: new Date(occ.end)}))
+    .sort((occ1, occ2) => occ1.start.getTime() - occ2.start.getTime())[0].start;
   return start.getTime() || Number.MIN_SAFE_INTEGER;
 }
 

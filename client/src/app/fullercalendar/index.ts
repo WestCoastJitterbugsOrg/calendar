@@ -16,9 +16,19 @@ const initFullerCalendar: FullerCalendarCreator
         const viewTypeButtonGroup = fcButtonGroup(calendarEl, CalendarViewType);
 
         const changeCalendarView = () => {
-            const timeFrame = calendarViews[timeFrameButtonGroup.getSelected()];
+            const selectedTimeFrame = timeFrameButtonGroup.getSelected();
+            const timeFrame = calendarViews[selectedTimeFrame];
             const newView = timeFrame?.[viewTypeButtonGroup.getSelected()];
             calendar.changeView(newView);
+
+            const toolbarTitleClassList = $('.fc-toolbar-title').get(0).classList;
+
+            if(selectedTimeFrame === 'Week') {
+                // The .week-title class adds "Week " before the title as content in css
+                toolbarTitleClassList.add('week-title');
+            }else {
+                toolbarTitleClassList.remove('week-title');
+            }
         }
 
         const createTimeFrameButton = (timeFrame: CalendarTimeFrame) =>
@@ -39,6 +49,7 @@ const initFullerCalendar: FullerCalendarCreator
             }
         });
 
+
         const calendar = new FullCalendar(calendarEl, {
             plugins: [DayGridPlugin, ListPlugin, TimeGridPlugin],
             customButtons: {
@@ -47,7 +58,7 @@ const initFullerCalendar: FullerCalendarCreator
                 myGrid: createViewTypeButton(CalendarViewType.Grid),
                 myList: createViewTypeButton(CalendarViewType.List)
             },
-            viewDidMount: () => {
+            viewDidMount: e => {
                 if (!isInited) {
                     // Make sure the correct buttons are selected (this won't set the view, just the state of the buttons)
                     timeFrameButtonGroup.click(CalendarTimeFrame.Month);
@@ -60,11 +71,21 @@ const initFullerCalendar: FullerCalendarCreator
                 dayGridMonth: { 
                   // Set HTML title attribute to the event title,
                   // so that you can hover with the mouse
-                  eventDidMount: e => e.el.title = e.event.title
+                  eventDidMount: e => e.el.title = e.event.title,
+                  titleFormat: { year: 'numeric', month: 'short' },
+
+                },
+                listMonth: { 
+                    titleFormat: { year: 'numeric', month: 'short' },
+                },
+                timeGridWeek: {
+                    titleFormat: { week: 'numeric'},
+                    dayHeaderFormat: {weekday: 'short',day:'numeric',month:'short'}
+                },
+                listWeek: {
+                    titleFormat: { week: 'numeric'}
                 }
             },
-
-            weekNumberDidMount: e => e.text = 'Week ' + e.text,
             nowIndicator: true,
             initialView: 'dayGridMonth',
             timeZone: 'UTC',
@@ -75,9 +96,6 @@ const initFullerCalendar: FullerCalendarCreator
                 hour: '2-digit', minute: '2-digit',
                 
                 meridiem: false, hour12: false
-            },
-            titleFormat: {
-                year: 'numeric', month: 'short', day: '2-digit',                
             }
         });
 

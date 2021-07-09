@@ -4,13 +4,13 @@ const initEventList: WcjEventListCreator =
     (allEvents, calendar) => {
         let selectedEvents: Wcj.WcjEvent[] = [];
         const select = (id: string) => {
-            const foundEvent = allEvents[id];
+            const foundEvent = allEvents.find(x => x.id === id);
             foundEvent.showInCalendar = true;
             selectedEvents.push(foundEvent);
             return foundEvent;
         }
         const deselect = (id: string) => {
-            const foundEvent = allEvents[id];
+            const foundEvent = allEvents.find(x => x.id === id);
             foundEvent.showInCalendar = false;
             selectedEvents = selectedEvents.filter(x => x.id !== id);
             return foundEvent;
@@ -70,6 +70,8 @@ const initEventList: WcjEventListCreator =
             $(".courseCheckbox").prop("checked", false).trigger("custom", [false]);
             calendar.setEvents(selectedEvents);
         });
+
+        $("#selectAllCourses").trigger('click');
         return {
             getSelected: () => selectedEvents,
             select,

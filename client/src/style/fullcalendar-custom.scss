@@ -118,6 +118,10 @@ $wcj-fc-border-color: #eee;
         font-size: medium;
         display: inline;
         margin: 0 0.5em;
+
+        &.week-title:before {
+          content: "Week "
+        }
       }
     }
   }

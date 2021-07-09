@@ -1,20 +1,35 @@
 import './style/main.scss';
-import { loadGCalData } from './app/dataLoaders/gapi-loader';
 import initFullerCalendar from './app/fullercalendar';
 import initEventList from './app/event-group-list';
 import { loadDansseData } from './app/dataLoaders/danse-loader';
 
+const webbVikenUri = 'https://wcj.webbviken.se';
 const timeMin = Date.now();
 
-// asynchronously load data first
-const loadData = loadDansseData();
-
-//make sure that calendar is initialized
-const calendar = initFullerCalendar($("#calendar").get(0));
-
 // now procede to initialize views from data
-loadData.then(data => {
+loadDansseData().then(data => {
   initEventList(data, calendar);
-  calendar.gotoDate(timeMin);
-  calendar.render();
+  let smallest = Number.MAX_SAFE_INTEGER;
+  for(const course in data) {
+    const start = new Date(data[course].occasions[0].start).getTime()
+    if(smallest > start) {
+      smallest = start;
+    }
+  }
+  calendar.gotoDate(Math.max(timeMin, smallest));
+
+  messageNewSize();
 });
+
+const calendar = initFullerCalendar($("#calendar").get(0));
+calendar.render();
+
+window.addEventListener('message', event => {
+  if(event.origin === webbVikenUri && event.data === 'remove scroll') {
+    document.body.style.overflowY = 'hidden';
+  }
+})
+
+function messageNewSize() {
+    window.parent.postMessage(document.documentElement.scrollHeight + 'px', webbVikenUri);  
+}

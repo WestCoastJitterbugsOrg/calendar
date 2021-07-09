@@ -1,7 +1,6 @@
-import dayjs from "dayjs";
 
 export async function loadDansseData():
-    Promise<{ [id: string]: Wcj.WcjEvent }> {
+    Promise<Wcj.WcjEvent[]> {
     const response = await fetch(`${API_URL}/wcj-courses`);
 
     if (response.ok) {

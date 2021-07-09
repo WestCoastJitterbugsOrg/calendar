@@ -19,7 +19,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({ template: 'index.html', inject: 'body', favicon: 'favicon.ico' , scriptLoading: 'defer' })
+    new HtmlWebpackPlugin({ template: 'index.html', inject: 'body', favicon: 'favicon.ico' , scriptLoading: 'blocking' })
   ],
   resolve: {
     modules: ['node_modules', path.resolve(__dirname, 'client')],
