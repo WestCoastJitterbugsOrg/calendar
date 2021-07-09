@@ -10,7 +10,8 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'scripts/[name].[chunkhash:8].js'
   },
-  externals: { jquery: 'jQuery' },
+  externals: { 
+    jquery: 'jQuery'},
   module: {
     rules: [{
       test: /\.ts$/,

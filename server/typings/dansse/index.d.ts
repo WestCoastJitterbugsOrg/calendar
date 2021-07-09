@@ -2,12 +2,16 @@ declare namespace DansSe {
     interface Event {
         $: {eventId: string},
         title: [string],
-        longdescription: string,
-        place: string,
+        longdescription: [string],
         schedule: [Schedule],
         categories: {
             category: string
-        }[]
+        }[],
+        registration: [{
+            $: {status: 'ONLY_INFO' | 'OPEN' | 'CLOSED' }
+            url: string[]
+        }],
+        place: [{_: string}]
     }
 
     interface Schedule {

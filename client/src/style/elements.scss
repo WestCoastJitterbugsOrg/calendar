@@ -2,23 +2,29 @@
 @use "variables"as *;
 
 .info-button {
-    display: none; // hide for now until there is functionality
-    margin: 0 5px;
-    cursor: pointer;
-    font-size: 22px;
-    color: rgba(0, 0, 0, 0.5);
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 22px;
+  color: color.change($wcj-black, $alpha: 0.25);
+
+  #courseList li:hover & {
+    color: color.change($wcj-black, $alpha: 0.5);
+
+    &:hover {
+      color: color.change($wcj-black, $alpha: 1);
+    }
+  }
 }
 
 /* The container label */
 .courseCheckboxLabel {
-    display: block;
-    position: relative;
-    cursor: pointer;
-    padding: 10px;
-    flex-grow: 1;
-    align-self: center;
-  
-  
+  display: block;
+  position: relative;
+  cursor: pointer;
+  padding: 10px;
+  flex-grow: 1;
+  align-self: center;
+
   /* Hide the browser's default checkbox */
   input {
     position: absolute;
@@ -28,10 +34,10 @@
     width: 0;
 
     &:checked ~ .checkmark:after {
-        display: block;
-      }
+      display: block;
+    }
   }
-  
+
   /* Create a custom checkbox */
   .checkmark {
     position: absolute;
@@ -44,21 +50,20 @@
     border: 1px solid;
 
     &:after {
-        content: "";
-        position: absolute;
-        display: none;
-        left: 7px;
-        top: 4px;
-        width: 4px;
-        height: 8px;
-        border: solid white;
-        border-width: 0 2px 2px 0;
-        transform: rotate(45deg);
-      }
+      content: "";
+      position: absolute;
+      display: none;
+      left: 7px;
+      top: 4px;
+      width: 4px;
+      height: 8px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
   }
-  
+
   &:hover .checkmark {
     background-color: color.scale($wcj-sand, $blackness: 10%);
   }
-  
 }
