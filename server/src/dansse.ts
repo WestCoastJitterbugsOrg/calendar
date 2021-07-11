@@ -4,29 +4,57 @@ import { RequestHandler } from "express";
 import { convertableToString, parseStringPromise } from "xml2js";
 import dayjs from "dayjs";
 
+const range = (start: number, stop: number, step: number) => Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
+
 const colorHash = new ColorHash({
-  saturation: [0.35, 0.5, 0.65],
-  lightness: [0.35, 0.5, 0.65],
+  lightness: range(0.3, 0.7, 0.1)
 });
 
 export default function handleDanSeData(url: string): RequestHandler {
   return async function (_, res) {
     const resp = await axios.post<convertableToString>(url);
     const result = (await parseStringPromise(resp.data)) as DansSe.Response;
-    const events = result.cogwork.events[0].event.map<Wcj.WcjEvent>((event) => ({
-      id: event.$.eventId,
-      title: event.title[0],
-      occasions: event.schedule[0].occasions[0].occasion.map(getWcjOccasion),
-      bgColor: colorHash.hex(event.title[0]),
-      textColor: colorHash.hsl(event.title[0])[2] > 0.5 ? "black" : "white",
-      description: event.longdescription[0],
-      registrationUrl: event.registration[0].url[0],
-      place: event.place?.[0]._ || "Unknown",
-    }));
+    const dansseEvents = result.cogwork.events
+      .map((event) => event.event)[0]
+      .filter((event) =>
+        event.schedule?.[0]?.occasions?.some?.((x) => x.occasion)
+      );
 
-    const sortedEvents = events.sort((a, b) => getStart(a) - getStart(b));
+    const categories: Wcj.WcjEventCategory[] = [];
+    for (const event of dansseEvents) {
+      const category = categories.find(
+        (x) => x.category === event.primaryEventGroup[0]._
+      );
+      if (category === undefined) {
+        categories.push({
+          category: event.primaryEventGroup[0]._,
+          events: [dansse2wcjEvent(event)],
+        });
+      } else {
+        category.events.push(dansse2wcjEvent(event));
+      }
+    }
 
-    res.send(sortedEvents);
+    res.send(categories);
+  };
+}
+
+function dansse2wcjEvent(event: DansSe.Event): Wcj.WcjEvent {
+  const pricing = event.pricing?.[0].base[0];
+  return {
+    id: event.$.eventId,
+    title: event.title?.[0],
+    occasions: event.schedule?.[0].occasions?.[0].occasion.map(getWcjOccasion),
+    bgColor: colorHash.hex(event.$.eventId),
+    textColor: colorHash.hsl(event.$.eventId)[2] > 0.5 ? "black" : "white",
+    description: event.longdescription?.[0],
+    registrationUrl: event.registration?.[0]?.url[0],
+    place: event.place?.[0] || "Unknown",
+    price: pricing
+      ? pricing._ + " " + pricing.$.currency
+      : "Unknown",
+      instructors: event.instructors?.[0].combinedTitle?.[0] || "Unknown"
+  
   };
 }
 
@@ -38,11 +66,4 @@ function getWcjOccasion(occasion: DansSe.Occasion) {
     start: dayjs(start, { utc: true }).toDate(),
     end: dayjs(end, { utc: true }).toDate(),
   };
-}
-
-function getStart(dansEvent: Wcj.WcjEvent) {
-  const start = dansEvent.occasions
-    .map((occ) => ({ start: new Date(occ.start), end: new Date(occ.end) }))
-    .sort((occ1, occ2) => occ1.start.getTime() - occ2.start.getTime())[0].start;
-  return start.getTime() || Number.MIN_SAFE_INTEGER;
 }

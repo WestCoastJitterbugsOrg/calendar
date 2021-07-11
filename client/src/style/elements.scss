@@ -7,7 +7,7 @@
   font-size: 22px;
   color: color.change($wcj-black, $alpha: 0.25);
 
-  #courseList li:hover & {
+  .panel .event:hover & {
     color: color.change($wcj-black, $alpha: 0.5);
 
     &:hover {
@@ -16,6 +16,39 @@
   }
 }
 
+.event:hover {
+  background-color: color.scale($wcj-sand, $blackness: 5%);
+}
+
+.accordion {
+  background-color: $wcj-cyan;;
+  color: white;
+  border-radius: 0;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  text-align: left;
+  border: none;
+  outline: none;
+  position: relative;
+  z-index: 1;
+  &:hover {
+    background-color: color.scale($wcj-cyan, $blackness: 15%);
+  }
+
+  &:after {
+    font-weight: normal;
+    content: '+';
+    font-size: 30px;
+    float: right;
+    margin-left: 5px;
+    transform: translateY(-0.5rem)
+  }
+  
+  &.active:after {
+    content: "𛲆";
+  }
+}
 /* The container label */
 .courseCheckboxLabel {
   display: block;

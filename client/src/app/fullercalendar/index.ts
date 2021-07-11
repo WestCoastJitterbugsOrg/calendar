@@ -71,7 +71,7 @@ const initFullerCalendar: FullerCalendarCreator
                 dayGridMonth: { 
                   // Set HTML title attribute to the event title,
                   // so that you can hover with the mouse
-                  eventDidMount: e => e.el.title = e.event.title,
+                  eventDidMount: e => e.el.title = e.event.title + '\nPlace: ' + e.event.extendedProps['place'],
                   titleFormat: { year: 'numeric', month: 'short' },
 
                 },

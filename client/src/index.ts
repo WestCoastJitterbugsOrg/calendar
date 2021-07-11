@@ -1,6 +1,6 @@
 import './style/main.scss';
 import initFullerCalendar from './app/fullercalendar';
-import initEventList from './app/event-group-list';
+import initEventList, { getAllEventsFromGroups } from './app/event-group-list';
 import { loadDansseData } from './app/dataLoaders/danse-loader';
 
 const webbVikenUri = 'https://wcj.webbviken.se';
@@ -10,8 +10,8 @@ const timeMin = Date.now();
 loadDansseData().then(data => {
   initEventList(data, calendar);
   let smallest = Number.MAX_SAFE_INTEGER;
-  for(const course in data) {
-    const start = new Date(data[course].occasions[0].start).getTime()
+  for(const course of getAllEventsFromGroups(data)) {
+    const start = new Date(course.occasions[0].start).getTime()
     if(smallest > start) {
       smallest = start;
     }

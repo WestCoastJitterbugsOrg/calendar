@@ -4,75 +4,78 @@
 // #region CourseList
 
 .courseList-container {
-    position: absolute;
-    width: $wcj-sidebar-maxwidth;
-    height: 100%;
-    overflow: auto;
-    @include mixins.scrollbar(true);
-    background-color: $wcj-sand;
+  position: absolute;
+  width: $wcj-sidebar-maxwidth;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  @include mixins.scrollbar(true);
+  background-color: $wcj-sand;
+  &:hover {
+    @include mixins.scrollbar(false);
+  }
 }
 
 .courseList-actions {
-    text-align: center;
-    padding: 1em;
-    background-color: $wcj-black;
+  text-align: center;
+  padding: 1em;
+  background-color: $wcj-black;
 }
 
 #courseList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    >li {
-        display: flex;
-        height: 3em;
-        padding: 0.25em;
-        position: relative;
-        align-items: center;
-    }
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
+.panel {
+  position: relative;
+  top: -14px;
+}
 
-
+.panel .event {
+  display: flex;
+  height: 3em;
+  padding: 0.25em 0;
+  align-items: center;
+  width: 100%;
+}
 // #endregion
-
 
 // #region Calendar
 .calendar-container {
-    position: absolute;
-    right: 0;
-    left: $wcj-sidebar-maxwidth;
-    top: 0;
-    bottom: 0;
+  position: absolute;
+  right: 0;
+  left: $wcj-sidebar-maxwidth;
+  top: 0;
+  bottom: 0;
 }
 
 #calendar {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 
 // #endregion
-
 
 // #region Small screen
 
 @media only screen and (max-width: $wcj-responsive-breakpoint-2) {
-    .courseList-container {
-        position: relative;
-        width: 100%;
-    }
-    
-    .calendar-container {
-        position: static;
-        box-shadow: none;
-    }
-    
-    #calendar {
-        height: auto;
-        min-height: 600px;
-    }
+  .courseList-container {
+    position: relative;
+    width: 100%;
+  }
+
+  .calendar-container {
+    position: static;
+    box-shadow: none;
+  }
+
+  #calendar {
+    height: auto;
+    min-height: 600px;
+  }
 }
 
 // endregion

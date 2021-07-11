@@ -19,7 +19,7 @@ $wcj-fc-border-color: #eee;
   --fc-neutral-bg-color: white;
   --fc-border-color: #{$wcj-fc-border-color};
   --fc-now-indicator-color: #{$wcj-cyan};
-  --fc-today-bg-color: #{color.change(yellow, $alpha: 0.1)};
+  --fc-today-bg-color: #{$wcj-sand};
 
   // Buttons
   --fc-button-text-color: #{$wcj-button-text-color};

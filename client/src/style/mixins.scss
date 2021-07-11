@@ -8,7 +8,10 @@
   @if $thin {
     $width: 5px;
     scrollbar-width: thin;
-  } 
+  } @else {
+    $width: 10px;
+    scrollbar-width: auto;
+  }
 
   // For Google Chrome
   &::-webkit-scrollbar {
