@@ -66,10 +66,20 @@ const initEventList: WcjEventListCreator = (eventGroups, calendar) => {
 
   // Create all checkboxes out of the unique events
   for (const group of eventGroups) {
-    const groupEl = $(`<div class="accordion active">${group.category}</div>`).on("click", function() {
+    const groupEl = $(
+      `<div class="accordion active">
+        <span class="accordion-name">${group.category}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="accordion-icon accordion-close" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" class="accordion-icon accordion-open" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+    </svg>
+      </div>`
+    ).on("click", function () {
       /* Toggle between adding and removing the "active" class,
       to highlight the button that controls the panel */
-      
+
       /* Toggle between hiding and showing the active panel */
       const panel = this.nextElementSibling as HTMLElement;
       if (panel.style.display === "block") {
@@ -100,24 +110,31 @@ const initEventList: WcjEventListCreator = (eventGroups, calendar) => {
           checkboxEl.trigger("custom", [true]);
         });
 
-      const infoButton = $('<div class="info-button">🛈</div>').on(
-        "click",
-        () => {
-          (
-            $('<div class="modal"></div>')
-              .append(`<h2 style="margin-top: 0">${event.title}</h2>`)
-              .append(event.description.includes('\\<p\\>') ? event.description : `<p>${event.description}</p>`)
-              .append(`<div><strong>Where:</strong> ${event.place}</div>`)
-              .append(`<div><strong>Price:</strong> ${event.price}</div>`)
-              .append(`<div><strong>Instructors:</strong> ${event.instructors}</div>`)
-              .append(
-                `<div><strong>Registration:</strong> <a href="${event.registrationUrl}"> link</a></div>`
-              )
-              .appendTo("body") as any
-          ).modal({});
-          return false;
-        }
-      );
+      const infoButton = $(
+        `<svg xmlns="http://www.w3.org/2000/svg" class="info-button" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>`
+      ).on("click", () => {
+        (
+          $('<div class="modal"></div>')
+            .append(`<h2 style="margin-top: 0">${event.title}</h2>`)
+            .append(
+              event.description.includes("\\<p\\>")
+                ? event.description
+                : `<p>${event.description}</p>`
+            )
+            .append(`<div><strong>Where:</strong> ${event.place}</div>`)
+            .append(`<div><strong>Price:</strong> ${event.price}</div>`)
+            .append(
+              `<div><strong>Instructors:</strong> ${event.instructors}</div>`
+            )
+            .append(
+              `<div><strong>Registration:</strong> <a href="${event.registrationUrl}" target="_blank"> link</a></div>`
+            )
+            .appendTo("body") as any
+        ).modal({});
+        return false;
+      });
       panelEl.append(eventEl.prepend(infoButton));
       $("#courseList").append(panelEl);
     }
@@ -134,7 +151,7 @@ const initEventList: WcjEventListCreator = (eventGroups, calendar) => {
   });
 
   // Select all at init
-  // $("#selectAllCourses").trigger("click");
+  $("#selectAllCourses").trigger("click");
 
   return {
     getSelected: () => selectedEvents,

@@ -34,7 +34,7 @@ const pw = fs.readFileSync(path.resolve(__dirname, "wcjpassword"), "utf8");
 app.get(
   "/api/wcj-courses",
   handleDanSeData(
-    `https://dans.se/xml/?type=courses&org=wcj&pw=${pw}&regStatus=0&dateInterval=last2y&maxRows=1000`
+    `https://dans.se/xml/?type=events&org=wcj&pw=${pw}&regStatus=0&dateInterval=future`
   )
 );
 // #endregion

@@ -156,6 +156,11 @@ $wcj-fc-border-color: #eee;
     @include mixins.scrollbar(true);
   }
 
+  .fc-scrollgrid-liquid:hover .fc-scrollgrid-section-liquid>td .fc-scroller-liquid-absolute {
+    @include mixins.scrollbar(false);
+
+  }
+
   .fc-daygrid-event{
     white-space: normal;
     cursor: default;

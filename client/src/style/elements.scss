@@ -6,6 +6,9 @@
   cursor: pointer;
   font-size: 22px;
   color: color.change($wcj-black, $alpha: 0.25);
+width: 22px;
+  height: 22px;
+  
 
   .panel .event:hover & {
     color: color.change($wcj-black, $alpha: 0.5);
@@ -25,7 +28,7 @@
   color: white;
   border-radius: 0;
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   font-weight: bold;
   text-align: left;
   border: none;
@@ -36,19 +39,30 @@
     background-color: color.scale($wcj-cyan, $blackness: 15%);
   }
 
-  &:after {
-    font-weight: normal;
-    content: '+';
-    font-size: 30px;
-    float: right;
-    margin-left: 5px;
-    transform: translateY(-0.5rem)
+  &.active {
+    .accordion-open {
+      display: none;
+    }
   }
-  
-  &.active:after {
-    content: "𛲆";
+  &:not(.active) {
+    .accordion-close {
+      display: none;
+    }
   }
 }
+
+.accordion-name {
+  font-size: 16px;
+  line-height: 0;
+}
+
+.accordion-icon {
+  width: 16px;
+  height: 16px;
+  float: right;
+}
+
+
 /* The container label */
 .courseCheckboxLabel {
   display: block;

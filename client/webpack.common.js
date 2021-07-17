@@ -16,7 +16,7 @@ module.exports = {
     rules: [{
       test: /\.ts$/,
       use: [{ loader: 'ts-loader', options: { onlyCompileBundledFiles: true } }]
-    }],
+    }]
   },
   plugins: [
     new CleanWebpackPlugin(),
