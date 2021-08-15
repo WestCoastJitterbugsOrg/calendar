@@ -5,6 +5,11 @@ declare namespace DansSe {
     longdescription: [string];
     schedule: [Schedule];
     primaryEventGroup: [{ _: string }];
+    requirements: [
+      {
+        level: [{ $: { minValue: number } }];
+      }
+    ];
     registration: [
       {
         $: { status: "ONLY_INFO" | "STOPED_SHOWING" | "OPEN" };
@@ -12,10 +17,12 @@ declare namespace DansSe {
       }
     ];
     place: [string];
-    pricing: [{
-      base: [{ $: { currency: string }; _: string }];
-    }];
-    instructors: [{combinedTitle: [string]}]
+    pricing: [
+      {
+        base: [{ $: { currency: string }; _: string }];
+      }
+    ];
+    instructors: [{ combinedTitle: [string] }];
   }
 
   interface Schedule {

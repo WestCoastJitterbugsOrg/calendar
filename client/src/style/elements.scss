@@ -6,9 +6,8 @@
   cursor: pointer;
   font-size: 22px;
   color: color.change($wcj-black, $alpha: 0.25);
-width: 22px;
+  width: 22px;
   height: 22px;
-  
 
   .panel .event:hover & {
     color: color.change($wcj-black, $alpha: 0.5);
@@ -24,7 +23,7 @@ width: 22px;
 }
 
 .accordion {
-  background-color: $wcj-cyan;;
+  background-color: $wcj-cyan;
   color: white;
   border-radius: 0;
   cursor: pointer;
@@ -62,7 +61,6 @@ width: 22px;
   float: right;
 }
 
-
 /* The container label */
 .courseCheckboxLabel {
   display: block;
@@ -79,38 +77,65 @@ width: 22px;
     cursor: pointer;
     height: 0;
     width: 0;
-
-    &:checked ~ .checkmark:after {
-      display: block;
-    }
   }
 
-  /* Create a custom checkbox */
-  .checkmark {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 20px;
-    width: 20px;
-    border-radius: 20px;
-    margin: 0.5rem;
-    border: 1px solid;
-
-    &:after {
-      content: "";
-      position: absolute;
-      display: none;
-      left: 7px;
-      top: 4px;
-      width: 4px;
-      height: 8px;
-      border: solid white;
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-    }
-  }
-
-  &:hover .checkmark {
+  &:hover ~ .checkmark {
     background-color: color.scale($wcj-sand, $blackness: 10%);
+  }
+
+  &:checked ~ .checkmark:after {
+    display: block;
+  }
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  margin: 0.5rem;
+  border: 1px solid;
+
+  &:after {
+    content: "";
+    position: relative;
+    display: block;
+    left: 7px;
+    top: 4px;
+    width: 4px;
+    height: 8px;
+    border: transparent;
+    transform: rotate(45deg);
+  }
+
+  &.checked:after {
+    border: solid white;
+    border-width: 0 2px 2px 0;
+  }
+}
+
+.lds-dual-ring {
+  width: 80px;
+  height: 80px;
+  margin: auto;
+
+  &:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid black;
+    border-color: black transparent black transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }

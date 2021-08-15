@@ -1,6 +1,7 @@
 import { WcjEventListCreator } from "./types";
 import "jquery";
 import "jquery-modal";
+import { messageNewSize } from "../..";
 
 export const getAllEventsFromGroups = (groups: Wcj.WcjEventCategory[]) => {
   const events: Wcj.WcjEvent[] = [];
@@ -38,15 +39,18 @@ const initEventList: WcjEventListCreator = (eventGroups, calendar) => {
     "custom"
   > = (event: Wcj.WcjEvent) =>
     function (_, updateCalendar = true) {
-      const checkmarkStyle = $(this).next(".checkmark")?.get(0)?.style;
+      const checkmark = $(this).parent().next(".checkmark")?.get(0);
+      const checkmarkStyle = checkmark?.style;
       if (!checkmarkStyle) {
         throw "checkmarkStyle undefined";
       }
-      if ((this as HTMLInputElement).checked) {
-        select(event.id);
 
+      if ((this as HTMLInputElement).checked) {
+        checkmark.classList.add("checked");
+        select(event.id);
         checkmarkStyle.backgroundColor = event.bgColor;
       } else {
+        checkmark.classList.remove("checked");
         deselect(event.id);
         checkmarkStyle.backgroundColor = null;
       }
@@ -55,14 +59,16 @@ const initEventList: WcjEventListCreator = (eventGroups, calendar) => {
       }
     };
 
-  $(".courseList-container").append(
-    `<div class="courseList-actions">
+  $(".courseList-container")
+    .removeClass("loading")
+    .append(
+      `<div class="courseList-actions">
                     <button id="selectAllCourses">Select all</button>
                     <button id="deselectAllCourses">Deselect all</button>
                 </div>
                 <ul id="courseList"></ul>
             `
-  );
+    );
 
   // Create all checkboxes out of the unique events
   for (const group of eventGroups) {
@@ -89,6 +95,7 @@ const initEventList: WcjEventListCreator = (eventGroups, calendar) => {
         panel.style.display = "block";
         this.classList.add("active");
       }
+      messageNewSize();
     });
     const panelEl = $('<div class="panel" style="display: block"></div>');
     $("#courseList").append(groupEl).append(panelEl);
@@ -100,12 +107,12 @@ const initEventList: WcjEventListCreator = (eventGroups, calendar) => {
       const labelEl = $(
         `<label for="course-${event.id}" class="courseCheckboxLabel">${event.title}</label>`
       );
-      labelEl.append(
-        checkboxEl,
-        `<span class="checkmark" style="border-color: ${event.bgColor}"></span>`
-      );
+      labelEl.append(checkboxEl);
       const eventEl = $(`<div class="event"></event>`)
         .append(labelEl)
+        .append(
+          `<span class="checkmark" style="border-color: ${event.bgColor}"></span>`
+        )
         .on("click", () => {
           checkboxEl.trigger("custom", [true]);
         });

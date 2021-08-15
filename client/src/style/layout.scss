@@ -14,6 +14,13 @@
   &:hover {
     @include mixins.scrollbar(false);
   }
+  &:not(.loading) .lds-dual-ring {
+    display: none;
+  }
+
+  &.loading .lds-dual-ring {
+    display: block;
+  }
 }
 
 .courseList-actions {
@@ -48,6 +55,8 @@
   left: $wcj-sidebar-maxwidth;
   top: 0;
   bottom: 0;
+
+
 }
 
 #calendar {
