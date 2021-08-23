@@ -3,7 +3,7 @@ import initFullerCalendar from "./app/fullercalendar";
 import initEventList, { getAllEventsFromGroups } from "./app/event-group-list";
 import { loadDansseData } from "./app/dataLoaders/danse-loader";
 
-const webbVikenUri = "https://wcj.webbviken.se";
+const wcjUri = "https://wcj.se";
 const timeMin = Date.now();
 
 // now procede to initialize views from data
@@ -25,7 +25,7 @@ const calendar = initFullerCalendar($("#calendar").get(0));
 calendar.render();
 
 window.addEventListener("message", (event) => {
-  if (event.origin === webbVikenUri && event.data === "remove scroll") {
+  if (event.origin === wcjUri && event.data === "remove scroll") {
     document.body.style.overflowY = "hidden";
   }
 });
@@ -33,6 +33,6 @@ window.addEventListener("message", (event) => {
 export function messageNewSize(): void {
   window.parent.postMessage(
     document.documentElement.scrollHeight + "px",
-    webbVikenUri
+    wcjUri
   );
 }

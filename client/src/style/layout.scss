@@ -9,11 +9,7 @@
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  @include mixins.scrollbar(true);
   background-color: $wcj-sand;
-  &:hover {
-    @include mixins.scrollbar(false);
-  }
   &:not(.loading) .lds-dual-ring {
     display: none;
   }

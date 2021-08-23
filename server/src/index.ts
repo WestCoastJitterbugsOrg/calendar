@@ -24,15 +24,11 @@ app.listen(PORT, () => {
 // #endregion
 
 // #region dans.se endpoints
-app.get(
-  "/api/ma-events",
-  handleDanSeData("https://dans.se/xml/?type=events&org=ma")
-);
 
 const pw = fs.readFileSync(path.resolve(__dirname, "wcjpassword"), "utf8");
 
 app.get(
-  "/api/wcj-courses",
+  "/api/cogwork",
   handleDanSeData(
     `https://dans.se/xml/?type=events&org=wcj&pw=${pw}&regStatus=0&dateInterval=future`
   )
