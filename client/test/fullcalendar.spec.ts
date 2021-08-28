@@ -54,8 +54,12 @@ function generateUniqueData(currentTime: Date): TestData {
 				end: end,
 			}],
 			showInCalendar: true,
-			bgColor: "black",
-			textColor: "white"
+			color: "black",
+			description: "",
+			instructors: "",
+			place: "",
+			price: "",
+			registrationUrl: ""
 		}]
 	}
 }

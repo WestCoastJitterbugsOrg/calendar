@@ -20,7 +20,6 @@
   "bugs": {
     "url": "https://github.com/WestCoastJitterbugsOrg/Personalized-Calendar/issues"
   },
-  "homepage": "https://calendar.the-wcj.guru/",
   "dependencies": {
     "@fullcalendar/core": "^5.7.0",
     "@fullcalendar/daygrid": "^5.7.0",

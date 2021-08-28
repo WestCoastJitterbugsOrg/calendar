@@ -2,12 +2,13 @@
 @use "variables"as *;
 
 .info-button {
-  margin-left: 5px;
   cursor: pointer;
   font-size: 22px;
   color: color.change($wcj-black, $alpha: 0.25);
-  width: 22px;
-  height: 22px;
+
+  margin: 0 5px;
+  min-width: 18px;
+  max-height: 18px;
 
   .panel .event:hover & {
     color: color.change($wcj-black, $alpha: 0.5);
@@ -66,7 +67,6 @@
   display: block;
   position: relative;
   cursor: pointer;
-  padding: 10px;
   flex-grow: 1;
   align-self: center;
 
@@ -90,18 +90,19 @@
 
 /* Create a custom checkbox */
 .checkmark {
-  height: 20px;
-  width: 20px;
-  border-radius: 20px;
-  margin: 0.5rem;
-  border: 1px solid;
+  min-height: 22px;
+  min-width: 22px;
+  position: relative;
+  margin: 0 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 100%;
 
   &:after {
     content: "";
     position: relative;
     display: block;
-    left: 7px;
-    top: 4px;
+    left: 8px;
+    top: 5px;
     width: 4px;
     height: 8px;
     border: transparent;
@@ -115,19 +116,24 @@
 }
 
 .lds-dual-ring {
-  width: 80px;
-  height: 80px;
+  $width: 64px;
+  $border: 8px;
+
+  width: $width;
+  height: width;
   margin: auto;
+
+  padding: calc(50vh - #{$width / 2}) 0;
 
   &:after {
     content: " ";
     display: block;
-    width: 64px;
-    height: 64px;
-    margin: 8px;
+    width: $width - $border * 2;
+    height: $width - $border * 2;
+
     border-radius: 50%;
-    border: 6px solid black;
-    border-color: black transparent black transparent;
+    border: $border solid black;
+    border-color: $wcj-coral $wcj-cyan $wcj-red $wcj-mint;
     animation: lds-dual-ring 1.2s linear infinite;
   }
   @keyframes lds-dual-ring {

@@ -28,7 +28,7 @@ app.listen(PORT, () => {
 const pw = fs.readFileSync(path.resolve(__dirname, "wcjpassword"), "utf8");
 
 app.get(
-  "/api/cogwork",
+  "/calendar-api/cogwork",
   handleDanSeData(
     `https://dans.se/xml/?type=events&org=wcj&pw=${pw}&regStatus=0&dateInterval=future`
   )
@@ -36,7 +36,7 @@ app.get(
 // #endregion
 
 // #region Google calendar endpoints
-app.get("/api/gcal", async function (req, res) {
+app.get("/calendar-api/gcal", async function (req, res) {
   try {
     const events = await google
       .calendar({

@@ -1,6 +1,7 @@
 declare namespace Wcj {
   export type WcjEventCategory = {
-    category: string, // also used as identifier
+    category: string, // also used as identifier,
+    color: string,
     events: WcjEvent[]
   }
 
@@ -15,8 +16,7 @@ declare namespace Wcj {
     registrationUrl: string,
     place: string
     /* colors in hex rgb */
-    bgColor: string,
-    textColor: string
+    color: string,
     /* state */
     showInCalendar?: boolean,
     price: string,

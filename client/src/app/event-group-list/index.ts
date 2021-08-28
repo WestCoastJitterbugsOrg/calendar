@@ -48,7 +48,7 @@ const initEventList: WcjEventListCreator = (eventGroups, calendar) => {
       if ((this as HTMLInputElement).checked) {
         checkmark.classList.add("checked");
         select(event.id);
-        checkmarkStyle.backgroundColor = event.bgColor;
+        checkmarkStyle.backgroundColor = event.color;
       } else {
         checkmark.classList.remove("checked");
         deselect(event.id);
@@ -111,7 +111,7 @@ const initEventList: WcjEventListCreator = (eventGroups, calendar) => {
       const eventEl = $(`<div class="event"></event>`)
         .append(labelEl)
         .append(
-          `<span class="checkmark" style="border-color: ${event.bgColor}"></span>`
+          `<span class="checkmark"></span>`
         )
         .on("click", () => {
           checkboxEl.trigger("custom", [true]);

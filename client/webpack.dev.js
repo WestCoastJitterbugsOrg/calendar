@@ -23,6 +23,6 @@ module.exports = merge(common, {
     },
     devtool: 'inline-source-map',
     plugins: [
-        new webpack.DefinePlugin({ API_URL: JSON.stringify('http://localhost:8081/api') })
+        new webpack.DefinePlugin({ API_URL: JSON.stringify('http://localhost:8081/calendar-api') })
     ]
 });

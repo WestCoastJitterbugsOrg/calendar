@@ -72,9 +72,9 @@ export function setEvents(calendar: FullCalendar, selectedEvents: Wcj.WcjEvent[]
                 start: occasion.start,
                 end: occasion.end,
                 groupId: wcjEvent.id,
-                backgroundColor: wcjEvent.bgColor, // Gives each course its own background color to better distinguish them
-                borderColor: wcjEvent.bgColor,
-                textColor: wcjEvent.textColor,
+                backgroundColor: wcjEvent.color,
+                borderColor: wcjEvent.color,
+                textColor: "black",
                 extendedProps: wcjEvent
             });
         }
