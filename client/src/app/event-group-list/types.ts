@@ -1,8 +1,3 @@
-import { FullerCalendar } from "../fullercalendar/types";
+import { Calendar as FullCalendar } from "@fullcalendar/core";
 
-
-export type WcjEventListCreator = (allEvents: Wcj.WcjEventCategory[], calendar: FullerCalendar) => {
-    getSelected: () => Wcj.WcjEvent[],
-    select: (id: string) => Wcj.WcjEvent,
-    deselect: (id: string) => Wcj.WcjEvent
-}
+export type WcjEventListCreator = (allEvents: Wcj.WcjEventCategory[], calendar: FullCalendar) => void;

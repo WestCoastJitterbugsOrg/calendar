@@ -2,8 +2,12 @@ import { WcjEventListCreator } from "./types";
 import "jquery";
 import "jquery-modal";
 import { messageNewSize } from "../..";
+import { Calendar as FullCalendar } from "@fullcalendar/core";
+import { wcj2fcEvent } from "../fullercalendar/helpers";
 
-export const getAllEventsFromGroups = (groups: Wcj.WcjEventCategory[]) => {
+export const getAllEventsFromGroups = (
+  groups: Wcj.WcjEventCategory[]
+): Wcj.WcjEvent[] => {
   const events: Wcj.WcjEvent[] = [];
   for (const group of groups) {
     events.push(...group.events);
@@ -11,24 +15,10 @@ export const getAllEventsFromGroups = (groups: Wcj.WcjEventCategory[]) => {
   return events;
 };
 
-const initEventList: WcjEventListCreator = (eventGroups, calendar) => {
-  let selectedEvents: Wcj.WcjEvent[] = [];
-  const select = (id: string) => {
-    const allEvents = getAllEventsFromGroups(eventGroups);
-    const foundEvent = allEvents.find((event) => event.id === id);
-    foundEvent.showInCalendar = true;
-    selectedEvents.push(foundEvent);
-    return foundEvent;
-  };
-
-  const deselect = (id: string) => {
-    const allEvents = getAllEventsFromGroups(eventGroups);
-    const foundEvent = allEvents.find((event) => event.id === id);
-    foundEvent.showInCalendar = false;
-    selectedEvents = selectedEvents.filter((x) => x.id !== id);
-    return foundEvent;
-  };
-
+const initEventList: WcjEventListCreator = (
+  eventGroups: Wcj.WcjEventCategory[],
+  calendar: FullCalendar
+) => {
   const courseSelectionChange: (
     e: Wcj.WcjEvent
   ) => JQuery.TypeEventHandler<
@@ -38,7 +28,7 @@ const initEventList: WcjEventListCreator = (eventGroups, calendar) => {
     HTMLElement,
     "custom"
   > = (event: Wcj.WcjEvent) =>
-    function (_, updateCalendar = true) {
+    function () {
       const checkmark = $(this).parent().next(".checkmark")?.get(0);
       const checkmarkStyle = checkmark?.style;
       if (!checkmarkStyle) {
@@ -47,28 +37,45 @@ const initEventList: WcjEventListCreator = (eventGroups, calendar) => {
 
       if ((this as HTMLInputElement).checked) {
         checkmark.classList.add("checked");
-        select(event.id);
         checkmarkStyle.backgroundColor = event.color;
       } else {
         checkmark.classList.remove("checked");
-        deselect(event.id);
         checkmarkStyle.backgroundColor = null;
       }
-      if (updateCalendar) {
-        calendar.setEvents(selectedEvents);
-      }
     };
+
+  const allEvents = getAllEventsFromGroups(eventGroups)
 
   $(".courseList-container")
     .removeClass("loading")
     .append(
-      `<div class="courseList-actions">
-                    <button id="selectAllCourses">Select all</button>
-                    <button id="deselectAllCourses">Deselect all</button>
-                </div>
-                <ul id="courseList"></ul>
-            `
-    );
+      $(`<div class="courseList-actions"></div>`)
+        .append(
+          $(`<button id="selectAllCourses">Select all</button>`).on(
+            "click",
+            function() {
+              $(".courseCheckbox").prop("checked", true).trigger("selectionChange");
+              const existingSources = calendar.getEventSources().map(x => x.id);
+              const nonExistingSources = allEvents.filter(event => !existingSources.some(x => x === event.id));
+              calendar.pauseRendering();
+              for (const fcEvent of nonExistingSources) {
+                calendar.addEventSource(wcj2fcEvent(fcEvent));
+              }
+              calendar.resumeRendering();
+            }
+          )
+        )
+        .append(
+          $(`<button id="deselectAllCourses">Deselect all</button>`).on(
+            "click",
+            () => {
+              $(".courseCheckbox").prop("checked", false).trigger("selectionChange");
+              calendar.removeAllEventSources();
+            }
+          )
+        )
+    )
+    .append(`<ul id="courseList"></ul>`);
 
   // Create all checkboxes out of the unique events
   for (const group of eventGroups) {
@@ -102,17 +109,23 @@ const initEventList: WcjEventListCreator = (eventGroups, calendar) => {
     for (const event of group.events) {
       const checkboxEl = $(
         `<input type="checkbox" class="courseCheckbox" id="course-${event.id}">`
-      ).on("custom", courseSelectionChange(event));
-
+      )
+        .on("selectionChange", courseSelectionChange(event))
+        .on("click", function (t) {
+          courseSelectionChange(event).apply(this, t);
+          if (calendar.getEventSourceById(event.id)) {
+            calendar.getEventSourceById(event.id).remove();
+          } else {
+            calendar.addEventSource(wcj2fcEvent(event));
+          }
+        });
       const labelEl = $(
         `<label for="course-${event.id}" class="courseCheckboxLabel">${event.title}</label>`
       );
       labelEl.append(checkboxEl);
       const eventEl = $(`<div class="event"></event>`)
         .append(labelEl)
-        .append(
-          `<span class="checkmark"></span>`
-        )
+        .append(`<span class="checkmark"></span>`)
         .on("click", () => {
           checkboxEl.trigger("custom", [true]);
         });
@@ -146,25 +159,8 @@ const initEventList: WcjEventListCreator = (eventGroups, calendar) => {
       $("#courseList").append(panelEl);
     }
   }
-  // Setup events for "select all" button
-  $("#selectAllCourses").on("click", () => {
-    $(".courseCheckbox").prop("checked", true).trigger("custom", [false]);
-    calendar.setEvents(selectedEvents);
-  });
-  // Setup events for "deselect all" button
-  $("#deselectAllCourses").on("click", () => {
-    $(".courseCheckbox").prop("checked", false).trigger("custom", [false]);
-    calendar.setEvents(selectedEvents);
-  });
-
   // Select all at init
   $("#selectAllCourses").trigger("click");
-
-  return {
-    getSelected: () => selectedEvents,
-    select,
-    deselect,
-  };
 };
 
 export default initEventList;

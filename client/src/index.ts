@@ -1,11 +1,13 @@
 import "./style/main.scss";
-import initFullerCalendar from "./app/fullercalendar";
+import initFullCalendar from "./app/fullercalendar";
 import initEventList, { getAllEventsFromGroups } from "./app/event-group-list";
 import { loadDansseData } from "./app/dataLoaders/danse-loader";
+import { wcj2fcEvent } from "./app/fullercalendar/helpers";
 
 const wcjUri = "https://wcj.se";
 const timeMin = Date.now();
 
+const calendar = initFullCalendar($("#calendar").get(0));
 // now procede to initialize views from data
 loadDansseData().then((data) => {
   initEventList(data, calendar);
@@ -16,13 +18,12 @@ loadDansseData().then((data) => {
       smallest = start;
     }
   }
+  calendar.render();
   calendar.gotoDate(Math.max(timeMin, smallest));
 
   messageNewSize();
 });
 
-const calendar = initFullerCalendar($("#calendar").get(0));
-calendar.render();
 
 window.addEventListener("message", (event) => {
   if (event.origin === wcjUri && event.data === "remove scroll") {

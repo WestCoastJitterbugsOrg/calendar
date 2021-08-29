@@ -31,27 +31,25 @@ function convertCogworkData(result: DansSe.Response): Wcj.WcjEventCategory[] {
       const category = categories.find(
         (x) => x.category === event.primaryEventGroup[0]._
       );
-      const color = colorHash.hex(event.$.eventId);
       if (category === undefined) {
         categories.push({
           category: event.primaryEventGroup[0]._,
-          events: [dansse2wcjEvent(event, color)],
-          color: color
+          events: [dansse2wcjEvent(event)],
         });
       } else {
-        category.events.push(dansse2wcjEvent(event, color));
+        category.events.push(dansse2wcjEvent(event));
       }
     }
     return categories;
 }
 
-function dansse2wcjEvent(event: DansSe.Event, color: string): Wcj.WcjEvent {
+function dansse2wcjEvent(event: DansSe.Event): Wcj.WcjEvent {
   const pricing = event.pricing?.[0].base[0];
   return {
     id: event.$.eventId,
     title: event.title?.[0],
     occasions: event.schedule?.[0].occasions?.[0].occasion.map(getWcjOccasion),
-    color: color,
+    color: colorHash.hex(event.$.eventId),
     description: event.longdescription?.[0],
     registrationUrl: event.registration?.[0]?.url[0],
     place: event.place?.[0] || "Unknown",

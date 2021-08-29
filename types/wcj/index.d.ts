@@ -1,7 +1,6 @@
 declare namespace Wcj {
   export type WcjEventCategory = {
     category: string, // also used as identifier,
-    color: string,
     events: WcjEvent[]
   }
 
