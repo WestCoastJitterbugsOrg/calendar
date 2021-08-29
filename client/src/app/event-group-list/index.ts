@@ -26,10 +26,10 @@ const initEventList: WcjEventListCreator = (
     undefined,
     HTMLElement,
     HTMLElement,
-    "custom"
+    "selectionChange"
   > = (event: Wcj.WcjEvent) =>
     function () {
-      const checkmark = $(this).parent().next(".checkmark")?.get(0);
+      const checkmark = $(this).next(".checkmark")?.get(0);
       const checkmarkStyle = checkmark?.style;
       if (!checkmarkStyle) {
         throw "checkmarkStyle undefined";
@@ -120,15 +120,11 @@ const initEventList: WcjEventListCreator = (
           }
         });
       const labelEl = $(
-        `<label for="course-${event.id}" class="courseCheckboxLabel">${event.title}</label>`
-      );
-      labelEl.append(checkboxEl);
+        `<label for="course-${event.id}" class="courseCheckboxLabel"><span class="courseCheckboxLabelText">${event.title}</span></label>`
+      ).append(checkboxEl)
+      .append(`<span class="checkmark"></span>`);
       const eventEl = $(`<div class="event"></event>`)
-        .append(labelEl)
-        .append(`<span class="checkmark"></span>`)
-        .on("click", () => {
-          checkboxEl.trigger("custom", [true]);
-        });
+        .append(labelEl);
 
       const infoButton = $(
         `<svg xmlns="http://www.w3.org/2000/svg" class="info-button" fill="none" viewBox="0 0 24 24" stroke="currentColor">

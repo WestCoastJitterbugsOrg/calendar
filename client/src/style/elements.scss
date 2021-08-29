@@ -62,22 +62,17 @@
   float: right;
 }
 
+/* Hide the browser's default checkbox */
+.courseCheckbox {
+  display: none;
+}
 /* The container label */
 .courseCheckboxLabel {
-  display: block;
-  position: relative;
+  display: flex;
+  align-items: center;
   cursor: pointer;
   flex-grow: 1;
   align-self: center;
-
-  /* Hide the browser's default checkbox */
-  input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-  }
 
   &:hover ~ .checkmark {
     background-color: color.scale($wcj-sand, $blackness: 10%);
@@ -88,11 +83,14 @@
   }
 }
 
+.courseCheckboxLabelText {
+  flex-grow: 1;
+}
+
 /* Create a custom checkbox */
 .checkmark {
   min-height: 22px;
   min-width: 22px;
-  position: relative;
   margin: 0 5px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 100%;
