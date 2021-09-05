@@ -26,40 +26,32 @@
 .accordion {
   background-color: $wcj-cyan;
   color: white;
-  border-radius: 0;
   cursor: pointer;
-  padding: 0.5rem;
+  height: 2rem;
   font-weight: bold;
-  text-align: left;
-  border: none;
-  outline: none;
-  position: relative;
-  z-index: 1;
+  display: flex;
+  align-items: center;
   &:hover {
     background-color: color.scale($wcj-cyan, $blackness: 15%);
   }
 
   &.active {
-    .accordion-open {
-      display: none;
-    }
-  }
-  &:not(.active) {
-    .accordion-close {
-      display: none;
+    .accordion-icon {
+      transform: rotate(45deg);
     }
   }
 }
 
 .accordion-name {
   font-size: 16px;
-  line-height: 0;
+  flex-grow: 1;
 }
 
 .accordion-icon {
   width: 16px;
   height: 16px;
-  float: right;
+  margin: 0 0.25rem;
+  transition: ease 0.25s;
 }
 
 /* Hide the browser's default checkbox */

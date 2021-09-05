@@ -81,13 +81,10 @@ const initEventList: WcjEventListCreator = (
   for (const group of eventGroups) {
     const groupEl = $(
       `<div class="accordion active">
+        <svg xmlns="http://www.w3.org/2000/svg" class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="square" stroke-width="4" d="M12 4v16m8-8H4" />
+        </svg>
         <span class="accordion-name">${group.category}</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="accordion-icon accordion-close" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
-      </svg>
-      <svg xmlns="http://www.w3.org/2000/svg" class="accordion-icon accordion-open" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-    </svg>
       </div>`
     ).on("click", function () {
       /* Toggle between adding and removing the "active" class,
