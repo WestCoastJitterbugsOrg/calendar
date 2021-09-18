@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../client"
+		}
+	],
+	"settings": {
+		"css.lint.unknownAtRules": "ignore",
+		"css.validate": true,
+		"scss.validate": true,
+	}
+}
