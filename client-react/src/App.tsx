@@ -1,60 +1,64 @@
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import listPlugin from "@fullcalendar/list";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import React from "react";
-import EventContainer from "./event-selection";
-import { loadCogworkData } from "./services/cogwork";
-import { Wcj } from "./types";
-import Button from "./shared/Button";
-import './fullcalendar-custom.scss'
+import "tailwindcss/tailwind.css";
+import React, { ReactChild, useMemo, useReducer, useState } from "react";
+import { EventContainer } from "./event-selection";
+import { Calendar } from "./calendar";
+import EventGroup from "./event-selection/EventGroup";
+import { EventActions, EventActionTypes, eventReducer } from "./store/reducers";
+import { SpinLoader } from "./event-selection/Spinner";
+import { loadCogworkData } from "./services";
+import { EventStore } from "./store/model";
 
-interface AppState {
-  error: any;
-  isLoaded: boolean;
-  data: Wcj.EventCategory[];
-}
+const initialContext = {
+  categories: { byId: {}, allIds: [] },
+  events: { byId: {}, allIds: [] },
+};
 
-export default class App extends React.Component {
-  state: AppState = {
-    error: null,
-    isLoaded: false,
-    data: [],
-  };
+export const StateContext = React.createContext<{
+  state: EventStore;
+  dispatch: React.Dispatch<EventActions>;
+}>({
+  state: initialContext,
+  dispatch: () => null,
+});
 
-  async componentDidMount() {
+export default function App() {
+  const [loadState, setLoadState] = useState(
+    "loading" as "loading" | "loaded" | "error"
+  );
+
+  const [state, dispatch] = useReducer(eventReducer, initialContext);
+
+  useMemo(async () => {
     try {
       const data = await loadCogworkData();
-      this.setState({
-        isLoaded: true,
-        data,
+      setLoadState("loaded");
+      dispatch({
+        type: EventActionTypes.eventsLoaded,
+        payload: data,
       });
-    } catch (error) {
-      this.setState({
-        isLoaded: true,
-        error,
-      });
+    } catch {
+      setLoadState("error");
     }
-  }
+  }, []);
 
-  render() {
-    return (
-      <div className="flex flex-row">
-        <div className="h-screen relative overflow-y-hidden">
-          <div className="bg-wcj-black flex flex-row h-20 justify-center items-center">
-            <Button title="Select all" className="mx-2"></Button>
-            <Button title="Deselect all" className="mx-2"></Button>
-          </div>
-          <EventContainer eventCategories={this.state.data}></EventContainer>
+  return (
+    <div className="flex flex-col lg:flex-row">
+      <StateContext.Provider value={{ state, dispatch }}>
+        <div className="max-h-screen overflow-y-hidden lg:w-96 flex flex-col">
+          {loadState === "loaded" ? (
+            <EventContainer>
+              {state.categories.allIds.map<ReactChild>((categoryId) => (
+                <EventGroup key={categoryId} category={categoryId} />
+              ))}
+            </EventContainer>
+          ) : (
+            <SpinLoader />
+          )}
         </div>
         <div className="flex-grow">
-          <FullCalendar
-            plugins={[dayGridPlugin, listPlugin, timeGridPlugin]}
-            initialView="dayGridMonth"
-            height='100vh'
-          ></FullCalendar>
+          <Calendar />
         </div>
-      </div>
-    );
-  }
+      </StateContext.Provider>
+    </div>
+  );
 }

@@ -1,3 +1,1 @@
-import EventContainer from './EventContainer';
-
-export default EventContainer;
+export {default as EventContainer} from './EventContainer';

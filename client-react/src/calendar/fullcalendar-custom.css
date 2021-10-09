@@ -1,0 +1,127 @@
+/* // #region CSS Variables
+//
+// The default values for these variables can be found on the following links:
+//
+// https://github.com/fullcalendar/fullcalendar/blob/master/packages/common/src/styles/vars.css
+// https://github.com/fullcalendar/fullcalendar/blob/master/packages/daygrid/src/styles/vars.css
+// https://github.com/fullcalendar/fullcalendar/blob/master/packages/list/src/styles/vars.css
+//  */
+:root {
+  /* General */
+  --fc-small-font-size: 0.85em;
+  --fc-page-bg-color: white;
+  --fc-neutral-bg-color: white;
+  --fc-border-color: #eee;
+  --fc-now-indicator-color: theme("colors.wcj-cyan");
+  --fc-today-bg-color: theme("colors.wcj-sand");
+
+  /* Buttons */
+  --fc-button-text-color: white;
+  --fc-button-bg-color: transparent;
+  --fc-button-border-color: transparent;
+  --fc-button-hover-bg-color: transparent;
+  --fc-button-hover-border-color: theme("colors.wcj-red-hover");
+  --fc-button-active-bg-color: transparent;
+  --fc-button-active-border-color: theme("colors.wcj-red-active");
+
+  /* List view */
+  --fc-list-event-dot-width: 10px;
+  --fc-list-event-hover-bg-color: #eee;
+
+  /* #region Unused */
+  /* Default event color. Usually not needed because we make custom colors for each */
+  --fc-event-bg-color: #3788d8;
+  --fc-event-border-color: #3788d8;
+  --fc-event-text-color: #fff;
+  --fc-event-selected-overlay-color: rgba(0, 0, 0, 0.25);
+  --fc-bg-event-color: rgb(143, 223, 130);
+  --fc-bg-event-opacity: 0.3;
+  --fc-daygrid-event-dot-width: 8px;
+
+  /* Probably not needed because we don't have any resizers */
+  --fc-event-resizer-thickness: 8px;
+  --fc-event-resizer-dot-total-width: 8px;
+  --fc-event-resizer-dot-border-width: 1px;
+
+  /* Misc. */
+  --fc-non-business-color: rgba(215, 215, 215, 0.3);
+  --fc-neutral-text-color: black;
+  --fc-highlight-color: rgba(188, 232, 241, 0.3);
+
+  /* #endregion */
+}
+
+.fc.fc-direction-ltr .fc-button {
+
+  padding: 8px 18px;
+  border-radius: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-width: 2px;
+  line-height: 1;
+  font-size: 16px;
+  font-weight: bold;
+  max-height: 36px;
+}
+
+.fc .fc-button.fc-today-button.fc-button-primary {
+    background-color: black;
+    border-radius: 0.5rem;
+}
+
+.fc .fc-button.fc-today-button.fc-button-primary:hover {
+    border-color: transparent;
+    background-color: theme('colors.gray.900');
+}
+
+.fc.fc-direction-ltr .fc-button:focus,
+.fc .fc-button-primary:not(:disabled):active:focus,
+.fc .fc-button-primary:not(:disabled).fc-button-active:focus {
+  outline: none;
+  box-shadow: none;
+  color: theme("colors.wcj-coral")
+}
+
+.fc.fc-direction-ltr .fc-button.fc-next-button,
+.fc.fc-direction-ltr .fc-button.fc-prev-button {
+  padding: 5px;
+  background-color: transparent;
+  border-color: transparent;
+  color: white;
+}
+
+.fc.fc-direction-ltr .fc-button.fc-next-button.fc-icon,
+.fc.fc-direction-ltr .fc-button.fc-prev-button.fc-icon {
+  font-weight: bold;
+}
+
+
+.fc .fc-header-toolbar.fc-toolbar {
+  height: 4rem;
+  margin-bottom: 0;
+  padding: 0 1rem;
+  background-color: theme("colors.wcj-black");
+  color: white;
+}
+
+.fc .fc-header-toolbar.fc-toolbar .fc-toolbar-chunk .fc-toolbar-title {
+  font-size: medium;
+  display: inline;
+  margin: 0 0.5em;
+}
+
+.fc
+  .fc-header-toolbar.fc-toolbar
+  .fc-toolbar-chunk
+  .fc-toolbar-title.week-title:before {
+  content: "Week ";
+}
+
+.fc .fc-list-sticky .fc-list-day {
+  border-bottom: 1px dashed gray;
+}
+
+.fc .fc-list-sticky .fc-list-day > th {
+  z-index: 1;
+}

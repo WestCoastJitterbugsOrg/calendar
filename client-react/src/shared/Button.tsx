@@ -1,21 +1,33 @@
-import React from "react";
-
 type ButtonData = {
-  title: string,
-  className: string
+  title: string;
+  size: "sm" | "md" | "lg";
+  onClick?: () => void;
 };
 
-export default class Button extends React.PureComponent<ButtonData> {
-  render() {
-    return (
-      <button className={[
+export default function Button(props: ButtonData) {
+  const paddingClasses = (() => {
+    switch (props.size) {
+      case "sm":
+        return "px-3 py-1";
+      case "lg":
+        return "px-6 py-3";
+      default:
+        return "px-4 py-2";
+    }
+  })();
+
+  return (
+    <button
+      className={[
         "bg-wcj-red text-white font-bold",
-        "py-2 px-5 rounded-full",
+        "rounded-full",
         "transition-colors hover:bg-wcj-red-hover",
-        this.props.className
-      ].join(" ")}>
-        {this.props.title}
-      </button>
-    );
-  }
+        paddingClasses,
+      ].join(" ")}
+      onClick={props.onClick}
+    >
+      {props.title}
+      
+    </button>
+  );
 }

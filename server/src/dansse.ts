@@ -55,6 +55,7 @@ function dansse2wcjEvent(event: DansSe.Event): Wcj.WcjEvent {
     place: event.place?.[0] || "Unknown",
     price: pricing ? pricing._ + " " + pricing.$.currency : "Unknown",
     instructors: event.instructors?.[0].combinedTitle?.[0] || "Unknown",
+    showInCalendar: true
   };
 }
 

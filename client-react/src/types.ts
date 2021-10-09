@@ -14,11 +14,11 @@ export namespace Wcj {
     description: string;
     registrationUrl: string;
     place: string;
+    price: string;
+    instructors: string;
     /* colors in hex rgb */
     color: string;
     /* state */
     showInCalendar?: boolean;
-    price: string;
-    instructors: string;
   };
 }

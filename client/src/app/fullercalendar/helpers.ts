@@ -1,4 +1,4 @@
-import { Calendar as FullCalendar, EventInput, EventSourceInput } from "@fullcalendar/core";
+import { EventInput, EventSourceInput } from "@fullcalendar/core";
 import { FcBtnGroup, FcBtnGroupButtons } from "./types";
 
 export enum CalendarTimeFrame {
