@@ -6,6 +6,6 @@ export default async function loadCogworkData(): Promise<Wcj.EventCategory[]> {
   if (response.ok) {
     return response.json();
   } else {
-    return Promise.reject("Could not load data");
+    return Promise.reject(response.text());
   }
 }

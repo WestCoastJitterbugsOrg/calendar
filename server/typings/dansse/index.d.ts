@@ -4,6 +4,7 @@ declare namespace DansSe {
     title: [string];
     longdescription: [string];
     schedule: [Schedule];
+    category: [{_: string}];
     primaryEventGroup: [{ _: string }];
     requirements: [
       {

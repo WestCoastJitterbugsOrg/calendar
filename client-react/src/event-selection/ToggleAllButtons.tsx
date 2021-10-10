@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { StateContext } from "../App";
 import Button from "../shared/Button";
 import { EventActionTypes } from "../store/reducers";
 
-export default function EventContainerHeader() {
+export default function ToggleAllButtons() {
   const { dispatch} = useContext(StateContext);
   
   return (

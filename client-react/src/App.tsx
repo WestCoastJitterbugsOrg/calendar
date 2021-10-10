@@ -1,12 +1,12 @@
 import "tailwindcss/tailwind.css";
 import React, { ReactChild, useMemo, useReducer, useState } from "react";
-import { EventContainer } from "./event-selection";
 import { Calendar } from "./calendar";
 import EventGroup from "./event-selection/EventGroup";
 import { EventActions, EventActionTypes, eventReducer } from "./store/reducers";
-import { SpinLoader } from "./event-selection/Spinner";
+import { SpinLoader } from "./shared/Spinner";
 import { loadCogworkData } from "./services";
 import { EventStore } from "./store/model";
+import ToggleAllButtons from "./event-selection/ToggleAllButtons";
 
 const initialContext = {
   categories: { byId: {}, allIds: [] },
@@ -23,7 +23,7 @@ export const StateContext = React.createContext<{
 
 export default function App() {
   const [loadState, setLoadState] = useState(
-    "loading" as "loading" | "loaded" | "error"
+    "loading" as "loading" | "loaded" | string
   );
 
   const [state, dispatch] = useReducer(eventReducer, initialContext);
@@ -36,29 +36,49 @@ export default function App() {
         type: EventActionTypes.eventsLoaded,
         payload: data,
       });
-    } catch {
-      setLoadState("error");
+    } catch (e) {
+      if (e instanceof Promise) {
+        e.then(val => {
+          console.log(val);
+          setLoadState(val);
+        });
+      }else {
+        setLoadState((e as any).toString());
+      }
     }
   }, []);
 
-  return (
-    <div className="flex flex-col lg:flex-row">
-      <StateContext.Provider value={{ state, dispatch }}>
-        <div className="max-h-screen overflow-y-hidden lg:w-96 flex flex-col">
-          {loadState === "loaded" ? (
-            <EventContainer>
-              {state.categories.allIds.map<ReactChild>((categoryId) => (
-                <EventGroup key={categoryId} category={categoryId} />
-              ))}
-            </EventContainer>
-          ) : (
-            <SpinLoader />
-          )}
+  switch (loadState) {
+    case "loading":
+      return <SpinLoader />;
+    case "loaded":
+      return (
+        <StateContext.Provider value={{ state, dispatch }}>
+          <div className="flex flex-col lg:flex-row">
+            <div className="max-h-screen overflow-y-hidden lg:w-96 flex flex-col">
+              <div className="flex-none">
+                <ToggleAllButtons />
+              </div>
+              <div className="flex-grow w-full overflow-y-scroll bg-wcj-sand divide-y divide-wcj-mint">
+                {state.categories.allIds.map<ReactChild>((categoryId) => (
+                  <EventGroup key={categoryId} category={categoryId} />
+                ))}
+              </div>
+            </div>
+            <div className="flex-grow">
+              <Calendar />
+            </div>
+          </div>
+        </StateContext.Provider>
+      );
+    default:
+      // Error message sent from server
+      return (
+        <div className="container m-auto my-8">
+            <h1 className="text-2xl font-bold underline text-wcj-red">Error while loading data!</h1>
+            <p className="font-bold">Got the following from server:</p>
+            <pre className="font-mono">{ JSON.stringify(JSON.parse(loadState), null, 4)}</pre>
         </div>
-        <div className="flex-grow">
-          <Calendar />
-        </div>
-      </StateContext.Provider>
-    </div>
-  );
+      );
+  }
 }

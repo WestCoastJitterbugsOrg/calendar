@@ -13,34 +13,46 @@ const colorHash = new ColorHash({
 
 export default function handleDanSeData(url: string): RequestHandler {
   return async function (_, res) {
-    const resp = await axios.post<convertableToString>(url);
-    const result = (await parseStringPromise(resp.data)) as DansSe.Response;
-    res.send(convertCogworkData(result));
+    try {
+      const resp = await axios.post<convertableToString>(url);
+      const result = (await parseStringPromise(resp.data)) as DansSe.Response;
+      res.send(convertCogworkData(result));
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(500).send({
+          name: error.name,
+          message: error.message,
+          stack: error.stack.split("\n"),
+        });
+      } else {
+        res.status(500).send(error);
+      }
+    }
   };
 }
 
 function convertCogworkData(result: DansSe.Response): Wcj.WcjEventCategory[] {
   const dansseEvents = result.cogwork.events
-      .map((event) => event.event)[0]
-      .filter((event) =>
-        event.schedule?.[0]?.occasions?.some?.((x) => x.occasion)
-      );
+    .map((event) => event.event)[0]
+    .filter((event) =>
+      event.schedule?.[0]?.occasions?.some?.((x) => x.occasion)
+    );
 
-    const categories: Wcj.WcjEventCategory[] = [];
-    for (const event of dansseEvents) {
-      const category = categories.find(
-        (x) => x.category === event.primaryEventGroup[0]._
-      );
-      if (category === undefined) {
-        categories.push({
-          category: event.primaryEventGroup[0]._,
-          events: [dansse2wcjEvent(event)],
-        });
-      } else {
-        category.events.push(dansse2wcjEvent(event));
-      }
+  const categories: Wcj.WcjEventCategory[] = [];
+  for (const event of dansseEvents) {
+    const categoryName =
+      event.primaryEventGroup?.[0]._ || event.category?.[0]._ || 'Övrigt';
+    const category = categories.find((x) => x.category === categoryName);
+    if (category === undefined) {
+      categories.push({
+        category: categoryName,
+        events: [dansse2wcjEvent(event)],
+      });
+    } else {
+      category.events.push(dansse2wcjEvent(event));
     }
-    return categories;
+  }
+  return categories;
 }
 
 function dansse2wcjEvent(event: DansSe.Event): Wcj.WcjEvent {
@@ -55,7 +67,7 @@ function dansse2wcjEvent(event: DansSe.Event): Wcj.WcjEvent {
     place: event.place?.[0] || "Unknown",
     price: pricing ? pricing._ + " " + pricing.$.currency : "Unknown",
     instructors: event.instructors?.[0].combinedTitle?.[0] || "Unknown",
-    showInCalendar: true
+    showInCalendar: true,
   };
 }
 

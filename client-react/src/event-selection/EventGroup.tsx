@@ -97,7 +97,7 @@ function EventGroupHeader({
   toggleChecked,
 }: EventGroupHeaderProps) {
   return (
-    <div className="bg-wcj-cyan text-white font-bold h-8 flex flex-row items-center">
+    <div className="bg-wcj-cyan text-white font-bold min-h-8 py-2 flex flex-row items-center">
       <div
         className="cursor-pointer flex-grow flex items-center"
         onClick={toggleExpanded}

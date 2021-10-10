@@ -12,7 +12,10 @@ module.exports = {
         'maxh': 'max-height'
       }
     },
-
+    minHeight: {
+      '4': '1rem',
+      '8': '2rem'
+    },
     maxHeight: {
       '0': '0',
       '1/5': '20%',

@@ -1,3 +1,5 @@
+import "./spinner.css";
+
 export function SpinLoader() {
   return (
     <>

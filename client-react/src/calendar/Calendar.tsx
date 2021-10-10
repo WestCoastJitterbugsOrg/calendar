@@ -30,8 +30,8 @@ const CalendarViewConfig: FullCalendarPropType["views"] = {
       })}`,
     dayHeaderFormat: {
       weekday: "short",
-      day: "numeric",
-      month: "short",
+      day: "2-digit",
+      month: "short"
     },
   },
   listEternal: {
@@ -103,6 +103,7 @@ function wcj2fcEvent(wcjEvent: Wcj.Event): EventSourceInput {
     })),
   };
 }
+
 /**
  * Calculate brightness value by RGB or HEX color.
  * @param color (String) The color value in RGB or HEX (for example: #000000 || #000 || rgb(0,0,0) || rgba(0,0,0,0))
@@ -115,7 +116,9 @@ function brightnessByColor(color: string) {
   let rgb: [number, number, number] | undefined;
 
   if (isHEX) {
-    const m = color.substr(1).match(color.length === 7 ? /(\S{2})/g : /(\S{1})/g);
+    const m = color
+      .substr(1)
+      .match(color.length === 7 ? /(\S{2})/g : /(\S{1})/g);
     if (m) {
       rgb = [parseInt(m[0], 16), parseInt(m[1], 16), parseInt(m[2], 16)];
     }

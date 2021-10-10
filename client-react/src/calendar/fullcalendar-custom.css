@@ -109,13 +109,7 @@
   font-size: medium;
   display: inline;
   margin: 0 0.5em;
-}
-
-.fc
-  .fc-header-toolbar.fc-toolbar
-  .fc-toolbar-chunk
-  .fc-toolbar-title.week-title:before {
-  content: "Week ";
+  white-space: nowrap;
 }
 
 .fc .fc-list-sticky .fc-list-day {
@@ -124,4 +118,26 @@
 
 .fc .fc-list-sticky .fc-list-day > th {
   z-index: 1;
+}
+
+.fc-daygrid-event{
+  white-space: normal;
+  cursor: default;
+}
+
+.fc-dayGridMonth-view .fc-event-title {
+  display: none;
+}
+
+.fc-direction-ltr .fc-daygrid-event .fc-event-time {
+  line-height: 0.8;
+}
+
+@media only screen and (max-width: theme('screens.sm')) {
+  .fc .fc-header-toolbar.fc-toolbar{
+    align-items: center;
+    flex-direction: column;
+    height: auto;
+    @apply py-4 space-y-2;
+  }
 }
