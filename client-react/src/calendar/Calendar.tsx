@@ -1,16 +1,16 @@
 import FullCalendar, {
   EventInput,
   EventSourceInput,
-  ToolbarInput,
+  ToolbarInput
 } from "@fullcalendar/react";
+import { formatDate } from "@fullcalendar/common";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import { formatDate } from "@fullcalendar/common";
-import "./fullcalendar-custom.css";
-import { StateContext } from "../App";
 import { useContext } from "react";
+import { StateContext } from "../App";
 import { Wcj } from "../types";
+import "./fullcalendar-custom.css";
 
 type FullCalendarPropType = typeof FullCalendar.prototype.props;
 

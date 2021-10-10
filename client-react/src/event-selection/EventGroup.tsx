@@ -61,7 +61,7 @@ export default function EventGroup({ category: categoryId }: EventGroupProps) {
       />
 
       <div
-        className={"overflow-hidden " + (expanded ? "max-h-full" : "max-h-0")}
+        className={"bg-wcj-sand overflow-hidden " + (expanded ? "max-h-full" : "max-h-0")}
       >
         {events.map((event, i) => (
           <EventRow

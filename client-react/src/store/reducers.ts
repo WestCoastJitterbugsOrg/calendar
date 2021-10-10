@@ -1,6 +1,6 @@
 import { Wcj } from "../types";
 import { ActionMap } from "./hooks";
-import { EventStore } from "./model";
+import EventStore from "./model";
 
 type EventActionMap = ActionMap<EventPayload>;
 
@@ -21,7 +21,7 @@ type EventPayload = {
 export type EventActions = EventActionMap[keyof EventActionMap];
 export type EventReducer = typeof eventReducer;
 
-export function eventReducer(
+export default function eventReducer(
   state: EventStore,
   action: EventActions
 ): EventStore {

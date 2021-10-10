@@ -1,12 +1,12 @@
-import "tailwindcss/tailwind.css";
 import React, { ReactChild, useMemo, useReducer, useState } from "react";
-import { Calendar } from "./calendar";
+import "tailwindcss/tailwind.css";
+import Calendar from "./calendar/Calendar";
 import EventGroup from "./event-selection/EventGroup";
-import { EventActions, EventActionTypes, eventReducer } from "./store/reducers";
-import { SpinLoader } from "./shared/Spinner";
-import { loadCogworkData } from "./services";
-import { EventStore } from "./store/model";
 import ToggleAllButtons from "./event-selection/ToggleAllButtons";
+import loadCogworkData from "./services/cogwork";
+import SpinLoader from "./shared/Spinner";
+import EventStore from "./store/model";
+import eventReducer, { EventActions, EventActionTypes } from "./store/reducers";
 
 const initialContext = {
   categories: { byId: {}, allIds: [] },
@@ -38,11 +38,11 @@ export default function App() {
       });
     } catch (e) {
       if (e instanceof Promise) {
-        e.then(val => {
+        e.then((val) => {
           console.log(val);
           setLoadState(val);
         });
-      }else {
+      } else {
         setLoadState((e as any).toString());
       }
     }
@@ -75,9 +75,13 @@ export default function App() {
       // Error message sent from server
       return (
         <div className="container m-auto my-8">
-            <h1 className="text-2xl font-bold underline text-wcj-red">Error while loading data!</h1>
-            <p className="font-bold">Got the following from server:</p>
-            <pre className="font-mono">{ JSON.stringify(JSON.parse(loadState), null, 4)}</pre>
+          <h1 className="text-2xl font-bold underline text-wcj-red">
+            Error while loading data!
+          </h1>
+          <p className="font-bold">Got the following from server:</p>
+          <pre className="font-mono">
+            {JSON.stringify(JSON.parse(loadState), null, 4)}
+          </pre>
         </div>
       );
   }
