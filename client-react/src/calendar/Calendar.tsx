@@ -1,7 +1,6 @@
 import FullCalendar, {
   EventInput,
   EventSourceInput,
-  ToolbarInput,
 } from "@fullcalendar/react";
 import { formatDate } from "@fullcalendar/common";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -13,55 +12,78 @@ import "./fullcalendar-custom.css";
 
 type FullCalendarPropType = typeof FullCalendar.prototype.props;
 
-const CalendarViewConfig: FullCalendarPropType["views"] = {
-  dayGridMonth: {
-    eventDidMount: (e) =>
-      (e.el.title =
-        e.event.title + "\nPlace: " + e.event.extendedProps["place"]),
-    titleFormat: { year: "numeric", month: "long" },
-  },
-  timeGridWeek: {
-    eventDidMount: (e) =>
-      (e.el.title =
-        e.event.title + "\nPlace: " + e.event.extendedProps["place"]),
-    titleFormat: (args) =>
-      `Week ${formatDate(args.date.marker, { week: "numeric" })}, 
+const CalendarViewConfig = (
+  start: Date,
+  end: Date
+): FullCalendarPropType["views"] => {
+  return {
+    dayGridMonth: {
+      eventDidMount: (e) =>
+        (e.el.title =
+          e.event.title + "\nPlace: " + e.event.extendedProps["place"]),
+      titleFormat: { year: "numeric", month: "long" },
+    },
+    timeGridWeek: {
+      eventDidMount: (e) =>
+        (e.el.title =
+          e.event.title + "\nPlace: " + e.event.extendedProps["place"]),
+      titleFormat: (args) =>
+        `Week ${formatDate(args.date.marker, { week: "numeric" })}, 
       ${formatDate(args.date.marker, {
         year: "numeric",
         month: "long",
       })}`,
-    dayHeaderFormat: {
-      weekday: "short",
-      day: "2-digit",
-      month: "short",
+      dayHeaderFormat: {
+        weekday: "short",
+        day: "2-digit",
+        month: "short",
+      },
     },
-  },
-  listEternal: {
-    type: "list",
-    titleFormat: { year: "numeric", month: "long" },
-    visibleRange: (currentDate) => ({
-      start: currentDate,
-      end: new Date(currentDate).setFullYear(currentDate.getFullYear() + 1),
-    }),
-    viewDidMount: function () {
-      if (this) {
-        (this.headerToolbar as ToolbarInput).center = "";
-      }
+    listEternal: {
+      type: "list",
+      titleFormat: () => "",
+      eventDidMount: (e) => {
+        $(e.el).find(".fc-list-event-title").get(0).outerHTML =
+          `
+            <td class="fc-list-event-title">${e.event.title}</td>
+            <td class="text-right">${e.event.extendedProps["place"]}</td>
+           `;
+      },
+      visibleRange: function () {
+        return {
+          start: start,
+          end: end,
+        };
+      },
     },
-  },
+  };
 };
 
 export default function Calendar() {
   const stateContext = useContext(StateContext);
-  const events = Object.values(stateContext.state.events.byId)
-    .filter((event) => event.showInCalendar)
-    .map(wcj2fcEvent);
+  const wcjEvents = Object.values(stateContext.state.events.byId).filter(
+    (event) => event.showInCalendar
+  );
+  const events = wcjEvents.map(wcj2fcEvent);
+  const firstOccasion = Math.min(
+    ...wcjEvents.flatMap((event) =>
+      event.occasions.map((occ) => new Date(occ.start).getTime())
+    )
+  );
+  const lastOccasion = Math.max(
+    ...wcjEvents.flatMap((event) =>
+      event.occasions.map((occ) => new Date(occ.end).getTime())
+    )
+  );
   return (
     <FullCalendar
       plugins={[dayGridPlugin, listPlugin, timeGridPlugin]}
       initialView="timeGridWeek"
       height="100vh"
-      views={CalendarViewConfig}
+      views={CalendarViewConfig(
+        new Date(firstOccasion),
+        new Date(lastOccasion)
+      )}
       buttonText={{
         today: "Today",
         month: "Month",
