@@ -2,7 +2,6 @@ import React from "react";
 import { StateContext } from "../App";
 import { useSelectors } from "../store/hooks";
 import { EventActionTypes } from "../store/reducers";
-import { Wcj } from "../types";
 import { GroupCheckbox } from "./EventCheckbox";
 import EventRow from "./EventRow";
 
@@ -72,6 +71,7 @@ export default function EventGroup({ category: categoryId }: EventGroupProps) {
                 payload: { id: event.id },
               })
             }
+            showInfo={() => dispatch({type: EventActionTypes.eventModalRequested, payload: event.id})}
             checked={!!event.showInCalendar}
             key={event.id}
           />

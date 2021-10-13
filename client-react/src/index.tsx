@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    <div id="modalRoot"></div>
   </React.StrictMode>,
   document.getElementById("root")
 );
@@ -14,6 +15,6 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 if (process.env.NODE_ENV === "development") {
-  console.log('reporting web vitals')
+  console.log("reporting web vitals");
   reportWebVitals(console.log);
 }

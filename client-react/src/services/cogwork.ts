@@ -1,5 +1,3 @@
-import { Wcj } from "../types";
-
 export default async function loadCogworkData(): Promise<Wcj.EventCategory[]> {
   const response = await fetch(`${process.env.REACT_APP_API_URL}/cogwork`);
 

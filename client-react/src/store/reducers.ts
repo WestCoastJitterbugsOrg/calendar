@@ -1,4 +1,3 @@
-import { Wcj } from "../types";
 import { ActionMap } from "./hooks";
 import EventStore from "./model";
 
@@ -9,6 +8,8 @@ export enum EventActionTypes {
   categoryToggled = "categoryToggled",
   eventToggled = "eventToggled",
   eventsLoaded = "eventsLoaded",
+  eventModalRequested = "eventModalRequested",
+  modalClosed = "modalClosed",
 }
 
 type EventPayload = {
@@ -16,6 +17,8 @@ type EventPayload = {
   [EventActionTypes.categoryToggled]: { id: string; show: boolean };
   [EventActionTypes.eventToggled]: { id: string };
   [EventActionTypes.eventsLoaded]: Wcj.EventCategory[];
+  [EventActionTypes.eventModalRequested]: string;
+  [EventActionTypes.modalClosed]: undefined;
 };
 
 export type EventActions = EventActionMap[keyof EventActionMap];
@@ -34,6 +37,12 @@ export default function eventReducer(
       return eventToggledReducer(state, action.payload);
     case EventActionTypes.eventsLoaded:
       return eventsLoaded(state, action.payload);
+    case EventActionTypes.eventModalRequested:
+      return { ...state, showModal: action.payload };
+    case EventActionTypes.modalClosed:
+      console.log('modal closed');
+      return { ...state, showModal: undefined };
+
     default:
       return { ...state };
   }
@@ -64,7 +73,8 @@ function eventsLoaded(
   state: EventStore,
   payload: EventActionMap[EventActionTypes.eventsLoaded]["payload"]
 ): EventStore {
-  const newState: EventStore = { ...state, 
+  const newState: EventStore = {
+    ...state,
     categories: {
       byId: {},
       allIds: [],
@@ -72,9 +82,8 @@ function eventsLoaded(
     events: {
       byId: {},
       allIds: [],
-    }
+    },
   };
-
 
   for (const category of payload) {
     newState.categories.byId[category.category] = {

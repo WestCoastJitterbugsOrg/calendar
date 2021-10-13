@@ -1,5 +1,3 @@
-import { Wcj } from "../types";
-
 export default interface EventStore {
   categories: {
     byId: {
@@ -13,6 +11,7 @@ export default interface EventStore {
     };
     allIds: string[];
   };
+  showModal?: string;
 }
 
 interface CategoryStore {

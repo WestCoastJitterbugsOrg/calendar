@@ -1,7 +1,7 @@
 import FullCalendar, {
   EventInput,
   EventSourceInput,
-  ToolbarInput
+  ToolbarInput,
 } from "@fullcalendar/react";
 import { formatDate } from "@fullcalendar/common";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -9,7 +9,6 @@ import listPlugin from "@fullcalendar/list";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { useContext } from "react";
 import { StateContext } from "../App";
-import { Wcj } from "../types";
 import "./fullcalendar-custom.css";
 
 type FullCalendarPropType = typeof FullCalendar.prototype.props;
@@ -22,6 +21,9 @@ const CalendarViewConfig: FullCalendarPropType["views"] = {
     titleFormat: { year: "numeric", month: "long" },
   },
   timeGridWeek: {
+    eventDidMount: (e) =>
+      (e.el.title =
+        e.event.title + "\nPlace: " + e.event.extendedProps["place"]),
     titleFormat: (args) =>
       `Week ${formatDate(args.date.marker, { week: "numeric" })}, 
       ${formatDate(args.date.marker, {
@@ -31,7 +33,7 @@ const CalendarViewConfig: FullCalendarPropType["views"] = {
     dayHeaderFormat: {
       weekday: "short",
       day: "2-digit",
-      month: "short"
+      month: "short",
     },
   },
   listEternal: {

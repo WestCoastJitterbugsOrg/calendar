@@ -8,7 +8,7 @@ import SpinLoader from "./shared/Spinner";
 import EventStore from "./store/model";
 import eventReducer, { EventActions, EventActionTypes } from "./store/reducers";
 
-const initialContext = {
+const initialContext: EventStore = {
   categories: { byId: {}, allIds: [] },
   events: { byId: {}, allIds: [] },
 };
@@ -54,21 +54,21 @@ export default function App() {
     case "loaded":
       return (
         <StateContext.Provider value={{ state, dispatch }}>
-          <div className="flex flex-col lg:flex-row">
-            <div className="max-h-screen overflow-y-hidden lg:w-96 flex flex-col">
-              <div className="flex-none">
-                <ToggleAllButtons />
+            <div className="flex flex-col lg:flex-row">
+              <div className="max-h-screen overflow-y-hidden lg:w-96 flex flex-col">
+                <div className="flex-none">
+                  <ToggleAllButtons />
+                </div>
+                <div className="flex-grow w-full overflow-y-scroll bg-wcj-sand divide-y divide-wcj-mint">
+                  {state.categories.allIds.map<ReactChild>((categoryId) => (
+                    <EventGroup key={categoryId} category={categoryId} />
+                  ))}
+                </div>
               </div>
-              <div className="flex-grow w-full overflow-y-scroll bg-wcj-sand divide-y divide-wcj-mint">
-                {state.categories.allIds.map<ReactChild>((categoryId) => (
-                  <EventGroup key={categoryId} category={categoryId} />
-                ))}
+              <div className="flex-grow">
+                <Calendar />
               </div>
             </div>
-            <div className="flex-grow">
-              <Calendar />
-            </div>
-          </div>
         </StateContext.Provider>
       );
     default:
