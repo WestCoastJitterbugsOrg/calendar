@@ -54,7 +54,7 @@ export default function App() {
     case "loaded":
       return (
         <StateContext.Provider value={{ state, dispatch }}>
-            <div className="flex flex-col lg:flex-row">
+            <div className="flex flex-col lg:flex-row bg-white">
               <div className="max-h-screen overflow-y-hidden lg:w-96 flex flex-col">
                 <div className="flex-none">
                   <ToggleAllButtons />

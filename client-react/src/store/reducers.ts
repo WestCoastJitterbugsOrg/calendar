@@ -40,7 +40,6 @@ export default function eventReducer(
     case EventActionTypes.eventModalRequested:
       return { ...state, showModal: action.payload };
     case EventActionTypes.modalClosed:
-      console.log('modal closed');
       return { ...state, showModal: undefined };
 
     default:
@@ -92,7 +91,7 @@ function eventsLoaded(
     };
     newState.categories.allIds.push(category.category);
     for (const event of category.events) {
-      newState.events.byId[event.id] = event;
+      newState.events.byId[event.id] = { ...event, showInCalendar: true };
       newState.events.allIds.push(event.id);
     }
   }
