@@ -42,3 +42,13 @@ jobs:
         run: npm ci
       - run: npm run test
 
+  server-eslint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./server
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: npm ci
+      - run: npx eslint .
