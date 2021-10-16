@@ -25,23 +25,16 @@ function generateUniqueData (time: Date): TestData {
 }
 describe('WcjEvent', () => {
   let data: TestData
-  let dependencies: any
 
   beforeEach(() => {
     const testTime = new Date(2020, 1, 1)
     data = generateUniqueData(testTime)
-    dependencies = {
-      initWcjColorHash: (_: any) => ({
-        hex: (_: any) => '#000000',
-        hsl: (_: any) => [0, 0, 0],
-        rgb: (_: any) => [0, 0, 0]
-      })
-    }
   })
 
   it('createFromGoogleCal', () => {
     // init page handler
     const wcjEventDict = gcal2wcj(data.events)
+
     expect(Object.keys(wcjEventDict).length).toEqual(data.events.length )
   })
 })

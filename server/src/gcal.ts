@@ -9,7 +9,17 @@ const colorHash = new ColorHash({
   lightness: [0.35, 0.5, 0.65]
 })
 
-const gc2wcjEvent = (gcEvent: any, id: string) => ({
+type SimpleWcjEvent = Pick<Wcj.WcjEvent,
+  'id' |
+  'title' |
+  'occasions'|
+  'showInCalendar'
+> & {
+  bgColor: string,
+  textColor: string,
+}
+
+const gc2wcjEvent = (gcEvent: GCalEvent, id: string): SimpleWcjEvent => ({
   id,
   title: gcEvent.summary,
   occasions: [],
@@ -19,7 +29,7 @@ const gc2wcjEvent = (gcEvent: any, id: string) => ({
 })
 
 export default function gc2wcjEvents (gcEvents: GCalEvent []) {
-  const wcjEvents: { [id: string]: any } = {}
+  const wcjEvents: { [id: string]: SimpleWcjEvent } = {}
 
   for (const gcEvent of gcEvents) {
     // Create id valid for HTML
