@@ -1,37 +1,30 @@
 {
-  "$schema": "http://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "paths": {
-      "types/*": [
-        "../types/*"
-      ]
-    },
-    "module": "ESNext",
-    "target": "ES2017",
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "noEmitHelpers": true,
-    "sourceMap": true,
-    "esModuleInterop": true,
+    "target": "es5",
     "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ES2017"
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
-    "types": [
-      "jest",
-      "jquery"
-    ],
-    "typeRoots": [
-      "node_modules/@types",
-      "../types"
-    ],
-    "outDir": "./dist",
-    "allowJs": true
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
   },
   "include": [
-    "src/**/*",
-    "test/**/*",
-    "../types/**/*"
+    "src",
+    "index.d.ts"
+  ],
+  "exclude": [
+    "./*.config.js"
   ]
 }
