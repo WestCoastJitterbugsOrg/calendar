@@ -1,0 +1,41 @@
+@use "variables" as *;
+
+@mixin scrollbar($thin, $foreground-color: $wcj-red, $background-color: $wcj-sand) {
+
+  scrollbar-color: $foreground-color $background-color;
+  $width: 15px;
+  
+  @if $thin {
+    $width: 5px;
+    scrollbar-width: thin;
+  } @else {
+    $width: 10px;
+    scrollbar-width: auto;
+  }
+
+  // For Google Chrome
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $width;
+  }
+
+
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+    border-radius: 1em;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  // For Internet Explorer
+  & {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}

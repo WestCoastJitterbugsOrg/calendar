@@ -1,0 +1,39 @@
+// First define SCSS variables
+$wcj-responsive-breakpoint-1: 600px;
+$wcj-responsive-breakpoint-2: 900px;
+$wcj-sidebar-maxwidth: 400px;
+
+$wcj-cyan: #349995;
+$wcj-red: #AB2814;
+$wcj-sand: #FFFAF2;
+
+$wcj-black: #1d1d1b;
+$wcj-coral: #ec6350;
+$wcj-mint: #73bdba;
+
+
+$wcj-button-padding: 8px 18px;
+$wcj-button-margin: 0 5px;
+$wcj-button-border-radius: 30px;
+$wcj-button-border-width: 2px;
+$wcj-button-line-height: 1;
+$wcj-button-max-height: 36px;
+$wcj-button-font-size: 16px;
+$wcj-button-text-color: white;
+$wcj-button-bg-color: $wcj-red;
+$wcj-button-font-weight: bold;
+$wcj-button-active-bg-color: darken($wcj-button-bg-color, 10%);
+$wcj-button-hover-bg-color: lighten($wcj-button-bg-color, 5%);
+
+// Then define CSS variables
+:root {
+    // #region WCJ colors
+    --wcj-cyan: #{$wcj-cyan};
+    --wcj-red: #{$wcj-red};
+    --wcj-sand: #{$wcj-sand};
+
+    --wcj-black: #{$wcj-black};
+    --wcj-coral: #{$wcj-coral};
+    --wcj-mint: #{$wcj-mint};
+    // #endregion
+}

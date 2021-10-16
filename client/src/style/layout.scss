@@ -1,0 +1,85 @@
+@use "variables"as *;
+@use "mixins";
+
+// #region CourseList
+
+.courseList-container {
+  position: absolute;
+  width: $wcj-sidebar-maxwidth;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: $wcj-sand;
+  &:not(.loading) .lds-dual-ring {
+    display: none;
+  }
+
+  &.loading .lds-dual-ring {
+    display: block;
+  }
+}
+
+.courseList-actions {
+  text-align: center;
+  padding: 1em;
+  background-color: $wcj-black;
+}
+
+#courseList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.panel {
+  position: relative;
+}
+
+.panel .event {
+  display: flex;
+  height: 3em;
+  padding: 0.25em 0;
+  align-items: center;
+  width: 100%;
+}
+// #endregion
+
+// #region Calendar
+.calendar-container {
+  position: absolute;
+  right: 0;
+  left: $wcj-sidebar-maxwidth;
+  top: 0;
+  bottom: 0;
+
+
+}
+
+#calendar {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+// #endregion
+
+// #region Small screen
+
+@media only screen and (max-width: $wcj-responsive-breakpoint-2) {
+  .courseList-container {
+    position: relative;
+    width: 100%;
+  }
+
+  .calendar-container {
+    position: static;
+    box-shadow: none;
+  }
+
+  #calendar {
+    height: auto;
+    min-height: 600px;
+  }
+}
+
+// endregion

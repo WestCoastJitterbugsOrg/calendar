@@ -1,0 +1,8 @@
+node_modules
+credentials.json
+dist
+.cache
+.nyc_output
+coverage
+tsc_build
+wcjpassword

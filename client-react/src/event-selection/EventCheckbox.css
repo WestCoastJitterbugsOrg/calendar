@@ -1,0 +1,54 @@
+.event-checkbox::after {
+  content: "";
+  position: relative;
+  display: block;
+  left: 9px;
+  top: 5px;
+  width: 6px;
+  height: 12px;
+  border: transparent;
+  transform: rotate(45deg);
+}
+
+.event-checkbox.checked::after {
+  border-bottom: 2px solid white;
+  border-right: 2px solid white;
+}
+
+
+/* Event Group */
+
+.eventgroup-checkbox{
+  width: 20px;
+  height: 20px;
+  background-color: #fffaf2;
+  border: 2px solid #1D1D1B;
+  border-radius: 6px;
+}
+
+.eventgroup-checkbox::after {
+  content: "";
+  position: relative;
+  display: block;
+  border: transparent;
+}
+
+.eventgroup-checkbox.all::after {
+  left: 7px;
+  top: -3px;
+  width: 8px;
+  height: 18px;
+  transform: rotate(50deg);
+  border-bottom: 3px solid #1D1D1B;
+  border-right: 3px solid #1D1D1B;
+  border-bottom-right-radius: 3px;
+}
+
+.eventgroup-checkbox.some::after {
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  background-color: #1D1D1B;
+  border-radius: 4px;
+}

@@ -1,0 +1,13 @@
+{
+    "compile-hero.disable-compile-files-on-did-save-code": false,
+    "eslint.workingDirectories": [
+        {
+            "directory": "client",
+            "changeProcessCWD": true
+        },
+        {
+            "directory": "server",
+            "changeProcessCWD": true
+        }
+    ]
+}
