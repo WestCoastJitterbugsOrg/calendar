@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Serves WCJ events from different sources",
   "main": "src/index.ts",
+  "engines": {
+    "node": "^14.18.1",
+    "npm": "^6.14.15"
+  },
   "scripts": {
     "start": "NODE_ENV=\"development\" nodemon src/index.ts",
     "build:prod": "tsc --project ./ --outDir dist",
