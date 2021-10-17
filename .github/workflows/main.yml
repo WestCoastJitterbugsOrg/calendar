@@ -52,3 +52,14 @@ jobs:
       - name: Install Dependencies
         run: npm ci
       - run: npx eslint .
+
+  client-eslint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./client
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+      - run: yarn eslint .
