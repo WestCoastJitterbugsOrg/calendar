@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  server-typecheck:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./server
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: npm install
+      - name: Check types
+        run: npx tsc --project tsconfig.json --noEmit
+
+  client-typecheck:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./client
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+      - name: Check types
+        run: npx tsc --project tsconfig.json --noEmit
+
+  server-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./server
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: npm ci
+      - run: npm run test
+
+  server-eslint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./server
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: npm ci
+      - run: npx eslint .
+
+  client-eslint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./client
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+      - run: yarn eslint .
