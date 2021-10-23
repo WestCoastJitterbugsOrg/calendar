@@ -52,7 +52,6 @@
 }
 
 .fc.fc-direction-ltr .fc-button {
-
   padding: 8px 18px;
   border-radius: 0;
   border-top: none;
@@ -66,13 +65,13 @@
 }
 
 .fc .fc-button.fc-today-button.fc-button-primary {
-    background-color: black;
-    border-radius: 0.5rem;
+  background-color: black;
+  border-radius: 0.5rem;
 }
 
 .fc .fc-button.fc-today-button.fc-button-primary:hover {
-    border-color: transparent;
-    background-color: theme('colors.gray.900');
+  border-color: transparent;
+  background-color: theme("colors.gray.900");
 }
 
 .fc.fc-direction-ltr .fc-button:focus,
@@ -80,7 +79,7 @@
 .fc .fc-button-primary:not(:disabled).fc-button-active:focus {
   outline: none;
   box-shadow: none;
-  color: theme("colors.wcj-coral")
+  color: theme("colors.wcj-coral");
 }
 
 .fc.fc-direction-ltr .fc-button.fc-next-button,
@@ -95,7 +94,6 @@
 .fc.fc-direction-ltr .fc-button.fc-prev-button.fc-icon {
   font-weight: bold;
 }
-
 
 .fc .fc-header-toolbar.fc-toolbar {
   height: 4rem;
@@ -112,12 +110,22 @@
   white-space: nowrap;
 }
 
-.fc .fc-list-sticky .fc-list-day > th, .fc-theme-standard .fc-list-day-cushion {
+.fc .fc-list-sticky .fc-list-day > th,
+.fc-theme-standard .fc-list-day-cushion {
   z-index: 1;
   background-color: #f5f5f5;
 }
 
-.fc-daygrid-event{
+
+.fc .fc-col-header-cell-cushion {
+  display: block;
+  white-space: pre;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: transparent;
+}
+
+.fc-daygrid-event {
   white-space: normal;
   cursor: default;
 }
@@ -130,8 +138,8 @@
   line-height: 0.8;
 }
 
-@media only screen and (max-width: theme('screens.sm')) {
-  .fc .fc-header-toolbar.fc-toolbar{
+@media only screen and (max-width: theme("screens.sm")) {
+  .fc .fc-header-toolbar.fc-toolbar {
     align-items: center;
     flex-direction: column;
     height: auto;

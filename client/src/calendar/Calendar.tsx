@@ -9,6 +9,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import { useContext } from "react";
 import { StateContext } from "../App";
 import "./fullcalendar-custom.css";
+import "jquery-modal";
 
 type FullCalendarPropType = typeof FullCalendar.prototype.props;
 
@@ -22,6 +23,7 @@ const CalendarViewConfig = (
         (e.el.title =
           e.event.title + "\nPlace: " + e.event.extendedProps["place"]),
       titleFormat: { year: "numeric", month: "long" },
+      dayHeaderFormat: { weekday: "long" },
     },
     timeGridWeek: {
       eventDidMount: (e) =>
@@ -29,27 +31,31 @@ const CalendarViewConfig = (
           e.event.title + "\nPlace: " + e.event.extendedProps["place"]),
       titleFormat: (args) =>
         `Week ${formatDate(args.date.marker, { week: "numeric" })}, 
-      ${formatDate(args.date.marker, {
-        year: "numeric",
-        month: "long",
-      })}`,
-      dayHeaderFormat: {
-        weekday: "short",
-        day: "2-digit",
-        month: "short",
-      },
+          ${formatDate(args.date.marker, {
+            year: "numeric",
+            month: "long",
+          })}`,
+      dayHeaderFormat: (args) =>
+        formatDate(args.date.marker, { weekday: "long" }) +
+        "\n" +
+        formatDate(args.date.marker, { day: "numeric"  })
     },
     listEternal: {
       type: "list",
       titleFormat: () => "",
+      listDaySideFormat: args => formatDate(args.date.marker, {weekday: "long"}) +  ", Week " + formatDate(args.date.marker, {week: "numeric"}),
+      listDayFormat: {month: "long", day: "numeric", year: "numeric"},
+      
       buttonIcons: false,
       eventDidMount: (e) => {
         // Add place info to events
-        $(e.el).find(".fc-list-event-title").get(0).outerHTML = `
+        const title = $(e.el).find(".fc-list-event-title").get(0);
+        if (title != null) {
+          title.outerHTML = `
             <td class="fc-list-event-title">${e.event.title}</td>
             <td class="text-right">${e.event.extendedProps["place"]}</td>
            `;
-
+        }
         // Change colspan of day header
         const prevSibling = e.el.previousElementSibling;
         if (prevSibling?.classList.contains("fc-list-day")) {
