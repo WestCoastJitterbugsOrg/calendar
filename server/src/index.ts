@@ -14,6 +14,10 @@ const app = express();
 if (isDev) {
   console.log("Running in development mode");
   app.use(cors());
+} else {
+  app.use(cors({
+    origin: "https://wcj.se"
+  }));
 }
 
 const PORT = isDev ? 8081 : 80;
