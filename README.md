@@ -1,18 +1,32 @@
 # Personalized Calendar for WCJ...
-...and possibly other organizations that use dans.se
+...and possibly other organizations that use cogwork
 
 ## Setup
 
-Make sure you have NodeJS installed. At the time of writing, I'm using v14.9.0.
+Make sure you have NodeJS installed. At the time of writing, I'm using v14.18.0. You will also need to install yarn.
 
-With NodeJS installed, run `npm i` in the root directory of this project. This will install all dependencies you need.
+There are two projects: The server and the client. In the server directory, run `npm i`. In the client directory, run `yarn`. This will install all dependencies needed to get you started. 
 
-## Run in local development environment
+You will need to add a file called `wcjpassword` into server/src with the password for calls to cogwork's api. 
 
-Simply run `npm start` and go to `http://localhost:8080/personal-calendar` in your browser. As soon as you make a change in a file, the server will reload the website. 
+It's possible to run both the server and the client in a couple of different environments. 
 
-## Run in production environment
+## Running the server in a local development environment
 
-Run `npm run start:prod` and go to `http://localhost:8080/personal-calendar` in your browser. 
-This should build the project and generate files in `dist`, and then serve the using server.js. Unlike in development, 
-this won't reload the website when you make a change in a file.
+`npm start` in the server directory will start a local development server that will listen to api calls on port 8081. 
+
+## Building the server for production
+
+Running `npm run build:prod` in the server directory will compile the NodeJS server into the dist direcotry which can then be deployed.
+
+## Running the client in local development environment (fullscreen)
+
+In the client directory, run `yarn start`. It should open a browser at http://localhost:3000. 
+
+## Deploying the client as a wordpress plugin
+
+If you run a wordpress server locally through something like VVV, run `yarn build` in the client directory. If you want to deploy it to https://wcj.se, run `yarn build:prod`. 
+
+In the wp-content/plugins directory of you wordpress install, create a new directory named wcj-calendar. Copy wcj-calendar.php and client/build to it. 
+
+Go to the wordpress admin page and activate the plugin. You can now add it by using the shortcode `[wcjcal]`

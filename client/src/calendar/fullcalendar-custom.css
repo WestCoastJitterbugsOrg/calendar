@@ -116,6 +116,10 @@
   background-color: #f5f5f5;
 }
 
+.fc .fc-list-table td {
+  word-break: break-word;
+}
+
 
 .fc .fc-col-header-cell-cushion {
   display: block;

@@ -9,7 +9,6 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import { useContext } from "react";
 import { StateContext } from "../App";
 import "./fullcalendar-custom.css";
-import "jquery-modal";
 
 type FullCalendarPropType = typeof FullCalendar.prototype.props;
 
@@ -38,18 +37,31 @@ const CalendarViewConfig = (
       dayHeaderFormat: (args) =>
         formatDate(args.date.marker, { weekday: "long" }) +
         "\n" +
-        formatDate(args.date.marker, { day: "numeric"  })
+        formatDate(args.date.marker, { day: "numeric" }),
     },
     listEternal: {
       type: "list",
-      titleFormat: () => "",
-      listDaySideFormat: args => formatDate(args.date.marker, {weekday: "long"}) +  ", Week " + formatDate(args.date.marker, {week: "numeric"}),
-      listDayFormat: {month: "long", day: "numeric", year: "numeric"},
-      
+      listDaySideFormat: (args) =>
+        formatDate(args.date.marker, { weekday: "long" }) +
+        ", Week " +
+        formatDate(args.date.marker, { week: "numeric" }),
+      listDayFormat: { month: "long", day: "numeric", year: "numeric" },
+
       buttonIcons: false,
+
+      viewDidMount: () => {
+        jQuery(
+          ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(2)"
+        ).hide();
+      },
+      viewWillUnmount: () => {
+        jQuery(
+          ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(2)"
+        ).show();
+      },
       eventDidMount: (e) => {
         // Add place info to events
-        const title = $(e.el).find(".fc-list-event-title").get(0);
+        const title = jQuery(e.el).find(".fc-list-event-title").get(0);
         if (title != null) {
           title.outerHTML = `
             <td class="fc-list-event-title">${e.event.title}</td>
@@ -95,7 +107,7 @@ export default function Calendar() {
     <FullCalendar
       plugins={[dayGridPlugin, listPlugin, timeGridPlugin]}
       initialView="timeGridWeek"
-      height="100vh"
+      height="100%"
       views={CalendarViewConfig(
         new Date(firstOccasion),
         new Date(lastOccasion)

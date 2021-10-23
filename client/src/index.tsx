@@ -8,7 +8,7 @@ ReactDOM.render(
     <App />
     <div id="modalRoot"></div>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById("wcjcal")
 );
 
 // If you want to start measuring performance in your app, pass a function

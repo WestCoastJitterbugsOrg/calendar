@@ -54,21 +54,24 @@ export default function App() {
     case "loaded":
       return (
         <StateContext.Provider value={{ state, dispatch }}>
-            <div className="flex flex-col lg:flex-row bg-white">
-              <div className="max-h-screen overflow-y-hidden lg:w-96 flex flex-col">
-                <div className="flex-none">
-                  <ToggleAllButtons />
-                </div>
-                <div className="flex-grow w-full overflow-y-scroll bg-wcj-sand divide-y divide-wcj-mint">
-                  {state.categories.allIds.map<ReactChild>((categoryId) => (
-                    <EventGroup key={categoryId} category={categoryId} />
-                  ))}
-                </div>
+          <div className="flex flex-row flex-wrap items-stretch bg-white">
+            <div className="flex flex-col flex-grow w-96">
+              <div className="flex-none">
+                <ToggleAllButtons />
               </div>
-              <div className="flex-grow">
-                <Calendar />
+              <div className="flex-grow w-full bg-wcj-sand divide-y divide-wcj-mint">
+                {state.categories.allIds.map<ReactChild>((categoryId) => (
+                  <EventGroup key={categoryId} category={categoryId} />
+                ))}
               </div>
             </div>
+            <div
+              className="flex-grow flex-shrink-0 min-h-screen"
+              style={{ minWidth: "calc(100% - 24rem)" }}
+            >
+              <Calendar />
+            </div>
+          </div>
         </StateContext.Provider>
       );
     default:

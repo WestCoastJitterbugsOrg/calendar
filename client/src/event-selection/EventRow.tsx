@@ -1,5 +1,7 @@
 import ReactDOM from "react-dom";
 import EventCheckbox from "./EventCheckbox";
+import "jquery-modal";
+import "jquery-modal/jquery.modal.css";
 
 interface EventRowProps {
   event: Wcj.Event;
@@ -24,7 +26,7 @@ export default function EventRow(props: EventRowProps) {
             <ModalContent event={props.event}></ModalContent>,
             document.getElementById("modalRoot"),
             () => {
-              $(".modal").modal();
+              jQuery(".modal").modal();
             }
           );
         }}
