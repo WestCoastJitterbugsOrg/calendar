@@ -5,6 +5,8 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const externals = require('./externals.js');
+const path = require('path');
+const process = require('process');
 
 module.exports = {
   style: {
@@ -52,13 +54,13 @@ module.exports = {
           patterns: [
             {
               from: require.resolve('react/umd/react.development.js'),
-              to: 'static/js/[name].js'
+              to: 'js/[name].js'
             }, {
               from: require.resolve('react-dom/umd/react-dom.development.js'),
-              to: 'static/js/[name].js'
+              to: 'js/[name].js'
             }, {
               from: require.resolve('jquery/dist/jquery.js'),
-              to: 'static/js/[name].js'
+              to: 'js/[name].js'
             }
           ]
         }));
@@ -74,11 +76,16 @@ module.exports = {
         }
       };
 
-
       webpackConfig.optimization.runtimeChunk = false;
 
-      webpackConfig.output.filename = 'static/js/bundle.js';
-      webpackConfig.output.chunkFilename = 'static/js/[name].js';
+      let buildPath = 'build';
+      if (process.env.HOST_TYPE === "wpdev") {
+        buildPath = 'wp-plugin/wp-content/plugins/wcjcal';
+      } 
+      paths.appBuild = webpackConfig.output.path = path.resolve(__dirname, buildPath);
+
+      webpackConfig.output.filename = `js/bundle.js`;
+      webpackConfig.output.chunkFilename = `js/[name].js`;
 
       const disabledPlugins = [
         'GenerateSW',
@@ -99,8 +106,8 @@ module.exports = {
           plugins.push(
             // @ts-ignore
             new MiniCssExtractPlugin({
-              filename: 'static/css/[name].css',
-              chunkFilename: 'static/css/[name].css',
+              filename: path.resolve(buildPath, '/css/[name].css'),
+              chunkFilename: path.resolve(buildPath, '/css/[name].css')
             })
           );
         } else {
@@ -114,6 +121,7 @@ module.exports = {
 
       return webpackConfig;
     },
+    
   },
 
   //https://webpack.js.org/configuration/dev-server/#devserver
@@ -121,5 +129,7 @@ module.exports = {
     devServerConfig.writeToDisk = true;
     return devServerConfig;
   },
+
+
 
 }
