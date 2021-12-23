@@ -20,7 +20,10 @@ Now, run `yarn build` followed by `cp `
 
 To serve the wordpress site, run `wp server --path=wp-plugin`
 
-If you run a wordpress server locally through something like VVV, run `yarn build` in the client directory. If you want to deploy it to https://wcj.se, run `yarn build:prod`. 
+Go to http://localhost:8080/wp-admin and sign in using "admin" as both user and password.
+
+## Production plugin deployment
+If you want to deploy it to https://wcj.se, run `yarn build:prod`. 
 
 In the wp-content/plugins directory of you wordpress install, create a new directory named wcj-calendar. Copy wcj-calendar.php and client/build to it. 
 
