@@ -10,21 +10,21 @@ In the client directory, run `yarn start`. It should open a browser at http://lo
 
 ## Wordpress plugin
 
-I'm working on porting the whole project to a wordpress plugin, so that no server is needed. You can try this out locally or deploy it to https://wcj.se/
+I'm working on porting the whole project to a wordpress plugin, so that no server is needed. At the moment the server is still required though, so make sure to deploy it in another process.
+
+You can try this out locally or deploy it to https://wcj.se/. When you have it deployed, go ahead and activate in the admin page and add it to a page by using the shortcode `[wcjcal]`.
 
 ### Setting up a local wordpress development and deploying the plugin to it
 
-If you don't have PHP installed, follow the instructions [here](https://www.php.net/manual/en/install.php). Then, make sure you have wp-cli installed by following [these instructions](https://make.wordpress.org/cli/handbook/guides/installing/). Run `wp-init.sh` to initialize a wordpress site inside the wp-plugin directory.
+If you don't have PHP installed, follow the instructions [here](https://www.php.net/manual/en/install.php). Then, make sure you have wp-cli installed by following [these instructions](https://make.wordpress.org/cli/handbook/guides/installing/). Run `wp-init.sh` to initialize a wordpress site inside the wp-build directory.
 
 Now, run `yarn build` followed by `cp `
 
-To serve the wordpress site, run `wp server --path=wp-plugin`
+To serve the wordpress site, run `wp server --path=wp-build`
 
 Go to http://localhost:8080/wp-admin and sign in using "admin" as both user and password.
 
-## Production plugin deployment
+### Production plugin deployment
 If you want to deploy it to https://wcj.se, run `yarn build:prod`. 
 
-In the wp-content/plugins directory of you wordpress install, create a new directory named wcj-calendar. Copy wcj-calendar.php and client/build to it. 
-
-Go to the wordpress admin page and activate the plugin. You can now add it by using the shortcode `[wcjcal]`
+...more info coming

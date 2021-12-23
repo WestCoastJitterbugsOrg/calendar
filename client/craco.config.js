@@ -80,7 +80,7 @@ module.exports = {
 
       let buildPath = 'build';
       if (process.env.HOST_TYPE === "wpdev") {
-        buildPath = 'wp-plugin/wp-content/plugins/wcjcal';
+        buildPath = 'wp-build/wp-content/plugins/wcjcal';
       } 
       paths.appBuild = webpackConfig.output.path = path.resolve(__dirname, buildPath);
 
