@@ -16,7 +16,7 @@ You can try this out locally or deploy it to https://wcj.se/. When you have it d
 
 ### Setting up a local wordpress development and deploying the plugin to it
 
-If you don't have PHP installed, follow the instructions [here](https://www.php.net/manual/en/install.php). Then, make sure you have wp-cli installed by following [these instructions](https://make.wordpress.org/cli/handbook/guides/installing/). Run `wp-init.sh` to initialize a wordpress site inside the wp-build directory.
+If you don't have PHP installed, follow the instructions [here](https://www.php.net/manual/en/install.php). Then, make sure you have wp-cli installed by following [these instructions](https://make.wordpress.org/cli/handbook/guides/installing/). Run `wp-init` to initialize a wordpress site inside the wp-build directory.
 
 Now, run `yarn build` followed by `cp `
 

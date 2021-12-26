@@ -1,4 +1,5 @@
 #!/bin/sh
+# Should probably work with ms batch
 
 wp core download --path=wp-build
 cd wp-build
