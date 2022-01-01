@@ -1,8 +1,5 @@
 export default async function loadCogworkData(): Promise<Wcj.EventCategory[]> {
-  const apiUrl =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:8081/calendar-api"
-      : "https://wcj.hemsida.eu/calendar-api";
+  const apiUrl = process.env.API_URL
 
   const response = await fetch(`${apiUrl}/cogwork/`);
 
