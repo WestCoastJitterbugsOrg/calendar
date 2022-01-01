@@ -3,7 +3,7 @@
 
 wp core download --path=wp-build
 cd wp-build
-wp config create --dbname=wp_wcj_cal_dev --dbuser=root --dbpass=
+wp config create --dbname=wp_wcj_cal_dev --dbuser=wp_wcj --dbpass=wp_wcj
 wp db create
 wp core install --url=wp-wcjcal.dev --title="Local Dev WP - WCJ Calendar" --admin_user=admin --admin_password=admin --admin_email=admin@wcjcal.dev
 cd ..

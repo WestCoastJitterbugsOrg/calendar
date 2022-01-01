@@ -1,8 +1,8 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: false, // or 'media' or 'class'
+  content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  darkMode: 'media', // 'class'
   important: '#wcjcal',
   theme: {
     extend: {
@@ -47,7 +47,7 @@ module.exports = {
       'current': 'currentColor',
       'black': colors.black,
       'white': colors.white,
-      'gray': colors.trueGray,
+      'gray': colors.neutral,
       'primary': '#1D1D1B',
       'secondary': '#349995',
       'danger': '#AB2814',

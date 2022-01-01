@@ -20,16 +20,13 @@ function wordpressWebpackConfig(
   webpackConfig: wpConfig,
   context: { paths: any }
 ) {
-  const buildPath =
-    process.env.NODE_ENV === "development"
-      ? "wp-build/wp-content/plugins/wcjcal"
-      : "build";
+  const buildPath = process.env.BUILD_PATH ?? "";
 
   //#region Optimizations
-  if (
-    process.env.NODE_ENV === "production" &&
-    webpackConfig.optimization != null
-  ) {
+  if (process.env.BUILD_MODE === "simple") {
+    if (webpackConfig.optimization == null) {
+      webpackConfig.optimization = {};
+    }
     webpackConfig.optimization.splitChunks = {
       chunks: (_) => false,
       cacheGroups: {
@@ -42,15 +39,17 @@ function wordpressWebpackConfig(
   //#endregion
 
   //#region Output
-  if (webpackConfig.output != null) {
-    context.paths.appBuild = webpackConfig.output.path = path.resolve(
-      __dirname,
-      buildPath
-    );
-
-    webpackConfig.output.filename = `js/bundle.js`;
-    webpackConfig.output.chunkFilename = `js/[name].js`;
+  if (webpackConfig.output == null) {
+    webpackConfig.output = {};
   }
+  context.paths.appBuild = webpackConfig.output.path = path.resolve(
+    __dirname,
+    buildPath
+  );
+
+  webpackConfig.output.filename = `js/bundle.js`;
+  webpackConfig.output.chunkFilename = `js/[name].js`;
+
   //#endregion
 
   //#region Plugins

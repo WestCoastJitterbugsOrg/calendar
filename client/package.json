@@ -24,7 +24,7 @@
     "@types/jest": "^27.0.2",
     "@types/jquery": "^3.5.7",
     "@types/mini-css-extract-plugin": "^2.4.0",
-    "@types/node": "^16.11.0",
+    "@types/node": "^16.11.17",
     "@types/react": "^17.0.30",
     "@types/react-dom": "^17.0.9",
     "@types/webpack-dev-server": "^4.5.0",
@@ -39,8 +39,8 @@
   },
   "scripts": {
     "start:standalone": "craco start --config craco.standalone-config.ts",
-    "start:wordpress": "craco start --config craco.wordpress-config.ts",
-    "build:prod": "craco build --config craco.wordpress-config.ts",
+    "start:wordpress": "node wp-build.js --staging",
+    "build:prod": "node wp-build.js",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
