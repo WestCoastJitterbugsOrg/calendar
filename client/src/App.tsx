@@ -74,6 +74,12 @@ export default function App() {
         </StateContext.Provider>
       );
     default:
+      let error;
+      try {
+        error = JSON.stringify(JSON.parse(loadState), null, 4);
+      } catch {
+        error = loadState.toString();
+      }
       // Error message sent from server
       return (
         <div className="container m-auto my-8">
@@ -82,7 +88,7 @@ export default function App() {
           </h1>
           <p className="font-bold">Got the following from server:</p>
           <pre className="font-mono">
-            {JSON.stringify(JSON.parse(loadState), null, 4)}
+            {error}
           </pre>
         </div>
       );

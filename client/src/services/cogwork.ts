@@ -1,7 +1,7 @@
 export default async function loadCogworkData(): Promise<Wcj.EventCategory[]> {
-  const apiUrl = process.env.API_URL
+  
 
-  const response = await fetch(`${apiUrl}/cogwork/`);
+  const response = await fetch(API_URL + "/cogwork/");
 
   if (response.ok) {
     return response.json();
