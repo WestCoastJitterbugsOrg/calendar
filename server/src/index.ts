@@ -4,7 +4,7 @@ import express from "express";
 import { google } from "googleapis";
 import gcal2wcj from "./gcal";
 import cors from "cors";
-import handleDanSeData from "./dansse";
+import fetchCogworkEvents from "./cogwork";
 
 // #region setup
 const isDev = process.env.NODE_ENV === "development";
@@ -33,9 +33,7 @@ const pw = fs.readFileSync(path.resolve(__dirname, "wcjpassword"), "utf8");
 
 app.get(
   "/calendar-api/cogwork",
-  handleDanSeData(
-    `https://dans.se/xml/?type=events&org=wcj&pw=${pw}&regStatus=0&dateInterval=future`
-  )
+  fetchCogworkEvents("wcj", pw, {})
 );
 // #endregion
 

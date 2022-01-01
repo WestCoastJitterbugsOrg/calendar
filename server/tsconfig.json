@@ -15,5 +15,10 @@
       "typings"
     ]
   },
-  "include": ["src/**/*", "**/*.spec.ts", "typings/**/*", "../types/**/*"]
+  "include": [
+    "src/**/*",
+    "**/*.spec.ts",
+    "typings/**/*",
+    "../types/**/*"
+  ]
 }

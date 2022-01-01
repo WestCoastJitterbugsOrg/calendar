@@ -1,4 +1,4 @@
-declare namespace DansSe {
+declare namespace Cogwork {
   interface Event {
     $: { eventId: string };
     title: [string];
