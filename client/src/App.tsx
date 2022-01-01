@@ -1,5 +1,4 @@
 import React, { ReactChild, useMemo, useReducer, useState } from "react";
-import "tailwindcss/tailwind.css";
 import Calendar from "./calendar/Calendar";
 import EventGroup from "./event-selection/EventGroup";
 import ToggleAllButtons from "./event-selection/ToggleAllButtons";
