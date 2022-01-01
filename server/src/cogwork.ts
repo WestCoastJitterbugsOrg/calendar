@@ -29,7 +29,7 @@ class CwObjDateInterval {
   }
 }
 type CwSeasonDateInterval = `${"spring" | "summer" | "autumn" | "winter"}Term`;
-type CwDateInterval = CwObjDateInterval | CwSeasonDateInterval;
+type CwDateInterval = CwObjDateInterval | CwSeasonDateInterval | "future" | "past";
 
 interface CogworkOpts {
   onlyCourses?: boolean;
@@ -40,7 +40,7 @@ interface CogworkOpts {
 const defaultCogworkOpts: CogworkOpts = {
   onlyCourses: false,
   regStatus: RegStatus.ALL,
-  dateInterval: null,
+  dateInterval: 'future',
 };
 
 export default function fetchCogworkEvents(
@@ -61,18 +61,23 @@ export default function fetchCogworkEvents(
   };
 
   const type = opts.onlyCourses ? "courses" : "events";
-  const dateInterval = opts.dateInterval?.toString();
-
   return async function (_, res) {
-    const url = `https://minaaktiviteter.se/xml/`;
     try {
-      const resp = await axios.post<convertableToString>(url, {
-        type: type,
-        org: organization,
-        pw: password,
-        regStatus: opts.regStatus,
-        dateInterval: dateInterval,
-      });
+      const url = `https://minaaktiviteter.se/xml/?type=${type}`;
+      const bodyFormData = new URLSearchParams();
+      bodyFormData.append("org", organization);
+      bodyFormData.append("pw", password);
+      bodyFormData.append("regStatus", opts.regStatus.toString());
+      bodyFormData.append("dateInterval", opts.dateInterval?.toString());
+
+      const resp = await axios.request<convertableToString>(
+        {
+          method: "POST",
+          url: url,
+          data: bodyFormData,
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        }
+      );
       const result = (await parseStringPromise(resp.data)) as Cogwork.Response;
       res.send(convertCogworkData(result));
     } catch (error) {
