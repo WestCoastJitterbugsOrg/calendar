@@ -1,3 +1,5 @@
+import React from "react";
+
 type ButtonData = {
   title: string;
   size: "sm" | "md" | "lg";

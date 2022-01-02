@@ -168,9 +168,6 @@ export default function Calendar() {
 function wcj2fcEvent(wcjEvent: Wcj.Event): EventSourceInput {
   return {
     id: wcjEvent.id,
-    // backgroundColor: wcjEvent.color,
-    // borderColor: wcjEvent.color,
-    // textColor: brightnessByColor(wcjEvent.color) > 127 ? "black" : "white",
     events: wcjEvent.occasions.map<EventInput>((occasion) => ({
       id: `${wcjEvent.id}-${occasion.start}-${occasion.end}`,
       title: wcjEvent.title,
@@ -180,36 +177,4 @@ function wcj2fcEvent(wcjEvent: Wcj.Event): EventSourceInput {
       extendedProps: wcjEvent,
     })),
   };
-}
-
-/**
- * Calculate brightness value by RGB or HEX color.
- * @param color (String) The color value in RGB or HEX (for example: #000000 || #000 || rgb(0,0,0) || rgba(0,0,0,0))
- * @returns (Number) The brightness value (dark) 0 ... 255 (light)
- */
-function brightnessByColor(color: string) {
-  const isHEX = color.indexOf("#") === 0;
-  const isRGB = color.indexOf("rgb") === 0;
-
-  let rgb: [number, number, number] | undefined;
-
-  if (isHEX) {
-    const m = color
-      .substr(1)
-      .match(color.length === 7 ? /(\S{2})/g : /(\S{1})/g);
-    if (m) {
-      rgb = [parseInt(m[0], 16), parseInt(m[1], 16), parseInt(m[2], 16)];
-    }
-  }
-  if (isRGB) {
-    const m = color.match(/(\d+){3}/g);
-    if (m) {
-      rgb = [parseInt(m[0]), parseInt(m[1]), parseInt(m[2])];
-    }
-  }
-  if (rgb != null) {
-    return (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
-  } else {
-    return 255;
-  }
 }

@@ -21,7 +21,7 @@ export default class Modal extends React.Component {
             console.log(value);
             if (value.state.showModal && this.$el) {
               jQuery("<div>" + value.state.showModal + "</div>").appendTo(this.$el);
-              (this.$el as any).modal();
+              this.$el.modal();
               return this.$el;
             }
           }}

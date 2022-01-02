@@ -87,6 +87,8 @@
     ],
     "rules": {},
     "ignorePatterns": [
+      "public/**/*",
+      "build/**/*",
       "*config.js",
       "*.d.ts"
     ]
