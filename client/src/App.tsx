@@ -65,8 +65,8 @@ export default function App() {
               </div>
             </div>
             <div
-              className="flex-grow flex-shrink-0 min-h-screen"
-              style={{ minWidth: "calc(100% - 24rem)" }}
+              className="flex-grow flex-shrink-0 min-h-[calc(100vh-2rem)] min-w-[calc(100%-24rem)]"
+              style={{ minWidth: "calc(100%-24rem)" }}
             >
               <Calendar />
             </div>
@@ -87,9 +87,7 @@ export default function App() {
             Error while loading data!
           </h1>
           <p className="font-bold">Got the following from server:</p>
-          <pre className="font-mono">
-            {error}
-          </pre>
+          <pre className="font-mono">{error}</pre>
         </div>
       );
   }

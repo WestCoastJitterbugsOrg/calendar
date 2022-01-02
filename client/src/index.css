@@ -6,4 +6,9 @@
   #wcjcal {
     font-size: 1rem;
   }
+  @media screen and (min-width: 429px) {
+    #wcjcal {
+      @apply mx-4;
+    }
+  }
 }

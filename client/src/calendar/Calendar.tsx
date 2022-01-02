@@ -25,6 +25,12 @@ const CalendarViewConfig = (
       dayHeaderFormat: { weekday: "long" },
     },
     timeGridWeek: {
+      slotLabelFormat: {
+        hour: "2-digit",
+        minute: "2-digit",
+        meridiem: false,
+        hour12: false,
+      },
       eventDidMount: (e) =>
         (e.el.title =
           e.event.title + "\nPlace: " + e.event.extendedProps["place"]),
@@ -51,13 +57,13 @@ const CalendarViewConfig = (
 
       viewDidMount: () => {
         jQuery(
-          ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(2)"
-        ).hide();
+          ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)"
+        ).css("visibility", "hidden");
       },
       viewWillUnmount: () => {
         jQuery(
-          ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(2)"
-        ).show();
+          ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)"
+        ).css("visibility", "visible");
       },
       eventDidMount: (e) => {
         // Add place info to events
@@ -106,7 +112,7 @@ export default function Calendar() {
   return (
     <FullCalendar
       plugins={[dayGridPlugin, listPlugin, timeGridPlugin]}
-      initialView="timeGridWeek"
+      initialView={window.innerWidth <= 428 ? "listEternal" : "timeGridWeek"}
       height="100%"
       views={CalendarViewConfig(
         new Date(firstOccasion),
@@ -135,6 +141,8 @@ export default function Calendar() {
       }}
       allDaySlot={false}
       eventSources={events}
+      eventBackgroundColor="#AB2814"
+      eventBorderColor="#AB2814"
     />
   );
 }
@@ -142,9 +150,9 @@ export default function Calendar() {
 function wcj2fcEvent(wcjEvent: Wcj.Event): EventSourceInput {
   return {
     id: wcjEvent.id,
-    backgroundColor: wcjEvent.color,
-    borderColor: wcjEvent.color,
-    textColor: brightnessByColor(wcjEvent.color) > 127 ? "black" : "white",
+    // backgroundColor: wcjEvent.color,
+    // borderColor: wcjEvent.color,
+    // textColor: brightnessByColor(wcjEvent.color) > 127 ? "black" : "white",
     events: wcjEvent.occasions.map<EventInput>((occasion) => ({
       id: `${wcjEvent.id}-${occasion.start}-${occasion.end}`,
       title: wcjEvent.title,

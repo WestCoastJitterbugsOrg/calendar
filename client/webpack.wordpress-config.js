@@ -28,7 +28,7 @@ module.exports = env => ({
                 use: ["ts-loader"],
             },
             {
-                test: /\.(css|scss)$/,
+                test: /\.(css)$/,
                 use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
             }
         ],
