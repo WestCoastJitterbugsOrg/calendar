@@ -1,19 +1,29 @@
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const { DefinePlugin } = require("webpack");
+const ESLintPlugin = require("eslint-webpack-plugin");
 
-module.exports = {
+module.exports = env => ({
     entry: path.join(__dirname, "src", "index.tsx"),
     output: {
         path: path.join(__dirname, "build"),
         filename: "js/bundle.js",
         chunkFilename: "js/[name].js"
     },
-    mode: process.env.NODE_ENV || "development",
+    mode: env.NODE_ENV || "development",
     resolve: {
         extensions: [".tsx", ".ts", ".js"]
     },
-    devServer: { contentBase: path.join(__dirname, "src") },
+    devServer: {
+
+        watchFiles: {
+            paths: ['src/**/*', 'public/**/*']
+        },
+        compress: true,
+        port: 9000,
+    },
     module: {
         rules: [
             {
@@ -28,13 +38,17 @@ module.exports = {
             },
             {
                 test: /\.(css)$/,
-                use: ["style-loader", "css-loader"],
+                use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
             }
         ],
     },
     plugins: [
+        new MiniCssExtractPlugin({
+            filename: path.join("css", "[name].css"),
+            chunkFilename: path.join("css", "[name].css"),
+        }),
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, "src", "index.html"),
+            template: path.join(__dirname, "public", "index.html"),
         }),
         new CopyWebpackPlugin({
             patterns: [
@@ -51,6 +65,10 @@ module.exports = {
                     to: "js/[name].js",
                 },
             ],
-        })
+        }),
+        new DefinePlugin(
+            { API_URL: `"${env.API_URL}"` }
+        ),
+        new ESLintPlugin({})
     ],
-};
+})

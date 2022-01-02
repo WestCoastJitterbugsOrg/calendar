@@ -2,11 +2,11 @@
 
 To get started, make sure you have Node.js >= 16.10 and [yarn](https://yarnpkg.com/getting-started/install) installed.
 
-Now, run `yarn`. This will install all dependencies needed to get you started. 
+Now, run `yarn`. This will install all dependencies needed to get you started.
 
-## Fullscreen local development environment
+## Standalone local development environment
 
-In the client directory, run `yarn start`. It should open a browser at http://localhost:3000. 
+In the client directory, run `yarn start:standalone`. It should open a browser at http://localhost:3000.
 
 ## Wordpress plugin
 
@@ -16,15 +16,10 @@ You can try this out locally or deploy it to https://wcj.se/. When you have it d
 
 ### Setting up a local wordpress development and deploying the plugin to it
 
-If you don't have PHP installed, follow the instructions [here](https://www.php.net/manual/en/install.php). Then, make sure you have wp-cli installed by following [these instructions](https://make.wordpress.org/cli/handbook/guides/installing/). Run `wp-init` to initialize a wordpress site inside the wp-build directory.
-
-Now, run `yarn build` followed by `cp `
-
-To serve the wordpress site, run `wp server --path=wp-build`
-
-Go to http://localhost:8080/wp-admin and sign in using "admin" as both user and password.
+Install docker and docker-compose. Run `yarn start:wordpress`. In another terminal, run `docker-compose up -d` with elevated permissions (root/admin). Go to http://localhost:8000/wp-admin/install.php and set up the wordpress installation with the credentials found in docker-compose.yml. In the wodpress admin view, activate the plugin. You should now be able to use the shortcode.
 
 ### Production plugin deployment
-If you want to deploy it to https://wcj.se, run `yarn build:prod`. 
+
+If you want to deploy it to https://wcj.se, run `yarn build:prod`.
 
 ...more info coming
