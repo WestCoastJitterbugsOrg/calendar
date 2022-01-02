@@ -42,15 +42,16 @@ export default function App() {
           setLoadState(val);
         });
       } else {
-        setLoadState((e as any).toString());
+        setLoadState(`${e}`);
       }
     }
   }, []);
 
   switch (loadState) {
-    case "loading":
+    case "loading": {
       return <SpinLoader />;
-    case "loaded":
+    }
+    case "loaded": {
       return (
         <StateContext.Provider value={{ state, dispatch }}>
           <div className="flex flex-row flex-wrap items-stretch bg-white">
@@ -65,15 +66,16 @@ export default function App() {
               </div>
             </div>
             <div
-              className="flex-grow flex-shrink-0 min-h-screen"
-              style={{ minWidth: "calc(100% - 24rem)" }}
+              className="flex-grow flex-shrink-0 min-h-[calc(100vh-2rem)] min-w-[calc(100%-24rem)]"
+              style={{ minWidth: "calc(100%-24rem)" }}
             >
               <Calendar />
             </div>
           </div>
         </StateContext.Provider>
       );
-    default:
+    }
+    default: {
       let error;
       try {
         error = JSON.stringify(JSON.parse(loadState), null, 4);
@@ -87,10 +89,9 @@ export default function App() {
             Error while loading data!
           </h1>
           <p className="font-bold">Got the following from server:</p>
-          <pre className="font-mono">
-            {error}
-          </pre>
+          <pre className="font-mono">{error}</pre>
         </div>
       );
+    }
   }
 }

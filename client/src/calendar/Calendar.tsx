@@ -6,9 +6,14 @@ import { formatDate } from "@fullcalendar/common";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import { useContext } from "react";
+import React from "react";
 import { StateContext } from "../App";
 import "./fullcalendar-custom.css";
+import resolveConfig from "tailwindcss/resolveConfig";
+import tailwindConfig from "../../tailwind.config.js";
+import { TailwindConfig, TailwindValues } from "tailwindcss/tailwind-config";
+
+const fullConfig = resolveConfig(tailwindConfig as unknown as TailwindConfig);
 
 type FullCalendarPropType = typeof FullCalendar.prototype.props;
 
@@ -25,6 +30,12 @@ const CalendarViewConfig = (
       dayHeaderFormat: { weekday: "long" },
     },
     timeGridWeek: {
+      slotLabelFormat: {
+        hour: "2-digit",
+        minute: "2-digit",
+        meridiem: false,
+        hour12: false,
+      },
       eventDidMount: (e) =>
         (e.el.title =
           e.event.title + "\nPlace: " + e.event.extendedProps["place"]),
@@ -51,13 +62,21 @@ const CalendarViewConfig = (
 
       viewDidMount: () => {
         jQuery(
-          ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(2)"
-        ).hide();
+          ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)"
+        ).css({
+          visibility: "hidden",
+          width: "0",
+          height: "0",
+        });
       },
       viewWillUnmount: () => {
         jQuery(
-          ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(2)"
-        ).show();
+          ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)"
+        ).css({
+          visibility: "visible",
+          width: "auto",
+          height: "auto",
+        });
       },
       eventDidMount: (e) => {
         // Add place info to events
@@ -88,7 +107,7 @@ const CalendarViewConfig = (
 };
 
 export default function Calendar() {
-  const stateContext = useContext(StateContext);
+  const stateContext = React.useContext(StateContext);
   const wcjEvents = Object.values(stateContext.state.events.byId).filter(
     (event) => event.showInCalendar
   );
@@ -106,7 +125,12 @@ export default function Calendar() {
   return (
     <FullCalendar
       plugins={[dayGridPlugin, listPlugin, timeGridPlugin]}
-      initialView="timeGridWeek"
+      initialView={
+        window.innerWidth <=
+        parseInt((fullConfig.theme.screens as TailwindValues)["sm"])
+          ? "listEternal"
+          : "timeGridWeek"
+      }
       height="100%"
       views={CalendarViewConfig(
         new Date(firstOccasion),
@@ -135,6 +159,8 @@ export default function Calendar() {
       }}
       allDaySlot={false}
       eventSources={events}
+      eventBackgroundColor="#AB2814"
+      eventBorderColor="#AB2814"
     />
   );
 }
@@ -142,9 +168,9 @@ export default function Calendar() {
 function wcj2fcEvent(wcjEvent: Wcj.Event): EventSourceInput {
   return {
     id: wcjEvent.id,
-    backgroundColor: wcjEvent.color,
-    borderColor: wcjEvent.color,
-    textColor: brightnessByColor(wcjEvent.color) > 127 ? "black" : "white",
+    // backgroundColor: wcjEvent.color,
+    // borderColor: wcjEvent.color,
+    // textColor: brightnessByColor(wcjEvent.color) > 127 ? "black" : "white",
     events: wcjEvent.occasions.map<EventInput>((occasion) => ({
       id: `${wcjEvent.id}-${occasion.start}-${occasion.end}`,
       title: wcjEvent.title,

@@ -2,6 +2,7 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { DefinePlugin } = require("webpack");
+const ESLintPlugin = require("eslint-webpack-plugin");
 
 module.exports = env => ({
     entry: path.join(__dirname, "src", "index.tsx"),
@@ -28,7 +29,7 @@ module.exports = env => ({
                 use: ["ts-loader"],
             },
             {
-                test: /\.(css|scss)$/,
+                test: /\.(css)$/,
                 use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
             }
         ],
@@ -47,7 +48,8 @@ module.exports = env => ({
             patterns: ["public/wcj-calendar.php"],
         }),
         new DefinePlugin(
-            {API_URL: `"${env.API_URL}"`}
-        )
+            { API_URL: `"${env.API_URL}"` }
+        ),
+        new ESLintPlugin({})
     ]
 });

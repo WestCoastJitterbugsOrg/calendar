@@ -48,7 +48,7 @@ function wcjcal_shortcode($attributes)
 	wp_enqueue_style('wcjcal-style');
 	wp_enqueue_script('wcjcal-script');
 
-	return '<div id="wcjcal" class="alignfull" style="margin: 0 1rem" data-wcjcal-settings="' . esc_attr(wp_json_encode($settings)) . '"></div>';
+	return '<div id="wcjcal" class="alignfull" data-wcjcal-settings="' . esc_attr(wp_json_encode($settings)) . '"></div>';
 }
 
 add_shortcode('wcjcal', 'wcjcal_shortcode');

@@ -1,3 +1,4 @@
+import React from "react";
 import ReactDOM from "react-dom";
 import EventCheckbox from "./EventCheckbox";
 import "jquery-modal";
@@ -37,7 +38,7 @@ export default function EventRow(props: EventRowProps) {
         {props.event.title}
       </div>
       <div className="flex-none cursor-pointer">
-        <EventCheckbox color={props.event.color} checked={props.checked} />
+        <EventCheckbox color="#AB2814" checked={props.checked} />
       </div>
     </div>
   );

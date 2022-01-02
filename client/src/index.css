@@ -1,9 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 @layer base {
   #wcjcal {
     font-size: 1rem;
+  }
+  @media screen and (min-width: theme("screens.sm")) {
+    #wcjcal {
+      @apply mx-4;
+    }
   }
 }
