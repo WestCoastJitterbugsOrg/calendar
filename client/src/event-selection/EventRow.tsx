@@ -1,8 +1,26 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import EventCheckbox from "./EventCheckbox";
 import "jquery-modal";
 import "jquery-modal/jquery.modal.css";
+import Modal from "react-modal";
+
+const customStyles: Modal.Styles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    maxWidth: 800
+  },
+  overlay: {
+    zIndex: 10000,
+    overflow: "auto",
+  },
+};
+
+Modal.setAppElement("#wcjcal");
 
 interface EventRowProps {
   event: Wcj.Event;
@@ -12,35 +30,41 @@ interface EventRowProps {
 }
 
 export default function EventRow(props: EventRowProps) {
-  return (
-    <div
-      className="flex flex-row items-center px-2 my-2 min-h-8"
-      onClick={props.toggle}
-    >
-      <div
-        className="h-4 w-4 mr-2 flex-none"
-        onClick={(ce) => {
-          ce.stopPropagation();
+  const [modalIsOpen, setIsOpen] = React.useState(false);
 
-          ReactDOM.render(
-            <ModalContent event={props.event}></ModalContent>,
-            document.getElementById("modalRoot"),
-            () => {
-              //console.log(jQuery(".modal"));
-              jQuery(".modal").modal();
-            }
-          );
-        }}
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  return (
+    <>
+      <div
+        className="flex flex-row items-center px-2 my-2 min-h-8"
+        onClick={props.toggle}
       >
-        <InfoButton />
+        <div className="h-4 w-4 mr-2 flex-none" onClick={openModal}>
+          <InfoButton />
+        </div>
+        <div className="flex-grow cursor-pointer pr-2 leading-tight">
+          {props.event.title}
+        </div>
+        <div className="flex-none cursor-pointer">
+          <EventCheckbox color="#AB2814" checked={props.checked} />
+        </div>
       </div>
-      <div className="flex-grow cursor-pointer pr-2 leading-tight">
-        {props.event.title}
-      </div>
-      <div className="flex-none cursor-pointer">
-        <EventCheckbox color="#AB2814" checked={props.checked} />
-      </div>
-    </div>
+
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+      >
+        <ModalContent event={props.event}></ModalContent>,
+      </Modal>
+    </>
   );
 }
 

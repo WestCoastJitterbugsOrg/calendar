@@ -12,7 +12,6 @@ if (wcjCalElement == null) {
   ReactDOM.render(
     <React.StrictMode>
       <App />
-      <div id="modalRoot"></div>
     </React.StrictMode>,
     wcjCalElement
   );
