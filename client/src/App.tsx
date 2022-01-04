@@ -55,11 +55,11 @@ export default function App() {
       return (
         <StateContext.Provider value={{ state, dispatch }}>
           <div className="flex flex-row flex-wrap items-stretch bg-white">
-            <div className="flex flex-col flex-grow w-96">
+            <div className="flex flex-col flex-grow w-96 max-h-[calc(100vh-2rem)]">
               <div className="flex-none">
                 <ToggleAllButtons />
               </div>
-              <div className="flex-grow w-full bg-wcj-sand divide-y divide-wcj-mint">
+              <div className="flex-grow w-full overflow-auto bg-wcj-sand divide-y divide-wcj-mint">
                 {state.categories.allIds.map<ReactChild>((categoryId) => (
                   <EventGroup key={categoryId} category={categoryId} />
                 ))}

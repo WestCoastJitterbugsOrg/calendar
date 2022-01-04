@@ -44,10 +44,10 @@
   }
 
   &.some::after {
-    top: 2px;
+    top: 6px;
     left: 2px;
     width: 12px;
-    height: 12px;
+    height: 4px;
     background-color: #1d1d1b;
     border-radius: 4px;
   }

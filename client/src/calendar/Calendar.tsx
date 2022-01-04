@@ -11,9 +11,9 @@ import { StateContext } from "../App";
 import "./fullcalendar-custom.css";
 import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "../../tailwind.config.js";
-import { TailwindConfig, TailwindValues } from "tailwindcss/tailwind-config";
+import { TailwindValues } from "tailwindcss/tailwind-config";
 
-const fullConfig = resolveConfig(tailwindConfig as unknown as TailwindConfig);
+const fullConfig = resolveConfig(tailwindConfig);
 
 type FullCalendarPropType = typeof FullCalendar.prototype.props;
 
@@ -123,45 +123,47 @@ export default function Calendar() {
     )
   );
   return (
-    <FullCalendar
-      plugins={[dayGridPlugin, listPlugin, timeGridPlugin]}
-      initialView={
-        window.innerWidth <=
-        parseInt((fullConfig.theme.screens as TailwindValues)["sm"])
-          ? "listEternal"
-          : "timeGridWeek"
-      }
-      height="100%"
-      views={CalendarViewConfig(
-        new Date(firstOccasion),
-        new Date(lastOccasion)
-      )}
-      buttonText={{
-        today: "Today",
-        month: "Month",
-        week: "Week",
-        list: "List",
-      }}
-      headerToolbar={{
-        start: "today,prev,next",
-        center: "title",
-        end: "timeGridWeek,dayGridMonth,listEternal",
-      }}
-      firstDay={1}
-      nowIndicator
-      timeZone="UTC"
-      displayEventEnd
-      eventTimeFormat={{
-        hour: "2-digit",
-        minute: "2-digit",
-        meridiem: false,
-        hour12: false,
-      }}
-      allDaySlot={false}
-      eventSources={events}
-      eventBackgroundColor="#AB2814"
-      eventBorderColor="#AB2814"
-    />
+    <div className="wcjcal-fc">
+      <FullCalendar
+        plugins={[dayGridPlugin, listPlugin, timeGridPlugin]}
+        initialView={
+          window.innerWidth <=
+          parseInt((fullConfig.theme.screens as TailwindValues)["sm"])
+            ? "listEternal"
+            : "timeGridWeek"
+        }
+        height="100%"
+        views={CalendarViewConfig(
+          new Date(firstOccasion),
+          new Date(lastOccasion)
+        )}
+        buttonText={{
+          today: "Today",
+          month: "Month",
+          week: "Week",
+          list: "List",
+        }}
+        headerToolbar={{
+          start: "today,prev,next",
+          center: "title",
+          end: "timeGridWeek,dayGridMonth,listEternal",
+        }}
+        firstDay={1}
+        nowIndicator
+        timeZone="UTC"
+        displayEventEnd
+        eventTimeFormat={{
+          hour: "2-digit",
+          minute: "2-digit",
+          meridiem: false,
+          hour12: false,
+        }}
+        allDaySlot={false}
+        eventSources={events}
+        eventBackgroundColor="#AB2814"
+        eventBorderColor="#AB2814"
+      />
+    </div>
   );
 }
 

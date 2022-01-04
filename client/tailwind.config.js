@@ -1,9 +1,9 @@
-const colors = require('tailwindcss/colors')
+const colors = require('tailwindcss/colors');
 
+/** @type {import('tailwindcss/tailwind-config').TailwindConfig} */
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   darkMode: 'media', // 'class'
-  important: '#wcjcal',
   theme: {
     extend: {
       animation: {
@@ -14,8 +14,8 @@ module.exports = {
       }
     },
     minHeight: {
-      '4': '1rem',
-      '8': '2rem',
+      '4': '16px',
+      '8': '32px',
       'screen': '100vh'
     },
     maxHeight: {
@@ -42,15 +42,15 @@ module.exports = {
       'full': '100%',
       'screen': '100vw'
     },
-    colors: {
+    colors: ({ theme }) => ({
       'transparent': 'transparent',
       'current': 'currentColor',
       'black': colors.black,
       'white': colors.white,
       'gray': colors.neutral,
-      'primary': '#1D1D1B',
-      'secondary': '#349995',
-      'danger': '#AB2814',
+      'primary': theme('wcj-black'),
+      'secondary': theme('wcj-cyan'),
+      'danger': theme('red'),
       'wcj-cyan': '#349995',
       'wcj-red': '#AB2814',
       'wcj-sand': '#FFFAF2',
@@ -58,8 +58,9 @@ module.exports = {
       'wcj-coral': '#EC6350',
       'wcj-mint': '#73BDBA',
       'wcj-red-hover': '#CB2F18',
-      'wcj-red-active': '#7D1D0F'
-    },
+      'wcj-red-active': '#7D1D0F',
+      
+    }),
     fontFamily: {
       'sans': ['Raleway', 'ui-sans-serif', 'system-ui'],
       'serif': ['ui-serif', 'Georgia'],
@@ -70,4 +71,7 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  corePlugins: {
+    preflight: false
+  }
 }

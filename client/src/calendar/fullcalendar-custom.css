@@ -6,7 +6,8 @@
 // https://github.com/fullcalendar/fullcalendar/blob/master/packages/daygrid/src/styles/vars.css
 // https://github.com/fullcalendar/fullcalendar/blob/master/packages/list/src/styles/vars.css
 //  */
-:root {
+
+.wcjcal-fc {
   /* General */
   --fc-small-font-size: 0.85rem;
   --fc-page-bg-color: white;
@@ -49,117 +50,126 @@
   --fc-highlight-color: rgba(188, 232, 241, 0.3);
 
   /* #endregion */
-}
 
-.fc {
-  &.fc-theme-standard .fc-list-day-cushion,
-  & .fc-list-sticky .fc-list-day > th {
-    z-index: 1;
-    background-color: #f5f5f5;
-  }
-
-  & .fc-button {
-    padding: 8px 18px;
-    border-radius: 0;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-width: 2px;
-    line-height: 1;
-    font-size: 16px;
-    font-weight: bold;
-    max-height: 36px;
-
-    &:focus {
-      outline: none;
-      box-shadow: none;
+  height: 100%;
+  & .fc {
+    &.fc-theme-standard .fc-list-day-cushion,
+    & .fc-list-sticky .fc-list-day > th {
+      z-index: 1;
+      background-color: #f5f5f5;
     }
 
-    &.fc-button-primary {
-      &:not(:hover):not(:active):not(.has-text-color) {
-        background-color: theme("colors.wcj-black");
-      }
-      &:not(:disabled) {
-        &:active:focus,
-        &.fc-button-active:focus {
-          outline: none;
-          box-shadow: none;
-        }
-      }
-      &.fc-today-button {
-        background-color: black;
-        border-radius: 0.5rem;
+    & .fc-button {
+      padding: 8px 18px;
+      border-radius: 0;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-width: 2px;
+      line-height: 1;
+      font-size: 16px;
+      font-weight: bold;
+      max-height: 36px;
 
-        &:hover {
+      &:focus {
+        outline: none;
+        box-shadow: none;
+      }
+
+      &.fc-button-primary {
+        &:not(:hover):not(:active):not(.has-text-color) {
+          background-color: theme("colors.wcj-black");
+        }
+        &:not(:disabled) {
+          &:active:focus,
+          &.fc-button-active:focus {
+            outline: none;
+            box-shadow: none;
+          }
+        }
+        &.fc-today-button {
+          background-color: black;
+          border-radius: 0.5rem;
+
+          &:hover {
+            border-color: transparent;
+            background-color: theme("colors.gray.900");
+          }
+        }
+        &.fc-next-button,
+        &.fc-prev-button {
+          padding: 5px;
+          background-color: transparent;
           border-color: transparent;
-          background-color: theme("colors.gray.900");
-        }
-      }
-      &.fc-next-button,
-      &.fc-prev-button {
-        padding: 5px;
-        background-color: transparent;
-        border-color: transparent;
-        color: white;
-        &:fc-icon {
-          font-weight: bold;
+          color: white;
+          &:fc-icon {
+            font-weight: bold;
+          }
         }
       }
     }
-  }
 
-  & .fc-header-toolbar.fc-toolbar {
-    height: 4rem;
-    margin-bottom: 0;
-    padding: 0 1rem;
-    background-color: theme("colors.wcj-black");
-    color: white;
+    & .fc-header-toolbar.fc-toolbar {
+      height: 4rem;
+      margin-bottom: 0;
+      padding: 0 1rem;
+      background-color: theme("colors.wcj-black");
+      color: white;
 
-    & .fc-toolbar-chunk .fc-toolbar-title {
-      font-size: medium;
-      display: inline;
-      margin: 0 0.5rem;
-      white-space: nowrap;
-    }
-  }
-
-  & .fc-list {
-    &.fc-list-sticky {
-      & .fc-scroller-liquid {
-        overflow: auto !important;
+      & .fc-toolbar-chunk .fc-toolbar-title {
+        font-size: medium;
+        display: inline;
+        margin: 0 0.5rem;
+        white-space: nowrap;
       }
     }
-    & .fc-list-table {
-      & td {
-        word-break: keep-all;
-        line-break: auto;
-      }
-    }
-  }
-  & .fc-col-header-cell-cushion {
-    display: block;
-    white-space: pre;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    background: transparent;
-  }
 
-  & .fc-dayGridMonth-view {
-    & .fc-event-title {
-      display: none;
-    }
-    & .fc-daygrid-event {
-      white-space: normal;
-      cursor: default;
-      & .fc-event-time {
-        line-height: 0.8;
+    & .fc-list {
+      &.fc-list-sticky {
+        & .fc-scroller-liquid {
+          overflow: auto !important;
+        }
       }
+      & .fc-list-table {
+        & td {
+          word-break: keep-all;
+          line-break: auto;
+        }
+      }
+    }
+    & .fc-col-header-cell-cushion {
+      display: block;
+      white-space: pre;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background: transparent;
+      color: black;
+      text-decoration: none;
+      line-height: 1.5;
+    }
+
+    & .fc-dayGridMonth-view {
+      & .fc-event-title {
+        display: none;
+      }
+      & .fc-daygrid-event {
+        white-space: normal;
+        cursor: default;
+        & .fc-event-time {
+          line-height: 0.8;
+        }
+      }
+    }
+
+    & a {
+      text-decoration: none;
+      color: theme("colors.wcj-black");
     }
   }
 }
 
 @media only screen and (max-width: theme("screens.sm")) {
-  .fc .fc-header-toolbar.fc-toolbar {
+  .wcjcal-fc .fc .fc-header-toolbar.fc-toolbar {
     align-items: center;
     flex-direction: column;
     height: auto;

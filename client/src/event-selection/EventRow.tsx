@@ -14,8 +14,7 @@ interface EventRowProps {
 export default function EventRow(props: EventRowProps) {
   return (
     <div
-      className="flex flex-row items-center px-2 my-2"
-      style={{ minHeight: "2rem" }}
+      className="flex flex-row items-center px-2 my-2 min-h-8"
       onClick={props.toggle}
     >
       <div
@@ -27,6 +26,7 @@ export default function EventRow(props: EventRowProps) {
             <ModalContent event={props.event}></ModalContent>,
             document.getElementById("modalRoot"),
             () => {
+              //console.log(jQuery(".modal"));
               jQuery(".modal").modal();
             }
           );

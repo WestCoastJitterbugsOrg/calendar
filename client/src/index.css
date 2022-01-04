@@ -4,11 +4,11 @@
 
 @layer base {
   #wcjcal {
-    font-size: 1rem;
-  }
-  @media screen and (min-width: theme("screens.sm")) {
-    #wcjcal {
-      @apply mx-4;
-    }
+    all: unset; /* Reset all styling by wordpress and tailwind */
+    display: block;
+    font-family: Raleway, sans;
+    font-size: 16px;
+    border: 1px solid black;
+    box-sizing: border-box;
   }
 }
