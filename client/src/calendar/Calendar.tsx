@@ -27,9 +27,11 @@ const CalendarViewConfig = (
         (e.el.title =
           e.event.title + "\nPlace: " + e.event.extendedProps["place"]),
       titleFormat: { year: "numeric", month: "long" },
-      dayHeaderFormat: { weekday: "long" },
+      dayHeaderFormat: { weekday: "long" }
     },
     timeGridWeek: {
+      scrollTimeReset: false,
+      scrollTime: '09:00:00',
       slotLabelFormat: {
         hour: "2-digit",
         minute: "2-digit",
