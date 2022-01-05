@@ -1,7 +1,5 @@
 import React from "react";
 import EventCheckbox from "./EventCheckbox";
-import "jquery-modal";
-import "jquery-modal/jquery.modal.css";
 import Modal from "react-modal";
 
 const customStyles: Modal.Styles = {
@@ -12,11 +10,12 @@ const customStyles: Modal.Styles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    maxWidth: 800
+    maxWidth: 800,
+    maxHeight: "max(80vh, 200px)",
+    overflow: "auto",
   },
   overlay: {
     zIndex: 10000,
-    overflow: "auto",
   },
 };
 
@@ -62,16 +61,31 @@ export default function EventRow(props: EventRowProps) {
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <ModalContent event={props.event}></ModalContent>,
+        <ModalContent
+          event={props.event}
+          onCloseClick={closeModal}
+        ></ModalContent>
       </Modal>
     </>
   );
 }
 
-function ModalContent({ event }: { event: Wcj.Event }) {
+function ModalContent({
+  event,
+  onCloseClick,
+}: {
+  event: Wcj.Event;
+  onCloseClick: () => void;
+}) {
   return (
-    <div className="modal">
-      <div className="text-2xl">{event.title} </div>
+    <div className="modal-content">
+      <div
+        style={{ position: "absolute", right: 20, top: 20, cursor: "pointer" }}
+        onClick={onCloseClick}
+      >
+        ✖
+      </div>
+      <h4>{event.title}</h4>
       {event.description.includes("<p>") ? (
         <div dangerouslySetInnerHTML={{ __html: event.description }} />
       ) : (
