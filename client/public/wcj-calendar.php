@@ -22,7 +22,7 @@ function wcjcal_shortcode_wp_enqueue_assets()
 	$css_to_load = plugin_dir_url(__FILE__) . 'wcjcal.css';
 
 	/* `wp-element` as dependency will load React and ReactDom for our app from `wp-includes` */
-	wp_register_script('wcjcal-script', $js_to_load, array('wp-element', "jquery"), $ver, true);
+	wp_register_script('wcjcal-script', $js_to_load, array('wp-element'), $ver, true);
 	wp_register_style('wcjcal-style', $css_to_load, array(), $ver);
 }
 

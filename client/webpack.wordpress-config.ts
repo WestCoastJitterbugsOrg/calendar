@@ -50,8 +50,7 @@ module.exports = (env: any) => {
     },
     externals: {
       react: "React",
-      "react-dom": "ReactDOM",
-      jquery: "jQuery",
+      "react-dom": "ReactDOM"
     },
     plugins: [
       new MiniCssExtractPlugin({

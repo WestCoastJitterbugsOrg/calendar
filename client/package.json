@@ -8,7 +8,6 @@
     "@fullcalendar/list": "^5.9.0",
     "@fullcalendar/react": "^5.9.0",
     "@fullcalendar/timegrid": "^5.9.0",
-    "jquery": "^3.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-modal": "^3.14.4",
@@ -25,7 +24,6 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.0.2",
-    "@types/jquery": "^3.5.7",
     "@types/mini-css-extract-plugin": "^2.4.0",
     "@types/node": "^17.0.6",
     "@types/postcss-import": "^14.0.0",
@@ -39,6 +37,7 @@
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "@typescript-eslint/parser": "^5.8.1",
     "autoprefixer": "^10.4.0",
+    "babel-jest": "^27.4.6",
     "babel-loader": "^8.2.3",
     "copy-webpack-plugin": "^10.2.0",
     "css-loader": "^6.5.1",
@@ -48,6 +47,7 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-webpack-plugin": "^3.1.1",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.4.7",
     "mini-css-extract-plugin": "^2.4.5",
     "path": "^0.12.7",
     "postcss": "^8.4.5",
@@ -55,6 +55,7 @@
     "postcss-loader": "^6.2.1",
     "postcss-prepend-selector": "^0.3.1",
     "postcss-rem-to-pixel": "^4.1.2",
+    "react-test-renderer": "^17.0.2",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.2.6",
     "ts-node": "^10.4.0",
@@ -69,7 +70,7 @@
     "start:standalone": "webpack serve --config webpack.standalone-config.ts --env API_URL=http://localhost:8081/calendar-api",
     "start:wordpress": "webpack watch --config webpack.wordpress-config.ts --env API_URL=http://localhost:8081/calendar-api",
     "build:prod": "webpack --config webpack.wordpress-config.ts --env API_URL=https://wcj.hemsida.eu/calendar-api --env production",
-    "test": "craco test",
+    "test": "echo Not implemented",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -121,5 +122,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "packageManager": "yarn@3.1.1"
 }

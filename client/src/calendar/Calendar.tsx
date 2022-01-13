@@ -63,26 +63,24 @@ const CalendarViewConfig = (
       buttonIcons: false,
 
       viewDidMount: () => {
-        jQuery(
-          ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)"
-        ).css({
-          visibility: "hidden",
-          width: "0",
-          height: "0",
-        });
+        const toolbarChunkStyle = document.querySelector<HTMLElement>(".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)")?.style;
+        if(toolbarChunkStyle != null) {
+          toolbarChunkStyle.visibility = "hidden";
+          toolbarChunkStyle.width = "0";
+          toolbarChunkStyle.height = "0";          
+        }
       },
       viewWillUnmount: () => {
-        jQuery(
-          ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)"
-        ).css({
-          visibility: "visible",
-          width: "auto",
-          height: "auto",
-        });
+        const toolbarChunkStyle = document.querySelector<HTMLElement>(".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)")?.style;
+        if(toolbarChunkStyle != null) {
+          toolbarChunkStyle.visibility = "visibility";
+          toolbarChunkStyle.width = "auto";
+          toolbarChunkStyle.height = "auto";          
+        }
       },
       eventDidMount: (e) => {
         // Add place info to events
-        const title = jQuery(e.el).find(".fc-list-event-title").get(0);
+        const title = e.el.querySelector(".fc-list-event-title")
         if (title != null) {
           title.outerHTML = `
             <td class="fc-list-event-title">${e.event.title}</td>
