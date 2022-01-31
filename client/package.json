@@ -11,7 +11,6 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-modal": "^3.14.4",
-    "tailwindcss": "^3.0.7",
     "web-vitals": "^2.1.2"
   },
   "devDependencies": {
@@ -57,6 +56,7 @@
     "postcss-rem-to-pixel": "^4.1.2",
     "react-test-renderer": "^17.0.2",
     "style-loader": "^3.3.1",
+    "tailwindcss": "^3.0.13",
     "ts-loader": "^9.2.6",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4",
@@ -70,8 +70,7 @@
     "start:standalone": "webpack serve --config webpack.standalone-config.ts --env API_URL=http://localhost:8081/calendar-api",
     "start:wordpress": "webpack watch --config webpack.wordpress-config.ts --env API_URL=http://localhost:8081/calendar-api",
     "build:prod": "webpack --config webpack.wordpress-config.ts --env API_URL=https://wcj.hemsida.eu/calendar-api --env production",
-    "test": "echo Not implemented",
-    "eject": "react-scripts eject"
+    "test": "echo Not implemented"
   },
   "eslintConfig": {
     "env": {

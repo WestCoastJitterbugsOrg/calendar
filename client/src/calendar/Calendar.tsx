@@ -27,11 +27,11 @@ const CalendarViewConfig = (
         (e.el.title =
           e.event.title + "\nPlace: " + e.event.extendedProps["place"]),
       titleFormat: { year: "numeric", month: "long" },
-      dayHeaderFormat: { weekday: "long" }
+      dayHeaderFormat: { weekday: "long" },
     },
     timeGridWeek: {
       scrollTimeReset: false,
-      scrollTime: '09:00:00',
+      scrollTime: "09:00:00",
       slotLabelFormat: {
         hour: "2-digit",
         minute: "2-digit",
@@ -63,24 +63,29 @@ const CalendarViewConfig = (
       buttonIcons: false,
 
       viewDidMount: () => {
-        const toolbarChunkStyle = document.querySelector<HTMLElement>(".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)")?.style;
-        if(toolbarChunkStyle != null) {
-          toolbarChunkStyle.visibility = "hidden";
-          toolbarChunkStyle.width = "0";
-          toolbarChunkStyle.height = "0";          
-        }
+        document
+        .querySelectorAll<HTMLElement>(
+          ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)"
+        )
+        .forEach((toolbarChunk) => {
+          toolbarChunk.style.width = "0";
+          toolbarChunk.style.height = "0";
+        });
+
       },
       viewWillUnmount: () => {
-        const toolbarChunkStyle = document.querySelector<HTMLElement>(".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)")?.style;
-        if(toolbarChunkStyle != null) {
-          toolbarChunkStyle.visibility = "visibility";
-          toolbarChunkStyle.width = "auto";
-          toolbarChunkStyle.height = "auto";          
-        }
+        document
+          .querySelectorAll<HTMLElement>(
+            ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)"
+          )
+          .forEach((toolbarChunk) => {
+            toolbarChunk.style.width = "auto";
+            toolbarChunk.style.height = "auto";
+          });
       },
       eventDidMount: (e) => {
         // Add place info to events
-        const title = e.el.querySelector(".fc-list-event-title")
+        const title = e.el.querySelector(".fc-list-event-title");
         if (title != null) {
           title.outerHTML = `
             <td class="fc-list-event-title">${e.event.title}</td>
@@ -128,7 +133,7 @@ export default function Calendar() {
         plugins={[dayGridPlugin, listPlugin, timeGridPlugin]}
         initialView={
           window.innerWidth <=
-          parseInt((fullConfig.theme.screens as TailwindValues)["sm"])
+          parseInt((fullConfig.theme.screens as TailwindValues)?.["sm"])
             ? "listEternal"
             : "timeGridWeek"
         }

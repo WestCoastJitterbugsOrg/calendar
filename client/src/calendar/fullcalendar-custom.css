@@ -116,11 +116,17 @@
       background-color: theme("colors.wcj-black");
       color: white;
 
-      & .fc-toolbar-chunk .fc-toolbar-title {
-        font-size: medium;
-        display: inline;
-        margin: 0 0.5rem;
-        white-space: nowrap;
+      & .fc-toolbar-chunk {
+        &:nth-child(-n+2) {
+          overflow: hidden;
+        }
+        
+        & .fc-toolbar-title {
+          font-size: medium;
+          display: inline;
+          margin: 0 0.5rem;
+          white-space: nowrap;
+        }
       }
     }
 
