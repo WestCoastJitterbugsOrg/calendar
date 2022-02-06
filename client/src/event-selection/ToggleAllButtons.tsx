@@ -7,7 +7,7 @@ export default function ToggleAllButtons() {
   const { dispatch} = React.useContext(StateContext);
   
   return (
-    <div className="bg-wcj-black flex flex-row h-16 justify-center items-center space-x-4">
+    <div className="bg-wcj-black flex flex-row h-16 justify-center items-center space-x-4 font-xs">
       <Button
         title="Select all"
         size="md"

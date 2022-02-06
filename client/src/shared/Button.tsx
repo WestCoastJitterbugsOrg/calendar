@@ -21,7 +21,7 @@ export default function Button(props: ButtonData) {
   return (
     <button
       className={[
-        "bg-wcj-red text-white font-bold",
+        "bg-wcj-red text-white font-bold text-base leading-4",
         "rounded-full",
         "transition-colors hover:bg-wcj-red-hover",
         paddingClasses,

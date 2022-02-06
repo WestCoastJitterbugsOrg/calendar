@@ -4,8 +4,8 @@
   "description": "Serves WCJ events from different sources",
   "main": "src/index.ts",
   "engines": {
-    "node": "^14.18.1",
-    "npm": "^6.14.15"
+    "node": "^16.13.2",
+    "npm": "^8.4.0"
   },
   "scripts": {
     "start": "NODE_ENV=\"development\" nodemon src/index.ts",

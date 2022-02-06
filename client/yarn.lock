@@ -1442,6 +1442,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fullcalendar/interaction@npm:^5.10.1":
+  version: 5.10.1
+  resolution: "@fullcalendar/interaction@npm:5.10.1"
+  dependencies:
+    "@fullcalendar/common": ~5.10.1
+    tslib: ^2.1.0
+  checksum: 5a90bcee3a704fca10c08cc3b96269a9b9c9a7268668947fb42abc48dace81c2b79b9f45440a6c07f57d335734c4c00cc84d02d2a08b97ff646fbc44977de8fd
+  languageName: node
+  linkType: hard
+
 "@fullcalendar/list@npm:^5.9.0":
   version: 5.10.1
   resolution: "@fullcalendar/list@npm:5.10.1"
@@ -3611,6 +3621,7 @@ __metadata:
     "@babel/preset-react": ^7.16.7
     "@babel/preset-typescript": ^7.16.7
     "@fullcalendar/daygrid": ^5.10.1
+    "@fullcalendar/interaction": ^5.10.1
     "@fullcalendar/list": ^5.9.0
     "@fullcalendar/react": ^5.9.0
     "@fullcalendar/timegrid": ^5.9.0
@@ -3640,6 +3651,7 @@ __metadata:
     eslint: ^8.6.0
     eslint-config-prettier: ^8.3.0
     eslint-plugin-react: ^7.28.0
+    eslint-plugin-react-hooks: ^4.3.0
     eslint-webpack-plugin: ^3.1.1
     html-webpack-plugin: ^5.5.0
     jest: ^27.4.7
@@ -4717,6 +4729,15 @@ __metadata:
   bin:
     eslint-config-prettier: bin/cli.js
   checksum: df4cea3032671995bb5ab07e016169072f7fa59f44a53251664d9ca60951b66cdc872683b5c6a3729c91497c11490ca44a79654b395dd6756beb0c3903a37196
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-react-hooks@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "eslint-plugin-react-hooks@npm:4.3.0"
+  peerDependencies:
+    eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
+  checksum: 0ba1566ba0780bbc75a5921f49188edf232db2085ab32c8d3889592f0db9d6fadc97fcf639775e0101dec6b5409ca3c803ec44213b90c8bacaf0bdf921871c2e
   languageName: node
   linkType: hard
 

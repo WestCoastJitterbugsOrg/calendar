@@ -6,12 +6,13 @@ import { formatDate } from "@fullcalendar/common";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import React from "react";
+import React, { useRef } from "react";
 import { StateContext } from "../App";
 import "./fullcalendar-custom.css";
 import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "../../tailwind.config.js";
 import { TailwindValues } from "tailwindcss/tailwind-config";
+import interactionPlugin from "@fullcalendar/interaction"; // for selectable
 
 const fullConfig = resolveConfig(tailwindConfig);
 
@@ -23,9 +24,6 @@ const CalendarViewConfig = (
 ): FullCalendarPropType["views"] => {
   return {
     dayGridMonth: {
-      eventDidMount: (e) =>
-        (e.el.title =
-          e.event.title + "\nPlace: " + e.event.extendedProps["place"]),
       titleFormat: { year: "numeric", month: "long" },
       dayHeaderFormat: { weekday: "long" },
     },
@@ -38,9 +36,6 @@ const CalendarViewConfig = (
         meridiem: false,
         hour12: false,
       },
-      eventDidMount: (e) =>
-        (e.el.title =
-          e.event.title + "\nPlace: " + e.event.extendedProps["place"]),
       titleFormat: (args) =>
         `Week ${formatDate(args.date.marker, { week: "numeric" })}, 
           ${formatDate(args.date.marker, {
@@ -64,14 +59,13 @@ const CalendarViewConfig = (
 
       viewDidMount: () => {
         document
-        .querySelectorAll<HTMLElement>(
-          ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)"
-        )
-        .forEach((toolbarChunk) => {
-          toolbarChunk.style.width = "0";
-          toolbarChunk.style.height = "0";
-        });
-
+          .querySelectorAll<HTMLElement>(
+            ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)"
+          )
+          .forEach((toolbarChunk) => {
+            toolbarChunk.style.width = "0";
+            toolbarChunk.style.height = "0";
+          });
       },
       viewWillUnmount: () => {
         document
@@ -111,26 +105,34 @@ const CalendarViewConfig = (
   };
 };
 
+function getEventRange(events: Wcj.Event[]) {
+  const firstOccasion = Math.min(
+    ...events.flatMap((event) =>
+      event.occasions.map((occ) => occ.start.getTime())
+    )
+  );
+  const lastOccasion = Math.max(
+    ...events.flatMap((event) =>
+      event.occasions.map((occ) => occ.end.getTime())
+    )
+  );
+
+  return [firstOccasion, lastOccasion];
+}
+
 export default function Calendar() {
   const stateContext = React.useContext(StateContext);
   const wcjEvents = Object.values(stateContext.state.events.byId).filter(
     (event) => event.showInCalendar
   );
-  const events = wcjEvents.map(wcj2fcEvent);
-  const firstOccasion = Math.min(
-    ...wcjEvents.flatMap((event) =>
-      event.occasions.map((occ) => new Date(occ.start).getTime())
-    )
-  );
-  const lastOccasion = Math.max(
-    ...wcjEvents.flatMap((event) =>
-      event.occasions.map((occ) => new Date(occ.end).getTime())
-    )
-  );
+  const [firstOccasion, lastOccasion] = getEventRange(wcjEvents);
+
+  const selected = useRef<Element>();
+  const tooltip = useRef<HTMLDivElement>();
   return (
     <div className="wcjcal-fc">
       <FullCalendar
-        plugins={[dayGridPlugin, listPlugin, timeGridPlugin]}
+        plugins={[dayGridPlugin, listPlugin, timeGridPlugin, interactionPlugin]}
         initialView={
           window.innerWidth <=
           parseInt((fullConfig.theme.screens as TailwindValues)?.["sm"])
@@ -164,9 +166,53 @@ export default function Calendar() {
           hour12: false,
         }}
         allDaySlot={false}
-        eventSources={events}
+        eventSources={wcjEvents.map(wcj2fcEvent)}
         eventBackgroundColor="#AB2814"
         eventBorderColor="#AB2814"
+        eventClick={(fc) => {
+          if (
+            (fc.view.type === "dayGridMonth" ||
+              fc.view.type === "timeGridWeek") &&
+            fc.el.parentNode
+          ) {
+            if (selected.current && selected?.current !== fc.el) {
+              selected.current.classList.remove("bg-gray");
+              selected.current.parentElement?.style.setProperty("z-index", "1");
+              selected.current?.parentNode?.parentNode?.parentElement?.style.setProperty(
+                "z-index",
+                "1"
+              );
+              tooltip.current?.remove();
+            }
+            selected.current = fc.el;
+            selected.current.parentElement?.style.setProperty("z-index", "10");
+            selected.current?.parentNode?.parentNode?.parentElement?.style.setProperty(
+              "z-index",
+              "10"
+            );
+            tooltip.current = document.createElement("div");
+            tooltip.current.appendChild(
+              document.createTextNode(
+                `${fc.event.title}\n${fc.event.extendedProps["place"]}`
+              )
+            );
+            tooltip.current.className =
+              "absolute p-2 bg-black/80 text-white rounded-md z-50 leading-6 w-64 left-1/2 -ml-32 shadow-lg shadow-black/50 whitespace-pre overflow-hidden text-ellipsis ";
+            selected?.current.parentNode?.appendChild(tooltip.current);
+          } else {
+            return;
+          }
+        }}
+        selectable={false}
+        dateClick={() => {
+          selected.current?.classList.remove("bg-gray");
+          selected.current?.parentElement?.style.setProperty("z-index", "1");
+          selected.current?.parentNode?.parentNode?.parentElement?.style.setProperty(
+            "z-index",
+            "1"
+          );
+          tooltip.current?.remove();
+        }}
       />
     </div>
   );
@@ -175,13 +221,15 @@ export default function Calendar() {
 function wcj2fcEvent(wcjEvent: Wcj.Event): EventSourceInput {
   return {
     id: wcjEvent.id,
-    events: wcjEvent.occasions.map<EventInput>((occasion) => ({
-      id: `${wcjEvent.id}-${occasion.start}-${occasion.end}`,
-      title: wcjEvent.title,
-      start: occasion.start,
-      end: occasion.end,
-      groupId: wcjEvent.id,
-      extendedProps: wcjEvent,
-    })),
+    events: wcjEvent.occasions.map(
+      (occasion): EventInput => ({
+        id: `${wcjEvent.id}-${occasion.start}-${occasion.end}`,
+        title: wcjEvent.title,
+        start: occasion.start,
+        end: occasion.end,
+        groupId: wcjEvent.id,
+        extendedProps: wcjEvent,
+      })
+    ),
   };
 }
