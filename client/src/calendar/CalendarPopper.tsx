@@ -1,15 +1,59 @@
 import { EventApi, EventClickArg } from "@fullcalendar/react";
 import { createPopper, Instance } from "@popperjs/core";
-import { useRef } from "react";
+import React, { useRef } from "react";
+import ReactDOM from "react-dom";
+import { EventSeriesModal } from "../shared/EventModal";
 
 const highlightClass = "bg-gray-200";
 const oldZAttribute = "data-old-z";
 
+function TooltipComponent({ event }: { event: EventApi }) {
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+  return (
+    <>
+      <div>
+        <strong>Title: </strong> {event.title}
+      </div>
+      <div>
+        <strong>Time: </strong>{" "}
+        {event.formatRange({
+          hour: "2-digit",
+          minute: "2-digit",
+          hourCycle: "h24",
+        })}
+      </div>
+      <div>
+        <strong>Place: </strong> {event.extendedProps["place"]}
+      </div>
+      <div>
+        <div
+          className="cursor-pointer underline mt-4 text-wcj-mint font-bold"
+          onClick={openModal}
+        >
+          About series 
+        </div>
+      </div>
+      <EventSeriesModal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        event={event.extendedProps as Wcj.Event}
+      ></EventSeriesModal>
+    </>
+  );
+}
+
 function createTooltip(event: EventApi) {
   const tooltip = document.createElement("div");
-  tooltip.appendChild(
-    document.createTextNode(`${event.title}\n${event.extendedProps["place"]}`)
-  );
+
+  ReactDOM.render(<TooltipComponent event={event}></TooltipComponent>, tooltip);
   tooltip.className = `
       absolute z-50 rounded-md
       shadow-lg shadow-black/50

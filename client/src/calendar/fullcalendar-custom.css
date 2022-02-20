@@ -26,7 +26,7 @@
   --fc-button-active-border-color: theme("colors.wcj-red-active");
 
   /* List view */
-  --fc-list-event-dot-width: 10px;
+  --fc-list-event-dot-width: 0;
   --fc-list-event-hover-bg-color: #fafafa;
 
   /* #region Unused */
@@ -163,23 +163,20 @@
     }
 
     & .fc-dayGridMonth-view {
-      & .fc-event-title {
-        display: none;
-      }
       & .fc-daygrid-day-number {
         cursor: default;
       }
       & .fc-daygrid-event {
-        white-space: normal;
-        & .fc-event-time {
-          line-height: 0.8;
+        & .fc-event-main-frame {
+          flex-direction: column;
+          & .fc-event-time { 
+            white-space: normal;
+          }
+          & .fc-event-title {
+            text-overflow:ellipsis;
+          }
         }
       }
-    }
-
-    & a {
-      text-decoration: none;
-      color: theme("colors.wcj-black");
     }
   }
 }

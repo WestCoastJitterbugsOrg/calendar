@@ -3,6 +3,7 @@ import {
   formatDate,
   VerboseFormattingArg,
 } from "@fullcalendar/react";
+import { ViewOptions } from "./CalendarViewConfig";
 
 function listDaySideFormat(args: VerboseFormattingArg) {
   return (
@@ -68,5 +69,5 @@ export default function createListEternal(start: Date, end: Date) {
         end: end,
       };
     },
-  } as const;
+  } as ViewOptions;
 }

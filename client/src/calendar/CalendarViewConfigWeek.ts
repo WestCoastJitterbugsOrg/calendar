@@ -1,4 +1,5 @@
 import { formatDate, FormatterInput } from "@fullcalendar/react";
+import { ViewOptions } from "./CalendarViewConfig";
 
 const titleFormat: FormatterInput = (args) =>
   `Week ${formatDate(args.date.marker, { week: "numeric" })}, 
@@ -23,4 +24,4 @@ export default {
   },
   titleFormat,
   dayHeaderFormat,
-} as const;
+} as ViewOptions;

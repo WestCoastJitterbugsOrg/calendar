@@ -18,7 +18,6 @@ import "./fullcalendar-custom.css";
 
 const fullConfig = resolveConfig(tailwindConfig);
 const colors = fullConfig.theme.colors as TailwindValuesColor;
-const wcjRed = colors["wcj-red"] as string;
 
 export default function Calendar() {
   const stateContext = React.useContext(StateContext);
@@ -28,10 +27,8 @@ export default function Calendar() {
 
   const allEvents = wcjEvents.flatMap((event) => event.occasions);
 
-  const firstOccasion = Math.min(
-    ...allEvents.map((occ) => occ.start.getTime())
-  );
-  const lastOccasion = Math.max(...allEvents.map((occ) => occ.end.getTime()));
+  const firstOccasion = Math.min(...allEvents.map((o) => o.start.getTime()));
+  const lastOccasion = Math.max(...allEvents.map((o) => o.end.getTime()));
 
   const popperHandler = usePopperHandler();
 
@@ -71,10 +68,11 @@ export default function Calendar() {
           meridiem: false,
           hour12: false,
         }}
+        eventDisplay="block"
         allDaySlot={false}
         eventSources={wcjEvents.map(wcj2fcEvent)}
-        eventBackgroundColor={wcjRed}
-        eventBorderColor={wcjRed}
+        eventBackgroundColor={colors["wcj-red"] as string}
+        eventBorderColor="transparent"
         eventClick={popperHandler.handleEventClick}
         selectable={false}
         dateClick={popperHandler.removePopper}
