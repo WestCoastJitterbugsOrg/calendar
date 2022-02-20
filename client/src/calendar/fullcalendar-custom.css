@@ -59,6 +59,13 @@
       background-color: #f5f5f5;
     }
 
+    &.fc-theme-standard .fc-list-day-cushion {
+      & .fc-list-day-text,
+      & .fc-list-day-side-text {
+        cursor: default;
+      }
+    }
+
     & .fc-button {
       padding: 8px 18px;
       border-radius: 0;
@@ -117,10 +124,10 @@
       color: white;
 
       & .fc-toolbar-chunk {
-        &:nth-child(-n+2) {
+        &:nth-child(-n + 2) {
           overflow: hidden;
         }
-        
+
         & .fc-toolbar-title {
           font-size: medium;
           display: inline;
@@ -152,15 +159,18 @@
       color: black;
       text-decoration: none;
       line-height: 1.5;
+      cursor: default;
     }
 
     & .fc-dayGridMonth-view {
       & .fc-event-title {
         display: none;
       }
+      & .fc-daygrid-day-number {
+        cursor: default;
+      }
       & .fc-daygrid-event {
         white-space: normal;
-        cursor: default;
         & .fc-event-time {
           line-height: 0.8;
         }
