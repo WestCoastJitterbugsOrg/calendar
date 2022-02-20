@@ -19,8 +19,10 @@ export function useSelectors<State, Selectors>(
   mapStateToSelectors: (_: State) => Selectors
 ): Selectors {
   const [state] = reducer;
-  const selectors = useMemo(() => mapStateToSelectors(state), [state, mapStateToSelectors]);
-  return selectors;
+  return useMemo(
+    () => mapStateToSelectors(state),
+    [state, mapStateToSelectors]
+  );
 }
 
 export function useActions<State, Actions>(
@@ -28,6 +30,8 @@ export function useActions<State, Actions>(
   mapDispatchToActions: (_: Dispatch<State>) => Actions
 ): Actions {
   const [, dispatch] = reducer;
-  const actions = useMemo(() => mapDispatchToActions(dispatch), [dispatch, mapDispatchToActions]);
-  return actions;
+  return useMemo(
+    () => mapDispatchToActions(dispatch),
+    [dispatch, mapDispatchToActions]
+  );
 }

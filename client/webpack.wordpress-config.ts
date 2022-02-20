@@ -50,14 +50,19 @@ module.exports = (env: any) => {
     },
     externals: {
       react: "React",
-      "react-dom": "ReactDOM"
+      "react-dom": "ReactDOM",
     },
     plugins: [
       new MiniCssExtractPlugin({
         filename: "wcjcal.css",
       }),
       new CopyWebpackPlugin({
-        patterns: ["public/wcj-calendar.php"],
+        patterns: [
+          {
+            from: "public/*.php",
+            to: "[name][ext]",
+          },
+        ],
       }),
       new DefinePlugin({
         API_URL: `"${env.API_URL}"`,
