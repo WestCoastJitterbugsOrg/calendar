@@ -11,7 +11,7 @@ function wcjcal_settings_init()
     // Register a new section in the "wcjcal" page.
     add_settings_section(
         'wcjcal_section_developers',
-        __('This is just a mocked up page for now', 'wcjcal'),
+        __('This is just a mocked up page for now, it doesn\'t affect anything', 'wcjcal'),
         'wcjcal_section_developers_callback',
         'wcjcal'
     );

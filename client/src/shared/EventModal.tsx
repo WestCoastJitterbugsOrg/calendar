@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
+import { LinkButton } from "./Button";
 
 const customStyles: Modal.Styles = {
   content: {
@@ -68,20 +69,23 @@ function EventSeriesModalContent({
       ) : (
         <p>event.description</p>
       )}
-      <div>
-        <strong>Where:</strong> {event.place}
-      </div>
-      <div>
-        <strong>Price:</strong> {event.price}
-      </div>
-      <div>
-        <strong>Instructors:</strong> {event.instructors}
-      </div>
-      <div>
-        <strong>Registration:</strong>
-        <a href={event.registrationUrl} target="_blank" rel="noreferrer">
-          Click here
-        </a>
+      <div className="flex items-end">
+        <div className="flex-grow">
+          <div>
+            <strong>Where:</strong> {event.place}
+          </div>
+          <div>
+            <strong>Price:</strong> {event.price}
+          </div>
+          <div>
+            <strong>Instructors:</strong> {event.instructors}
+          </div>
+        </div>
+        <LinkButton
+          title="Registration"
+          href={event.registrationUrl}
+          size="lg"
+        />
       </div>
     </div>
   );
