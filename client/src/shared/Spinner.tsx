@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function SpinLoader() {
   return (
     <div className="flex h-screen justify-center items-center bg-wcj-sand">

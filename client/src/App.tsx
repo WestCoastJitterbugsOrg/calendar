@@ -1,9 +1,4 @@
-import React, {
-  ReactChild,
-  useMemo,
-  useReducer,
-  useState,
-} from "react";
+import { createContext, ReactChild, useMemo, useReducer, useState } from "react";
 import Calendar from "./calendar/Calendar";
 import EventGroup from "./event-selection/EventGroup";
 import ToggleAllButtons from "./event-selection/ToggleAllButtons";
@@ -19,7 +14,7 @@ const initialContext: EventStore = {
   eventModal: false,
 };
 
-export const StateContext = React.createContext<{
+export const StateContext = createContext<{
   state: EventStore;
   dispatch: React.Dispatch<EventActions>;
 }>({

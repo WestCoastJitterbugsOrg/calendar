@@ -1,4 +1,3 @@
-import React from "react";
 import EventCheckbox from "./EventCheckbox";
 
 interface EventRowProps {

@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useContext } from "react";
 import { StateContext } from "../App";
 import { useSelectors } from "../store/hooks";
 import { EventActionTypes } from "../store/reducers";
@@ -10,8 +10,8 @@ interface EventGroupProps {
 }
 
 export default function EventGroup({ category: categoryId }: EventGroupProps) {
-  const [expanded, setExpanded] = React.useState(false);
-  const { state, dispatch } = React.useContext(StateContext);
+  const [expanded, setExpanded] = useState(false);
+  const { state, dispatch } = useContext(StateContext);
 
   const { events, category, globalCheckState } = useSelectors(
     [state],

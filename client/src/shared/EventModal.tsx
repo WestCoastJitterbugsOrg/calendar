@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import Modal from "react-modal";
 import { StateContext } from "../App";
 import { EventActionTypes } from "../store/reducers";

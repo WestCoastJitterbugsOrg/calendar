@@ -1,6 +1,6 @@
 import { EventApi, EventClickArg } from "@fullcalendar/react";
 import { createPopper, Instance } from "@popperjs/core";
-import React, { useRef } from "react";
+import { useContext, useRef } from "react";
 import ReactDOM from "react-dom";
 import { StateContext } from "../App";
 import { EventActionTypes } from "../store/reducers";
@@ -63,7 +63,7 @@ function TooltipComponent({
 
 export function usePopperHandler() {
   const popper = useRef<Instance>();
-  const { state, dispatch } = React.useContext(StateContext);
+  const { state, dispatch } = useContext(StateContext);
 
   function createTooltip(event: EventApi, target: HTMLElement) {
     const tooltipWrapper = document.createElement("div");

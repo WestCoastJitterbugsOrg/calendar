@@ -2,7 +2,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import React from "react";
+import { useContext } from "react";
 import { StateContext } from "../App";
 import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "../../tailwind.config.js";
@@ -20,7 +20,7 @@ const fullConfig = resolveConfig(tailwindConfig);
 const colors = fullConfig.theme.colors as TailwindValuesColor;
 
 export default function Calendar() {
-  const stateContext = React.useContext(StateContext);
+  const stateContext = useContext(StateContext);
   const wcjEvents = Object.values(stateContext.state.events.byId).filter(
     (event) => event.showInCalendar
   );
