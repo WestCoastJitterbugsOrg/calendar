@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import Modal from "react-modal";
+import { StateContext } from "../App";
+import { EventActionTypes } from "../store/reducers";
 import { LinkButton } from "./Button";
 
 const customStyles: Modal.Styles = {
@@ -22,28 +24,36 @@ const customStyles: Modal.Styles = {
 
 Modal.setAppElement("#wcjcal");
 
-export function EventSeriesModal({
-  event,
-  isOpen,
-  onRequestClose,
-}: {
-  event: Wcj.Event;
-  isOpen: boolean;
-  onRequestClose: () => void;
-}) {
+function displayDate(date: Date) {
+  return date.toLocaleString("en-GB", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "UTC",
+  });
+}
+
+export function EventSeriesModal(props: { ref?: HTMLElement }) {
+  const { state, dispatch } = useContext(StateContext);
+
   return (
     <Modal
-      isOpen={isOpen}
-      onRequestClose={onRequestClose}
+      onRequestClose={() => {
+        dispatch({
+          type: EventActionTypes.modalClosed,
+        });
+      }}
+      isOpen={!!state.eventModal}
       style={customStyles}
-      parentSelector={() =>
-        document.querySelector<HTMLElement>("#wcjcal") || document.body
-      }
+      parentSelector={() => document.getElementById("wcjcal") || document.body}
     >
-      <EventSeriesModalContent
-        event={event}
-        onCloseClick={onRequestClose}
-      ></EventSeriesModalContent>
+      {state.eventModal && (
+        <EventSeriesModalContent
+          event={state.events.byId[state.eventModal]}
+          onCloseClick={() => {
+            dispatch({ type: EventActionTypes.modalClosed });
+          }}
+        ></EventSeriesModalContent>
+      )}
     </Modal>
   );
 }
@@ -55,6 +65,17 @@ function EventSeriesModalContent({
   event: Wcj.Event;
   onCloseClick: () => void;
 }) {
+  const { first, last } = event.occasions.reduce(
+    ({ first, last }, curr) => ({
+      first: Math.min(first, curr.start.getTime()),
+      last: Math.max(last, curr.end.getTime()),
+    }),
+    {
+      first: Number.MAX_SAFE_INTEGER,
+      last: Number.MIN_SAFE_INTEGER,
+    }
+  );
+
   return (
     <div className="modal-content">
       <div
@@ -63,11 +84,11 @@ function EventSeriesModalContent({
       >
         ✖
       </div>
-      <h4>{event.title}</h4>
-      {event.description.includes("<p>") ? (
+      <h4 className="mt-0">{event.title}</h4>
+      {event.description?.includes("<p>") ? (
         <div dangerouslySetInnerHTML={{ __html: event.description }} />
       ) : (
-        <p>event.description</p>
+        <p>{event.description}</p>
       )}
       <div className="flex items-end">
         <div className="flex-grow">
@@ -79,6 +100,13 @@ function EventSeriesModalContent({
           </div>
           <div>
             <strong>Instructors:</strong> {event.instructors}
+          </div>
+          <div>
+            <strong>First occasion starts:</strong>{" "}
+            {displayDate(new Date(first))}
+          </div>
+          <div>
+            <strong>Last occasion ends:</strong> {displayDate(new Date(last))}
           </div>
         </div>
         <LinkButton

@@ -62,7 +62,9 @@
     &.fc-theme-standard .fc-list-day-cushion {
       & .fc-list-day-text,
       & .fc-list-day-side-text {
+        color: black;
         cursor: default;
+        text-decoration: none;
       }
     }
 
@@ -162,18 +164,28 @@
       cursor: default;
     }
 
+    & .fc-timeGridWeek-view .fc-timegrid-event {
+      cursor: pointer;
+    }
+
     & .fc-dayGridMonth-view {
       & .fc-daygrid-day-number {
         cursor: default;
+        color: black;
+        text-decoration: none;
       }
       & .fc-daygrid-event {
+        cursor: pointer;
         & .fc-event-main-frame {
           flex-direction: column;
-          & .fc-event-time { 
+          padding: 4px 2px;
+          & .fc-event-time {
             white-space: normal;
+            line-height: 1;
           }
           & .fc-event-title {
-            text-overflow:ellipsis;
+            text-overflow: ellipsis;
+            line-height: 1;
           }
         }
       }

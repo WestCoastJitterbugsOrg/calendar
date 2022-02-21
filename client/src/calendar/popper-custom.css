@@ -1,0 +1,15 @@
+#wcj-tooltip[data-popper-placement^="top"] > #wcj-arrow {
+  bottom: -4px;
+}
+
+#wcj-tooltip[data-popper-placement^="bottom"] > #wcj-arrow {
+  top: -4px;
+}
+
+#wcj-tooltip[data-popper-placement^="left"] > #wcj-arrow {
+  right: -4px;
+}
+
+#wcj-tooltip[data-popper-placement^="right"] > #wcj-arrow {
+  left: -4px;
+}

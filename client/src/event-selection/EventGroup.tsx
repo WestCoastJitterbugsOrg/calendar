@@ -25,10 +25,10 @@ export default function EventGroup({ category: categoryId }: EventGroupProps) {
       const eventsShown = events.filter((event) => event.showInCalendar).length;
       const globalCheckState =
         eventsShown === 0
-          ? "none" as const
+          ? ("none" as const)
           : eventsShown === events.length
-          ? "all" as const
-          : "some" as const;
+          ? ("all" as const)
+          : ("some" as const);
 
       return {
         category,
@@ -60,9 +60,11 @@ export default function EventGroup({ category: categoryId }: EventGroupProps) {
       />
 
       <div
-        className={"bg-wcj-sand overflow-hidden " + (expanded ? "max-h-full" : "max-h-0")}
+        className={
+          "bg-wcj-sand overflow-hidden " + (expanded ? "max-h-full" : "max-h-0")
+        }
       >
-        {events.map(event => (
+        {events.map((event) => (
           <EventRow
             event={event}
             toggle={() =>
@@ -71,7 +73,12 @@ export default function EventGroup({ category: categoryId }: EventGroupProps) {
                 payload: { id: event.id },
               })
             }
-            showInfo={() => dispatch({type: EventActionTypes.eventModalRequested, payload: event.id})}
+            showInfo={() =>
+              dispatch({
+                type: EventActionTypes.eventModalRequested,
+                payload: event.id,
+              })
+            }
             checked={!!event.showInCalendar}
             key={event.id}
           />

@@ -38,9 +38,9 @@ export default function eventReducer(
     case EventActionTypes.eventsLoaded:
       return eventsLoaded(state, action.payload);
     case EventActionTypes.eventModalRequested:
-      return { ...state, showModal: action.payload };
+      return { ...state, eventModal: action.payload };
     case EventActionTypes.modalClosed:
-      return { ...state, showModal: undefined };
+      return { ...state, eventModal: false };
 
     default:
       return { ...state };

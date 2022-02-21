@@ -1,5 +1,4 @@
 import React from "react";
-import { EventSeriesModal } from "../shared/EventModal";
 import EventCheckbox from "./EventCheckbox";
 
 interface EventRowProps {
@@ -10,15 +9,6 @@ interface EventRowProps {
 }
 
 export default function EventRow(props: EventRowProps) {
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
 
   return (
     <>
@@ -26,7 +16,7 @@ export default function EventRow(props: EventRowProps) {
         className="flex flex-row items-center px-2 my-2 min-h-8"
         onClick={props.toggle}
       >
-        <div className="h-4 w-4 mr-2 flex-none" onClick={openModal}>
+        <div className="h-4 w-4 mr-2 flex-none" onClick={props.showInfo}>
           <InfoButton />
         </div>
         <div className="flex-grow cursor-pointer pr-2 leading-tight">
@@ -36,12 +26,6 @@ export default function EventRow(props: EventRowProps) {
           <EventCheckbox color="#AB2814" checked={props.checked} />
         </div>
       </div>
-
-      <EventSeriesModal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        event={props.event}
-      ></EventSeriesModal>
     </>
   );
 }

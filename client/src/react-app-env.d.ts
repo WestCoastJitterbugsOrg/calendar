@@ -11,7 +11,7 @@ declare namespace Wcj {
       start: Date;
       end: Date;
     }[];
-    description: string;
+    description?: string;
     registrationUrl: string;
     place: string;
     price: string;

@@ -58,7 +58,7 @@ module.exports = (env: any) => ({
         {
           from: require.resolve("react-dom/umd/react-dom.development.js"),
           to: "js/[name].js",
-        }
+        },
       ],
     }),
     new DefinePlugin({ API_URL: `"${env.API_URL}"` }),

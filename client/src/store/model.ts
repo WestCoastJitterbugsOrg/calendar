@@ -11,7 +11,8 @@ export default interface EventStore {
     };
     allIds: string[];
   };
-  showModal?: string;
+  // If string, show modal with event matching that id. If false, don't show modal
+  eventModal: string | false;
 }
 
 interface CategoryStore {

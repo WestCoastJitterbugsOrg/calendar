@@ -1,8 +1,14 @@
-import React, { ReactChild, useMemo, useReducer, useState } from "react";
+import React, {
+  ReactChild,
+  useMemo,
+  useReducer,
+  useState,
+} from "react";
 import Calendar from "./calendar/Calendar";
 import EventGroup from "./event-selection/EventGroup";
 import ToggleAllButtons from "./event-selection/ToggleAllButtons";
 import loadCogworkData from "./services/cogwork";
+import { EventSeriesModal } from "./shared/EventModal";
 import SpinLoader from "./shared/Spinner";
 import EventStore from "./store/model";
 import eventReducer, { EventActions, EventActionTypes } from "./store/reducers";
@@ -10,6 +16,7 @@ import eventReducer, { EventActions, EventActionTypes } from "./store/reducers";
 const initialContext: EventStore = {
   categories: { byId: {}, allIds: [] },
   events: { byId: {}, allIds: [] },
+  eventModal: false,
 };
 
 export const StateContext = React.createContext<{
@@ -72,6 +79,7 @@ export default function App() {
               <Calendar />
             </div>
           </div>
+          <EventSeriesModal />
         </StateContext.Provider>
       );
     }

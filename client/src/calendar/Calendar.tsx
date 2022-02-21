@@ -75,7 +75,6 @@ export default function Calendar() {
         eventBorderColor="transparent"
         eventClick={popperHandler.handleEventClick}
         selectable={false}
-        dateClick={popperHandler.removePopper}
       />
     </div>
   );
