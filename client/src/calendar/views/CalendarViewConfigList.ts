@@ -54,7 +54,7 @@ function viewWillUnmount() {
     });
 }
 
-export default function createListEternal(start: Date, end: Date) {
+export default function createListEternal(start: Date, end: Date): ViewOptions {
   return {
     type: "list",
     listDaySideFormat,
@@ -69,5 +69,5 @@ export default function createListEternal(start: Date, end: Date) {
         end: end,
       };
     },
-  } as ViewOptions;
+  };
 }

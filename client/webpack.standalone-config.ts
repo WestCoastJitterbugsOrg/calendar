@@ -4,6 +4,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import { DefinePlugin } from "webpack";
 import ESLintPlugin from "eslint-webpack-plugin";
+import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 
 module.exports = (env: any) => ({
   entry: path.join(__dirname, "src", "index.tsx"),
@@ -37,7 +38,11 @@ module.exports = (env: any) => ({
       },
       {
         test: /\.(css)$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+        ],
       },
     ],
   },
@@ -64,4 +69,7 @@ module.exports = (env: any) => ({
     new DefinePlugin({ API_URL: `"${env.API_URL}"` }),
     new ESLintPlugin({}),
   ],
+  optimization: {
+    minimizer: ["...", new CssMinimizerPlugin()],
+  },
 });

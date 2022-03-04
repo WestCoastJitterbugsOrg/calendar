@@ -11,8 +11,8 @@ import {
   TailwindValuesColor,
 } from "tailwindcss/tailwind-config";
 import interactionPlugin from "@fullcalendar/interaction"; // for selectable
-import { CalendarViewConfig } from "./CalendarViewConfig";
-import { usePopperHandler } from "./CalendarPopper";
+import { CalendarViewConfig } from "./views/CalendarViewConfig";
+import { usePopperHandler } from "./popper/CalendarPopperHandler";
 import { wcj2fcEvent } from "./CalendarHelpers";
 import "./fullcalendar-custom.css";
 

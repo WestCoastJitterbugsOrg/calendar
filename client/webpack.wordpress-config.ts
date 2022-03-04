@@ -1,12 +1,12 @@
 import path from "path";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
-import { DefinePlugin } from "webpack";
+import { DefinePlugin, WebpackPluginInstance } from "webpack";
 import ESLintPlugin from "eslint-webpack-plugin";
 import ZipPlugin from "zip-webpack-plugin";
 import { WebpackConfiguration } from "webpack-dev-server";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
-module.exports = (env: any) => {
+module.exports = (env: any): WebpackConfiguration => {
   return {
     entry: path.join(__dirname, "src", "index.tsx"),
     output: {
@@ -17,7 +17,7 @@ module.exports = (env: any) => {
     resolve: {
       extensions: [".tsx", ".ts", ".js"],
     },
-    devtool: !env.production && "source-map",
+    devtool: "source-map",
     mode: env.production ? "production" : "development",
     performance: {
       // We don't want to do code splitting because it makes it harder to load the scripts in the wordpress plugin,
@@ -70,11 +70,16 @@ module.exports = (env: any) => {
       }),
       new ESLintPlugin({}),
       ...(env.production
-        ? [new ZipPlugin({ filename: "wcjcal.zip", pathPrefix: "wcjcal" })]
+        ? [
+            new ZipPlugin({
+              filename: "wcjcal.zip",
+              pathPrefix: "wcjcal",
+            }) as unknown as WebpackPluginInstance,
+          ]
         : []),
     ],
     optimization: {
       minimizer: ["...", new CssMinimizerPlugin()],
     },
-  } as WebpackConfiguration;
+  };
 };

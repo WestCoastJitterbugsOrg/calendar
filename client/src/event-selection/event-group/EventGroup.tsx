@@ -1,9 +1,9 @@
 import { useState, useContext } from "react";
-import { StateContext } from "../App";
-import { useSelectors } from "../store/hooks";
-import { EventActionTypes } from "../store/reducers";
-import { GroupCheckbox } from "./EventCheckbox";
-import EventRow from "./EventRow";
+import { StateContext } from "../../App";
+import { useSelectors } from "../../store/hooks";
+import { EventActionTypes } from "../../store/reducers";
+import EventRow from "../EventRow";
+import { EventGroupHeader } from "./EventGroupHeader";
 
 interface EventGroupProps {
   category: string;
@@ -85,57 +85,5 @@ export default function EventGroup({ category: categoryId }: EventGroupProps) {
         ))}
       </div>
     </div>
-  );
-}
-
-interface EventGroupHeaderProps {
-  title: string;
-  expanded: boolean;
-  checked: "all" | "some" | "none";
-  toggleExpanded: () => void;
-  toggleChecked: () => void;
-}
-
-function EventGroupHeader({
-  title,
-  expanded,
-  checked,
-  toggleExpanded,
-  toggleChecked,
-}: EventGroupHeaderProps) {
-  return (
-    <div className="bg-wcj-cyan text-white font-bold min-h-8 py-2 flex flex-row items-center">
-      <div
-        className="cursor-pointer flex-grow flex items-center"
-        onClick={toggleExpanded}
-      >
-        <ExpandIcon open={expanded} />
-        {title}
-      </div>
-
-      <div className="mx-3">
-        <GroupCheckbox state={checked} onClick={toggleChecked} />
-      </div>
-    </div>
-  );
-}
-
-interface ExpandIconProps {
-  open: boolean;
-}
-function ExpandIcon({ open }: ExpandIconProps) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className={
-        "w-4 h-4 mx-2 transition duration-200 transform " +
-        (open ? "rotate-45" : "")
-      }
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path strokeLinecap="square" strokeWidth="4" d="M12 4v16m8-8H4" />
-    </svg>
   );
 }

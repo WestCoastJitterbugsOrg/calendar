@@ -166,6 +166,10 @@
 
     & .fc-timeGridWeek-view .fc-timegrid-event {
       cursor: pointer;
+
+      & .fc-event-time {
+        font-weight: bold;
+      }
     }
 
     & .fc-dayGridMonth-view {

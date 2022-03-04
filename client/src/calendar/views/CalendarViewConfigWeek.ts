@@ -13,7 +13,7 @@ const dayHeaderFormat: FormatterInput = (args) =>
   "\n" +
   formatDate(args.date.marker, { day: "numeric" });
 
-export default {
+const viewOptions: ViewOptions = {
   scrollTimeReset: false,
   scrollTime: "09:00:00",
   slotLabelFormat: {
@@ -24,4 +24,6 @@ export default {
   },
   titleFormat,
   dayHeaderFormat,
-} as ViewOptions;
+};
+
+export default viewOptions;

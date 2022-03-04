@@ -1,9 +1,15 @@
-import { createContext, ReactChild, useMemo, useReducer, useState } from "react";
+import {
+  createContext,
+  ReactChild,
+  useMemo,
+  useReducer,
+  useState,
+} from "react";
 import Calendar from "./calendar/Calendar";
-import EventGroup from "./event-selection/EventGroup";
+import EventGroup from "./event-selection/event-group/EventGroup";
 import ToggleAllButtons from "./event-selection/ToggleAllButtons";
 import loadCogworkData from "./services/cogwork";
-import { EventSeriesModal } from "./shared/EventModal";
+import { EventSeriesModal } from "./shared/EventModal/EventModal";
 import SpinLoader from "./shared/Spinner";
 import EventStore from "./store/model";
 import eventReducer, { EventActions, EventActionTypes } from "./store/reducers";
@@ -24,7 +30,7 @@ export const StateContext = createContext<{
 
 export default function App() {
   const [loadState, setLoadState] = useState(
-    "loading" as "loading" | "loaded" | string
+    "loading" as "loading" | "loaded" | { error: string }
   );
 
   const [state, dispatch] = useReducer(eventReducer, initialContext);
@@ -44,7 +50,7 @@ export default function App() {
           setLoadState(val);
         });
       } else {
-        setLoadState(`${e}`);
+        setLoadState({ error: (e as typeof Object)?.toString() });
       }
     }
   }, []);
@@ -81,7 +87,7 @@ export default function App() {
     default: {
       let error;
       try {
-        error = JSON.stringify(JSON.parse(loadState), null, 4);
+        error = JSON.stringify(JSON.parse(loadState.error), null, 4);
       } catch {
         error = loadState.toString();
       }

@@ -1,6 +1,8 @@
 import { ViewOptions } from "./CalendarViewConfig";
 
-export default {
+const viewOptions: ViewOptions = {
   titleFormat: { year: "numeric", month: "long" },
   dayHeaderFormat: { weekday: "long" },
-} as ViewOptions;
+};
+
+export default viewOptions;
