@@ -1,20 +1,20 @@
-import FullCalendar from "@fullcalendar/react";
+import "./fullcalendar-custom.css";
+import { StateContext } from "@app/App";
+import tailwindConfig from "tailwindconfig";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction"; // for selectable
 import listPlugin from "@fullcalendar/list";
+import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { useContext } from "react";
-import { StateContext } from "../App";
 import resolveConfig from "tailwindcss/resolveConfig";
-import tailwindConfig from "../../tailwind.config.js";
 import {
   TailwindValues,
-  TailwindValuesColor,
+  TailwindValuesColor
 } from "tailwindcss/tailwind-config";
-import interactionPlugin from "@fullcalendar/interaction"; // for selectable
-import { CalendarViewConfig } from "./views/CalendarViewConfig";
-import { usePopperHandler } from "./popper/CalendarPopperHandler";
 import { wcj2fcEvent } from "./CalendarHelpers";
-import "./fullcalendar-custom.css";
+import { usePopperHandler } from "./popper/CalendarPopperHandler";
+import { CalendarViewConfig } from "./views/CalendarViewConfig";
 
 const fullConfig = resolveConfig(tailwindConfig);
 const colors = fullConfig.theme.colors as TailwindValuesColor;

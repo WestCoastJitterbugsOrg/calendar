@@ -1,7 +1,7 @@
+import { StateContext } from "@app/App";
+import { Button } from "@app/shared";
+import { EventActionTypes } from "@app/store";
 import { useContext } from "react";
-import { StateContext } from "../App";
-import Button from "../shared/Buttons/Button";
-import { EventActionTypes } from "../store/reducers";
 
 export default function ToggleAllButtons() {
   const { dispatch } = useContext(StateContext);

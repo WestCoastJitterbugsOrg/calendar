@@ -1,7 +1,4 @@
-interface ExpandIconProps {
-  open: boolean;
-}
-export function ExpandIcon({ open }: ExpandIconProps) {
+export function ExpandIcon({ open }: { open: boolean }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

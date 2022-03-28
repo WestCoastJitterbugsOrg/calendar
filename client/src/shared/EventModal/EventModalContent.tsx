@@ -1,5 +1,4 @@
-import { LinkButton } from "../Buttons/LinkButton";
-import EventInfoTable from "../EventInfoTable/EventInfoTable";
+import { EventInfoTable, LinkButton } from "@app/shared";
 
 export function EventSeriesModalContent({
   event,

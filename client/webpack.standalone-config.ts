@@ -2,9 +2,10 @@ import path from "path";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
-import { DefinePlugin } from "webpack";
+import { DefinePlugin, WebpackPluginInstance } from "webpack";
 import ESLintPlugin from "eslint-webpack-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 
 module.exports = (env: any) => ({
   entry: path.join(__dirname, "src", "index.tsx"),
@@ -68,6 +69,7 @@ module.exports = (env: any) => ({
     }),
     new DefinePlugin({ API_URL: `"${env.API_URL}"` }),
     new ESLintPlugin({}),
+    new TsconfigPathsPlugin({}) as unknown as WebpackPluginInstance,
   ],
   optimization: {
     minimizer: ["...", new CssMinimizerPlugin()],

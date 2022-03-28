@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Modal from "react-modal";
-import { StateContext } from "../../App";
-import { EventActionTypes } from "../../store/reducers";
+import { StateContext } from "@app/App";
+import { EventActionTypes } from "@app/store/reducers";
 import { EventSeriesModalContent } from "./EventModalContent";
 
 Modal.setAppElement("#wcjcal");

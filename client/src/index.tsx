@@ -1,8 +1,9 @@
-import "./index.css";
+import "@app/index.css";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+
 try {
   const wcjCalElement = document.getElementById("wcjcal");
 

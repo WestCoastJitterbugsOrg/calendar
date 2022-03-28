@@ -2,7 +2,7 @@ const colors = require("tailwindcss/colors");
 
 /** @type {import('tailwindcss/tailwind-config').TailwindConfig} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["src/**/*.{js,jsx,ts,tsx}"],
   darkMode: "media", // 'class'
   theme: {
     extend: {

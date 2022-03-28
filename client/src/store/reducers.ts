@@ -1,5 +1,4 @@
-import { ActionMap } from "./hooks";
-import EventStore from "./model";
+import { ActionMap, EventStore } from ".";
 
 type EventActionMap = ActionMap<EventPayload>;
 

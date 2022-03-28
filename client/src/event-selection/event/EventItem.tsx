@@ -8,7 +8,7 @@ interface EventRowProps {
   showInfo: () => void;
 }
 
-export default function EventRow(props: EventRowProps) {
+export default function EventItem(props: EventRowProps) {
 
   return (
     <>

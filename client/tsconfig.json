@@ -1,21 +1,31 @@
 {
   "compilerOptions": {
-    "outDir": "build",
+    "outDir": "dist",
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
+    "module": "ES2020",
     "moduleResolution": "node",
     "jsx": "react-jsx",
-    "sourceMap": true
+    "sourceMap": true,
+    "baseUrl": "./",
+    "paths": {
+      "@app/*": [
+        "./src/*"
+      ],
+      "tailwindconfig": ["./tailwind.config.js"]
+    }
   },
   "ts-node": {
     "compilerOptions": {
       "module": "commonjs"
     }
   },
-  "include": ["src"]
+  "include": [
+    "src/**/*",
+    "./tailwind.config.js"
+  ]
 }

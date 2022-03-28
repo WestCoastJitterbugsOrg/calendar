@@ -1,9 +1,9 @@
+import { StateContext } from "@app/App";
+import { EventActionTypes } from "@app/store";
 import { EventApi, EventClickArg } from "@fullcalendar/react";
-import { Instance, createPopper } from "@popperjs/core";
-import { useRef, useContext } from "react";
+import { createPopper, Instance } from "@popperjs/core";
+import { useContext, useRef } from "react";
 import ReactDOM from "react-dom";
-import { StateContext } from "../../App";
-import { EventActionTypes } from "../../store/reducers";
 import { TooltipComponent } from "./CalendarPopper";
 
 const highlightClass = ["bg-wcj-coral"];

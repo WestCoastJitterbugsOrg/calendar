@@ -1,8 +1,7 @@
-import { useState, useContext } from "react";
-import { StateContext } from "../../App";
-import { useSelectors } from "../../store/hooks";
-import { EventActionTypes } from "../../store/reducers";
-import EventRow from "../EventRow";
+import { StateContext } from "@app/App";
+import { EventItem } from "@app/event-selection";
+import { EventActionTypes, useSelectors } from "@app/store";
+import { useContext, useState } from "react";
 import { EventGroupHeader } from "./EventGroupHeader";
 
 interface EventGroupProps {
@@ -65,7 +64,7 @@ export default function EventGroup({ category: categoryId }: EventGroupProps) {
         }
       >
         {events.map((event) => (
-          <EventRow
+          <EventItem
             event={event}
             toggle={() =>
               dispatch({

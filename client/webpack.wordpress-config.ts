@@ -6,6 +6,8 @@ import ESLintPlugin from "eslint-webpack-plugin";
 import ZipPlugin from "zip-webpack-plugin";
 import { WebpackConfiguration } from "webpack-dev-server";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
+
 module.exports = (env: any): WebpackConfiguration => {
   return {
     entry: path.join(__dirname, "src", "index.tsx"),
@@ -16,6 +18,9 @@ module.exports = (env: any): WebpackConfiguration => {
     },
     resolve: {
       extensions: [".tsx", ".ts", ".js"],
+      plugins: [
+        new TsconfigPathsPlugin({})
+      ]
     },
     devtool: "source-map",
     mode: env.production ? "production" : "development",

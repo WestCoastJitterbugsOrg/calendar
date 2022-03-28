@@ -1,6 +1,7 @@
+
+import tailwindConfig from "tailwindconfig";
 import resolveConfig from "tailwindcss/resolveConfig";
 import { TailwindValuesColor } from "tailwindcss/tailwind-config";
-import tailwindConfig from "../../tailwind.config";
 
 interface EventCheckboxProps {
   color: string;
