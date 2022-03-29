@@ -5,10 +5,8 @@
 @layer base {
   #wcjcal {
     all: unset; /* Reset all styling by wordpress and tailwind */
-    display: block;
-    font-family: Raleway, sans;
-    font-size: 16px;
-    border: 1px solid black;
-    box-sizing: border-box;
+    @apply block box-border;
+    @apply font-sans text-base;
+    @apply border border-solid border-black;
   }
 }

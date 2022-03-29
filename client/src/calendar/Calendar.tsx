@@ -1,12 +1,12 @@
 import "./fullcalendar-custom.css";
 import { StateContext } from "@app/App";
-import tailwindConfig from "tailwindconfig";
+import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction"; // for selectable
 import listPlugin from "@fullcalendar/list";
-import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { useContext } from "react";
+import tailwindConfig from "tailwindconfig";
 import resolveConfig from "tailwindcss/resolveConfig";
 import {
   TailwindValues,
