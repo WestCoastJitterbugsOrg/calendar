@@ -10,7 +10,7 @@ import tailwindConfig from "tailwindconfig";
 import resolveConfig from "tailwindcss/resolveConfig";
 import {
   TailwindValues,
-  TailwindValuesColor
+  TailwindValuesColor,
 } from "tailwindcss/tailwind-config";
 import { wcj2fcEvent } from "./CalendarHelpers";
 import { usePopperHandler } from "./popper/CalendarPopperHandler";
@@ -21,14 +21,18 @@ const colors = fullConfig.theme.colors as TailwindValuesColor;
 
 export default function Calendar() {
   const stateContext = useContext(StateContext);
-  const wcjEvents = Object.values(stateContext.state.events.byId).filter(
-    (event) => event.showInCalendar
+
+  const allWcjEvents = Object.values(stateContext.state.events.byId);
+  const shownWcjEvents = allWcjEvents.filter((event) => event.showInCalendar);
+  
+  const shownOccasions = shownWcjEvents.flatMap((event) => event.occasions);
+
+  const firstOccasion = Math.min(
+    ...shownOccasions.map((occasion) => occasion.start.getTime())
   );
-
-  const allEvents = wcjEvents.flatMap((event) => event.occasions);
-
-  const firstOccasion = Math.min(...allEvents.map((o) => o.start.getTime()));
-  const lastOccasion = Math.max(...allEvents.map((o) => o.end.getTime()));
+  const lastOccasion = Math.max(
+    ...shownOccasions.map((occasion) => occasion.end.getTime())
+  );
 
   const popperHandler = usePopperHandler();
 
@@ -70,7 +74,7 @@ export default function Calendar() {
         }}
         eventDisplay="block"
         allDaySlot={false}
-        eventSources={wcjEvents.map(wcj2fcEvent)}
+        eventSources={shownWcjEvents.map(wcj2fcEvent)}
         eventBackgroundColor={colors["wcj-red"] as string}
         eventBorderColor="transparent"
         eventClick={popperHandler.handleEventClick}
