@@ -25,7 +25,7 @@ export const StateContext = createContext<StateContext>({
   dispatch: () => null,
 });
 
-type LoadState = "loading" | "loaded" | { error: string };
+type LoadState = "loading" | "loaded" | { error: unknown };
 
 export default function App() {
   const [loadState, setLoadState] = useState<LoadState>("loading");
@@ -47,7 +47,7 @@ export default function App() {
             setLoadState(val);
           });
         } else {
-          setLoadState({ error: (e as typeof Object)?.toString?.() });
+          setLoadState({ error: e });
         }
       }
     );
@@ -83,12 +83,7 @@ export default function App() {
       );
     }
     default: {
-      let error;
-      try {
-        error = JSON.stringify(JSON.parse(loadState.error), null, 4);
-      } catch {
-        error = loadState.toString();
-      }
+      const error = getError(loadState.error);
       // Error message sent from server
       return (
         <div className="container m-auto my-8">
@@ -100,5 +95,33 @@ export default function App() {
         </div>
       );
     }
+  }
+}
+
+function getError(error: unknown): string | undefined {
+  switch (typeof error) {
+    case "boolean":
+    case "number":
+    case "bigint":
+    case "string":
+    case "symbol":
+    case "undefined":
+      return getToStringableError(error);
+    case "object":
+      return JSON.stringify(error, null, 4);
+    case "function":
+      return getError(error());
+    default:
+      return;
+  }
+}
+
+function getToStringableError(
+  error: boolean | number | bigint | string | symbol | undefined
+): string {
+  try {
+    return JSON.stringify(JSON.parse(error?.toString?.() ?? ""), null, 4);
+  } catch {
+    return error?.toString?.() ?? "Unknown error";
   }
 }
