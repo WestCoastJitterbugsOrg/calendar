@@ -5,11 +5,10 @@ interface EventRowProps {
   event: Wcj.Event;
   checked: boolean;
   toggle: () => void;
-  showInfo: () => void;
+  showInfo: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 export default function EventItem(props: EventRowProps) {
-
   return (
     <>
       <div
@@ -29,4 +28,3 @@ export default function EventItem(props: EventRowProps) {
     </>
   );
 }
-

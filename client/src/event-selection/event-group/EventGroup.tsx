@@ -72,12 +72,13 @@ export default function EventGroup({ category: categoryId }: EventGroupProps) {
                 payload: { id: event.id },
               })
             }
-            showInfo={() =>
+            showInfo={(clickEvent) => {
+              clickEvent.stopPropagation();
               dispatch({
                 type: EventActionTypes.eventModalRequested,
                 payload: event.id,
-              })
-            }
+              });
+            }}
             checked={!!event.showInCalendar}
             key={event.id}
           />
