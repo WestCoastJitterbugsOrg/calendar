@@ -1,5 +1,4 @@
 import path from "path";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import { DefinePlugin, WebpackPluginInstance } from "webpack";
 import ESLintPlugin from "eslint-webpack-plugin";
@@ -50,14 +49,7 @@ module.exports = (env: any): WebpackConfiguration => {
         },
       ],
     },
-    externals: {
-      // react: "React",
-      // "react-dom": "ReactDOM",
-    },
     plugins: [
-      new MiniCssExtractPlugin({
-        filename: "wcjcal.css",
-      }),
       new CopyWebpackPlugin({
         patterns: [
           {
