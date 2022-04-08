@@ -1,8 +1,7 @@
-import "./fullcalendar-custom.css";
 import { StateContext } from "@app/App";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction"; // for selectable
+import interactionPlugin from "@fullcalendar/interaction"; 
 import listPlugin from "@fullcalendar/list";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { useContext } from "react";
@@ -24,7 +23,7 @@ export default function Calendar() {
 
   const allWcjEvents = Object.values(stateContext.state.events.byId);
   const shownWcjEvents = allWcjEvents.filter((event) => event.showInCalendar);
-  
+
   const shownOccasions = shownWcjEvents.flatMap((event) => event.occasions);
 
   const firstOccasion = Math.min(
@@ -52,6 +51,8 @@ export default function Calendar() {
           new Date(lastOccasion)
         )}
         buttonText={{
+          next: '▶',
+          prev: '◀',
           today: "Today",
           month: "Month",
           week: "Week",

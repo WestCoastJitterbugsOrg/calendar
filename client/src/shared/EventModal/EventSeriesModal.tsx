@@ -1,12 +1,15 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Modal from "react-modal";
 import { StateContext } from "@app/App";
 import { EventActionTypes } from "@app/store/reducers";
 import { EventSeriesModalContent } from "./EventModalContent";
-
-Modal.setAppElement("#wcjcal");
+import { appContainer } from "@app/.";
 
 export function EventSeriesModal() {
+  useEffect(() => {
+    Modal.setAppElement(document.body ?? appContainer);
+  }, []);
+
   const { state, dispatch } = useContext(StateContext);
 
   return (
@@ -21,14 +24,12 @@ export function EventSeriesModal() {
          -translate-x-1/2 -translate-y-1/2  max-w-[800px] max-h-[max(80vh,200px)] 
          overflow-auto bg-wcj-sand p-5 sm:p-10 rounded-2xl`}
       overlayClassName="fixed z-50 inset-0 bg-black bg-opacity-75"
-      parentSelector={() => document.getElementById("wcjcal") || document.body}
+      parentSelector={() => appContainer}
     >
       {state.eventModal && (
         <EventSeriesModalContent
           event={state.events.byId[state.eventModal]}
-          onCloseClick={() => {
-            dispatch({ type: EventActionTypes.modalClosed });
-          }}
+          onCloseClick={() => dispatch({ type: EventActionTypes.modalClosed })}
         ></EventSeriesModalContent>
       )}
     </Modal>

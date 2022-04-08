@@ -1,8 +1,10 @@
-import "@app/index.css";
+import style from "./styles/index.css";
 import { StrictMode } from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+
+export const appContainer = document.createElement("div");
 
 try {
   const wcjCalElement = document.getElementById("wcjcal");
@@ -10,11 +12,24 @@ try {
   if (wcjCalElement == null) {
     throw Error("Could not find #wcjcal element in DOM");
   } else {
-    ReactDOM.render(
+    const shadowRoot = wcjCalElement.attachShadow({ mode: "open" });
+    appContainer.id = "wcjcal-shadow-root";
+
+    const styleTag = document.createElement("style");
+    styleTag.innerHTML = style.toString();
+
+    const appTag = document.createElement("div");
+
+    appContainer?.appendChild(styleTag);
+    appContainer?.appendChild(appTag);
+    shadowRoot.appendChild(appContainer);
+
+    const root = createRoot(appTag);
+
+    root.render(
       <StrictMode>
         <App />
-      </StrictMode>,
-      wcjCalElement
+      </StrictMode>
     );
 
     // If you want to start measuring performance in your app, pass a function

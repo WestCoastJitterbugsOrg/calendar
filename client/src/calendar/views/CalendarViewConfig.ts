@@ -14,6 +14,6 @@ export function CalendarViewConfig(start: Date, end: Date): ViewConfig {
   return {
     dayGridMonth: dayGridMonth,
     timeGridWeek: timeGridWeek,
-    listEternal: createListEternal(start, end),
+    listEternal: createListEternal(start, end)
   };
 }

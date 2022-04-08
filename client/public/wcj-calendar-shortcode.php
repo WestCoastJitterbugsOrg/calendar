@@ -4,11 +4,8 @@ function wcjcal_shortcode_wp_enqueue_assets()
 {
 	$ver         = (get_file_data(__FILE__, ["Version" => "Version"], false))['Version'];
 	$js_to_load  = plugin_dir_url(__FILE__) . 'wcjcal.js';
-	$css_to_load = plugin_dir_url(__FILE__) . 'wcjcal.css';
 
-	/* `wp-element` as dependency will load React and ReactDom for our app from `wp-includes` */
-	wp_register_script('wcjcal-script', $js_to_load, array('wp-element'), $ver, true);
-	wp_register_style('wcjcal-style', $css_to_load, array(), $ver);
+	wp_register_script('wcjcal-script', $js_to_load, array(), $ver, true);
 }
 
 add_action('wp_enqueue_scripts', 'wcjcal_shortcode_wp_enqueue_assets');
@@ -30,7 +27,6 @@ function wcjcal_shortcode($attributes)
 		'wcjcal'
 	));
 
-	wp_enqueue_style('wcjcal-style');
 	wp_enqueue_script('wcjcal-script');
 
 	return '<div id="wcjcal" class="alignfull" data-wcjcal-settings="' . esc_attr(wp_json_encode($settings)) . '"></div>';

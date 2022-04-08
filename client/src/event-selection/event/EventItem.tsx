@@ -22,7 +22,7 @@ export default function EventItem(props: EventRowProps) {
         <div className="flex-grow cursor-pointer pr-2 leading-tight">
           {props.event.title}
         </div>
-        <div className="flex-none cursor-pointer">
+        <div className="flex flex-none cursor-pointer">
           <EventCheckbox color="wcj-red" checked={props.checked} />
         </div>
       </div>

@@ -7,13 +7,7 @@ import eventReducer, {
   EventActionTypes,
   EventStore,
 } from "./store";
-import {
-  createContext,
-  ReactChild,
-  useMemo,
-  useReducer,
-  useState,
-} from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 
 const initialContext: EventStore = {
   categories: { byId: {}, allIds: [] },
@@ -21,39 +15,42 @@ const initialContext: EventStore = {
   eventModal: false,
 };
 
-export const StateContext = createContext<{
+interface StateContext {
   state: EventStore;
   dispatch: React.Dispatch<EventActions>;
-}>({
+}
+
+export const StateContext = createContext<StateContext>({
   state: initialContext,
   dispatch: () => null,
 });
 
+type LoadState = "loading" | "loaded" | { error: string };
+
 export default function App() {
-  const [loadState, setLoadState] = useState(
-    "loading" as "loading" | "loaded" | { error: string }
-  );
+  const [loadState, setLoadState] = useState<LoadState>("loading");
 
   const [state, dispatch] = useReducer(eventReducer, initialContext);
 
-  useMemo(async () => {
-    try {
-      const data = await loadCogworkData();
-      setLoadState("loaded");
-      dispatch({
-        type: EventActionTypes.eventsLoaded,
-        payload: data,
-      });
-    } catch (e) {
-      if (e instanceof Promise) {
-        e.then((val) => {
-          console.log(val);
-          setLoadState(val);
+  useEffect(() => {
+    loadCogworkData().then(
+      (data) => {
+        setLoadState("loaded");
+        dispatch({
+          type: EventActionTypes.eventsLoaded,
+          payload: data,
         });
-      } else {
-        setLoadState({ error: (e as typeof Object)?.toString() });
+      },
+      (e) => {
+        if (e instanceof Promise) {
+          e.then((val) => {
+            setLoadState(val);
+          });
+        } else {
+          setLoadState({ error: (e as typeof Object)?.toString?.() });
+        }
       }
-    }
+    );
   }, []);
 
   switch (loadState) {
@@ -69,7 +66,7 @@ export default function App() {
                 <ToggleAllButtons />
               </div>
               <div className="flex-grow w-full overflow-auto bg-wcj-sand divide-y divide-wcj-mint">
-                {state.categories.allIds.map<ReactChild>((categoryId) => (
+                {state.categories.allIds.map((categoryId) => (
                   <EventGroup key={categoryId} category={categoryId} />
                 ))}
               </div>

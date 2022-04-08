@@ -1,6 +1,5 @@
 import { EventApi } from "@fullcalendar/react";
 import EventInfoTable from "@app/shared/EventInfoTable/EventInfoTable";
-import "./popper-custom.css";
 
 export function TooltipComponent({
   event,

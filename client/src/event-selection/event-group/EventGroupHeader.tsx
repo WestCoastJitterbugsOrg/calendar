@@ -26,7 +26,7 @@ export function EventGroupHeader({
         {title}
       </div>
 
-      <div className="mx-3">
+      <div className="mx-3 flex">
         <GroupCheckbox state={checked} onClick={toggleChecked} />
       </div>
     </div>

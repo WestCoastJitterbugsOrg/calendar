@@ -27,13 +27,16 @@ export default function EventInfoTable(props: { event: Wcj.Event }) {
 
   return (
     <table>
-      <EventOverviewTableRow title="Place" value={event.place} />
-      <EventOverviewTableRow title="Price" value={event.price} />
-      <EventOverviewTableRow title="Instructors" value={event.instructors} />
-      <EventOverviewTableRow title="First occasion starts" value={firstDate} />
-      <EventOverviewTableRow title="Last occasion ends" value={lastDate} />
+      <tbody>
+        <EventOverviewTableRow title="Place" value={event.place} />
+        <EventOverviewTableRow title="Price" value={event.price} />
+        <EventOverviewTableRow title="Instructors" value={event.instructors} />
+        <EventOverviewTableRow
+          title="First occasion starts"
+          value={firstDate}
+        />
+        <EventOverviewTableRow title="Last occasion ends" value={lastDate} />
+      </tbody>
     </table>
   );
 }
-
-

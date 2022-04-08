@@ -1,4 +1,5 @@
-#wcj-tooltip[data-popper-placement^="top"] > #wcj-arrow {
+
+#wcj-tooltip[data-popper-placement^= "top" ] > #wcj-arrow {
   bottom: -4px;
 }
 

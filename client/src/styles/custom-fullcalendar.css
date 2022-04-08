@@ -7,6 +7,11 @@
 // https://github.com/fullcalendar/fullcalendar/blob/master/packages/list/src/styles/vars.css
 //  */
 
+@import "@fullcalendar/common/main.css";
+@import "@fullcalendar/daygrid/main.css";
+@import "@fullcalendar/list/main.css";
+@import "@fullcalendar/timegrid/main.css";
+
 .wcjcal-fc {
   /* General */
   --fc-small-font-size: 0.85rem;

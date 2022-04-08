@@ -4,7 +4,7 @@ module.exports = ({ file, options, env }) => {
       require("postcss-import"),
       require("tailwindcss/nesting"),
       require("tailwindcss"),
-      require("postcss-prepend-selector")({ selector: "#wcjcal " }),
+      // require("postcss-prepend-selector")({ selector: "#wcjcal " }),
       require("autoprefixer"),
       [
         "postcss-rem-to-pixel",

@@ -1,0 +1,5 @@
+#wcjcal-shadow-root {
+  @apply block box-border;
+  @apply font-sans text-base;
+  @apply border border-solid border-black;
+}

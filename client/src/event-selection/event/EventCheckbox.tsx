@@ -29,6 +29,7 @@ export default function EventCheckbox(props: EventCheckboxProps) {
           ? { backgroundColor: colors[props.color].toString(), border: "none" }
           : {}
       }
+      readOnly
       checked={props.checked}
     />
   );

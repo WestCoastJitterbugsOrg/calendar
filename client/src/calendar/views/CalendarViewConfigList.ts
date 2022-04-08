@@ -39,7 +39,7 @@ function eventDidMount(e: EventInput) {
     prevSibling
       .getElementsByTagName("th")
       .item(0)
-      ?.setAttribute("colspan", "4");
+      ?.setAttribute("colspan", "5");
   }
 }
 

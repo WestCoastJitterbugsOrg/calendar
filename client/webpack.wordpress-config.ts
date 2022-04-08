@@ -18,9 +18,7 @@ module.exports = (env: any): WebpackConfiguration => {
     },
     resolve: {
       extensions: [".tsx", ".ts", ".js"],
-      plugins: [
-        new TsconfigPathsPlugin({})
-      ]
+      plugins: [new TsconfigPathsPlugin({})],
     },
     devtool: "source-map",
     mode: env.production ? "production" : "development",
@@ -46,7 +44,6 @@ module.exports = (env: any): WebpackConfiguration => {
         {
           test: /\.(css)$/,
           use: [
-            env.production ? MiniCssExtractPlugin.loader : "style-loader",
             "css-loader",
             "postcss-loader",
           ],
@@ -54,8 +51,8 @@ module.exports = (env: any): WebpackConfiguration => {
       ],
     },
     externals: {
-      react: "React",
-      "react-dom": "ReactDOM",
+      // react: "React",
+      // "react-dom": "ReactDOM",
     },
     plugins: [
       new MiniCssExtractPlugin({
