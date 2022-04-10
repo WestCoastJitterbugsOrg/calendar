@@ -13,7 +13,7 @@ export default function EventGroup({ category: categoryId }: EventGroupProps) {
   const { state, dispatch } = useContext(StateContext);
 
   const { events, category, globalCheckState } = useSelectors(
-    [state],
+    state,
     (state) => {
       const category = state.categories.byId[categoryId];
       const events = category.events.reduce(

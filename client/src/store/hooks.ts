@@ -15,10 +15,9 @@ export type ActionMap<M extends { [index: string]: unknown }> = {
 };
 
 export function useSelectors<State, Selectors>(
-  reducer: [state: State],
+  state: State,
   mapStateToSelectors: (_: State) => Selectors
 ): Selectors {
-  const [state] = reducer;
   return useMemo(
     () => mapStateToSelectors(state),
     [state, mapStateToSelectors]
@@ -26,10 +25,9 @@ export function useSelectors<State, Selectors>(
 }
 
 export function useActions<State, Actions>(
-  reducer: Reducer<State>,
+  [, dispatch]: Reducer<State>,
   mapDispatchToActions: (_: Dispatch<State>) => Actions
 ): Actions {
-  const [, dispatch] = reducer;
   return useMemo(
     () => mapDispatchToActions(dispatch),
     [dispatch, mapDispatchToActions]

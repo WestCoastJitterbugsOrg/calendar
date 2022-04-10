@@ -19,7 +19,7 @@ export function TooltipComponent({
           min-w-[250px] whitespace-pre
         `}
       >
-        <EventInfoTable event={event.extendedProps as Wcj.Event} />
+        <EventInfoTable {...event.extendedProps as Wcj.Event} />
         <div>
           <div
             className="cursor-pointer underline mb-2 text-center text-wcj-mint font-bold"

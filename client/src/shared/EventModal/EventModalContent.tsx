@@ -1,12 +1,11 @@
 import { EventInfoTable, LinkButton } from "@app/shared";
 
-export function EventSeriesModalContent({
-  event,
-  onCloseClick,
-}: {
+type props = {
   event: Wcj.Event;
   onCloseClick: () => void;
-}) {
+};
+
+export function EventSeriesModalContent({ event, onCloseClick }: props) {
   return (
     <div className="md:min-w-[700px]">
       <div
@@ -21,11 +20,11 @@ export function EventSeriesModalContent({
       ) : (
         <p>{event.description}</p>
       )}
-      <div className="flex flex-wrap justify-around gap-4 items-end mt-4">
-        <div className="bg-wcj-mint p-4 rounded-md">
-          <EventInfoTable event={event}></EventInfoTable>
-        </div>
+      <div className="flex flex-wrap justify-between gap-8 items-end mt-8">
         <div>
+          <EventInfoTable {...event}></EventInfoTable>
+        </div>
+        <div className="ml-auto">
           <LinkButton href={event.registrationUrl} size="lg">
             Registration
           </LinkButton>
