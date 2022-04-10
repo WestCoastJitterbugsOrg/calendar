@@ -11,7 +11,7 @@ function wcjcal_settings_init()
     // Register a new section in the "wcjcal" page.
     add_settings_section(
         'wcjcal_section_developers',
-        __('This is just a mocked up page for now, it doesn\'t affect anything', 'wcjcal'),
+        __('WCJ calendar settings', 'wcjcal'),
         'wcjcal_section_developers_callback',
         'wcjcal'
     );
@@ -24,9 +24,11 @@ function wcjcal_settings_init()
         'wcjcal_apikey_cb',
         'wcjcal',
         'wcjcal_section_developers',
-        array(
-            'wcjcal_custom_data' => 'custom',
-        )
+        [
+            'label_for'         => 'wcjcal_field_apikey',
+            'class'             => 'wcjcal_row',
+            'wcjcal_custom_data' => 'custom'
+        ]
     );
 }
 
@@ -60,7 +62,7 @@ function wcjcal_apikey_cb($args)
     // Get the value of the setting we've registered with register_setting()
     $options = get_option('wcjcal_options');
 ?>
-    <input type="text" id="apikey" name="apikey">
+    <input type="text" id="<?php echo esc_attr($args['label_for']); ?>" name="wcjcal_options[<?php echo esc_attr($args['label_for']); ?>]" value="<?php echo esc_attr($options[$args['label_for']]) ?>">
 <?php
 }
 

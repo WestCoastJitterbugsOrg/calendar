@@ -49,6 +49,9 @@ module.exports = (env: any): WebpackConfiguration => {
         },
       ],
     },
+    externals: {
+      jquery: "jQuery"
+    },
     plugins: [
       new CopyWebpackPlugin({
         patterns: [

@@ -5,7 +5,7 @@ function wcjcal_shortcode_wp_enqueue_assets()
 	$ver         = (get_file_data(__FILE__, ["Version" => "Version"], false))['Version'];
 	$js_to_load  = plugin_dir_url(__FILE__) . 'wcjcal.js';
 
-	wp_register_script('wcjcal-script', $js_to_load, array(), $ver, true);
+	wp_register_script('wcjcal-script', $js_to_load, array('jquery'), $ver, true);
 }
 
 add_action('wp_enqueue_scripts', 'wcjcal_shortcode_wp_enqueue_assets');
@@ -21,6 +21,8 @@ function wcjcal_shortcode($attributes)
 		"width"    => '100%'
 	);
 
+	$settings = $defaultSettings;
+
 	extract(shortcode_atts(
 		$defaultSettings,
 		$attributes,
@@ -29,6 +31,16 @@ function wcjcal_shortcode($attributes)
 
 	wp_enqueue_script('wcjcal-script');
 
+	$result = wcjcal_get_events();
+
+	wp_localize_script(
+		'wcjcal-script',
+		'wcjcal_ajax_obj',
+		array(
+			'data' => $result
+		)
+	);
+	
 	return '<div id="wcjcal" class="alignfull" data-wcjcal-settings="' . esc_attr(wp_json_encode($settings)) . '"></div>';
 }
 

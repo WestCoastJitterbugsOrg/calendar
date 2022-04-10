@@ -16,8 +16,18 @@
       "@app/*": [
         "./src/*"
       ],
-      "tailwindconfig": ["./tailwind.config.js"]
-    }
+      "tailwindconfig": [
+        "./tailwind.config.js"
+      ]
+    },
+    "lib": [
+      "ES2020",
+      "dom"
+    ],
+    "types": [
+      "jquery",
+      "node"
+    ]
   },
   "ts-node": {
     "compilerOptions": {

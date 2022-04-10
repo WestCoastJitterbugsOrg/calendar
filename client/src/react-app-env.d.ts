@@ -1,3 +1,11 @@
+declare const API_URL: string;
+
+declare module "*.css";
+
+declare const wcjcal_ajax_obj: {
+  data: Cogwork.Response;
+};
+
 declare namespace Wcj {
   export type EventCategory = {
     category: string; // also used as identifier,
@@ -7,10 +15,7 @@ declare namespace Wcj {
   export type Event = {
     id: string;
     title: string;
-    occasions: {
-      start: Date;
-      end: Date;
-    }[];
+    occasions: Occasion[];
     description?: string;
     registrationUrl: string;
     place: string;
@@ -21,8 +26,52 @@ declare namespace Wcj {
     /* state */
     showInCalendar?: boolean;
   };
+
+  export type Occasion = {
+    start: Date;
+    end: Date;
+  };
 }
 
-declare const API_URL: string;
+declare namespace Cogwork {
+  interface Event {
+    "@attributes": { eventId: string };
+    title: string;
+    longdescription?: string;
+    schedule: Schedule;
+    category: string;
+    primaryEventGroup: string;
+    requirements: {
+      level: { "@attributes": { minValue: number } };
+    };
+    registration: {
+      "@attributes": { status: "ONLY_INFO" | "STOPED_SHOWING" | "OPEN" };
+      url: string;
+    };
+    place: string;
+    pricing: {
+      base: string;
+    };
+    instructors: { combinedTitle: string };
+  }
 
-declare module "*.css";
+  interface Schedule {
+    occasions: {
+      occasion: Occasion | Occasion[];
+    };
+    startDate?: string;
+    startTime?: string;
+    endDate?: string;
+    endTime?: string;
+  }
+
+  interface Occasion {
+    startDateTime?: string;
+    endDateTime?: string;
+  }
+  interface Response {
+    events: {
+      event: Event[];
+    };
+  }
+}

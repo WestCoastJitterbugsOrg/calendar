@@ -33,24 +33,12 @@ export default function App() {
   const [state, dispatch] = useReducer(eventReducer, initialContext);
 
   useEffect(() => {
-    loadCogworkData().then(
-      (data) => {
-        setLoadState("loaded");
-        dispatch({
-          type: EventActionTypes.eventsLoaded,
-          payload: data,
-        });
-      },
-      (e) => {
-        if (e instanceof Promise) {
-          e.then((val) => {
-            setLoadState(val);
-          });
-        } else {
-          setLoadState({ error: e });
-        }
-      }
-    );
+    const data = loadCogworkData();
+    setLoadState('loaded');
+    dispatch({
+      type: EventActionTypes.eventsLoaded,
+      payload: data,
+    });
   }, []);
 
   switch (loadState) {
