@@ -70,7 +70,7 @@ function allToggledReducer(state: EventStore, show: boolean): EventStore {
 function eventsLoaded(
   state: EventStore,
   payload: EventActionMap[EventActionTypes.eventsLoaded]["payload"]
-): EventStore {
+) {
   const newState: EventStore = {
     ...state,
     categories: {

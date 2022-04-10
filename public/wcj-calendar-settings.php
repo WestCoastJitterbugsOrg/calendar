@@ -61,8 +61,12 @@ function wcjcal_apikey_cb($args)
 {
     // Get the value of the setting we've registered with register_setting()
     $options = get_option('wcjcal_options');
+    $id = $args['label_for'];
+    //echo $id;
+    $hasOption = array_key_exists($id, $options);
+    $value = $hasOption ? $options[$id] : '';
 ?>
-    <input type="text" id="<?php echo esc_attr($args['label_for']); ?>" name="wcjcal_options[<?php echo esc_attr($args['label_for']); ?>]" value="<?php echo esc_attr($options[$args['label_for']]) ?>">
+    <input type="text" id="<?php echo esc_attr($id); ?>" name="wcjcal_options[<?php echo esc_attr($id); ?>]" value="<?php echo (esc_attr($value)) ?>">
 <?php
 }
 

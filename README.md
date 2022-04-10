@@ -1,8 +1,21 @@
-# Personalized Calendar for WCJ...
-...and possibly other organizations that use cogwork
+# WCJ Calendar client
 
-## Setup
+To get started, make sure you have Node.js >= 16.10 and [yarn](https://yarnpkg.com/getting-started/install) installed.
 
-This repository contains two projects. The javascript (ReactJS) client, and the nodejs-server that provides a middle API between the cogwork API and the client. Both projects require Node.js >= 16.10. I would recommend installing it through [nvm](https://github.com/nvm-sh/nvm#installing-and-updating). Check out the README files in each of the project for further install and deploy instructions.
+Now, run `yarn`. This will install all dependencies needed to get you started.
 
-The client also contains WIP files for a wordpress plugin. When it's finished, there will be no need for a separate server api, so the server directory will be removed and all the content inside client will be moved to the root folder. 
+## Standalone local development environment
+
+There are no documented instructions to get this going yet. I might add it later.
+
+## Wordpress plugin
+
+You can run the plugin locally or deploy it to https://wcj.se/, see below for the steps to run/deploy it. When you have done that, go ahead and activate in the admin page, go to the settings page for WCJ Calendar and type the organization's password. Then you can add it to a page by using the shortcode `[wcjcal]`.
+
+### Setting up a local wordpress development and deploying the plugin to it
+
+Install docker and docker-compose. Run `yarn start:wordpress`. In another terminal, run `docker-compose up -d` with elevated permissions (root/admin). Go to http://localhost:8000/wp-admin/install.php and set up the wordpress installation with the credentials found in docker-compose.yml.
+
+### Production plugin deployment
+
+If you want to deploy it to https://wcj.se, run `yarn build:prod` and copy the files from the build folder to the a directory named wcjcal inside the wp-content directory on the server.

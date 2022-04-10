@@ -3,18 +3,15 @@ import { EventOverviewTableRow } from "./EventInfoTableRow";
 function displayDate(date: Date) {
   return date.toLocaleString("en-GB", {
     dateStyle: "medium",
-    timeStyle: "short",
     timeZone: "UTC",
   });
 }
 
-export default function EventInfoTable(props: { event: Wcj.Event }) {
-  const event = props.event;
-
+export default function EventInfoTable(event: Wcj.Event) {
   const { first, last } = event.occasions.reduce(
     ({ first, last }, curr) => ({
       first: Math.min(first, curr.start.getTime()),
-      last: Math.max(last, curr.end.getTime()),
+      last: Math.max(last, curr.start.getTime()),
     }),
     {
       first: Number.MAX_SAFE_INTEGER,
@@ -32,10 +29,10 @@ export default function EventInfoTable(props: { event: Wcj.Event }) {
         <EventOverviewTableRow title="Price" value={event.price} />
         <EventOverviewTableRow title="Instructors" value={event.instructors} />
         <EventOverviewTableRow
-          title="First occasion starts"
+          title="First occasion"
           value={firstDate}
         />
-        <EventOverviewTableRow title="Last occasion ends" value={lastDate} />
+        <EventOverviewTableRow title="Last occasion" value={lastDate} />
       </tbody>
     </table>
   );
