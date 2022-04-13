@@ -1,20 +1,6 @@
-import { ActionMap, EventStore } from ".";
-
-type EventActionMap = ActionMap<EventPayload>;
-
-type EventToggledPayload = { id: string };
-type CategoryToggledPayload = { id: string; show: boolean };
-
-type EventPayload = {
-  allToggled: { show: boolean };
-  categoryToggled: CategoryToggledPayload;
-  eventToggled: EventToggledPayload;
-  eventsLoaded: Wcj.EventCategory[];
-  eventModalRequested: string;
-  modalClosed: undefined;
-};
-
-export type EventActions = EventActionMap[keyof EventActionMap];
+import { EventStore } from ".";
+import { EventActions } from "./event-actions";
+import { CategoryToggledPayload, EventToggledPayload } from "./payloads";
 
 export default function eventReducer(state: EventStore, action: EventActions) {
   switch (action.type) {

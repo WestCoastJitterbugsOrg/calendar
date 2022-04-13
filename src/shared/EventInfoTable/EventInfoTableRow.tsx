@@ -1,4 +1,7 @@
-type props = { title: string; value: string };
+interface props {
+  title: string;
+  value: string;
+}
 
 export function EventOverviewTableRow({ title, value }: props) {
   return (
