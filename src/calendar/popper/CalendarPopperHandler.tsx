@@ -1,6 +1,5 @@
 import { appContainer } from "@app/.";
 import { StateContext } from "@app/App";
-import { EventActionTypes } from "@app/store";
 import { EventApi, EventClickArg } from "@fullcalendar/react";
 import { createPopper, Instance } from "@popperjs/core";
 import { useContext, useRef } from "react";
@@ -32,7 +31,7 @@ export function usePopperHandler() {
         event={event}
         openModal={() =>
           dispatch({
-            type: EventActionTypes.eventModalRequested,
+            type: "eventModalRequested",
             payload: event.extendedProps.id,
           })
         }

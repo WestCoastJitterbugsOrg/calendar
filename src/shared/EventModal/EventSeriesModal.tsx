@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
 import Modal from "react-modal";
 import { StateContext } from "@app/App";
-import { EventActionTypes } from "@app/store/reducers";
 import { EventSeriesModalContent } from "./EventModalContent";
 import { appContainer } from "@app/.";
 
@@ -14,11 +13,7 @@ export function EventSeriesModal() {
 
   return (
     <Modal
-      onRequestClose={() => {
-        dispatch({
-          type: EventActionTypes.modalClosed,
-        });
-      }}
+      onRequestClose={() => dispatch({ type: "modalClosed" })}
       preventScroll={true}
       isOpen={!!state.eventModal}
       className={`absolute top-1/2 left-1/2 right-auto bottom-auto -mr-[50%]
@@ -30,7 +25,7 @@ export function EventSeriesModal() {
       {state.eventModal && (
         <EventSeriesModalContent
           event={state.events.byId[state.eventModal]}
-          onCloseClick={() => dispatch({ type: EventActionTypes.modalClosed })}
+          onCloseClick={() => dispatch({ type: "modalClosed" })}
         ></EventSeriesModalContent>
       )}
     </Modal>

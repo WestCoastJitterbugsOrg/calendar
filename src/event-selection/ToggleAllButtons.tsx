@@ -1,6 +1,5 @@
 import { StateContext } from "@app/App";
 import { Button } from "@app/shared";
-import { EventActionTypes } from "@app/store";
 import { useContext } from "react";
 
 export default function ToggleAllButtons() {
@@ -13,7 +12,7 @@ export default function ToggleAllButtons() {
         size="md"
         onClick={() =>
           dispatch({
-            type: EventActionTypes.allToggled,
+            type: "allToggled",
             payload: { show: true },
           })
         }
@@ -23,7 +22,7 @@ export default function ToggleAllButtons() {
         size="md"
         onClick={() =>
           dispatch({
-            type: EventActionTypes.allToggled,
+            type: "allToggled",
             payload: { show: false },
           })
         }

@@ -1,7 +1,8 @@
 import {
-  EventInput,
+  EventMountArg,
   formatDate,
   VerboseFormattingArg,
+  ViewMountArg,
 } from "@fullcalendar/react";
 import { ViewOptions } from "./CalendarViewConfig";
 
@@ -13,9 +14,9 @@ function listDaySideFormat(args: VerboseFormattingArg) {
   );
 }
 
-function viewDidMount() {
-  return document
-    .querySelectorAll<HTMLElement>(
+function viewDidMount(mountArg: ViewMountArg) {
+  return mountArg.el.parentElement?.parentElement
+    ?.querySelectorAll<HTMLElement>(
       ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)"
     )
     .forEach((toolbarChunk) => {
@@ -24,13 +25,14 @@ function viewDidMount() {
     });
 }
 
-function eventDidMount(e: EventInput) {
+function eventDidMount(e: EventMountArg) {
   // Add place info to events
-  const title = e.el.querySelector(".fc-list-event-title");
-  if (title != null) {
+  const title = e.el.querySelector<HTMLElement>(".fc-list-event-title");
+  const place = e.el.querySelector<HTMLElement>(".fc-list-event-place");
+  if (title != null && place == null) {
     title.outerHTML = `
         <td class="fc-list-event-title">${e.event.title}</td>
-        <td class="text-right">${e.event.extendedProps["place"]}</td>
+        <td class="fc-list-event-place text-right">${e.event.extendedProps["place"]}</td>
     `;
   }
   // Change colspan of day header
@@ -43,9 +45,9 @@ function eventDidMount(e: EventInput) {
   }
 }
 
-function viewWillUnmount() {
-  return document
-    .querySelectorAll<HTMLElement>(
+function viewWillUnmount(mountArg: ViewMountArg) {
+  return mountArg.el.parentElement?.parentElement
+    ?.querySelectorAll<HTMLElement>(
       ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)"
     )
     .forEach((toolbarChunk) => {
@@ -63,11 +65,9 @@ export default function createListEternal(start: Date, end: Date): ViewOptions {
     viewDidMount,
     viewWillUnmount,
     eventDidMount,
-    visibleRange: function () {
-      return {
-        start: start,
-        end: end,
-      };
-    },
+    visibleRange: () => ({
+      start: start,
+      end: end,
+    }),
   };
 }

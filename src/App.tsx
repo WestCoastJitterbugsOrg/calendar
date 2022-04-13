@@ -4,7 +4,6 @@ import loadCogworkData from "./services/cogwork";
 import { EventSeriesModal, SpinLoader } from "./shared";
 import eventReducer, {
   EventActions,
-  EventActionTypes,
   EventStore,
 } from "./store";
 import { createContext, useEffect, useReducer, useState } from "react";
@@ -34,11 +33,8 @@ export default function App() {
 
   useEffect(() => {
     const data = loadCogworkData();
-    setLoadState('loaded');
-    dispatch({
-      type: EventActionTypes.eventsLoaded,
-      payload: data,
-    });
+    setLoadState("loaded");
+    dispatch({ type: "eventsLoaded", payload: data });
   }, []);
 
   switch (loadState) {

@@ -1,6 +1,6 @@
 import { StateContext } from "@app/App";
 import { EventItem } from "@app/event-selection";
-import { EventActionTypes, useSelectors } from "@app/store";
+import { useSelectors } from "@app/store";
 import { useContext, useState } from "react";
 import { EventGroupHeader } from "./EventGroupHeader";
 
@@ -43,7 +43,7 @@ export default function EventGroup({ category: categoryId }: EventGroupProps) {
 
   const setAllChecked = (show: boolean) => {
     dispatch({
-      type: EventActionTypes.categoryToggled,
+      type: "categoryToggled",
       payload: { id: categoryId, show },
     });
   };
@@ -68,14 +68,14 @@ export default function EventGroup({ category: categoryId }: EventGroupProps) {
             event={event}
             toggle={() =>
               dispatch({
-                type: EventActionTypes.eventToggled,
+                type: "eventToggled",
                 payload: { id: event.id },
               })
             }
             showInfo={(clickEvent) => {
               clickEvent.stopPropagation();
               dispatch({
-                type: EventActionTypes.eventModalRequested,
+                type: "eventModalRequested",
                 payload: event.id,
               });
             }}

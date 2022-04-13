@@ -2,75 +2,60 @@ import { ActionMap, EventStore } from ".";
 
 type EventActionMap = ActionMap<EventPayload>;
 
-export enum EventActionTypes {
-  allToggled = "allToggled",
-  categoryToggled = "categoryToggled",
-  eventToggled = "eventToggled",
-  eventsLoaded = "eventsLoaded",
-  eventModalRequested = "eventModalRequested",
-  modalClosed = "modalClosed",
-}
+type EventToggledPayload = { id: string };
+type CategoryToggledPayload = { id: string; show: boolean };
 
 type EventPayload = {
-  [EventActionTypes.allToggled]: { show: boolean };
-  [EventActionTypes.categoryToggled]: { id: string; show: boolean };
-  [EventActionTypes.eventToggled]: { id: string };
-  [EventActionTypes.eventsLoaded]: Wcj.EventCategory[];
-  [EventActionTypes.eventModalRequested]: string;
-  [EventActionTypes.modalClosed]: undefined;
+  allToggled: { show: boolean };
+  categoryToggled: CategoryToggledPayload;
+  eventToggled: EventToggledPayload;
+  eventsLoaded: Wcj.EventCategory[];
+  eventModalRequested: string;
+  modalClosed: undefined;
 };
 
 export type EventActions = EventActionMap[keyof EventActionMap];
-export type EventReducer = typeof eventReducer;
 
-export default function eventReducer(
-  state: EventStore,
-  action: EventActions
-): EventStore {
+export default function eventReducer(state: EventStore, action: EventActions) {
   switch (action.type) {
-    case EventActionTypes.allToggled:
+    case "allToggled":
       return allToggledReducer(state, action.payload.show);
-    case EventActionTypes.categoryToggled:
+    case "categoryToggled":
       return categoryToggledReducer(state, action.payload);
-    case EventActionTypes.eventToggled:
+    case "eventToggled":
       return eventToggledReducer(state, action.payload);
-    case EventActionTypes.eventsLoaded:
+    case "eventsLoaded":
       return eventsLoaded(state, action.payload);
-    case EventActionTypes.eventModalRequested:
+    case "eventModalRequested":
       return { ...state, eventModal: action.payload };
-    case EventActionTypes.modalClosed:
-      return { ...state, eventModal: false };
-
+    case "modalClosed":
+      return { ...state, eventModal: false as const };
     default:
       return { ...state };
   }
 }
 
-function allToggledReducer(state: EventStore, show: boolean): EventStore {
-  const events = { ...state.events };
-  const newEvents = {} as { [eventId: string]: Wcj.Event };
+function allToggledReducer(state: EventStore, show: boolean) {
+  const newState: EventStore = {
+    ...state,
+    events: {
+      byId: {},
+      allIds: state.events.allIds,
+    },
+  };
 
-  for (const eventId of events.allIds) {
-    const event = events.byId[eventId];
-    newEvents[eventId] = {
+  for (const eventId of state.events.allIds) {
+    const event = state.events.byId[eventId];
+    newState.events.byId[eventId] = {
       ...event,
       showInCalendar: show,
     };
   }
 
-  return {
-    ...state,
-    events: {
-      ...state.events,
-      byId: newEvents,
-    },
-  };
+  return newState;
 }
 
-function eventsLoaded(
-  state: EventStore,
-  payload: EventActionMap[EventActionTypes.eventsLoaded]["payload"]
-) {
+function eventsLoaded(state: EventStore, payload: Wcj.EventCategory[]) {
   const newState: EventStore = {
     ...state,
     categories: {
@@ -100,46 +85,44 @@ function eventsLoaded(
 
 function categoryToggledReducer(
   state: EventStore,
-  payload: EventActionMap[EventActionTypes.categoryToggled]["payload"]
-): EventStore {
-  const eventIds = state.categories.byId[payload.id].events;
-
-  const eventsById = { ...state.events.byId };
-
-  for (const eventId of eventIds) {
-    eventsById[eventId].showInCalendar = payload.show;
-  }
-
-  return {
+  payload: CategoryToggledPayload
+) {
+  const newState: EventStore = {
     ...state,
     events: {
       ...state.events,
-      byId: eventsById,
+      byId: {
+        ...state.events.byId,
+      },
     },
   };
+
+  const eventIds = state.categories.byId[payload.id].events;
+
+  for (const eventId of eventIds) {
+    newState.events.byId[eventId].showInCalendar = payload.show;
+  }
+
+  return newState;
 }
 
-function eventToggledReducer(
-  state: EventStore,
-  payload: EventActionMap[EventActionTypes.eventToggled]["payload"]
-): EventStore {
-  const newCheckState = !state.events.byId[payload.id].showInCalendar;
+function eventToggledReducer(state: EventStore, payload: EventToggledPayload) {
+  const newState: EventStore = {
+    ...state,
+    events: {
+      ...state.events,
+      byId: {
+        ...state.events.byId,
+      },
+    },
+  };
 
   const event: Wcj.Event = {
     ...state.events.byId[payload.id],
-    showInCalendar: newCheckState,
+    showInCalendar: !state.events.byId[payload.id].showInCalendar,
   };
 
-  const eventsById = {
-    ...state.events.byId,
-    [payload.id]: event,
-  };
+  newState.events.byId[payload.id] = event;
 
-  return {
-    ...state,
-    events: {
-      ...state.events,
-      byId: eventsById,
-    },
-  };
+  return newState;
 }

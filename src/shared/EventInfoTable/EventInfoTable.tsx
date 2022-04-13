@@ -23,15 +23,12 @@ export default function EventInfoTable(event: Wcj.Event) {
   const lastDate = displayDate(new Date(last));
 
   return (
-    <table>
+    <table className="w-full">
       <tbody>
         <EventOverviewTableRow title="Place" value={event.place} />
         <EventOverviewTableRow title="Price" value={event.price} />
         <EventOverviewTableRow title="Instructors" value={event.instructors} />
-        <EventOverviewTableRow
-          title="First occasion"
-          value={firstDate}
-        />
+        <EventOverviewTableRow title="First occasion" value={firstDate} />
         <EventOverviewTableRow title="Last occasion" value={lastDate} />
       </tbody>
     </table>
