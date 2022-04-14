@@ -1,13 +1,12 @@
-import path from "path";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import CopyWebpackPlugin from "copy-webpack-plugin";
-import { DefinePlugin, WebpackPluginInstance } from "webpack";
-import ESLintPlugin from "eslint-webpack-plugin";
-import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
-import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
+const path = require("path");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const { DefinePlugin } = require("webpack");
+const ESLintPlugin = require("eslint-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
-module.exports = (env: any) => ({
+/** @type {(env: any) => import('webpack-dev-server').WebpackConfiguration} */
+module.exports = env => ({
   entry: path.join(__dirname, "src", "index.tsx"),
   output: {
     path: path.join(__dirname, "build"),
@@ -69,7 +68,7 @@ module.exports = (env: any) => ({
     }),
     new DefinePlugin({ API_URL: `"${env.API_URL}"` }),
     new ESLintPlugin({}),
-    new TsconfigPathsPlugin({}) as unknown as WebpackPluginInstance,
+    new TsconfigPathsPlugin({}),
   ],
   optimization: {
     minimizer: ["...", new CssMinimizerPlugin()],

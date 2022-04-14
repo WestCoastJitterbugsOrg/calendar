@@ -1,4 +1,3 @@
-
 import tailwindConfig from "tailwindconfig";
 import resolveConfig from "tailwindcss/resolveConfig";
 import { TailwindValuesColor } from "tailwindcss/tailwind-config";

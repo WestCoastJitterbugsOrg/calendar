@@ -1,13 +1,12 @@
-import path from "path";
-import CopyWebpackPlugin from "copy-webpack-plugin";
-import { DefinePlugin, WebpackPluginInstance } from "webpack";
-import ESLintPlugin from "eslint-webpack-plugin";
-import ZipPlugin from "zip-webpack-plugin";
-import { WebpackConfiguration } from "webpack-dev-server";
-import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
-import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
+const path = require("path");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const ESLintPlugin = require("eslint-webpack-plugin");
+const ZipPlugin = require("zip-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
-module.exports = (env: any): WebpackConfiguration => {
+/** @type {(env: any) => import('webpack-dev-server').WebpackConfiguration} */
+module.exports = (env) => {
   return {
     entry: path.join(__dirname, "src", "index.tsx"),
     output: {
@@ -31,26 +30,18 @@ module.exports = (env: any): WebpackConfiguration => {
     module: {
       rules: [
         {
-          test: /\.(js|jsx)$/,
-          exclude: /node_modules/,
-          use: ["babel-loader"],
-        },
-        {
           test: /\.(ts|tsx)$/,
           exclude: /node_modules/,
           use: ["ts-loader"],
         },
         {
           test: /\.(css)$/,
-          use: [
-            "css-loader",
-            "postcss-loader",
-          ],
+          use: ["css-loader", "postcss-loader"],
         },
       ],
     },
     externals: {
-      jquery: "jQuery"
+      jquery: "jQuery",
     },
     plugins: [
       new CopyWebpackPlugin({
@@ -61,18 +52,14 @@ module.exports = (env: any): WebpackConfiguration => {
           },
         ],
       }),
-      new DefinePlugin({
-        API_URL: `"${env.API_URL}"`,
-        nodeenv: env.production ? "production" : "development",
-      }),
       new ESLintPlugin({}),
       ...(env.production
         ? [
-            new ZipPlugin({
-              filename: "wcjcal.zip",
-              pathPrefix: "wcjcal",
-            }) as unknown as WebpackPluginInstance,
-          ]
+          new ZipPlugin({
+            filename: "wcjcal.zip",
+            pathPrefix: "wcjcal",
+          }),
+        ]
         : []),
     ],
     optimization: {
