@@ -12,7 +12,7 @@ const mockLoadCogworkData = loadCogworkData as jest.MockedFunction<
   typeof loadCogworkData
 >;
 
-const mockEvents = [
+const mockEvents: Wcj.EventCategory[] = [
   {
     category: "Lindy Hop",
     events: [
