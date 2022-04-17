@@ -1,9 +1,9 @@
 import { EventInfoTable, LinkButton } from "@app/shared";
 
-type props = {
+interface props {
   event: Wcj.Event;
   onCloseClick: () => void;
-};
+}
 
 export function EventSeriesModalContent({ event, onCloseClick }: props) {
   return (

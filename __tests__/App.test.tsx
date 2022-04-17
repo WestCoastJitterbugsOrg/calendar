@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render as libRender, RenderResult } from "@testing-library/react";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 import App from "../src/App";

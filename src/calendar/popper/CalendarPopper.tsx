@@ -1,6 +1,5 @@
 import {
   EventApi,
-  formatIsoTimeString,
   formatRange,
 } from "@fullcalendar/react";
 import EventInfoTable from "@app/shared/EventInfoTable/EventInfoTable";
