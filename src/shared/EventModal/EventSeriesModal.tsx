@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import Modal from "react-modal";
 import { StateContext } from "@app/App";
 import { EventSeriesModalContent } from "./EventModalContent";
-import { appContainer } from "@app/.";
+import appContainer from "@app/app-container";
 
 export function EventSeriesModal() {
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { appContainer } from "@app/.";
+import appContainer from "@app/app-container";
 import { StateContext } from "@app/App";
 import { EventApi, EventClickArg } from "@fullcalendar/react";
 import { createPopper, Instance } from "@popperjs/core";

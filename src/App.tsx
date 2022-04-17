@@ -2,10 +2,7 @@ import Calendar from "./calendar";
 import { EventGroup, ToggleAllButtons } from "./event-selection";
 import loadCogworkData from "./services/cogwork";
 import { EventSeriesModal, SpinLoader } from "./shared";
-import eventReducer, {
-  EventActions,
-  EventStore,
-} from "./store";
+import eventReducer, { EventActions, EventStore } from "./store";
 import { createContext, useEffect, useReducer, useState } from "react";
 
 const initialContext: EventStore = {
@@ -49,7 +46,10 @@ export default function App() {
               <div className="flex-none">
                 <ToggleAllButtons />
               </div>
-              <div className="flex-grow w-full overflow-auto bg-wcj-sand divide-y divide-wcj-mint">
+              <div
+                className="flex-grow w-full overflow-auto bg-wcj-sand divide-y divide-wcj-mint"
+                data-testid="event-selection-groups"
+              >
                 {state.categories.allIds.map((categoryId) => (
                   <EventGroup key={categoryId} category={categoryId} />
                 ))}
