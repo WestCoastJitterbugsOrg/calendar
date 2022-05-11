@@ -8,5 +8,6 @@
             "directory": "server",
             "changeProcessCWD": true
         }
-    ]
+    ],
+    "jest.jestCommandLine": "jest"
 }

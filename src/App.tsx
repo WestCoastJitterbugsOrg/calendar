@@ -3,7 +3,13 @@ import { EventGroup, ToggleAllButtons } from "./event-selection";
 import loadCogworkData from "./services/cogwork";
 import { EventSeriesModal, SpinLoader } from "./shared";
 import eventReducer, { EventActions, EventStore } from "./store";
-import { createContext, useEffect, useReducer, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 
 const initialContext: EventStore = {
   categories: { byId: {}, allIds: [] },
@@ -11,9 +17,9 @@ const initialContext: EventStore = {
   eventModal: false,
 };
 
-interface StateContext {
+export interface StateContext {
   state: EventStore;
-  dispatch: React.Dispatch<EventActions>;
+  dispatch: Dispatch<EventActions>;
 }
 
 export const StateContext = createContext<StateContext>({
@@ -29,9 +35,13 @@ export default function App() {
   const [state, dispatch] = useReducer(eventReducer, initialContext);
 
   useEffect(() => {
-    const data = loadCogworkData();
-    setLoadState("loaded");
-    dispatch({ type: "eventsLoaded", payload: data });
+    try {
+      const data = loadCogworkData();
+      setLoadState("loaded");
+      dispatch({ type: "eventsLoaded", payload: data });
+    } catch (e) {
+      setLoadState({ error: e });
+    }
   }, []);
 
   switch (loadState) {
@@ -58,6 +68,7 @@ export default function App() {
             <div
               className="flex-grow flex-shrink-0 min-h-[calc(100vh-2rem)] min-w-[calc(100%-24rem)]"
               style={{ minWidth: "calc(100%-24rem)" }}
+              data-testid="calendar-wrapper"
             >
               <Calendar />
             </div>

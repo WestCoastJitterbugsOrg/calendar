@@ -11,7 +11,6 @@
             "type": "node-terminal",
             "cwd": "${workspaceFolder}/server"
         },
-        
         {
             "type": "pwa-node",
             "request": "launch",
@@ -22,6 +21,20 @@
             "program": "${workspaceFolder}/server/src/index.ts",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
+            ]
+        },
+        {
+            "type": "node",
+            "name": "vscode-jest-tests",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "disableOptimisticBPs": true,
+            "program": "${workspaceFolder}/jest",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "--runInBand",
+                "--watchAll=false"
             ]
         }
     ]

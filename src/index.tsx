@@ -1,9 +1,9 @@
-import style from "./styles/index.css";
+
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import appContainer from "./app-container";
+import { appContainer, appTag } from "./app-container";
 
 try {
   const wcjCalElement = document.getElementById("wcjcal");
@@ -12,17 +12,7 @@ try {
     throw Error("Could not find #wcjcal element in DOM");
   } else {
     const shadowRoot = wcjCalElement.attachShadow({ mode: "open" });
-    appContainer.id = "wcjcal-shadow-root";
-
-    const styleTag = document.createElement("style");
-    styleTag.innerHTML = style.toString();
-
-    const appTag = document.createElement("div");
-
-    appContainer?.appendChild(styleTag);
-    appContainer?.appendChild(appTag);
     shadowRoot.appendChild(appContainer);
-
     const root = createRoot(appTag);
 
     setTimeout(() =>

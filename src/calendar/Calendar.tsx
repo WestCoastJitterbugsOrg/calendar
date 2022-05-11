@@ -1,7 +1,7 @@
 import { StateContext } from "@app/App";
-import FullCalendar from "@fullcalendar/react";
+import FullCalendar, { DateInput } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction"; 
+import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { useContext } from "react";
@@ -18,7 +18,11 @@ import { CalendarViewConfig } from "./views/CalendarViewConfig";
 const fullConfig = resolveConfig(tailwindConfig);
 const colors = fullConfig.theme.colors as TailwindValuesColor;
 
-export default function Calendar() {
+interface Props {
+  initialDate?: DateInput;
+}
+
+export default function Calendar({ initialDate }: Props) {
   const stateContext = useContext(StateContext);
 
   const allWcjEvents = Object.values(stateContext.state.events.byId);
@@ -39,6 +43,7 @@ export default function Calendar() {
     <div className="wcjcal-fc">
       <FullCalendar
         plugins={[dayGridPlugin, listPlugin, timeGridPlugin, interactionPlugin]}
+        initialDate={initialDate}
         initialView={
           window.innerWidth <=
           parseInt((fullConfig.theme.screens as TailwindValues)?.["sm"])
@@ -51,8 +56,8 @@ export default function Calendar() {
           new Date(lastOccasion)
         )}
         buttonText={{
-          next: '▶',
-          prev: '◀',
+          next: "▶",
+          prev: "◀",
           today: "Today",
           month: "Month",
           week: "Week",

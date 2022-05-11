@@ -1,4 +1,4 @@
-import appContainer from "@app/app-container";
+import { appContainer } from "@app/app-container";
 import { StateContext } from "@app/App";
 import { EventApi, EventClickArg } from "@fullcalendar/react";
 import { createPopper, Instance } from "@popperjs/core";
@@ -12,7 +12,7 @@ export function usePopperHandler() {
   const popper = useRef<Instance>();
   const { dispatch } = useContext(StateContext);
 
-  const root = appContainer || document.body;
+  const root = appContainer ?? document.body;
   let tooltipWrapper: HTMLElement;
   let tooltipRoot: Root;
 
