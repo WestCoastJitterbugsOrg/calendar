@@ -17,7 +17,7 @@ jest.mock("@popperjs/core", () => {
   return {
     __esModule: true,
     ...originalModule,
-    createPopper: jest.fn(_ => "mocked createPopper"),
+    createPopper: jest.fn(() => "mocked createPopper"),
   };
 });
 
