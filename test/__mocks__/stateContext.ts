@@ -1,4 +1,4 @@
-import { StateContext } from "../src/App";
+import { StateContext } from "@app/App";
 
 export const mockStateContext: StateContext = {
   dispatch: (e) => console.log(e.type.toString()),

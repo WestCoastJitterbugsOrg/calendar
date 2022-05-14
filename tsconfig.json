@@ -26,8 +26,8 @@
     ]
   },
   "include": [
-    "__tests__/**/*",
+    "test/__tests__/**/*",
     "src/**/*",
     "./tailwind.config.js"
-  ]
+, "test/test-utils.ts"  ]
 }
