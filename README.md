@@ -5,7 +5,7 @@ and allows users to filter on courses, dance styles and more. At the moment it's
 wordpress plugin that can be included on any page by using the shortcode `[wcjcal]`, 
 but it shouldn't be impossible to create a standalone PHP application.
 
-It's used by the Gothenburg swing dance association "WCJ" at https://wcj.se/calendar. 
+It's used by the Gothenburg swing dance association "WCJ" at https://wcj.se/kalender/. 
 Work is done to allow all clubs using CogWork to use it. 
 
 # Contributing
