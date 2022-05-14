@@ -125,5 +125,13 @@
       "last 1 safari version"
     ]
   },
+  "postcss": {
+    "plugins": [
+      "postcss-import",
+      "tailwindcss/nesting",
+      "tailwindcss",
+      "autoprefixer"
+    ]
+  },
   "packageManager": "yarn@3.1.1"
 }

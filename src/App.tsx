@@ -67,7 +67,6 @@ export default function App() {
             </div>
             <div
               className="flex-grow flex-shrink-0 min-h-[calc(100vh-2rem)] min-w-[calc(100%-24rem)]"
-              style={{ minWidth: "calc(100%-24rem)" }}
               data-testid="calendar-wrapper"
             >
               <Calendar />
