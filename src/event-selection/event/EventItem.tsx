@@ -12,7 +12,7 @@ export default function EventItem(props: EventRowProps) {
   return (
     <>
       <div
-        className="flex flex-row items-center px-2 my-2 min-h-8"
+        className="flex flex-row items-center px-2 my-2 min-h-[32px]"
         onClick={props.toggle}
       >
         <div className="h-4 w-4 mr-2 flex-none" onClick={props.showInfo}>

@@ -1,9 +1,47 @@
 const colors = require("tailwindcss/colors");
+const defaultTheme = require("tailwindcss/defaultTheme");
+
+// Remove deprecated colors to get rid of compilation warnings
+const deprecatedColors = [
+  "lightBlue",
+  "warmGray",
+  "trueGray",
+  "coolGray",
+  "blueGray",
+];
+for (const color of deprecatedColors) {
+  delete colors[color];
+}
+
+function rem2px(input, fontSize = 16) {
+  if (input == null) {
+    return input;
+  }
+  switch (typeof input) {
+    case "object":
+      if (Array.isArray(input)) {
+        return input.map((val) => rem2px(val, fontSize));
+      } else {
+        const ret = {};
+        for (const key in input) {
+          ret[key] = rem2px(input[key]);
+        }
+        return ret;
+      }
+    case "string":
+      return input.replace(
+        /(\d*\.?\d+)rem$/,
+        (_, val) => parseFloat(val) * fontSize + "px"
+      );
+    default:
+      return input;
+  }
+}
 
 /** @type {import('tailwindcss/tailwind-config').TailwindConfig} */
 module.exports = {
   content: ["src/**/*.{js,jsx,ts,tsx}"],
-  darkMode: "media", // 'class'
+  darkMode: "media",
   theme: {
     extend: {
       animation: {
@@ -13,44 +51,15 @@ module.exports = {
         maxh: "max-height",
       },
     },
-    minHeight: {
-      4: "16px",
-      8: "32px",
-      screen: "100vh",
-    },
-    maxHeight: {
-      0: "0",
-      "1/5": "20%",
-      "1/4": "25%",
-      "2/5": "40%",
-      "1/2": "50%",
-      "3/5": "60%",
-      "3/4": "75%",
-      "4/5": "80%",
-      full: "100%",
-      screen: "100vh",
-    },
-    maxWidth: {
-      0: "0",
-      "1/5": "20%",
-      "1/4": "25%",
-      "2/5": "40%",
-      "1/2": "50%",
-      "3/5": "60%",
-      "3/4": "75%",
-      "4/5": "80%",
-      full: "100%",
-      screen: "100vw",
-    },
+    borderRadius: rem2px(defaultTheme.borderRadius),
+    columns: rem2px(defaultTheme.columns),
+    fontSize: rem2px(defaultTheme.fontSize),
+    lineHeight: rem2px(defaultTheme.lineHeight),
+    minHeight: rem2px(defaultTheme.minHeight),
     colors: ({ theme }) => ({
-      transparent: "transparent",
-      current: "currentColor",
-      black: colors.black,
-      white: colors.white,
-      gray: colors.neutral,
+      ...colors,
       primary: theme("wcj-black"),
       secondary: theme("wcj-cyan"),
-      danger: theme("red"),
       "wcj-cyan": "#349995",
       "wcj-red": "#AB2814",
       "wcj-sand": "#FFFAF2",
