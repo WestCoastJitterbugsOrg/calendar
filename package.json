@@ -61,7 +61,8 @@
     "start:wordpress": "yarn webpack watch --config webpack.wordpress-config.js",
     "build": "yarn build:prod",
     "build:prod": "yarn webpack --config webpack.wordpress-config.js --env production",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "test-ci": "jest --ci"
   },
   "eslintConfig": {
     "env": {
