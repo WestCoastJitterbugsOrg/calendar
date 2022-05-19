@@ -1,3 +1,4 @@
+import "@testing-library/jest-dom";
 import { StateContext } from "@app/App";
 import Calendar from "@app/calendar";
 import { createPopper } from "@popperjs/core";

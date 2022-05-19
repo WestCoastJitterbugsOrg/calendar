@@ -14,6 +14,7 @@ export default function EventCheckbox(props: EventCheckboxProps) {
   return (
     <input
       type="checkbox"
+      data-testid="event-checkbox"
       className={`
         appearance-none w-6 h-6 border rounded-full border-opacity-50 border-solid border-black
 

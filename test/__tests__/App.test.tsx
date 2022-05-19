@@ -5,8 +5,6 @@ import App from "../../src/App";
 import { defaultEventData } from "../__mocks__/cwEvents";
 import { createRenderer, Global } from "../test-utils";
 
-
-
 const renderer = createRenderer();
 
 beforeEach(() => {

@@ -10,6 +10,7 @@ import {
   useReducer,
   useState,
 } from "react";
+import StateWrapper from "./store/StateWrapper";
 
 const initialContext: EventStore = {
   categories: { byId: {}, allIds: [] },
@@ -17,10 +18,7 @@ const initialContext: EventStore = {
   eventModal: false,
 };
 
-export interface StateContext {
-  state: EventStore;
-  dispatch: Dispatch<EventActions>;
-}
+
 
 export const StateContext = createContext<StateContext>({
   state: initialContext,
@@ -31,8 +29,6 @@ type LoadState = "loading" | "loaded" | { error: unknown };
 
 export default function App() {
   const [loadState, setLoadState] = useState<LoadState>("loading");
-
-  const [state, dispatch] = useReducer(eventReducer, initialContext);
 
   useEffect(() => {
     try {
@@ -50,7 +46,7 @@ export default function App() {
     }
     case "loaded": {
       return (
-        <StateContext.Provider value={{ state, dispatch }}>
+        <StateWrapper initialContext={initialContext}>
           <div className="flex flex-row flex-wrap items-stretch bg-white">
             <div className="flex flex-col flex-grow w-96 max-h-[calc(100vh-2rem)]">
               <div className="flex-none">
@@ -73,7 +69,7 @@ export default function App() {
             </div>
           </div>
           <EventSeriesModal />
-        </StateContext.Provider>
+        </StateWrapper>
       );
     }
     default: {
