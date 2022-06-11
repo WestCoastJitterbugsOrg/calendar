@@ -1,5 +1,5 @@
 import { appContainer } from "@app/app-container";
-import { StateContext } from "@app/App";
+import { StateContext } from "@app/store/StateWrapper";
 import { EventApi, EventClickArg } from "@fullcalendar/react";
 import { createPopper, Instance } from "@popperjs/core";
 import { useContext, useRef } from "react";

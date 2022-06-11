@@ -11,6 +11,7 @@ module.exports = {
   },
   testRegex: "(/test/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
   testPathIgnorePatterns: ["/public/*"],
+  coveragePathIgnorePatterns: ["/tailwind.config.js"],
   testEnvironment: "jsdom",
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
   coverageReporters: ["json", "lcov", "text"],

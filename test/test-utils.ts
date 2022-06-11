@@ -26,7 +26,7 @@ export function createRenderer() {
       } else {
         throw "Container not initialized";
       }
-    },
+    }
   };
 
   return ret;

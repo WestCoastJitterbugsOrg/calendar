@@ -4,7 +4,6 @@ type EventActionTypes =
   | "allToggled"
   | "categoryToggled"
   | "eventToggled"
-  | "eventsLoaded"
   | "eventModalRequested"
   | "modalClosed";
 

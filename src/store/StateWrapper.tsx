@@ -19,7 +19,7 @@ export const StateContext = createContext<StateContext>({
 });
 
 interface Props {
-  children: JSX.Element[];
+  children: JSX.Element[] | JSX.Element;
   initialContext: EventStore;
 }
 

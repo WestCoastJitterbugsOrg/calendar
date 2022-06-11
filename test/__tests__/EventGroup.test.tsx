@@ -1,17 +1,15 @@
 import "@testing-library/jest-dom";
-import { StateContext } from "@app/App";
 import { EventGroup } from "@app/event-selection";
 import { unmountComponentAtNode } from "react-dom";
-import { defaultEventData } from "../__mocks__/cwEvents";
-import { mockStateContext } from "../__mocks__/stateContext";
-import { createRenderer, Global } from "../test-utils";
+import { mockStore } from "../__mocks__/stateContext";
+import { createRenderer } from "../test-utils";
 import { act } from "react-dom/test-utils";
+import StateWrapper from "@app/store/StateWrapper";
+import { fireEvent } from "@testing-library/react";
 
 const renderer = createRenderer();
 
 beforeEach(() => {
-  (global as Global)["wcjcal_ajax_obj"] = defaultEventData;
-
   renderer.container = document.createElement("div");
   renderer.container.id = "wcjcal";
   document.body.appendChild(renderer.container);
@@ -23,14 +21,13 @@ afterEach(() => {
     renderer.container.remove();
   }
   renderer.container = null;
-  delete (global as Global)["wcjcal_ajax_obj"];
 });
 
 it("Snapshot", async () => {
   renderer.render(
-    <StateContext.Provider value={mockStateContext}>
+    <StateWrapper initialContext={mockStore}>
       <EventGroup category="Lindy Hop" />
-    </StateContext.Provider>
+    </StateWrapper>
   );
   expect(renderer.container?.innerHTML).toMatchSnapshot();
 });
@@ -39,18 +36,20 @@ it("Unchecking a group causes all events to be unchecked", async () => {
   jest.useFakeTimers();
   jest.spyOn(global, "setTimeout");
   const result = renderer.render(
-    <StateContext.Provider value={mockStateContext}>
+    <StateWrapper initialContext={mockStore}>
       <EventGroup category="Lindy Hop" />
-    </StateContext.Provider>
+    </StateWrapper>
   );
 
   const el = result.getByTestId("group-checkbox");
-  
+
   act(() => {
-    el.click();
+    fireEvent.click(el);
     jest.runAllTimers();
   });
 
-  const allEventCheckboxes = result.getAllByTestId("event-checkbox") as HTMLInputElement[];
-  expect(allEventCheckboxes.every(x => x.checked)).toBeFalsy();
+  const allEventCheckboxes = result.getAllByTestId(
+    "event-checkbox"
+  ) as HTMLInputElement[];
+  expect(allEventCheckboxes.every((x) => x.checked)).toBeFalsy();
 });

@@ -1,4 +1,4 @@
-import { StateContext } from "@app/App";
+import { StateContext } from "@app/store/StateWrapper";
 import FullCalendar, { DateInput } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";

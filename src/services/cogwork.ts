@@ -1,8 +1,4 @@
-export default function loadCogworkData() {
-  return convertCogworkData(wcjcal_ajax_obj.data);
-}
-
-function convertCogworkData(result: Cogwork.Response) {
+export default function convertCogworkData(result: Cogwork.Response) {
   const cogworkEvents = result.events.event.filter(
     (event) => event.schedule?.occasions?.occasion != null
   );

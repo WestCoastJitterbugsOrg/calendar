@@ -10,8 +10,6 @@ export default function eventReducer(state: EventStore, action: EventActions) {
       return categoryToggledReducer(state, action.payload);
     case "eventToggled":
       return eventToggledReducer(state, action.payload);
-    case "eventsLoaded":
-      return eventsLoaded(state, action.payload);
     case "eventModalRequested":
       return { ...state, eventModal: action.payload };
     case "modalClosed":
@@ -36,34 +34,6 @@ function allToggledReducer(state: EventStore, show: boolean) {
       ...event,
       showInCalendar: show,
     };
-  }
-
-  return newState;
-}
-
-function eventsLoaded(state: EventStore, payload: Wcj.EventCategory[]) {
-  const newState: EventStore = {
-    ...state,
-    categories: {
-      byId: {},
-      allIds: [],
-    },
-    events: {
-      byId: {},
-      allIds: [],
-    },
-  };
-
-  for (const category of payload) {
-    newState.categories.byId[category.category] = {
-      id: category.category,
-      events: category.events.map((event) => event.id),
-    };
-    newState.categories.allIds.push(category.category);
-    for (const event of category.events) {
-      newState.events.byId[event.id] = { ...event, showInCalendar: true };
-      newState.events.allIds.push(event.id);
-    }
   }
 
   return newState;
