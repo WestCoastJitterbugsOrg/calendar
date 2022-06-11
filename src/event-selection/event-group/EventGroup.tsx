@@ -1,6 +1,6 @@
-import { StateContext } from "@app/App";
 import { EventItem } from "@app/event-selection";
 import { useSelectors } from "@app/store";
+import { StateContext } from "@app/store/StateWrapper";
 import { useContext, useState } from "react";
 import { EventGroupHeader } from "./EventGroupHeader";
 

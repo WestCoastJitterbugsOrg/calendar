@@ -16,6 +16,7 @@ export function GroupCheckbox(props: GroupCheckboxProps) {
     <input
       ref={checkboxRef}
       type="checkbox"
+      data-testid="group-checkbox"
       className={`appearance-none w-5 h-5 bg-wcj-sand border-wcj-black border-solid border-[2px] rounded-md
                   after:content-[''] after:relative after:block after:opacity-0
 

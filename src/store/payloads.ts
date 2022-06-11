@@ -13,7 +13,6 @@ export interface EventPayload {
   allToggled: AllToggledPayload;
   categoryToggled: CategoryToggledPayload;
   eventToggled: EventToggledPayload;
-  eventsLoaded: Wcj.EventCategory[];
   eventModalRequested: string;
   modalClosed: undefined;
 }

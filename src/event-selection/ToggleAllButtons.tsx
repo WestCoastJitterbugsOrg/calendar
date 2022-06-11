@@ -1,5 +1,5 @@
-import { StateContext } from "@app/App";
 import { Button } from "@app/shared";
+import { StateContext } from "@app/store/StateWrapper";
 import { useContext } from "react";
 
 export default function ToggleAllButtons() {

@@ -1,11 +1,12 @@
-import { StateContext } from "@app/App";
+import "@testing-library/jest-dom";
 import Calendar from "@app/calendar";
 import { createPopper } from "@popperjs/core";
 import { unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 import { defaultEventData } from "../__mocks__/cwEvents";
-import { mockStateContext } from "../__mocks__/stateContext";
+import { mockStateContext, mockStore } from "../__mocks__/stateContext";
 import { createRenderer, Global } from "../test-utils";
+import StateWrapper from "@app/store/StateWrapper";
 
 const renderer = createRenderer();
 
@@ -19,8 +20,6 @@ jest.mock("@popperjs/core", () => {
 });
 
 beforeEach(() => {
-  (global as Global)["wcjcal_ajax_obj"] = defaultEventData;
-
   renderer.container = document.createElement("div");
   renderer.container.id = "wcjcal";
   document.body.appendChild(renderer.container);
@@ -32,7 +31,6 @@ afterEach(() => {
     renderer.container.remove();
   }
   renderer.container = null;
-  delete (global as Global)["wcjcal_ajax_obj"];
 });
 
 it("Click event in calendar opens popper", async () => {
@@ -43,9 +41,9 @@ it("Click event in calendar opens popper", async () => {
     mockStateContext.state.events.byId["1"].occasions[0].start;
 
   const renderResult = renderer.render(
-    <StateContext.Provider value={mockStateContext}>
+    <StateWrapper initialContext={mockStore}>
       <Calendar initialDate={initialDate} />
-    </StateContext.Provider>
+    </StateWrapper>
   );
 
   const fcEventContainer = renderResult.container.querySelector<HTMLDivElement>(
