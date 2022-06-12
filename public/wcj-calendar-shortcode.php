@@ -29,7 +29,6 @@ function wcjcal_shortcode($attributes)
 		'wcjcal'
 	));
 
-	wp_enqueue_script('wcjcal-script');
 
 	$result = wcjcal_get_events();
 
@@ -40,6 +39,8 @@ function wcjcal_shortcode($attributes)
 			'data' => $result
 		)
 	);
+	
+	wp_enqueue_script('wcjcal-script');
 	
 	return '<div id="wcjcal" data-wcjcal-settings="' . esc_attr(wp_json_encode($settings)) . '" class="alignwide"></div>';
 }
