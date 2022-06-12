@@ -1,49 +1,45 @@
-import { useEffect, useState } from "react";
 import Calendar from "./calendar";
 import { ToggleAllButtons } from "./event-selection";
 import EventList from "./event-selection/EventList";
-import convertCogworkData from "./services/cogwork";
+import getCogworData from "./services/cogwork";
 import { EventSeriesModal, SpinLoader } from "./shared";
 import { EventStore } from "./store";
 import StateWrapper from "./store/StateWrapper";
 
+const data = getCogworData();
+const categories = data.reduce<EventStore["categories"]>(
+  (prev, curr) => ({
+    byId: {
+      ...prev.byId,
+      [curr.category]: {
+        id: curr.category,
+        events: curr.events.map((x) => x.id),
+      },
+    },
+    allIds: [...prev.allIds, curr.category],
+  }),
+  { byId: {}, allIds: [] }
+);
+const events = data
+  .flatMap((cat) => cat.events)
+  .reduce<EventStore["events"]>(
+    (prev, curr) => ({
+      byId: {
+        ...prev.byId,
+        [curr.id]: curr,
+      },
+      allIds: [...prev.allIds, curr.id],
+    }),
+    { byId: {}, allIds: [] }
+  );
+
+const initialContext = {
+  categories: categories,
+  events: events,
+  eventModal: false as const,
+};
+
 export default function App() {
-  const [initialContext, dispatchContext] = useState<EventStore | null>(null);
-
-  useEffect(() => {
-    const data = convertCogworkData(wcjcal_ajax_obj.data);
-    const categories = data.reduce<EventStore["categories"]>(
-      (prev, curr) => ({
-        byId: {
-          ...prev.byId,
-          [curr.category]: {
-            id: curr.category,
-            events: curr.events.map((x) => x.id),
-          },
-        },
-        allIds: [...prev.allIds, curr.category],
-      }),
-      { byId: {}, allIds: [] }
-    );
-    const events = data
-      .flatMap((cat) => cat.events)
-      .reduce<EventStore["events"]>(
-        (prev, curr) => ({
-          byId: {
-            ...prev.byId,
-            [curr.id]: curr,
-          },
-          allIds: [...prev.allIds, curr.id],
-        }),
-        { byId: {}, allIds: [] }
-      );
-    dispatchContext({
-      categories: categories,
-      events: events,
-      eventModal: false,
-    });
-  }, []);
-
   if (!initialContext) return <SpinLoader />;
 
   return (
