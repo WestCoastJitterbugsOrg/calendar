@@ -15,6 +15,40 @@ function listDaySideFormat(args: VerboseFormattingArg) {
 }
 
 function viewDidMount(mountArg: ViewMountArg) {
+  const currTime = new Date().getTime();
+
+  const nextEvent = mountArg.view.calendar
+    .getEvents()
+    .sort((a, b) => {
+      if (a?.start == null && b.start == null) {
+        return 0;
+      }
+      if (a?.start == null) {
+        return -1;
+      }
+      if (b.start == null) {
+        return 1;
+      }
+      return a.start.getTime() - b.start.getTime();
+    })
+    .find((x) => x.start && currTime <= x.start.getTime());
+
+  if (nextEvent != null) {
+    const eventStr = nextEvent.start?.toISOString().slice(0, 10);
+    const eventEl = mountArg.el.querySelector(`[data-date="${eventStr}"]`); //
+    const scrollContainer =
+      eventEl?.parentElement?.parentElement?.parentElement;
+
+    if (scrollContainer) {
+      const scrollContainerTop = scrollContainer?.getBoundingClientRect().top;
+      const eventTop = eventEl?.getBoundingClientRect().top;
+      scrollContainer.scrollTo({
+        top: eventTop - scrollContainerTop,
+        behavior: "smooth",
+      });
+    }
+  }
+
   return mountArg.el.parentElement?.parentElement
     ?.querySelectorAll<HTMLElement>(
       ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)"
