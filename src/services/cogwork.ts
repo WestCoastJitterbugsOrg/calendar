@@ -11,9 +11,13 @@ export default function initContext(): EventStore {
   for (const cogworkEvent of cogworkEvents) {
     const event = cogwork2wcjEvent(cogworkEvent);
 
+    // Add event to store
     events.allIds.push(event.id);
     events.byId[event.id] = event;
 
+    // Add category if it hasn't been seen before,
+    // and in any case make sure the event id is 
+    // added to the category
     if (!categories.allIds.includes(event.category)) {
       categories.allIds.push(event.category);
       categories.byId[event.category] = {
@@ -38,7 +42,7 @@ function cogwork2wcjEvent(event: Cogwork.Event): Wcj.Event {
     category: event.primaryEventGroup ?? event.category ?? "Övrigt",
     title: event.title,
     occasions: asArray(event.schedule.occasions.occasion)
-      .map(getWcjOccasions)
+      .map(cogwork2WcjOccasions)
       .filter((x): x is Wcj.Occasion => x != null),
     color: "",
     description: event.longdescription,
@@ -50,7 +54,7 @@ function cogwork2wcjEvent(event: Cogwork.Event): Wcj.Event {
   };
 }
 
-function getWcjOccasions(occasions: Cogwork.Occasion): Wcj.Occasion | null {
+function cogwork2WcjOccasions(occasions: Cogwork.Occasion): Wcj.Occasion | null {
   const start = occasions.startDateTime;
   const end = occasions.endDateTime;
 

@@ -42,7 +42,7 @@ function rem2px(input, fontSize = 16) {
 module.exports = {
   content: ["src/**/*.{js,jsx,ts,tsx}"],
   darkMode: "media",
-  theme: {
+  theme: rem2px({
     extend: {
       animation: {
         "spin-slow": "spin 3s linear infinite",
@@ -51,11 +51,7 @@ module.exports = {
         maxh: "max-height",
       },
     },
-    borderRadius: rem2px(defaultTheme.borderRadius),
-    columns: rem2px(defaultTheme.columns),
-    fontSize: rem2px(defaultTheme.fontSize),
-    lineHeight: rem2px(defaultTheme.lineHeight),
-    minHeight: rem2px(defaultTheme.minHeight),
+    ...defaultTheme,
     colors: ({ theme }) => ({
       ...colors,
       primary: theme("wcj-black"),
@@ -74,7 +70,7 @@ module.exports = {
       serif: ["ui-serif", "Georgia"],
       mono: ["ui-monospace", "SFMono-Regular"],
     },
-  },
+  }),
   variants: {
     extend: {},
   },
