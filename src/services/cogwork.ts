@@ -1,27 +1,41 @@
-export default function convertCogworkData() {
+import EventStore from "@app/store/model";
+
+export default function initContext(): EventStore {
   const response: Cogwork.Event[] = wcjcal_ajax_obj.data.events.event;
   const cogworkEvents = response.filter(
     (event) => event.schedule?.occasions?.occasion != null
   );
-  const categories: Wcj.EventCategory[] = [];
-  for (const event of cogworkEvents) {
-    const categoryName = event.primaryEventGroup ?? event.category ?? "Övrigt";
-    const category = categories.find((x) => x.category === categoryName);
-    if (category === undefined) {
-      categories.push({
-        category: categoryName,
-        events: [cogwork2wcjEvent(event)],
-      });
+  const categories: EventStore["categories"] = { byId: {}, allIds: [] };
+  const events: EventStore["events"] = { byId: {}, allIds: [] };
+
+  for (const cogworkEvent of cogworkEvents) {
+    const event = cogwork2wcjEvent(cogworkEvent);
+
+    events.allIds.push(event.id);
+    events.byId[event.id] = event;
+
+    if (!categories.allIds.includes(event.category)) {
+      categories.allIds.push(event.category);
+      categories.byId[event.category] = {
+        id: event.category,
+        events: [event.id],
+      };
     } else {
-      category.events.push(cogwork2wcjEvent(event));
+      categories.byId[event.category].events.push(event.id);
     }
   }
-  return categories;
+
+  return {
+    categories: categories,
+    events: events,
+    eventModal: false as const,
+  };
 }
 
 function cogwork2wcjEvent(event: Cogwork.Event): Wcj.Event {
   return {
     id: event["@attributes"].eventId,
+    category: event.primaryEventGroup ?? event.category ?? "Övrigt",
     title: event.title,
     occasions: asArray(event.schedule.occasions.occasion)
       .map(getWcjOccasions)

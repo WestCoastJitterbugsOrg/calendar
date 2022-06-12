@@ -16,6 +16,7 @@ export const mockStore: EventStore = {
     byId: {
       "1": {
         id: "1",
+        category: "Lindy Hop",
         instructors: "",
         occasions: [
           {

@@ -14,6 +14,7 @@ declare namespace Wcj {
 
   export type Event = {
     id: string;
+    category: string;
     title: string;
     occasions: Occasion[];
     description?: string;
