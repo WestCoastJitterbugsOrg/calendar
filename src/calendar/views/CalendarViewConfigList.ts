@@ -40,11 +40,15 @@ function viewDidMount(mountArg: ViewMountArg) {
       eventEl?.parentElement?.parentElement?.parentElement;
 
     if (scrollContainer) {
-      const scrollContainerTop = scrollContainer?.getBoundingClientRect().top;
-      const eventTop = eventEl?.getBoundingClientRect().top;
-      scrollContainer.scrollTo({
-        top: eventTop - scrollContainerTop,
-        behavior: "smooth",
+      // We have to make sure the scroll is at the top position before calculating the new position
+      scrollContainer.scrollTop = 0;
+      setTimeout(() => {
+        const scrollContainerTop = scrollContainer?.getBoundingClientRect().top;
+        const eventTop = eventEl?.getBoundingClientRect().top;
+        scrollContainer.scrollTo({
+          top: eventTop - scrollContainerTop,
+          behavior: "smooth",
+        });
       });
     }
   }
