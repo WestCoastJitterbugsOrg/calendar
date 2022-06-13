@@ -1,8 +1,56 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {}
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "extensions": {
+        "recommendations": [
+            "bradlc.vscode-tailwindcss",
+            "csstools.postcss",
+            "esbenp.prettier-vscode",
+            "rvest.vs-code-prettier-eslint",
+            "dbaeumer.vscode-eslint",
+            "firsttris.vscode-jest-runner"
+        ]
+    },
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "command": "npm start",
+                "name": "Run npm start",
+                "request": "launch",
+                "type": "node-terminal",
+                "cwd": "${workspaceFolder}/server"
+            },
+            {
+                "type": "pwa-node",
+                "request": "launch",
+                "name": "Launch Program",
+                "skipFiles": [
+                    "<node_internals>/**"
+                ],
+                "program": "${workspaceFolder}/server/src/index.ts",
+                "outFiles": [
+                    "${workspaceFolder}/**/*.js"
+                ]
+            },
+            {
+                "type": "node",
+                "name": "vscode-jest-tests",
+                "request": "launch",
+                "console": "integratedTerminal",
+                "internalConsoleOptions": "neverOpen",
+                "disableOptimisticBPs": true,
+                "program": "${workspaceFolder}/jest",
+                "cwd": "${workspaceFolder}",
+                "args": [
+                    "--runInBand",
+                    "--watchAll=false"
+                ]
+            }
+        ],
+        "compounds": []
+    }
 }
