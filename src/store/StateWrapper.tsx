@@ -27,11 +27,24 @@ export default function StateWrapper(props: Props) {
   const [state, dispatch] = useReducer(eventReducer, props.initialContext);
 
   useEffect(() => {
-    const uncheckedEvents = Object.values(state.events.byId)
-      .filter((x) => !x.showInCalendar)
-      .map((x) => x.id);
+    // Due to EU law, we need to check that user has consented to storing functional information
+    // There are two cookies that we check to see if the user has consented
+    const canStore = document.cookie
+      .split(";")
+      .map((x) => x.split("="))
+      .find(
+        (x) =>
+          x[0] === "cookielawinfo-checkbox-functional" ||
+          x[0] === "wcjcal-accept-storing"
+      )?.[1];
 
-    localStorage.setItem("uncheckedEvents", JSON.stringify(uncheckedEvents));
+    if (canStore === "yes") {
+      const uncheckedEvents = Object.values(state.events.byId)
+        .filter((x) => !x.showInCalendar)
+        .map((x) => x.id);
+
+      localStorage.setItem("uncheckedEvents", JSON.stringify(uncheckedEvents));
+    }
   }, [state.events]);
 
   return (
