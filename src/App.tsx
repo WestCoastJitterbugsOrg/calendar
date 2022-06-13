@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Calendar from "./calendar";
 import EventSelection from "./event-selection/EventSelection";
 import { Header } from "./Header";

@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "csstools.postcss",
+        "esbenp.prettier-vscode",
+        "rvest.vs-code-prettier-eslint",
+        "dbaeumer.vscode-eslint",
+        "firsttris.vscode-jest-runner"
+    ]
+}

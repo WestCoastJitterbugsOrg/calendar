@@ -67,7 +67,7 @@ export function usePopperHandler() {
 
   function handleEventClick(fc: EventClickArg) {
     fc.jsEvent.stopPropagation();
-    if (["dayGridMonth", "timeGridWeek"].includes(fc.view.type) && fc.el) {
+    if (fc.el) {
       removePopper();
       createTooltip(fc.event, fc.el);
       document.addEventListener("click", removePopper);
