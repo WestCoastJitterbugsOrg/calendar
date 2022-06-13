@@ -1,3 +1,4 @@
+import { canStore } from "@app/services/cookies";
 import { createContext, Dispatch, useEffect, useReducer } from "react";
 import { EventActions } from "./event-actions";
 import EventStore from "./model";
@@ -27,18 +28,8 @@ export default function StateWrapper(props: Props) {
   const [state, dispatch] = useReducer(eventReducer, props.initialContext);
 
   useEffect(() => {
-    // Due to EU law, we need to check that user has consented to storing functional information
-    // There are two cookies that we check to see if the user has consented
-    const canStore = document.cookie
-      .split(";")
-      .map((x) => x.split("="))
-      .find(
-        (x) =>
-          x[0] === "cookielawinfo-checkbox-functional" ||
-          x[0] === "wcjcal-accept-storing"
-      )?.[1];
-
-    if (canStore === "yes") {
+  
+    if (canStore()) {
       const uncheckedEvents = Object.values(state.events.byId)
         .filter((x) => !x.showInCalendar)
         .map((x) => x.id);
