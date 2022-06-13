@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 interface GroupCheckboxProps {
   state: "all" | "some" | "none";
@@ -8,9 +8,11 @@ interface GroupCheckboxProps {
 export function GroupCheckbox(props: GroupCheckboxProps) {
   const checkboxRef = useRef<HTMLInputElement>(null);
 
-  if (checkboxRef.current) {
-    checkboxRef.current.indeterminate = props.state === "some";
-  }
+  useEffect(() => {
+    if (checkboxRef.current) {
+      checkboxRef.current.indeterminate = props.state === "some";
+    }
+  }, [props.state]);
 
   return (
     <input

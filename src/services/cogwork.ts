@@ -5,18 +5,25 @@ export default function initContext(): EventStore {
   const cogworkEvents = response.filter(
     (event) => event.schedule?.occasions?.occasion != null
   );
+
+  const uncheckedEventsStr = localStorage.getItem("uncheckedEvents");
+  const uncheckedEvents: string[] = uncheckedEventsStr
+    ? JSON.parse(uncheckedEventsStr)
+    : [];
+
   const categories: EventStore["categories"] = { byId: {}, allIds: [] };
   const events: EventStore["events"] = { byId: {}, allIds: [] };
 
   for (const cogworkEvent of cogworkEvents) {
     const event = cogwork2wcjEvent(cogworkEvent);
+    event.showInCalendar = !uncheckedEvents.includes(event.id);
 
     // Add event to store
     events.allIds.push(event.id);
     events.byId[event.id] = event;
 
     // Add category if it hasn't been seen before,
-    // and in any case make sure the event id is 
+    // and in any case make sure the event id is
     // added to the category
     if (!categories.allIds.includes(event.category)) {
       categories.allIds.push(event.category);
@@ -50,11 +57,12 @@ function cogwork2wcjEvent(event: Cogwork.Event): Wcj.Event {
     place: event.place ?? "Unknown",
     price: event.pricing?.base ?? "Unknown",
     instructors: event.instructors?.combinedTitle ?? "Unknown",
-    showInCalendar: true,
   };
 }
 
-function cogwork2WcjOccasions(occasions: Cogwork.Occasion): Wcj.Occasion | null {
+function cogwork2WcjOccasions(
+  occasions: Cogwork.Occasion
+): Wcj.Occasion | null {
   const start = occasions.startDateTime;
   const end = occasions.endDateTime;
 
