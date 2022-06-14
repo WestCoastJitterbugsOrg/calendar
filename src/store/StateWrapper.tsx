@@ -1,4 +1,4 @@
-import { canStore } from "@app/services/cookies";
+import { canStoreSelection } from "@app/services/cookies";
 import { createContext, Dispatch, useEffect, useReducer } from "react";
 import { EventActions } from "./event-actions";
 import EventStore from "./model";
@@ -29,7 +29,7 @@ export default function StateWrapper(props: Props) {
 
   useEffect(() => {
   
-    if (canStore()) {
+    if (canStoreSelection()) {
       const uncheckedEvents = Object.values(state.events.byId)
         .filter((x) => !x.showInCalendar)
         .map((x) => x.id);
