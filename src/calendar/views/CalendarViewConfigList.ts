@@ -14,6 +14,8 @@ function listDaySideFormat(args: VerboseFormattingArg) {
   );
 }
 
+let hasScrolledIntoView = false;
+
 function viewDidMount(mountArg: ViewMountArg) {
   const currTime = new Date().getTime();
 
@@ -22,33 +24,28 @@ function viewDidMount(mountArg: ViewMountArg) {
     .sort((a, b) => {
       if (a?.start == null && b.start == null) {
         return 0;
-      }
-      if (a?.start == null) {
+      } else if (a?.start == null) {
         return -1;
-      }
-      if (b.start == null) {
+      } else if (b.start == null) {
         return 1;
+      } else {
+        return a.start.getTime() - b.start.getTime();
       }
-      return a.start.getTime() - b.start.getTime();
     })
     .find((x) => x.start && currTime <= x.start.getTime());
 
   if (nextEvent != null) {
     const eventStr = nextEvent.start?.toISOString().slice(0, 10);
-    const eventEl = mountArg.el.querySelector(`[data-date="${eventStr}"]`); //
+    const eventEl = mountArg.el.querySelector(`[data-date="${eventStr}"]`);
     const scrollContainer =
       eventEl?.parentElement?.parentElement?.parentElement;
 
-    if (scrollContainer) {
-      // We have to make sure the scroll is at the top position before calculating the new position
-      scrollContainer.scrollTop = 0;
+    if (scrollContainer && !hasScrolledIntoView) {
       setTimeout(() => {
         const scrollContainerTop = scrollContainer?.getBoundingClientRect().top;
         const eventTop = eventEl?.getBoundingClientRect().top;
-        scrollContainer.scrollTo({
-          top: eventTop - scrollContainerTop,
-          behavior: "smooth",
-        });
+        scrollContainer.scrollTop = eventTop - scrollContainerTop;
+        hasScrolledIntoView = true;
       });
     }
   }
