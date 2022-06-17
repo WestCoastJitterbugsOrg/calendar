@@ -1,45 +1,50 @@
 import { canStoreSelection } from "@app/services/cookies";
-import { createContext, Dispatch, useEffect, useReducer } from "react";
-import { EventActions } from "./event-actions";
-import EventStore from "./model";
-import eventReducer from "./reducers";
-
-export interface StateContext {
-  state: EventStore;
-  dispatch: Dispatch<EventActions>;
-}
-const emptyContext: EventStore = {
-  categories: { byId: {}, allIds: [] },
-  events: { byId: {}, allIds: [] },
-  eventModal: false,
-};
+import { createContext, useEffect, useState } from "react";
+import StateContext, { CategoryStore } from "./model";
 
 export const StateContext = createContext<StateContext>({
-  state: emptyContext,
-  dispatch: () => null,
+  categories: {},
+  events: {},
+  eventModal: false,
 });
+
+export type CategoryMap = Readonly<Record<string, CategoryStore>>;
+export type EventMap = Readonly<Record<string, Readonly<Wcj.Event>>>;
 
 interface Props {
   children: JSX.Element[] | JSX.Element;
-  initialContext: EventStore;
+  categories: CategoryMap;
+  events: EventMap;
 }
 
 export default function StateWrapper(props: Props) {
-  const [state, dispatch] = useReducer(eventReducer, props.initialContext);
+  const [categories, setCategories] = useState<Record<string, CategoryStore>>(
+    props.categories
+  );
+  const [events, setEvents] = useState<EventMap>(props.events);
+  const [eventModal, setEventModal] = useState<string | false>(false);
 
   useEffect(() => {
-  
     if (canStoreSelection()) {
-      const uncheckedEvents = Object.values(state.events.byId)
+      const uncheckedEvents = Object.values(events)
         .filter((x) => !x.showInCalendar)
         .map((x) => x.id);
 
       localStorage.setItem("uncheckedEvents", JSON.stringify(uncheckedEvents));
     }
-  }, [state.events]);
+  }, [events]);
 
   return (
-    <StateContext.Provider value={{ state, dispatch }}>
+    <StateContext.Provider
+      value={{
+        categories,
+        setCategories,
+        events,
+        setEvents,
+        eventModal,
+        setEventModal,
+      }}
+    >
       {props.children}
     </StateContext.Provider>
   );

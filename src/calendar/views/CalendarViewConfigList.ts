@@ -13,9 +13,6 @@ function listDaySideFormat(args: VerboseFormattingArg) {
     formatDate(args.date.marker, { week: "numeric" })
   );
 }
-
-let hasScrolledIntoView = false;
-
 function viewDidMount(mountArg: ViewMountArg) {
   const currTime = new Date().getTime();
 
@@ -40,12 +37,16 @@ function viewDidMount(mountArg: ViewMountArg) {
     const scrollContainer =
       eventEl?.parentElement?.parentElement?.parentElement;
 
-    if (scrollContainer && !hasScrolledIntoView) {
+    if (scrollContainer) {
+      // For some reason we come here twice, and the calculation of getBoundingClientRect
+      // goes wrong and we don't end up where we want.
+      // To combat this, we set scrollTop to 0 at first, and then make sure it's 0 when we calculate the new scrollTop
+      scrollContainer.scrollTop = 0;
       setTimeout(() => {
-        const scrollContainerTop = scrollContainer?.getBoundingClientRect().top;
-        const eventTop = eventEl?.getBoundingClientRect().top;
-        scrollContainer.scrollTop = eventTop - scrollContainerTop;
-        hasScrolledIntoView = true;
+        if (scrollContainer.scrollTop === 0) {
+          const eventTop = eventEl?.getBoundingClientRect().top;
+          scrollContainer.scrollTop = eventTop;
+        }
       });
     }
   }
@@ -81,7 +82,6 @@ function eventDidMount(e: EventMountArg) {
 }
 
 function viewWillUnmount(mountArg: ViewMountArg) {
-  hasScrolledIntoView = false;
   return mountArg.el.parentElement?.parentElement
     ?.querySelectorAll<HTMLElement>(
       ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)"

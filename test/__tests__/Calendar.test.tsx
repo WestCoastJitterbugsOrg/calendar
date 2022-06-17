@@ -3,8 +3,7 @@ import Calendar from "@app/calendar";
 import { createPopper } from "@popperjs/core";
 import { unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
-import { defaultEventData } from "../__mocks__/cwEvents";
-import { mockStateContext, mockStore } from "../__mocks__/stateContext";
+import { mockStore } from "../__mocks__/stateContext";
 import { createRenderer, Global } from "../test-utils";
 import StateWrapper from "@app/store/StateWrapper";
 
@@ -37,11 +36,10 @@ it("Click event in calendar opens popper", async () => {
   jest.useFakeTimers();
   jest.spyOn(global, "setTimeout");
 
-  const initialDate =
-    mockStateContext.state.events.byId["1"].occasions[0].start;
+  const initialDate = mockStore.events["1"].occasions[0].start;
 
   const renderResult = renderer.render(
-    <StateWrapper initialContext={mockStore}>
+    <StateWrapper categories={mockStore.categories} events={mockStore.events}>
       <Calendar initialDate={initialDate} />
     </StateWrapper>
   );
@@ -56,4 +54,28 @@ it("Click event in calendar opens popper", async () => {
   });
 
   expect(createPopper).toHaveBeenCalledTimes(1);
+});
+
+it("Can open list view", async () => {
+  jest.useFakeTimers();
+  jest.spyOn(global, "setTimeout");
+
+  const initialDate = mockStore.events["1"].occasions[0].start;
+
+  const renderResult = renderer.render(
+    <StateWrapper categories={mockStore.categories} events={mockStore.events}>
+      <Calendar initialDate={initialDate} />
+    </StateWrapper>
+  );
+
+  const fcListEternalButton = renderResult.container.querySelector<HTMLDivElement>(
+    ".fc-listEternal-button"
+  );
+
+  act(() => {
+    fcListEternalButton?.click();
+    jest.runAllTimers();
+  });
+
+  expect(renderResult.baseElement.querySelector(".fc-listEternal-view")).toBeTruthy();
 });

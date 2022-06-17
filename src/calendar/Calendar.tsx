@@ -25,7 +25,7 @@ interface Props {
 export default function Calendar({ initialDate }: Props) {
   const stateContext = useContext(StateContext);
 
-  const allWcjEvents = Object.values(stateContext.state.events.byId);
+  const allWcjEvents = Object.values(stateContext.events);
   const shownWcjEvents = allWcjEvents.filter((event) => event.showInCalendar);
 
   const shownOccasions = shownWcjEvents.flatMap((event) => event.occasions);

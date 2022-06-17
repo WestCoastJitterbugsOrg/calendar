@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { EventGroup } from "@app/event-selection";
+import { EventGroup, EventItem } from "@app/event-selection";
 import { unmountComponentAtNode } from "react-dom";
 import { mockStore } from "../__mocks__/stateContext";
 import { createRenderer } from "../test-utils";
@@ -23,20 +23,11 @@ afterEach(() => {
   renderer.container = null;
 });
 
-it("Snapshot", async () => {
-  renderer.render(
-    <StateWrapper initialContext={mockStore}>
-      <EventGroup category="Lindy Hop" />
-    </StateWrapper>
-  );
-  expect(renderer.container?.innerHTML).toMatchSnapshot();
-});
-
 it("Unchecking a group causes all events to be unchecked", async () => {
   jest.useFakeTimers();
   jest.spyOn(global, "setTimeout");
   const result = renderer.render(
-    <StateWrapper initialContext={mockStore}>
+    <StateWrapper categories={mockStore.categories} events={mockStore.events}>
       <EventGroup category="Lindy Hop" />
     </StateWrapper>
   );
@@ -52,4 +43,26 @@ it("Unchecking a group causes all events to be unchecked", async () => {
     "event-checkbox"
   ) as HTMLInputElement[];
   expect(allEventCheckboxes.every((x) => x.checked)).toBeFalsy();
+});
+
+it("Unchecking an events causes it to be unchecked", async () => {
+  jest.useFakeTimers();
+  jest.spyOn(global, "setTimeout");
+  const result = renderer.render(
+    <StateWrapper categories={mockStore.categories} events={mockStore.events}>
+      <EventItem event={Object.values(mockStore.events)[0]} />
+    </StateWrapper>
+  );
+
+  const el = result.getByTestId("event-item");
+
+  act(() => {
+    fireEvent.click(el);
+    jest.runAllTimers();
+  });
+
+  const eventCheckbox = result.getByTestId(
+    "event-checkbox"
+  ) as HTMLInputElement;
+  expect(eventCheckbox.checked).toBeFalsy();
 });

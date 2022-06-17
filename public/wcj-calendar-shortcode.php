@@ -3,6 +3,9 @@
 
 function wcjcal_shortcode_wp_enqueue_assets()
 {
+	if (!function_exists('get_plugin_data')) {
+		require_once(ABSPATH . 'wp-admin/includes/plugin.php');
+	}
 	$plugin_data = get_plugin_data(dirname(__FILE__) . '/wcj-calendar.php');
 	$js_to_load  = plugin_dir_url(__FILE__) . 'wcjcal.js';
 

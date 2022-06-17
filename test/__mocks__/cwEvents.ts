@@ -1,4 +1,4 @@
-export const defaultEventData = {
+export const defaultEventData: Record<"data", Cogwork.Response> = {
   data: {
     events: {
       event: [

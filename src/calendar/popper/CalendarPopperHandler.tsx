@@ -10,7 +10,7 @@ const highlightClass = ["bg-wcj-coral"];
 
 export function usePopperHandler() {
   const popper = useRef<Instance>();
-  const { dispatch } = useContext(StateContext);
+  const { setEventModal } = useContext(StateContext);
 
   const root = appContainer ?? document.body;
   let tooltipWrapper: HTMLElement;
@@ -29,12 +29,7 @@ export function usePopperHandler() {
     tooltipRoot.render(
       <TooltipComponent
         event={event}
-        openModal={() =>
-          dispatch({
-            type: "eventModalRequested",
-            payload: event.extendedProps.id,
-          })
-        }
+        openModal={() => setEventModal?.(event.extendedProps.id)}
       />
     );
 
@@ -53,7 +48,7 @@ export function usePopperHandler() {
   }
 
   function removePopper() {
-    if (!popper.current) {
+    if (!popper.current?.state) {
       return;
     }
     const elements = popper.current.state.elements;

@@ -1,7 +1,10 @@
-import EventList from "./EventList";
+import { StateContext } from "@app/store/StateWrapper";
+import { useContext } from "react";
+import { EventGroup } from ".";
 import ToggleAllButtons from "./ToggleAllButtons";
 
 export default function EventSelection() {
+  const { categories } = useContext(StateContext);
   return (
     <>
       <div className="flex-none">
@@ -11,7 +14,9 @@ export default function EventSelection() {
         className="flex-grow w-full overflow-auto bg-wcj-sand divide-y divide-wcj-mint"
         data-testid="event-selection-groups"
       >
-        <EventList />
+      {Object.keys(categories).map((categoryId) => (
+        <EventGroup key={categoryId} category={categoryId} />
+      ))}
       </div>
     </>
   );

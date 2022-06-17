@@ -1,6 +1,6 @@
-import EventStore from "@app/store/model";
+import StateContext from "@app/store/model";
 
-export default function initContext(): EventStore {
+export default function initContext() {
   const response: Cogwork.Event[] = wcjcal_ajax_obj.data.events.event;
   const cogworkEvents = response.filter(
     (event) => event.schedule?.occasions?.occasion != null
@@ -11,35 +11,32 @@ export default function initContext(): EventStore {
     ? JSON.parse(uncheckedEventsStr)
     : [];
 
-  const categories: EventStore["categories"] = { byId: {}, allIds: [] };
-  const events: EventStore["events"] = { byId: {}, allIds: [] };
+  const categories: StateContext["categories"] = {};
+  const events: StateContext["events"] = {};
 
   for (const cogworkEvent of cogworkEvents) {
     const event = cogwork2wcjEvent(cogworkEvent);
     event.showInCalendar = !uncheckedEvents.includes(event.id);
 
     // Add event to store
-    events.allIds.push(event.id);
-    events.byId[event.id] = event;
+    events[event.id] = event;
 
     // Add category if it hasn't been seen before,
     // and in any case make sure the event id is
     // added to the category
-    if (!categories.allIds.includes(event.category)) {
-      categories.allIds.push(event.category);
-      categories.byId[event.category] = {
+    if (!Object.keys(categories).includes(event.category)) {
+      categories[event.category] = {
         id: event.category,
         events: [event.id],
       };
     } else {
-      categories.byId[event.category].events.push(event.id);
+      categories[event.category].events.push(event.id);
     }
   }
 
   return {
     categories: categories,
-    events: events,
-    eventModal: false as const,
+    events: events
   };
 }
 
