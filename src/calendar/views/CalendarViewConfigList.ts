@@ -81,6 +81,7 @@ function eventDidMount(e: EventMountArg) {
 }
 
 function viewWillUnmount(mountArg: ViewMountArg) {
+  hasScrolledIntoView = false;
   return mountArg.el.parentElement?.parentElement
     ?.querySelectorAll<HTMLElement>(
       ".fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)"

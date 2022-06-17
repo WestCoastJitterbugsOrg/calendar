@@ -1,17 +1,22 @@
 <?php
 
+
 function wcjcal_shortcode_wp_enqueue_assets()
 {
-	$ver         = (get_file_data(__FILE__, ["Version" => "Version"], false))['Version'];
+	$plugin_data = get_plugin_data(dirname(__FILE__) . '/wcj-calendar.php');
 	$js_to_load  = plugin_dir_url(__FILE__) . 'wcjcal.js';
 
-	wp_register_script('wcjcal-script', $js_to_load, [], $ver, true);
+	wp_register_script('wcjcal-script', $js_to_load, [], $plugin_data["Version"], true);
 	$result = wcjcal_get_events();
-	wp_add_inline_script('wcjcal-script', 'window[\'wcjcal_ajax_obj\'] = ' . json_encode(
-		array(
-			'data' => $result
-		)
-	), 'before');
+	wp_add_inline_script(
+		'wcjcal-script',
+		'window[\'wcjcal_ajax_obj\'] = ' . json_encode(
+			[
+				'data' => $result
+			]
+		),
+		'before'
+	);
 }
 
 add_action('wp_enqueue_scripts', 'wcjcal_shortcode_wp_enqueue_assets');

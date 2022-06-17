@@ -30,5 +30,3 @@ function wcjcal_get_events()
 		return $xml;
 	}
 }
-
-add_action('wp_ajax_wcjcal_get_events', 'wcjcal_get_events');

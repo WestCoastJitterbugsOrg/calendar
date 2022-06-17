@@ -1,10 +1,15 @@
 <?php
-
 /**
+ * 
+ * Plugin.
+ *
+ * @package wcjcal
+ * @wordpress-plugin
+ * 
  * Plugin Name:       WCJ Calendar
  * Plugin URI:        https://github.com/WestCoastJitterbugsOrg/Personalized-Calendar
  * Description:       Filterable calendar using data from cogwork
- * Version:           2.2
+ * Version:           1.3.1
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Jean-Philippe Green
@@ -18,3 +23,4 @@
 require_once('wcj-calendar-shortcode.php');
 require_once('wcj-calendar-settings.php');
 require_once('wcj-calendar-fetch.php');
+/**

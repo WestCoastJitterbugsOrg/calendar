@@ -53,14 +53,6 @@ module.exports = (env) => {
         ],
       }),
       new ESLintPlugin({}),
-      ...(env.production
-        ? [
-          new ZipPlugin({
-            filename: "wcjcal.zip",
-            pathPrefix: "wcjcal",
-          }),
-        ]
-        : []),
     ],
     optimization: {
       minimizer: ["...", new CssMinimizerPlugin()],
