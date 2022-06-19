@@ -6,7 +6,7 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 /** @type {(env: any) => import('webpack-dev-server').WebpackConfiguration} */
-module.exports = env => ({
+module.exports = (env) => ({
   entry: path.join(__dirname, "src", "index.tsx"),
   output: {
     path: path.join(__dirname, "build"),
@@ -27,22 +27,18 @@ module.exports = env => ({
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ["babel-loader"],
-      },
-      {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         use: ["ts-loader"],
       },
       {
         test: /\.(css)$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
-          "postcss-loader",
-        ],
+        use: ["css-loader", "postcss-loader"],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+
+        type: "asset/resource",
       },
     ],
   },

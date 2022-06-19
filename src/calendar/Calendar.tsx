@@ -39,6 +39,7 @@ export default function Calendar({ initialDate }: Props) {
 
   const popperHandler = usePopperHandler();
 
+  console.log(shownWcjEvents);
   return (
     <div className="wcjcal-fc">
       <FullCalendar

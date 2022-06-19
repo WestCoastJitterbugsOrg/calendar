@@ -1,8 +1,8 @@
-import { StrictMode } from "react";
+import { StrictMode, lazy } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { appContainer, appTag } from "./app-container";
+const App = lazy(() => import("./App"));
 
 try {
   const wcjCalElement = document.getElementById("wcjcal");

@@ -1,12 +1,14 @@
-import { useContext, useEffect } from "react";
-import Modal from "react-modal";
+import React, { useContext, useEffect } from "react";
+const Modal = React.lazy(() => import("react-modal"));
 import { EventSeriesModalContent } from "./EventModalContent";
 import { appContainer } from "@app/app-container";
 import { StateContext } from "@app/store/StateWrapper";
 
 export function EventSeriesModal() {
   useEffect(() => {
-    Modal.setAppElement(document.body ?? appContainer);
+    import("react-modal").then((Modal) => {
+      Modal.default.setAppElement(document.body ?? appContainer);
+    });
   }, []);
 
   const { events, eventModal, setEventModal } = useContext(StateContext);

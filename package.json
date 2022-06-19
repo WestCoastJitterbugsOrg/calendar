@@ -31,7 +31,7 @@
     "autoprefixer": "^10.4.7",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
-    "css-minimizer-webpack-plugin": "^4.0.0",
+    "cssnano": "^5.1.12",
     "eslint": "^8.18.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.30.0",
@@ -52,8 +52,7 @@
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.9.2",
-    "webpack-sources": "^3.2.3",
-    "zip-webpack-plugin": "^4.0.1"
+    "webpack-sources": "^3.2.3"
   },
   "scripts": {
     "start": "yarn start:wordpress",
@@ -123,14 +122,6 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ]
-  },
-  "postcss": {
-    "plugins": [
-      "postcss-import",
-      "tailwindcss/nesting",
-      "tailwindcss",
-      "autoprefixer"
     ]
   },
   "packageManager": "yarn@3.1.1"

@@ -1,12 +1,11 @@
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const ESLintPlugin = require("eslint-webpack-plugin");
-const ZipPlugin = require("zip-webpack-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 /** @type {(env: any) => import('webpack-dev-server').WebpackConfiguration} */
 module.exports = (env) => {
+  process.env.NODE_ENV = env.production ? "production" : "development";
   return {
     entry: path.join(__dirname, "src", "index.tsx"),
     output: {
@@ -19,14 +18,7 @@ module.exports = (env) => {
       plugins: [new TsconfigPathsPlugin({})],
     },
     devtool: "source-map",
-    mode: env.production ? "production" : "development",
-    performance: {
-      // We don't want to do code splitting because it makes it harder to load the scripts in the wordpress plugin,
-      // So we let the asset sizes be larger than recommended in order to remove warnings
-      // 1024 ** 2 bytes == 1 MiB
-      maxEntrypointSize: 1024 ** 2,
-      maxAssetSize: 1024 ** 2,
-    },
+    mode: process.env.NODE_ENV,
     module: {
       rules: [
         {
@@ -36,7 +28,14 @@ module.exports = (env) => {
         },
         {
           test: /\.(css)$/,
-          use: ["css-loader", "postcss-loader"],
+          use: [
+            { loader: "css-loader", options: { sourceMap: true } },
+            "postcss-loader",
+          ],
+        },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: "asset/resource",
         },
       ],
     },
@@ -54,8 +53,5 @@ module.exports = (env) => {
       }),
       new ESLintPlugin({}),
     ],
-    optimization: {
-      minimizer: ["...", new CssMinimizerPlugin()],
-    },
   };
 };

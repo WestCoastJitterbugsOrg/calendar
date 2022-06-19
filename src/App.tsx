@@ -1,14 +1,14 @@
-import Calendar from "./calendar";
 import Error from "./Error";
-import EventSelection from "./event-selection/EventSelection";
+// import { Footer } from "./Footer";
 import { Header } from "./Header";
 import initContext from "./services/cogwork";
 import { EventSeriesModal } from "./shared";
 import StateWrapper from "./store/StateWrapper";
+import EventSelection from "./event-selection/EventSelection";
+import Calendar from "./calendar";
 
 export default function App() {
   try {
-    console.log("app");
     const { categories, events } = initContext();
     return (
       <>
@@ -27,6 +27,7 @@ export default function App() {
             <EventSeriesModal />
           </StateWrapper>
         </div>
+        {/* <Footer /> */}
       </>
     );
   } catch (err) {
