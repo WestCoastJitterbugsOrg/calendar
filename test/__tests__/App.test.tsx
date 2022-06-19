@@ -5,10 +5,12 @@ import { defaultEventData } from "../__mocks__/cwEvents";
 import { createRenderer, Global } from "../test-utils";
 import { storeConsentCookie } from "@app/services/cookies";
 
+
 const renderer = createRenderer();
 
 beforeEach(() => {
   (global as Global).wcjcal_ajax_obj = defaultEventData;
+  document.cookie = "";
 
   renderer.container = document.createElement("div");
   renderer.container.id = "wcjcal";
@@ -24,19 +26,17 @@ afterEach(() => {
   delete (global as Global).wcjcal_ajax_obj;
 });
 
-it("Cookie header is shown by default", async () => {
+it("Cookie header is shown by default", () => {
   const renderResult = renderer.render(<App />);
-  expect(renderResult.baseElement).toHaveTextContent(
-    "This calendar uses cookies to remember your settings"
-  );
+  const cookieHeader = renderResult.queryByTestId("cookie-header");
+  expect(cookieHeader).toBeTruthy();
 });
 
-it("Cookie header is hidden if there are cookies", async () => {
+it("Cookie header is hidden if there are cookies", () => {
   storeConsentCookie();
   const renderResult = renderer.render(<App />);
-  expect(renderResult.baseElement).not.toHaveTextContent(
-    "This calendar uses cookies to remember your settings"
-  );
+  const cookieHeader = renderResult.queryByTestId("cookie-header");
+  expect(cookieHeader).toBeFalsy();
 });
 
 it("undefined data results in error", async () => {

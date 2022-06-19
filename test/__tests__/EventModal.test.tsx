@@ -5,6 +5,7 @@ import { createRenderer } from "../test-utils";
 import StateWrapper, { StateContext } from "@app/store/StateWrapper";
 import { EventSeriesModal } from "@app/shared";
 import { useContext, useEffect } from "react";
+import { act } from "react-dom/test-utils";
 
 const renderer = createRenderer();
 
@@ -26,7 +27,9 @@ it("EventModal Snapshot", async () => {
   const ModalWrapper = () => {
     const { setEventModal } = useContext(StateContext);
     useEffect(() => {
-      setEventModal?.(Object.values(mockStore.events)[0].id);
+      act(() => {
+        setEventModal?.(Object.values(mockStore.events)[0].id);
+      });
     }, [setEventModal]);
     return <EventSeriesModal />;
   };

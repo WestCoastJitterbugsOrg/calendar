@@ -13,8 +13,8 @@ export default function App() {
     return (
       <>
         <Header />
-        <div className="flex flex-row flex-wrap items-stretch bg-white min-h-[calc(100vh-32px)]">
-          <StateWrapper categories={categories} events={events}>
+        <StateWrapper categories={categories} events={events}>
+          <div className="flex flex-row flex-wrap items-stretch bg-white min-h-[calc(100vh-32px)]">
             <div className="flex flex-col flex-grow w-96 max-h-[calc(100vh-32px)]">
               <EventSelection />
             </div>
@@ -25,8 +25,8 @@ export default function App() {
               <Calendar />
             </div>
             <EventSeriesModal />
-          </StateWrapper>
-        </div>
+          </div>
+        </StateWrapper>
         {/* <Footer /> */}
       </>
     );

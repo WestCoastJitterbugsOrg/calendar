@@ -3470,60 +3470,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"client@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "client@workspace:."
-  dependencies:
-    "@babel/core": ^7.17.10
-    "@babel/preset-env": ^7.17.10
-    "@babel/preset-react": ^7.16.7
-    "@fullcalendar/daygrid": ^5.11.0
-    "@fullcalendar/interaction": ^5.11.0
-    "@fullcalendar/list": ^5.11.0
-    "@fullcalendar/react": ^5.11.1
-    "@fullcalendar/timegrid": ^5.11.0
-    "@popperjs/core": ^2.11.5
-    "@testing-library/jest-dom": ^5.16.4
-    "@testing-library/react": ^13.2.0
-    "@types/jest": ^27.5.1
-    "@types/react": ^18.0.9
-    "@types/react-dom": ^18.0.3
-    "@types/react-modal": ^3.13.1
-    "@types/tailwindcss": ^3.0.10
-    "@typescript-eslint/eslint-plugin": ^5.8.1
-    "@typescript-eslint/parser": ^5.8.1
-    autoprefixer: ^10.4.7
-    copy-webpack-plugin: ^11.0.0
-    css-loader: ^6.7.1
-    cssnano: ^5.1.12
-    eslint: ^8.18.0
-    eslint-config-prettier: ^8.5.0
-    eslint-plugin-react: ^7.30.0
-    eslint-plugin-react-hooks: ^4.6.0
-    eslint-webpack-plugin: ^3.1.1
-    jest: ^28.1.1
-    jest-environment-jsdom: ^28.1.1
-    path: ^0.12.7
-    postcss: ^8.4.14
-    postcss-import: ^14.1.0
-    postcss-loader: ^7.0.0
-    prettier: ^2.7.1
-    react: ^18.2.0
-    react-dom: ^18.2.0
-    react-modal: ^3.15.1
-    tailwindcss: ^3.1.3
-    ts-jest: ^28.0.5
-    ts-loader: ^9.3.0
-    tsconfig-paths-webpack-plugin: ^3.5.2
-    typescript: ^4.7.4
-    web-vitals: ^2.1.4
-    webpack: ^5.73.0
-    webpack-cli: ^4.10.0
-    webpack-dev-server: ^4.9.2
-    webpack-sources: ^3.2.3
-  languageName: unknown
-  linkType: soft
-
 "cliui@npm:^7.0.2":
   version: 7.0.4
   resolution: "cliui@npm:7.0.4"
@@ -9493,6 +9439,60 @@ __metadata:
   checksum: 2abc306c96930b757972a1c4650eb6b25b5d99f24088714957f88629e137db569368c5de0e57986c89ea70db2f1df9bba11a87cb6d0c8694b6f53a0159fab3bf
   languageName: node
   linkType: hard
+
+"wcj-calendar@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "wcj-calendar@workspace:."
+  dependencies:
+    "@babel/core": ^7.17.10
+    "@babel/preset-env": ^7.17.10
+    "@babel/preset-react": ^7.16.7
+    "@fullcalendar/daygrid": ^5.11.0
+    "@fullcalendar/interaction": ^5.11.0
+    "@fullcalendar/list": ^5.11.0
+    "@fullcalendar/react": ^5.11.1
+    "@fullcalendar/timegrid": ^5.11.0
+    "@popperjs/core": ^2.11.5
+    "@testing-library/jest-dom": ^5.16.4
+    "@testing-library/react": ^13.2.0
+    "@types/jest": ^27.5.1
+    "@types/react": ^18.0.9
+    "@types/react-dom": ^18.0.3
+    "@types/react-modal": ^3.13.1
+    "@types/tailwindcss": ^3.0.10
+    "@typescript-eslint/eslint-plugin": ^5.8.1
+    "@typescript-eslint/parser": ^5.8.1
+    autoprefixer: ^10.4.7
+    copy-webpack-plugin: ^11.0.0
+    css-loader: ^6.7.1
+    cssnano: ^5.1.12
+    eslint: ^8.18.0
+    eslint-config-prettier: ^8.5.0
+    eslint-plugin-react: ^7.30.0
+    eslint-plugin-react-hooks: ^4.6.0
+    eslint-webpack-plugin: ^3.1.1
+    jest: ^28.1.1
+    jest-environment-jsdom: ^28.1.1
+    path: ^0.12.7
+    postcss: ^8.4.14
+    postcss-import: ^14.1.0
+    postcss-loader: ^7.0.0
+    prettier: ^2.7.1
+    react: ^18.2.0
+    react-dom: ^18.2.0
+    react-modal: ^3.15.1
+    tailwindcss: ^3.1.3
+    ts-jest: ^28.0.5
+    ts-loader: ^9.3.0
+    tsconfig-paths-webpack-plugin: ^3.5.2
+    typescript: ^4.7.4
+    web-vitals: ^2.1.4
+    webpack: ^5.73.0
+    webpack-cli: ^4.10.0
+    webpack-dev-server: ^4.9.2
+    webpack-sources: ^3.2.3
+  languageName: unknown
+  linkType: soft
 
 "web-vitals@npm:^2.1.4":
   version: 2.1.4
