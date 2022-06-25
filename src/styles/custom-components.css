@@ -1,5 +1,4 @@
-
-#wcj-tooltip[data-popper-placement^= "top" ] > #wcj-arrow {
+#wcj-tooltip[data-popper-placement^="top"] > #wcj-arrow {
   bottom: -4px;
 }
 
@@ -13,4 +12,19 @@
 
 #wcj-tooltip[data-popper-placement^="right"] > #wcj-arrow {
   left: -4px;
+}
+
+.event-checkbox {
+  @apply appearance-none w-6 h-6 rounded-full 
+         border border-opacity-50 border-solid border-black;
+
+  &:after {
+    @apply content-[''] relative block opacity-0
+           left-[8px] top-[3px] w-[6px] h-[12px] 
+           rotate-45 border-solid border-white border-0;
+  }
+
+  &:checked:after {
+    @apply border-b-[2px] border-r-[2px] opacity-100;
+  }
 }

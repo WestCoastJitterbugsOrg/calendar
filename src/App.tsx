@@ -2,10 +2,10 @@ import Error from "./Error";
 // import { Footer } from "./Footer";
 import { Header } from "./Header";
 import initContext from "./services/cogwork";
-import { EventSeriesModal } from "./shared";
+import EventSeriesModal from "./shared/EventModal";
 import StateWrapper from "./store/StateWrapper";
 import EventSelection from "./event-selection/EventSelection";
-import Calendar from "./calendar";
+import Calendar from "./calendar/Calendar";
 
 export default function App() {
   try {

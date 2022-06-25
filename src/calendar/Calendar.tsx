@@ -1,10 +1,8 @@
 import { StateContext } from "@app/store/StateWrapper";
-import FullCalendar, { DateInput } from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction";
+import FullCalendar, { DateInput, PluginDef } from "@fullcalendar/react";
 import listPlugin from "@fullcalendar/list";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import tailwindConfig from "tailwindconfig";
 import resolveConfig from "tailwindcss/resolveConfig";
 import {
@@ -39,11 +37,21 @@ export default function Calendar({ initialDate }: Props) {
 
   const popperHandler = usePopperHandler();
 
-  console.log(shownWcjEvents);
+  const [plugins, setPlugins] = useState([listPlugin, timeGridPlugin]);
+
+  useEffect(() => {
+    const addPlugin = (importObject: { default: PluginDef }) => {
+      setPlugins((p) => [...p, importObject.default]);
+    };
+
+    import("@fullcalendar/daygrid").then(addPlugin);
+    import("@fullcalendar/interaction").then(addPlugin);
+  }, []);
+
   return (
     <div className="wcjcal-fc">
       <FullCalendar
-        plugins={[dayGridPlugin, listPlugin, timeGridPlugin, interactionPlugin]}
+        plugins={plugins}
         initialDate={initialDate}
         initialView={
           window.innerWidth <=

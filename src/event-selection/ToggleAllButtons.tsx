@@ -1,4 +1,4 @@
-import { Button } from "@app/shared";
+import Button from "@app/shared/Buttons/Button";
 import { StateContext } from "@app/store/StateWrapper";
 import { useContext } from "react";
 

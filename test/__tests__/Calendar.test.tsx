@@ -1,11 +1,11 @@
 import "@testing-library/jest-dom";
-import Calendar from "@app/calendar";
 import { createPopper } from "@popperjs/core";
 import { unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 import { mockStore } from "../__mocks__/stateContext";
-import { createRenderer, Global } from "../test-utils";
+import { createRenderer } from "../test-utils";
 import StateWrapper from "@app/store/StateWrapper";
+import Calendar from "@app/calendar/Calendar";
 
 const renderer = createRenderer();
 
@@ -68,14 +68,17 @@ it("Can open list view", async () => {
     </StateWrapper>
   );
 
-  const fcListEternalButton = renderResult.container.querySelector<HTMLDivElement>(
-    ".fc-listEternal-button"
-  );
+  const fcListEternalButton =
+    renderResult.container.querySelector<HTMLDivElement>(
+      ".fc-listEternal-button"
+    );
 
   act(() => {
     fcListEternalButton?.click();
     jest.runAllTimers();
   });
 
-  expect(renderResult.baseElement.querySelector(".fc-listEternal-view")).toBeTruthy();
+  expect(
+    renderResult.baseElement.querySelector(".fc-listEternal-view")
+  ).toBeTruthy();
 });

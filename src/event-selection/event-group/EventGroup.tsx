@@ -1,4 +1,4 @@
-import { EventItem } from "@app/event-selection";
+import EventItem from "../event/EventItem";
 import { StateContext } from "@app/store/StateWrapper";
 import { useContext, useState } from "react";
 import { EventGroupHeader } from "./EventGroupHeader";

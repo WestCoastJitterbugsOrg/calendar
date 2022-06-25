@@ -3,7 +3,7 @@ import { unmountComponentAtNode } from "react-dom";
 import { mockStore } from "../__mocks__/stateContext";
 import { createRenderer } from "../test-utils";
 import StateWrapper, { StateContext } from "@app/store/StateWrapper";
-import { EventSeriesModal } from "@app/shared";
+import { EventSeriesModal } from "@app/shared/EventModal/EventSeriesModal";
 import { useContext, useEffect } from "react";
 import { act } from "react-dom/test-utils";
 

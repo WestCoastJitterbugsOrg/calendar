@@ -1,11 +1,12 @@
 import "@testing-library/jest-dom";
-import { EventGroup, EventItem } from "@app/event-selection";
+import EventGroup from "@app/event-selection/event-group/EventGroup";
 import { unmountComponentAtNode } from "react-dom";
 import { mockStore } from "../__mocks__/stateContext";
 import { createRenderer } from "../test-utils";
 import { act } from "react-dom/test-utils";
 import StateWrapper from "@app/store/StateWrapper";
 import { fireEvent } from "@testing-library/react";
+import EventItem from "@app/event-selection/event/EventItem";
 
 const renderer = createRenderer();
 

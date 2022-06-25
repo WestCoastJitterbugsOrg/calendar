@@ -1,4 +1,5 @@
-import { EventInfoTable, LinkButton } from "@app/shared";
+import { LinkButton } from "../Buttons/LinkButton";
+import EventInfoTable from "../EventInfoTable";
 
 interface props {
   event: Wcj.Event;
