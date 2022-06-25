@@ -12,6 +12,7 @@ export function EventSeriesModalContent({ event, onCloseClick }: props) {
       <div
         className="absolute right-5 top-5 cursor-pointer"
         onClick={onCloseClick}
+        data-testid="modal-close-button"
       >
         ✖
       </div>
@@ -21,7 +22,7 @@ export function EventSeriesModalContent({ event, onCloseClick }: props) {
       ) : (
         <p>{event.description}</p>
       )}
-      <div className="flex flex-wrap justify-between gap-8 items-end mt-8">
+      <div className="mt-8 flex flex-wrap items-end justify-between gap-8">
         <div>
           <EventInfoTable {...event}></EventInfoTable>
         </div>

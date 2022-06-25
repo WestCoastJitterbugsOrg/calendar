@@ -14,17 +14,34 @@
   left: -4px;
 }
 
-.event-checkbox {
-  @apply appearance-none w-6 h-6 rounded-full 
-         border border-opacity-50 border-solid border-black;
+.checkbox {
+  @apply cursor-pointer appearance-none;
 
   &:after {
-    @apply content-[''] relative block opacity-0
-           left-[8px] top-[3px] w-[6px] h-[12px] 
-           rotate-45 border-solid border-white border-0;
+    @apply relative block opacity-0 content-[''];
   }
 
+  &:indeterminate:after,
   &:checked:after {
-    @apply border-b-[2px] border-r-[2px] opacity-100;
+    @apply opacity-100;
+  }
+}
+
+.button {
+  @apply inline-block cursor-pointer rounded-full border-0 bg-primary
+   text-base font-bold leading-4 text-white no-underline transition-colors;
+
+  @apply px-4 py-2;
+
+  &:hover {
+    @apply brightness-[1.185];
+  }
+
+  &.sm {
+    @apply px-3 py-1;
+  }
+
+  &.lg {
+    @apply px-6 py-3;
   }
 }

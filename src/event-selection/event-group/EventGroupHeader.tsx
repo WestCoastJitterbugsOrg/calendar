@@ -17,9 +17,9 @@ export function EventGroupHeader({
   toggleChecked,
 }: EventGroupHeaderProps) {
   return (
-    <div className="bg-wcj-cyan text-white font-bold min-h-[32px] py-2 flex flex-row items-center">
+    <div className="flex min-h-[32px] flex-row items-center bg-secondary py-2 font-bold text-white">
       <div
-        className="cursor-pointer flex-grow flex items-center"
+        className="flex flex-grow cursor-pointer items-center"
         onClick={toggleExpanded}
       >
         <ExpandIcon open={expanded} />

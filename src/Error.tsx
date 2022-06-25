@@ -1,7 +1,7 @@
 export default function Error({ message }: { message: unknown }) {
   return (
     <div className="container m-auto my-8">
-      <h1 className="text-2xl font-bold underline text-wcj-red">
+      <h1 className="text-accented text-2xl font-bold underline">
         Error while loading data!
       </h1>
       <p className="font-bold">Got the following error:</p>

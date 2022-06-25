@@ -1,5 +1,3 @@
-import { buttonClassName } from "./ButtonHelpers";
-
 export interface ButtonLinkData {
   size: "sm" | "md" | "lg";
   href: string;
@@ -8,12 +6,7 @@ export interface ButtonLinkData {
 
 export function LinkButton(props: ButtonLinkData) {
   return (
-    <a
-      className={buttonClassName(props.size)}
-      href={props.href}
-      target="_blank"
-      rel="noreferrer"
-    >
+    <a className="button" href={props.href} target="_blank" rel="noreferrer">
       <div className="flex items-center">
         <span>{props.children}</span>
         <svg width="24px" height="24px" viewBox="0 0 24 24">

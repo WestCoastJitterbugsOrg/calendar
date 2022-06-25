@@ -19,9 +19,9 @@ export default function ToggleAllButtons() {
   };
 
   return (
-    <div className="bg-wcj-black flex flex-row h-16 justify-center items-center space-x-4 font-xs">
-      <Button title="Select all" size="md" onClick={() => select(true)} />
-      <Button title="Deselect all" size="md" onClick={() => select(false)} />
+    <div className="font-xs flex h-16 flex-row items-center justify-center space-x-4 bg-dark">
+      <Button title="Select all" onClick={() => select(true)} />
+      <Button title="Deselect all" onClick={() => select(false)} />
     </div>
   );
 }

@@ -42,7 +42,7 @@ export default function EventGroup({ category: categoryId }: EventGroupProps) {
   };
 
   return (
-    <div className="bg-wcj-sand">
+    <div className="bg-light">
       <EventGroupHeader
         title={categoryId}
         expanded={expanded}
@@ -53,7 +53,7 @@ export default function EventGroup({ category: categoryId }: EventGroupProps) {
 
       <div
         className={
-          "bg-wcj-sand overflow-hidden " + (expanded ? "max-h-full" : "max-h-0")
+          "overflow-hidden bg-light " + (expanded ? "max-h-full" : "max-h-0")
         }
       >
         {catEvents.map((event) => (

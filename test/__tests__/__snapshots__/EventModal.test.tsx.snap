@@ -1,3 +1,172 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EventModal Snapshot 1`] = `""`;
+exports[`EventModal Snapshot 1`] = `
+<body
+  aria-hidden="true"
+  class="ReactModal__Body--open"
+>
+  <div
+    data-react-modal-body-trap=""
+    style="position: absolute; opacity: 0;"
+    tabindex="0"
+  />
+  <div />
+  <div
+    data-react-modal-body-trap=""
+    style="position: absolute; opacity: 0;"
+    tabindex="0"
+  />
+  <div
+    class="ReactModalPortal"
+  >
+    <div
+      class="ReactModal__Overlay fixed z-50 inset-0 bg-black bg-opacity-75"
+    >
+      <div
+        aria-modal="true"
+        class="ReactModal__Content 
+        absolute top-1/2 left-1/2 right-auto bottom-auto -mr-[50%]
+        max-h-[max(80vh,200px)] max-w-[800px]  -translate-x-1/2 -translate-y-1/2 
+        overflow-auto rounded-md bg-light p-5 outline-none sm:p-10"
+        role="dialog"
+        tabindex="-1"
+      >
+        <div
+          class="md:min-w-[700px]"
+        >
+          <div
+            class="absolute right-5 top-5 cursor-pointer"
+            data-testid="modal-close-button"
+          >
+            ✖
+          </div>
+          <h4
+            class="mt-0"
+          >
+            Grundkurs Lindy Hop
+          </h4>
+          <p />
+          <div
+            class="mt-8 flex flex-wrap items-end justify-between gap-8"
+          >
+            <div>
+              <table
+                class="w-full"
+              >
+                <tbody>
+                  <tr
+                    class="border-solid border-[rgba(0,0,0,0.5)] border-x-0 border-b-0 first:border-t-0 border-t"
+                  >
+                    <td
+                      class="font-bold py-1 pr-2 md:pr-4 border-0 break-words"
+                    >
+                      Place
+                    </td>
+                    <td
+                      class="py-1 pl-2 md:pl-4 border-0"
+                    >
+                      Forum
+                    </td>
+                  </tr>
+                  <tr
+                    class="border-solid border-[rgba(0,0,0,0.5)] border-x-0 border-b-0 first:border-t-0 border-t"
+                  >
+                    <td
+                      class="font-bold py-1 pr-2 md:pr-4 border-0 break-words"
+                    >
+                      Price
+                    </td>
+                    <td
+                      class="py-1 pl-2 md:pl-4 border-0"
+                    >
+                      1337
+                    </td>
+                  </tr>
+                  <tr
+                    class="border-solid border-[rgba(0,0,0,0.5)] border-x-0 border-b-0 first:border-t-0 border-t"
+                  >
+                    <td
+                      class="font-bold py-1 pr-2 md:pr-4 border-0 break-words"
+                    >
+                      Instructors
+                    </td>
+                    <td
+                      class="py-1 pl-2 md:pl-4 border-0"
+                    />
+                  </tr>
+                  <tr
+                    class="border-solid border-[rgba(0,0,0,0.5)] border-x-0 border-b-0 first:border-t-0 border-t"
+                  >
+                    <td
+                      class="font-bold py-1 pr-2 md:pr-4 border-0 break-words"
+                    >
+                      First occasion
+                    </td>
+                    <td
+                      class="py-1 pl-2 md:pl-4 border-0"
+                    >
+                      1 Jan 2022
+                    </td>
+                  </tr>
+                  <tr
+                    class="border-solid border-[rgba(0,0,0,0.5)] border-x-0 border-b-0 first:border-t-0 border-t"
+                  >
+                    <td
+                      class="font-bold py-1 pr-2 md:pr-4 border-0 break-words"
+                    >
+                      Last occasion
+                    </td>
+                    <td
+                      class="py-1 pl-2 md:pl-4 border-0"
+                    >
+                      1 Jan 2022
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div
+              class="ml-auto"
+            >
+              <a
+                class="button"
+                href="https://example.com/registration"
+                rel="noreferrer"
+                target="_blank"
+              >
+                <div
+                  class="flex items-center"
+                >
+                  <span>
+                    Registration
+                  </span>
+                  <svg
+                    height="24px"
+                    viewBox="0 0 24 24"
+                    width="24px"
+                  >
+                    <g
+                      fill="none"
+                      stroke="white"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2.1"
+                    >
+                      <polyline
+                        points="17 13.5 17 19.5 5 19.5 5 7.5 11 7.5"
+                      />
+                      <path
+                        d="M14,4.5 L20,4.5 L20,10.5 M20,4.5 L11,13.5"
+                      />
+                    </g>
+                  </svg>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

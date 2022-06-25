@@ -18,17 +18,17 @@
   --fc-page-bg-color: white;
   --fc-neutral-bg-color: white;
   --fc-border-color: #f5f5f5;
-  --fc-now-indicator-color: theme("colors.wcj-cyan");
-  --fc-today-bg-color: theme("colors.wcj-sand");
+  --fc-now-indicator-color: theme("colors.secondary");
+  --fc-today-bg-color: theme("colors.light");
 
   /* Buttons */
   --fc-button-text-color: white;
   --fc-button-bg-color: transparent;
   --fc-button-border-color: transparent;
   --fc-button-hover-bg-color: transparent;
-  --fc-button-hover-border-color: theme("colors.wcj-red-hover");
+  --fc-button-hover-border-color: theme("colors.primary");
   --fc-button-active-bg-color: transparent;
-  --fc-button-active-border-color: theme("colors.wcj-red-active");
+  --fc-button-active-border-color: theme("colors.primary");
 
   /* List view */
   --fc-list-event-dot-width: 0;
@@ -92,7 +92,7 @@
 
       &.fc-button-primary {
         &:not(:hover):not(:active):not(.has-text-color) {
-          background-color: theme("colors.wcj-black");
+          background-color: theme("colors.dark");
         }
         &:not(:disabled) {
           &:active:focus,
@@ -127,7 +127,7 @@
       height: 64px;
       margin-bottom: 0;
       padding: 0 16px;
-      background-color: theme("colors.wcj-black");
+      background-color: theme("colors.dark");
       color: white;
 
       & .fc-toolbar-chunk {
@@ -212,6 +212,6 @@
     align-items: center;
     flex-direction: column;
     height: auto;
-    @apply py-4 space-y-2;
+    @apply space-y-2 py-4;
   }
 }

@@ -6,7 +6,7 @@ import { useContext, useRef } from "react";
 import { createRoot, Root } from "react-dom/client";
 import { TooltipComponent } from "./CalendarPopper";
 
-const highlightClass = ["bg-wcj-coral"];
+const highlightClass = ["bg-primary-alt"];
 
 export function usePopperHandler() {
   const popper = useRef<Instance>();

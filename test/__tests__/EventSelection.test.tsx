@@ -1,50 +1,32 @@
 import "@testing-library/jest-dom";
-import { unmountComponentAtNode } from "react-dom";
 import { mockStore } from "../__mocks__/stateContext";
-import { createRenderer } from "../test-utils";
-import { act } from "react-dom/test-utils";
 import StateWrapper from "@app/store/StateWrapper";
-import { RenderResult } from "@testing-library/react";
+import { render, RenderResult, act } from "@testing-library/react";
 import EventSelection from "@app/event-selection/EventSelection";
 
-const renderer = createRenderer();
-
-beforeEach(() => {
-  renderer.container = document.createElement("div");
-  renderer.container.id = "wcjcal";
-  document.body.appendChild(renderer.container);
-});
-
-afterEach(() => {
-  if (renderer.container != null) {
-    unmountComponentAtNode(renderer.container);
-    renderer.container.remove();
-  }
-  renderer.container = null;
-});
 it("EventSelection Snapshot", async () => {
-  renderer.render(
+  const { baseElement } = render(
     <StateWrapper categories={mockStore.categories} events={mockStore.events}>
       <EventSelection />
     </StateWrapper>
   );
-  expect(renderer.container?.innerHTML).toMatchSnapshot();
+  expect(baseElement).toMatchSnapshot();
 });
 
 it("Events are selected at start", async () => {
-  const renderResult = renderer.render(
+  const renderResult = render(
     <StateWrapper categories={mockStore.categories} events={mockStore.events}>
       <EventSelection />
     </StateWrapper>
   );
 
-  const [groupInput, eventInputs] = getEventGroupInputs(renderResult);
+  const [groupInput, eventInputs] = await getEventGroupInputs(renderResult);
   expect(groupInput).toBeChecked();
   eventInputs.forEach((eventInput) => expect(eventInput).toBeChecked());
 });
 
 it("Clicking deselect all deselects all events and groups", async () => {
-  const renderResult = renderer.render(
+  const renderResult = render(
     <StateWrapper categories={mockStore.categories} events={mockStore.events}>
       <EventSelection />
     </StateWrapper>
@@ -53,17 +35,17 @@ it("Clicking deselect all deselects all events and groups", async () => {
 
   act(() => deselectAllBtn.click());
 
-  const [groupInput, eventInputs] = getEventGroupInputs(renderResult);
+  const [groupInput, eventInputs] = await getEventGroupInputs(renderResult);
   expect(groupInput).not.toBeChecked();
   eventInputs.forEach((eventInput) => expect(eventInput).not.toBeChecked());
 });
 
-function getEventGroupInputs(
+async function getEventGroupInputs(
   renderResult: RenderResult,
   groupSelector = (collection: HTMLCollection) => collection[0]
 ) {
   const eventGroup = groupSelector(
-    renderResult.getByTestId("event-selection-groups").children
+    (await renderResult.findByTestId("event-selection-groups")).children
   ).children;
 
   const group = eventGroup[0];

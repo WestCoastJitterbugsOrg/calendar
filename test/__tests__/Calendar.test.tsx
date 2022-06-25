@@ -1,13 +1,9 @@
 import "@testing-library/jest-dom";
 import { createPopper } from "@popperjs/core";
-import { unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
 import { mockStore } from "../__mocks__/stateContext";
-import { createRenderer } from "../test-utils";
 import StateWrapper from "@app/store/StateWrapper";
 import Calendar from "@app/calendar/Calendar";
-
-const renderer = createRenderer();
+import { render, act } from "@testing-library/react";
 
 jest.mock("@popperjs/core", () => {
   const originalModule = jest.requireActual("@popperjs/core");
@@ -18,33 +14,18 @@ jest.mock("@popperjs/core", () => {
   };
 });
 
-beforeEach(() => {
-  renderer.container = document.createElement("div");
-  renderer.container.id = "wcjcal";
-  document.body.appendChild(renderer.container);
-});
-
-afterEach(() => {
-  if (renderer.container != null) {
-    unmountComponentAtNode(renderer.container);
-    renderer.container.remove();
-  }
-  renderer.container = null;
-});
-
-it("Click event in calendar opens popper", async () => {
+it("Click event in calendar opens popper", () => {
   jest.useFakeTimers();
-  jest.spyOn(global, "setTimeout");
 
   const initialDate = mockStore.events["1"].occasions[0].start;
 
-  const renderResult = renderer.render(
+  const { baseElement } = render(
     <StateWrapper categories={mockStore.categories} events={mockStore.events}>
       <Calendar initialDate={initialDate} />
     </StateWrapper>
   );
 
-  const fcEventContainer = renderResult.container.querySelector<HTMLDivElement>(
+  const fcEventContainer = baseElement.querySelector<HTMLDivElement>(
     ".fc-event-title-container"
   );
 
@@ -56,29 +37,22 @@ it("Click event in calendar opens popper", async () => {
   expect(createPopper).toHaveBeenCalledTimes(1);
 });
 
-it("Can open list view", async () => {
-  jest.useFakeTimers();
-  jest.spyOn(global, "setTimeout");
-
+it("Can open list view", () => {
   const initialDate = mockStore.events["1"].occasions[0].start;
 
-  const renderResult = renderer.render(
+  const { baseElement } = render(
     <StateWrapper categories={mockStore.categories} events={mockStore.events}>
       <Calendar initialDate={initialDate} />
     </StateWrapper>
   );
 
-  const fcListEternalButton =
-    renderResult.container.querySelector<HTMLDivElement>(
-      ".fc-listEternal-button"
-    );
+  const fcListEternalButton = baseElement.querySelector<HTMLDivElement>(
+    ".fc-listEternal-button"
+  );
 
   act(() => {
     fcListEternalButton?.click();
-    jest.runAllTimers();
   });
 
-  expect(
-    renderResult.baseElement.querySelector(".fc-listEternal-view")
-  ).toBeTruthy();
+  expect(baseElement.querySelector(".fc-listEternal-view")).toBeTruthy();
 });

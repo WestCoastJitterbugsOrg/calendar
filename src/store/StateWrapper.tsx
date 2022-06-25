@@ -15,6 +15,7 @@ interface Props {
   children: JSX.Element[] | JSX.Element;
   categories: CategoryMap;
   events: EventMap;
+  eventModal?: string;
 }
 
 export default function StateWrapper(props: Props) {
@@ -22,7 +23,9 @@ export default function StateWrapper(props: Props) {
     props.categories
   );
   const [events, setEvents] = useState<EventMap>(props.events);
-  const [eventModal, setEventModal] = useState<string | false>(false);
+  const [eventModal, setEventModal] = useState<string | false>(
+    props.eventModal ?? false
+  );
 
   useEffect(() => {
     if (canStoreSelection()) {

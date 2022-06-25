@@ -11,7 +11,7 @@ export default function EventSelection() {
         <ToggleAllButtons />
       </div>
       <div
-        className="flex-grow w-full overflow-auto bg-wcj-sand divide-y divide-wcj-mint"
+        className="w-full flex-grow divide-y divide-secondary-alt overflow-auto bg-light"
         data-testid="event-selection-groups"
       >
         {Object.keys(categories).map((categoryId) => (

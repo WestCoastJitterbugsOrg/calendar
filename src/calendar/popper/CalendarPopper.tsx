@@ -13,12 +13,12 @@ export function TooltipComponent({
       id="wcj-tooltip"
       role="tooltip"
       className={`
-          z-50 rounded-md shadow-2xl shadow-wcj-black
-          p-2 bg-wcj-black opacity-95 text-white leading-6 
-          min-w-[300px] max-w-[350px] whitespace-pre
+          z-50 min-w-[300px] max-w-[350px] whitespace-pre
+          rounded-md bg-dark p-2 leading-6 text-white 
+          opacity-95 shadow-2xl shadow-dark
         `}
     >
-      <div className="font-bold mb-1 whitespace-normal">{event.title}</div>
+      <div className="mb-1 whitespace-normal font-bold">{event.title}</div>
       <div className="mb-2">
         {event.start &&
           event.end &&
@@ -31,7 +31,7 @@ export function TooltipComponent({
       <EventInfoTable {...(event.extendedProps as Wcj.Event)} />
       <div>
         <div
-          className="cursor-pointer underline mb-2 text-center text-wcj-mint font-bold"
+          className="mb-2 cursor-pointer text-center font-bold text-secondary-alt underline"
           onClick={openModal}
         >
           About event series
@@ -40,9 +40,9 @@ export function TooltipComponent({
       <div
         id="wcj-arrow"
         data-popper-arrow
-        className={`absolute w-2 h-2 bg-inherit invisible
-           before:absolute before:w-2 before:h-2 before:bg-inherit
-           before:visible before:content-[''] before:rotate-45 before:bg-wcj-black
+        className={`invisible absolute h-2 w-2 bg-inherit
+           before:visible before:absolute before:h-2 before:w-2
+           before:rotate-45 before:bg-inherit before:bg-dark before:content-['']
           `}
       ></div>
     </div>
