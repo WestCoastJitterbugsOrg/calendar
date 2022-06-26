@@ -1,4 +1,4 @@
-import { StrictMode, lazy } from "react";
+import { StrictMode, lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import { appContainer, appTag } from "./app-container";
@@ -14,12 +14,12 @@ try {
     shadowRoot.appendChild(appContainer);
     const root = createRoot(appTag);
 
-    setTimeout(() =>
-      root.render(
-        <StrictMode>
+    root.render(
+      <StrictMode>
+        <Suspense fallback={<SpinLoader />}>
           <App />
-        </StrictMode>
-      )
+        </Suspense>
+      </StrictMode>
     );
 
     // If you want to start measuring performance in your app, pass a function
@@ -37,5 +37,12 @@ try {
   Please contact it@wcj.se with the error message:
   `,
     error
+  );
+}
+function SpinLoader() {
+  return (
+    <div className="flex h-screen items-center justify-center bg-wcj-sand">
+      <div className="h-16 w-16 animate-spin rounded-[50%] border-8 border-solid border-t-wcj-coral border-r-wcj-cyan border-b-wcj-red border-l-wcj-mint"></div>
+    </div>
   );
 }

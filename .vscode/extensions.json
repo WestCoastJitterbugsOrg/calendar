@@ -4,6 +4,8 @@
         "esbenp.prettier-vscode",
         "rvest.vs-code-prettier-eslint",
         "dbaeumer.vscode-eslint",
-        "firsttris.vscode-jest-runner"
+        "bradlc.vscode-tailwindcss",
+        "hbenl.vscode-test-explorer",
+        "kavod-io.vscode-jest-test-adapter"
     ]
 }

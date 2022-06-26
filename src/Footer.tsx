@@ -2,34 +2,16 @@ import githublogo from "./assets/github-logo.png";
 import Button from "./shared/Buttons/Button";
 import { useContext } from "react";
 import { StateContext } from "./store/StateWrapper";
-import ics from "./services/ics";
+import { exportICS } from "./services/ics";
+
 
 export function Footer() {
   const { events } = useContext(StateContext);
 
-  const exportICS = () => {
-    const selectedEvents = Object.values(events).filter(
-      (event) => event.showInCalendar
-    );
-    const icsStr = ics(selectedEvents);
-
-    const file = new Blob([icsStr], { type: "text/calendar" });
-    const url = URL.createObjectURL(file);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "wcj-events.ics";
-    document.body.appendChild(a);
-    a.click();
-    return setTimeout(() => {
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    });
-  };
-
   return (
     <div className="flex min-h-[16px] flex-wrap items-center justify-between bg-black p-2">
       <div className="flex-grow" data-testid="download-ics-button">
-        <Button size="sm" onClick={exportICS}>
+        <Button size="sm" onClick={() => exportICS(events)}>
           <>
             Download
             <svg

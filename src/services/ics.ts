@@ -1,6 +1,5 @@
-import { VCALENDAR, VEVENT } from "ics-js";
-
-export default function (events: Wcj.Event[]) {
+export async function wcj2ics(events: Wcj.Event[]) {
+  const { VCALENDAR, VEVENT } = await import("ics-js");
   const calendar = new VCALENDAR();
   calendar.addProp("PRODID", "WCJ personal calendar");
   calendar.addProp("VERSION", 1);
@@ -21,4 +20,23 @@ export default function (events: Wcj.Event[]) {
     }
   }
   return calendar.toString();
+}
+
+export async function exportICS(events: Record<string, Wcj.Event>) {
+  const selectedEvents = Object.values(events).filter(
+    (event) => event.showInCalendar
+  );
+  const icsStr = await wcj2ics(selectedEvents);
+
+  const file = new Blob([icsStr], { type: "text/calendar" });
+  const url = URL.createObjectURL(file);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "wcj-events.ics";
+  document.body.appendChild(a);
+  a.click();
+  return setTimeout(() => {
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  });
 }

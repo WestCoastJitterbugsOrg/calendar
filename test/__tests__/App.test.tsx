@@ -4,6 +4,8 @@ import { defaultEventData } from "../__mocks__/cwEvents";
 import { storeConsentCookie } from "@app/services/cookies";
 import { render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import * as ics from "@app/services/ics";
+import { mockStore } from "../__mocks__/stateContext";
 
 type Global = typeof globalThis & {
   wcjcal_ajax_obj?: typeof defaultEventData;
@@ -46,26 +48,30 @@ it("undefined data results in error", () => {
   expect(baseElement).toHaveTextContent("Error while loading data");
 });
 
-it("Clicking on Download exports an ics", () => {
+it("Clicking on Download calls exportICS", () => {
   const { getByTestId } = render(<App />);
 
-  const link = document.createElement("a");
-  link.click = jest.fn();
-  jest.spyOn(document, "createElement").mockImplementation(() => link);
-
-  URL.createObjectURL = (_) => "data:mock";
-  URL.revokeObjectURL = () => undefined;
+  const exportICS = jest.spyOn(ics, "exportICS").mockImplementation();
 
   const downloadButton = getByTestId("download-ics-button")
     .children[0] as HTMLButtonElement;
-
   act(() => {
     downloadButton.click();
   });
 
+  expect(exportICS).toHaveBeenCalledTimes(1);
+  jest.restoreAllMocks();
+});
+
+it("exportICS creates an ics-file", async () => {
+  const link = document.createElement("a");
+  jest.spyOn(document, "createElement").mockImplementation(() => link);
+  URL.createObjectURL = jest.fn((_) => "data:mock");
+  URL.revokeObjectURL = jest.fn(() => undefined);
+
+  await ics.exportICS(mockStore.events);
   expect(link.download).toEqual("wcj-events.ics");
   expect(link.href).toEqual("data:mock");
-  expect(link.click).toHaveBeenCalledTimes(1);
-
+  jest.restoreAllMocks();
   jest.clearAllMocks();
 });
