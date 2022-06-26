@@ -1,5 +1,7 @@
-import { BaseOptionRefiners } from "@fullcalendar/common";
-import FullCalendar, { RawOptionsFromRefiners } from "@fullcalendar/react";
+import FullCalendar, {
+  RawOptionsFromRefiners,
+  BaseOptionRefiners,
+} from "@fullcalendar/react";
 import createListEternal from "./CalendarViewConfigList";
 import dayGridMonth from "./CalendarViewConfigMonth";
 import timeGridWeek from "./CalendarViewConfigWeek";
@@ -14,6 +16,6 @@ export function CalendarViewConfig(start: Date, end: Date): ViewConfig {
   return {
     dayGridMonth: dayGridMonth,
     timeGridWeek: timeGridWeek,
-    listEternal: createListEternal(start, end)
+    listEternal: createListEternal(start, end),
   };
 }

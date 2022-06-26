@@ -1,18 +1,17 @@
-/* // #region CSS Variables
-//
-// The default values for these variables can be found on the following links:
-//
-// https://github.com/fullcalendar/fullcalendar/blob/master/packages/common/src/styles/vars.css
-// https://github.com/fullcalendar/fullcalendar/blob/master/packages/daygrid/src/styles/vars.css
-// https://github.com/fullcalendar/fullcalendar/blob/master/packages/list/src/styles/vars.css
-//  */
-
 @import "@fullcalendar/common/main.css";
 @import "@fullcalendar/daygrid/main.css";
 @import "@fullcalendar/list/main.css";
 @import "@fullcalendar/timegrid/main.css";
 
 .wcjcal-fc {
+  /* #region CSS Variables  */
+  /* The default values for these variables can be found on the following links:
+  //
+  // https://github.com/fullcalendar/fullcalendar/blob/master/packages/common/src/styles/vars.css
+  // https://github.com/fullcalendar/fullcalendar/blob/master/packages/daygrid/src/styles/vars.css
+  // https://github.com/fullcalendar/fullcalendar/blob/master/packages/list/src/styles/vars.css
+  */
+
   /* General */
   --fc-small-font-size: 13.6px;
   --fc-page-bg-color: white;
@@ -55,91 +54,68 @@
   --fc-highlight-color: rgba(188, 232, 241, 0.3);
 
   /* #endregion */
+  /* #endregion */
 
-  height: 100%;
+  @apply h-full;
+
   & .fc {
     &.fc-theme-standard .fc-list-day-cushion,
     & .fc-list-sticky .fc-list-day > th {
-      z-index: 1;
-      background-color: #f5f5f5;
+      @apply z-10 bg-[#f5f5f5];
     }
 
     &.fc-theme-standard .fc-list-day-cushion {
       & .fc-list-day-text,
       & .fc-list-day-side-text {
-        color: black;
-        cursor: default;
-        text-decoration: none;
+        @apply cursor-default text-black no-underline;
       }
     }
 
     & .fc-button {
-      padding: 8px 18px;
-      border-radius: 0;
-      border-top: none;
-      border-left: none;
-      border-right: none;
-      border-width: 2px;
-      line-height: 1;
-      font-size: 16px;
-      font-weight: bold;
-      max-height: 36px;
+      @apply px-[18px] py-[8px];
+      @apply rounded-none border-2 border-t-0 border-l-0 border-r-0;
+      @apply max-h-[36px] text-base font-bold leading-[1];
 
       &:focus {
-        outline: none;
-        box-shadow: none;
+        @apply shadow-none outline-none;
       }
 
       &.fc-button-primary {
         &:not(:hover):not(:active):not(.has-text-color) {
-          background-color: theme("colors.dark");
+          @apply bg-dark;
         }
+
         &:not(:disabled) {
           &:active:focus,
           &.fc-button-active:focus {
-            outline: none;
-            box-shadow: none;
+            @apply shadow-none outline-none;
           }
         }
-        &.fc-today-button {
-          background-color: black;
-          border-radius: 8px;
 
-          &:hover {
-            border-color: transparent;
-            background-color: theme("colors.gray.900");
-          }
+        &.fc-today-button {
+          @apply rounded-lg bg-black hover:border-transparent hover:bg-gray-900;
         }
+
         &.fc-next-button,
         &.fc-prev-button {
-          padding: 5px;
-          background-color: transparent;
-          border-color: transparent;
-          color: white;
+          @apply border-transparent bg-transparent p-1 text-white;
           &:fc-icon {
-            font-weight: bold;
+            @apply font-bold;
           }
         }
       }
     }
 
     & .fc-header-toolbar.fc-toolbar {
-      height: 64px;
-      margin-bottom: 0;
-      padding: 0 16px;
-      background-color: theme("colors.dark");
-      color: white;
+      @apply mb-0 h-16 bg-dark py-0 px-4 text-white;
 
       & .fc-toolbar-chunk {
         &:nth-child(-n + 2) {
-          overflow: hidden;
+          @apply overflow-hidden;
         }
 
         & .fc-toolbar-title {
-          font-size: medium;
-          display: inline;
-          margin: 0 8px;
-          white-space: nowrap;
+          @apply my-0 mx-2 inline whitespace-nowrap text-base;
         }
       }
     }
@@ -152,54 +128,41 @@
       }
       & .fc-list-table {
         & tr:hover {
-          text-decoration: underline;
-          cursor: pointer;
+          @apply cursor-pointer underline;
         }
         & td {
+          @apply bg-white;
           word-break: keep-all;
           line-break: auto;
-          background: white;
         }
       }
     }
     & .fc-col-header-cell-cushion {
-      display: block;
-      white-space: pre;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      background: transparent;
-      color: black;
-      text-decoration: none;
-      line-height: 1.5;
-      cursor: default;
+      @apply block overflow-hidden text-ellipsis whitespace-pre bg-transparent;
+      @apply cursor-default leading-6 text-black no-underline;
     }
 
     & .fc-timeGridWeek-view .fc-timegrid-event {
-      cursor: pointer;
+      @apply cursor-pointer;
 
       & .fc-event-time {
-        font-weight: bold;
+        @apply font-bold;
       }
     }
 
     & .fc-dayGridMonth-view {
       & .fc-daygrid-day-number {
-        cursor: default;
-        color: black;
-        text-decoration: none;
+        @apply cursor-default text-black no-underline;
       }
       & .fc-daygrid-event {
-        cursor: pointer;
+        @apply cursor-pointer;
         & .fc-event-main-frame {
-          flex-direction: column;
-          padding: 4px 2px;
+          @apply flex-col py-[4px] px-[2px];
           & .fc-event-time {
-            white-space: normal;
-            line-height: 1;
+            @apply whitespace-normal leading-4;
           }
           & .fc-event-title {
-            text-overflow: ellipsis;
-            line-height: 1;
+            @apply text-ellipsis leading-4;
           }
         }
       }
@@ -209,9 +172,6 @@
 
 @media only screen and (max-width: theme("screens.sm")) {
   .wcjcal-fc .fc .fc-header-toolbar.fc-toolbar {
-    align-items: center;
-    flex-direction: column;
-    height: auto;
-    @apply space-y-2 py-4;
+    @apply h-auto flex-col items-center space-y-2 py-4;
   }
 }
