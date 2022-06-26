@@ -23,7 +23,7 @@ export function Header() {
         have selected). {<br />}
         Press Consent to get this functionality.
       </div>
-      <Button title="Consent" onClick={consent} />
+      <Button onClick={consent} >Consent</Button>
     </div>
   );
 }

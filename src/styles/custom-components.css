@@ -1,17 +1,17 @@
 #wcj-tooltip[data-popper-placement^="top"] > #wcj-arrow {
-  bottom: -4px;
+  @apply -bottom-1;
 }
 
 #wcj-tooltip[data-popper-placement^="bottom"] > #wcj-arrow {
-  top: -4px;
+  @apply -top-1;
 }
 
 #wcj-tooltip[data-popper-placement^="left"] > #wcj-arrow {
-  right: -4px;
+  @apply -right-1;
 }
 
 #wcj-tooltip[data-popper-placement^="right"] > #wcj-arrow {
-  left: -4px;
+  @apply -left-1;
 }
 
 .checkbox {
@@ -28,17 +28,18 @@
 }
 
 .button {
-  @apply inline-block cursor-pointer rounded-full border-0 bg-primary
-   text-base font-bold leading-4 text-white no-underline transition-colors;
+  @apply flex cursor-pointer items-center rounded-full
+   border-0 bg-primary font-bold
+   text-white no-underline transition-colors;
 
-  @apply px-4 py-2;
+  @apply px-4 py-2 text-base leading-4;
 
   &:hover {
     @apply brightness-[1.185];
   }
 
   &.sm {
-    @apply px-3 py-1;
+    @apply px-3 py-1 text-sm leading-4;
   }
 
   &.lg {

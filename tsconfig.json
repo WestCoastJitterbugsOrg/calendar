@@ -15,9 +15,6 @@
     "paths": {
       "@app/*": [
         "./src/*"
-      ],
-      "tailwindconfig": [
-        "./tailwind.config.js"
       ]
     },
     "lib": [

@@ -1,5 +1,5 @@
 import Error from "./Error";
-// import { Footer } from "./Footer";
+import { Footer } from "./Footer";
 import { Header } from "./Header";
 import initContext from "./services/cogwork";
 import EventSeriesModal from "./shared/EventModal";
@@ -14,20 +14,22 @@ export default function App() {
       <>
         <Header />
         <StateWrapper categories={categories} events={events}>
-          <div className="flex flex-row flex-wrap items-stretch bg-white min-h-[calc(100vh-32px)]">
-            <div className="flex flex-col flex-grow w-96 max-h-[calc(100vh-32px)]">
-              <EventSelection />
+          <div className="min-h-[calc(100vh-128px)]">
+            <div className="flex flex-row flex-wrap items-stretch bg-white">
+              <div className="flex max-h-[calc(100vh-128px)] w-96 flex-grow flex-col">
+                <EventSelection />
+              </div>
+              <div
+                className="min-h-[calc(100vh-128px)] min-w-[calc(100%-384px)] flex-shrink-0 flex-grow"
+                data-testid="calendar-wrapper"
+              >
+                <Calendar />
+              </div>
             </div>
-            <div
-              className="flex-grow flex-shrink-0 min-h-[calc(100vh-32px)] min-w-[calc(100%-384px)]"
-              data-testid="calendar-wrapper"
-            >
-              <Calendar />
-            </div>
-            <EventSeriesModal />
+            <Footer />
           </div>
+          <EventSeriesModal />
         </StateWrapper>
-        {/* <Footer /> */}
       </>
     );
   } catch (err) {

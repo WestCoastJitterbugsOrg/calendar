@@ -1,7 +1,7 @@
 export interface ButtonData {
-  title: string;
   size?: "sm" | "lg";
   onClick?: () => void;
+  children: JSX.Element | string;
 }
 
 export default function Button(props: ButtonData) {
@@ -13,7 +13,7 @@ export default function Button(props: ButtonData) {
     `}
       onClick={props.onClick}
     >
-      {props.title}
+      {props.children}
     </button>
   );
 }

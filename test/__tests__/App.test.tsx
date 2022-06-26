@@ -45,3 +45,27 @@ it("undefined data results in error", () => {
   const { baseElement } = render(<App />);
   expect(baseElement).toHaveTextContent("Error while loading data");
 });
+
+it("Clicking on Download exports an ics", () => {
+  const { getByTestId } = render(<App />);
+
+  const link = document.createElement("a");
+  link.click = jest.fn();
+  jest.spyOn(document, "createElement").mockImplementation(() => link);
+
+  URL.createObjectURL = (_) => "data:mock";
+  URL.revokeObjectURL = () => undefined;
+
+  const downloadButton = getByTestId("download-ics-button")
+    .children[0] as HTMLButtonElement;
+
+  act(() => {
+    downloadButton.click();
+  });
+
+  expect(link.download).toEqual("wcj-events.ics");
+  expect(link.href).toEqual("data:mock");
+  expect(link.click).toHaveBeenCalledTimes(1);
+
+  jest.clearAllMocks();
+});

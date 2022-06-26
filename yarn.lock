@@ -4051,7 +4051,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"detect-node@npm:^2.0.4":
+"detect-node@npm:^2.0.3, detect-node@npm:^2.0.4":
   version: 2.1.0
   resolution: "detect-node@npm:2.1.0"
   checksum: 832184ec458353e41533ac9c622f16c19f7c02d8b10c303dfd3a756f56be93e903616c0bb2d4226183c9351c15fc0b3dba41a17a2308262afabcfa3776e6ae6e
@@ -4344,6 +4344,13 @@ __metadata:
     is-date-object: ^1.0.1
     is-symbol: ^1.0.2
   checksum: 4ead6671a2c1402619bdd77f3503991232ca15e17e46222b0a41a5d81aebc8740a77822f5b3c965008e631153e9ef0580540007744521e72de8e33599fca2eed
+  languageName: node
+  linkType: hard
+
+"es6-error@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "es6-error@npm:1.0.0"
+  checksum: cdd02a0ff564a3f74023ab473589e74f659d32615f58c7d6fb48b84498acb51322746b2b9694e24b3493993eb3b8d74a52251add309ca785977b9b76333e3a7d
   languageName: node
   linkType: hard
 
@@ -5358,6 +5365,18 @@ __metadata:
   dependencies:
     safer-buffer: ">= 2.1.2 < 3.0.0"
   checksum: 3f60d47a5c8fc3313317edfd29a00a692cc87a19cac0159e2ce711d0ebc9019064108323b5e493625e25594f11c6236647d8e256fbe7a58f4a3b33b89e6d30bf
+  languageName: node
+  linkType: hard
+
+"ics-js@npm:^0.10.2":
+  version: 0.10.2
+  resolution: "ics-js@npm:0.10.2"
+  dependencies:
+    detect-node: ^2.0.3
+    es6-error: ^1.0.0
+    lodash.difference: ^4.3.0
+    simple-guid: 0.0.1
+  checksum: 70f7fc64f937553a69e29294241a072ff02fbd49bf92e1bf560b6a044f35aaa63f447bfa44ec2b91271212c9953018f182bfaf7813b04bde323d94928f0dced6
   languageName: node
   linkType: hard
 
@@ -6495,6 +6514,13 @@ __metadata:
   version: 4.0.8
   resolution: "lodash.debounce@npm:4.0.8"
   checksum: a3f527d22c548f43ae31c861ada88b2637eb48ac6aa3eb56e82d44917971b8aa96fbb37aa60efea674dc4ee8c42074f90f7b1f772e9db375435f6c83a19b3bc6
+  languageName: node
+  linkType: hard
+
+"lodash.difference@npm:^4.3.0":
+  version: 4.5.0
+  resolution: "lodash.difference@npm:4.5.0"
+  checksum: ecee276aa578f300e79350805a14a51be8d1f12b3c1389a19996d8ab516f814211a5f65c68331571ecdad96522b863ccc484b55504ce8c9947212a29f8857d5a
   languageName: node
   linkType: hard
 
@@ -8527,6 +8553,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"simple-guid@npm:0.0.1":
+  version: 0.0.1
+  resolution: "simple-guid@npm:0.0.1"
+  checksum: 5c6058d989179166281ccdb6effc61f5db0769c52e316da1b13445a28eef070e5ea77b66b07b920e620a427a68b05b08c4cbd815bf9350f533edb99b76e7160d
+  languageName: node
+  linkType: hard
+
 "sisteransi@npm:^1.0.5":
   version: 1.0.5
   resolution: "sisteransi@npm:1.0.5"
@@ -9480,6 +9513,7 @@ __metadata:
     eslint-plugin-react: ^7.30.0
     eslint-plugin-react-hooks: ^4.6.0
     eslint-webpack-plugin: ^3.1.1
+    ics-js: ^0.10.2
     jest: ^28.1.1
     jest-environment-jsdom: ^28.1.1
     path: ^0.12.7
