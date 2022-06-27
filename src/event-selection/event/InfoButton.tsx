@@ -1,8 +1,13 @@
-export function InfoButton() {
+interface Props {
+  onClick: () => unknown;
+}
+
+export function InfoButton(props: Props) {
   return (
     <svg
+      onClick={props.onClick}
       xmlns="http://www.w3.org/2000/svg"
-      className="block text-black opacity-50 hover:opacity-100 cursor-pointer"
+      className="mr-2 block h-4 w-4 flex-none cursor-pointer text-black opacity-50 hover:opacity-100"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"

@@ -23,21 +23,16 @@ export default function EventItem({ event }: EventRowProps) {
   };
 
   return (
-    <div
-      data-testid="event-item"
-      className="my-2 flex min-h-[32px] flex-row items-center px-2"
-      onClick={() => toggle()}
-    >
+    <div className="m-2 flex min-h-[32px] items-center">
+      <InfoButton onClick={() => setEventModal?.(event.id)} />
       <div
-        className="mr-2 h-4 w-4 flex-none"
-        onClick={() => setEventModal?.(event.id)}
+        data-testid="event-item"
+        className="flex flex-grow items-center"
+        onClick={() => toggle()}
       >
-        <InfoButton />
-      </div>
-      <div className="flex-grow cursor-pointer pr-2 leading-tight">
-        {event.title}
-      </div>
-      <div className="flex flex-none">
+        <div className="flex-grow cursor-pointer pr-2 leading-tight">
+          {event.title}
+        </div>
         <EventCheckbox checked={!!event.showInCalendar} />
       </div>
     </div>

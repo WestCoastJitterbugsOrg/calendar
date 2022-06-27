@@ -17,18 +17,16 @@ export function EventGroupHeader({
   toggleChecked,
 }: EventGroupHeaderProps) {
   return (
-    <div className="flex min-h-[32px] flex-row items-center bg-secondary py-2 font-bold text-white">
+    <div className="flex min-h-[32px] flex-row items-center bg-secondary p-2 font-bold text-white">
       <div
         className="flex flex-grow cursor-pointer items-center"
         onClick={toggleExpanded}
       >
         <ExpandIcon open={expanded} />
-        {title}
+        <span className="ml-2">{title}</span>
       </div>
 
-      <div className="mx-3 flex">
-        <GroupCheckbox state={checked} onClick={toggleChecked} />
-      </div>
+      <GroupCheckbox state={checked} onClick={toggleChecked} />
     </div>
   );
 }

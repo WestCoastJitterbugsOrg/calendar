@@ -3,7 +3,7 @@ export function ExpandIcon({ open }: { open: boolean }) {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       className={
-        "w-4 h-4 mx-2 transition duration-200 transform " +
+        "h-4 w-4 flex-shrink-0 transform transition duration-200 " +
         (open ? "rotate-45" : "")
       }
       fill="none"

@@ -15,15 +15,15 @@ export function GroupCheckbox(props: GroupCheckboxProps) {
   }, [props.state]);
 
   return (
-    <label>
+    <label className="w-[22px]">
       <input
         ref={checkboxRef}
         type="checkbox"
         data-testid="group-checkbox"
         className={`
         checkbox
-        
-        h-5 w-5 rounded-md border-[2px]
+
+        m-0 h-5 w-5 rounded-md border-[2px]
         border-solid border-dark bg-light
         
         checked:after:left-[6px] checked:after:-top-[5px] 
