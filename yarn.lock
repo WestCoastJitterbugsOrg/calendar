@@ -2027,23 +2027,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:*":
+"@types/eslint@npm:*, @types/eslint@npm:^7.29.0 || ^8.4.1":
   version: 8.4.3
   resolution: "@types/eslint@npm:8.4.3"
   dependencies:
     "@types/estree": "*"
     "@types/json-schema": "*"
   checksum: cc199be84e22754cc625b171c90852da2b563088d32f4161d310b70470eab47f9bc812774c61eab6530083a214fe634abc32d06ef38e0a5e29f68436331cfabb
-  languageName: node
-  linkType: hard
-
-"@types/eslint@npm:^7.28.2":
-  version: 7.29.0
-  resolution: "@types/eslint@npm:7.29.0"
-  dependencies:
-    "@types/estree": "*"
-    "@types/json-schema": "*"
-  checksum: df13991c554954353ce8f3bb03e19da6cc71916889443d68d178d4f858b561ba4cc4a4f291c6eb9eebb7f864b12b9b9313051b3a8dfea3e513dadf3188a77bdf
   languageName: node
   linkType: hard
 
@@ -4525,19 +4515,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-webpack-plugin@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "eslint-webpack-plugin@npm:3.1.1"
+"eslint-webpack-plugin@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "eslint-webpack-plugin@npm:3.2.0"
   dependencies:
-    "@types/eslint": ^7.28.2
-    jest-worker: ^27.3.1
-    micromatch: ^4.0.4
+    "@types/eslint": ^7.29.0 || ^8.4.1
+    jest-worker: ^28.0.2
+    micromatch: ^4.0.5
     normalize-path: ^3.0.0
-    schema-utils: ^3.1.1
+    schema-utils: ^4.0.0
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0
     webpack: ^5.0.0
-  checksum: 4ff3f3fc8f03a187792f783513c3f4274221623d5f5c16ca90542c1b781fd04ed646ab6043caa55a51a654d5ab2c7039677faedee8bfb526d1310edc3909cbd2
+  checksum: 095034c35e773fdb21ec7e597ae1f8a6899679c290db29d8568ca94619e8c7f4971f0f9edccc8a965322ab8af9286c87205985a38f4fdcf17654aee7cd8bb7b5
   languageName: node
   linkType: hard
 
@@ -6242,7 +6232,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-worker@npm:^27.3.1, jest-worker@npm:^27.4.5":
+"jest-worker@npm:^27.4.5":
   version: 27.5.1
   resolution: "jest-worker@npm:27.5.1"
   dependencies:
@@ -6253,7 +6243,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-worker@npm:^28.1.1":
+"jest-worker@npm:^28.0.2, jest-worker@npm:^28.1.1":
   version: 28.1.1
   resolution: "jest-worker@npm:28.1.1"
   dependencies:
@@ -6685,7 +6675,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"micromatch@npm:^4.0.0, micromatch@npm:^4.0.2, micromatch@npm:^4.0.4":
+"micromatch@npm:^4.0.0, micromatch@npm:^4.0.2, micromatch@npm:^4.0.4, micromatch@npm:^4.0.5":
   version: 4.0.5
   resolution: "micromatch@npm:4.0.5"
   dependencies:
@@ -9509,7 +9499,7 @@ __metadata:
     eslint-config-prettier: ^8.5.0
     eslint-plugin-react: ^7.30.1
     eslint-plugin-react-hooks: ^4.6.0
-    eslint-webpack-plugin: ^3.1.1
+    eslint-webpack-plugin: ^3.2.0
     ics-js: ^0.10.2
     jest: ^28.1.1
     jest-environment-jsdom: ^28.1.1
