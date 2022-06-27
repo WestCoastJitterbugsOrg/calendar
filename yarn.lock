@@ -2360,20 +2360,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^5.8.1":
-  version: 5.28.0
-  resolution: "@typescript-eslint/parser@npm:5.28.0"
+"@typescript-eslint/parser@npm:^5.30.0":
+  version: 5.30.0
+  resolution: "@typescript-eslint/parser@npm:5.30.0"
   dependencies:
-    "@typescript-eslint/scope-manager": 5.28.0
-    "@typescript-eslint/types": 5.28.0
-    "@typescript-eslint/typescript-estree": 5.28.0
+    "@typescript-eslint/scope-manager": 5.30.0
+    "@typescript-eslint/types": 5.30.0
+    "@typescript-eslint/typescript-estree": 5.30.0
     debug: ^4.3.4
   peerDependencies:
     eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: cb18ff47b0a10373ba1c05c90901d08f5f99180e624f3f2faa85f13d1048fc59601a3cab6b852f72d13287b314d94c4d4997129ff6c639496a9144c762f6d31e
+  checksum: 7067ba4edea702137de3d5c866f2e4a22032bfa82556351eb8cc1088ef45cdd747cbf2a73d3904583303899de2983ef41050f3a5b5d648a2f88e687318bb6738
   languageName: node
   linkType: hard
 
@@ -2384,6 +2384,16 @@ __metadata:
     "@typescript-eslint/types": 5.28.0
     "@typescript-eslint/visitor-keys": 5.28.0
   checksum: f187fd295d152508aa85233ef3ac89031952300fbbe277e188dfba3fbfd82656b15d3d8daa6d85984970ce00a30fdf75da912c4024df982004b24f3a95420b8f
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/scope-manager@npm:5.30.0":
+  version: 5.30.0
+  resolution: "@typescript-eslint/scope-manager@npm:5.30.0"
+  dependencies:
+    "@typescript-eslint/types": 5.30.0
+    "@typescript-eslint/visitor-keys": 5.30.0
+  checksum: 51246d0f6c497ad98fcfb02a9da92e855cd5916cf6ea117b1f8a511e4f62d1eae28f2c7278dfe29cc823c36f3b1fe87ff56681654b68faac5dfd1b897c3c58da
   languageName: node
   linkType: hard
 
@@ -2410,6 +2420,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@typescript-eslint/types@npm:5.30.0":
+  version: 5.30.0
+  resolution: "@typescript-eslint/types@npm:5.30.0"
+  checksum: f83a506880d78419283a86e8aeb6c744b1d1a7fc3a366625125805daf0f9a7640a778537113b8865a4cdd985dcde53066820ea044a750126bc8b478eb93d4d12
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/typescript-estree@npm:5.28.0":
   version: 5.28.0
   resolution: "@typescript-eslint/typescript-estree@npm:5.28.0"
@@ -2425,6 +2442,24 @@ __metadata:
     typescript:
       optional: true
   checksum: e7be6e9ff778ab2728bdc545713f29cd40bbe1282662461453fe46bc18f676f9b33c60e3514347fbc4e5e94d764525c20b8ef3d47baa62fec6bd3ce05fdde6eb
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/typescript-estree@npm:5.30.0":
+  version: 5.30.0
+  resolution: "@typescript-eslint/typescript-estree@npm:5.30.0"
+  dependencies:
+    "@typescript-eslint/types": 5.30.0
+    "@typescript-eslint/visitor-keys": 5.30.0
+    debug: ^4.3.4
+    globby: ^11.1.0
+    is-glob: ^4.0.3
+    semver: ^7.3.7
+    tsutils: ^3.21.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: cf8caea435c4346fae9c81635864efa17ea106e3dea5cd226c096145958ff6e7918e40cdb2af06526ca43d44717eb088869f1c1db51a52aa9f72b6bf65e11db2
   languageName: node
   linkType: hard
 
@@ -2451,6 +2486,16 @@ __metadata:
     "@typescript-eslint/types": 5.28.0
     eslint-visitor-keys: ^3.3.0
   checksum: e97251968ea273ce33fa0de8a9c04426499b797f6f7800379ff880c4be6e6e02fe023038be0092c595be394a8636f73ee8911974214d5232b3d59492a50771bf
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/visitor-keys@npm:5.30.0":
+  version: 5.30.0
+  resolution: "@typescript-eslint/visitor-keys@npm:5.30.0"
+  dependencies:
+    "@typescript-eslint/types": 5.30.0
+    eslint-visitor-keys: ^3.3.0
+  checksum: bf2219cbb910d284e2f224aaa701932287b25fe99312f9abf6406a8f52a3a0b852c96276cd740ae3071b2561b253a6cfa30b0b8ab1d199e08f9550402f8fbf1f
   languageName: node
   linkType: hard
 
@@ -9455,7 +9500,7 @@ __metadata:
     "@types/react-modal": ^3.13.1
     "@types/tailwindcss": ^3.0.10
     "@typescript-eslint/eslint-plugin": ^5.8.1
-    "@typescript-eslint/parser": ^5.8.1
+    "@typescript-eslint/parser": ^5.30.0
     autoprefixer: ^10.4.7
     copy-webpack-plugin: ^11.0.0
     css-loader: ^6.7.1
