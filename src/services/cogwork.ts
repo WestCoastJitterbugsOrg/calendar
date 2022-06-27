@@ -1,7 +1,8 @@
 import StateContext from "@app/store/model";
 
 export default function initContext() {
-  const response: Cogwork.Event[] = wcjcal_ajax_obj.data.events.event;
+  const response = asArray(wcjcal_ajax_obj.data.events.event);
+
   const cogworkEvents = response.filter(
     (event) => event.schedule?.occasions?.occasion != null
   );
@@ -36,7 +37,7 @@ export default function initContext() {
 
   return {
     categories: categories,
-    events: events
+    events: events,
   };
 }
 

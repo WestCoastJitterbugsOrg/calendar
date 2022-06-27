@@ -15,7 +15,7 @@ interface Props {
   children: JSX.Element[] | JSX.Element;
   categories: CategoryMap;
   events: EventMap;
-  eventModal?: string;
+  eventModal?: string | false;
 }
 
 export default function StateWrapper(props: Props) {

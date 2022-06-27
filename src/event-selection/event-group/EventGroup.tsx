@@ -2,59 +2,31 @@ import EventItem from "../event/EventItem";
 import { StateContext } from "@app/store/StateWrapper";
 import { useContext, useState } from "react";
 import { EventGroupHeader } from "./EventGroupHeader";
+import { getCategoryEvents } from "@app/store/utils";
 
-interface EventGroupProps {
+interface Props {
   category: string;
 }
 
-export default function EventGroup({ category: categoryId }: EventGroupProps) {
+export default function EventGroup(props: Props) {
   const [expanded, setExpanded] = useState(false);
-  const { categories, events, setEvents } = useContext(StateContext);
+  const { categories, events } = useContext(StateContext);
 
-  const category = categories[categoryId];
-  const catEvents = category.events.reduce(
-    (e, id) => [...e, events[id]],
-    [] as Wcj.Event[]
-  );
-
-  const eventsShown = catEvents.filter((event) => event.showInCalendar).length;
-  const globalCheckState =
-    eventsShown === 0
-      ? ("none" as const)
-      : eventsShown === Object.keys(catEvents).length
-      ? ("all" as const)
-      : ("some" as const);
-
-  if (category == null) {
-    throw Error(`Category ${categoryId} does not exist in state`);
-  }
-
-  const setAllChecked = (show: boolean) => {
-    const newEvents: Record<string, Wcj.Event> = { ...events };
-
-    const eventIds = categories[categoryId].events;
-
-    for (const eventId of eventIds) {
-      newEvents[eventId].showInCalendar = show;
-    }
-
-    setEvents?.(newEvents);
-  };
+  const category = categories[props.category];
+  const catEvents = getCategoryEvents(category, events);
 
   return (
     <div className="bg-light">
       <EventGroupHeader
-        title={categoryId}
+        category={category}
         expanded={expanded}
-        checked={globalCheckState}
         toggleExpanded={() => setExpanded(!expanded)}
-        toggleChecked={() => setAllChecked(globalCheckState !== "all")}
       />
 
       <div
-        className={
-          "overflow-hidden bg-light " + (expanded ? "max-h-full" : "max-h-0")
-        }
+        className={`overflow-hidden bg-light ${
+          expanded ? "max-h-full" : "max-h-0"
+        }`}
       >
         {catEvents.map((event) => (
           <EventItem event={event} key={event.id} />

@@ -1,4 +1,4 @@
-import Error from "./Error";
+import ErrorViewer from "./Error";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import initContext from "./services/cogwork";
@@ -33,6 +33,6 @@ export default function App() {
       </>
     );
   } catch (err) {
-    return <Error message={err}></Error>;
+    return <ErrorViewer message={err}></ErrorViewer>;
   }
 }

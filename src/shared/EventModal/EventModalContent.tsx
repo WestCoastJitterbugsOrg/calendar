@@ -8,7 +8,7 @@ interface props {
 
 export function EventSeriesModalContent({ event, onCloseClick }: props) {
   return (
-    <div className="md:min-w-[700px]">
+    <div className="md:min-w-[700px]" data-testid="event-series-modal-content">
       <div
         className="absolute right-5 top-5 cursor-pointer"
         onClick={onCloseClick}

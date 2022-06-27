@@ -1,5 +1,5 @@
 interface EventCheckboxProps {
-  checked: boolean;
+  checked: boolean | undefined;
 }
 
 export default function EventCheckbox(props: EventCheckboxProps) {

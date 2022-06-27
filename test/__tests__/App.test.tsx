@@ -6,7 +6,7 @@ import { render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import * as ics from "@app/services/ics";
 import { mockStore } from "../__mocks__/stateContext";
-import Error from "@app/Error";
+import ErrorViewer from "@app/Error";
 
 type Global = typeof globalThis & {
   wcjcal_ajax_obj?: typeof defaultEventData;
@@ -38,6 +38,7 @@ it("Cookie header is hidden if there are cookies", async () => {
 });
 
 it("undefined data results in error", () => {
+  const error = jest.spyOn(console, "error").mockImplementation();
   act(() => {
     (global as Global).wcjcal_ajax_obj = {
       data: {
@@ -47,6 +48,9 @@ it("undefined data results in error", () => {
   });
   const { baseElement } = render(<App />);
   expect(baseElement).toHaveTextContent("Error while loading data");
+  expect(error).toBeCalledTimes(1);
+
+  error.mockReset();
 });
 
 it("Clicking on Download calls exportICS", () => {
@@ -78,6 +82,7 @@ it("exportICS creates an ics-file", async () => {
 });
 
 it("Error can output stringified json", async () => {
+  const error = jest.spyOn(console, "error").mockImplementation();
   const mockError = JSON.stringify(
     {
       this: "is",
@@ -86,18 +91,25 @@ it("Error can output stringified json", async () => {
     null,
     4
   );
-  const { findByTestId } = render(<Error message={mockError} />);
+  const { findByTestId } = render(<ErrorViewer message={mockError} />);
 
   const errorMessageEl = await findByTestId("error-message");
 
   expect(errorMessageEl.innerHTML).toEqual(mockError);
+  expect(error).toBeCalledTimes(1);
+
+  error.mockReset();
 });
 
 it("Error can output plain string", async () => {
+  const error = jest.spyOn(console, "error").mockImplementation();
   const mockError = "this is a plain string";
-  const { findByTestId } = render(<Error message={mockError} />);
+  const { findByTestId } = render(<ErrorViewer message={mockError} />);
 
   const errorMessageEl = await findByTestId("error-message");
 
   expect(errorMessageEl.innerHTML).toEqual(mockError);
+  expect(error).toBeCalledTimes(1);
+
+  error.mockReset();
 });

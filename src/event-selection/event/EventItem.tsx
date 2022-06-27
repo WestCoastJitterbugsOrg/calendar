@@ -3,19 +3,19 @@ import { useContext } from "react";
 import EventCheckbox from "./EventCheckbox";
 import { InfoButton } from "./InfoButton";
 
-interface EventRowProps {
+interface Props {
   event: Wcj.Event;
 }
 
-export default function EventItem({ event }: EventRowProps) {
-  const { events, setEvents, setEventModal } = useContext(StateContext);
+export default function EventItem(props: Props) {
+  const { events, setEvents } = useContext(StateContext);
 
   const toggle = () => {
-    const newEvents: Record<string, Wcj.Event> = {
+    const newEvents = {
       ...events,
-      [event.id]: {
-        ...events[event.id],
-        showInCalendar: !events[event.id].showInCalendar,
+      [props.event.id]: {
+        ...events[props.event.id],
+        showInCalendar: !events[props.event.id].showInCalendar,
       },
     };
 
@@ -24,16 +24,16 @@ export default function EventItem({ event }: EventRowProps) {
 
   return (
     <div className="m-2 flex min-h-[32px] items-center">
-      <InfoButton onClick={() => setEventModal?.(event.id)} />
+      <InfoButton eventId={props.event.id} />
       <div
         data-testid="event-item"
         className="flex flex-grow items-center"
         onClick={() => toggle()}
       >
         <div className="flex-grow cursor-pointer pr-2 leading-tight">
-          {event.title}
+          {props.event.title}
         </div>
-        <EventCheckbox checked={!!event.showInCalendar} />
+        <EventCheckbox checked={props.event.showInCalendar} />
       </div>
     </div>
   );

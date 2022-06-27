@@ -33,6 +33,7 @@ exports[`EventModal Snapshot 1`] = `
       >
         <div
           class="md:min-w-[700px]"
+          data-testid="event-series-modal-content"
         >
           <div
             class="absolute right-5 top-5 cursor-pointer"

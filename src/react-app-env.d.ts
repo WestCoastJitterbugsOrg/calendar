@@ -72,7 +72,7 @@ declare namespace Cogwork {
   }
   interface Response {
     events: {
-      event: Event[];
+      event: Event[] | Event;
     };
   }
 }

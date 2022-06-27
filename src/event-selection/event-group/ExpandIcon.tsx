@@ -1,10 +1,14 @@
-export function ExpandIcon({ open }: { open: boolean }) {
+interface Props {
+  open: boolean;
+}
+
+export function ExpandIcon(props: Props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       className={
         "h-4 w-4 flex-shrink-0 transform transition duration-200 " +
-        (open ? "rotate-45" : "")
+        (props.open ? "rotate-45" : "")
       }
       fill="none"
       viewBox="0 0 24 24"
