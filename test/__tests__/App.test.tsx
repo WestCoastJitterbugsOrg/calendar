@@ -6,6 +6,7 @@ import { render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import * as ics from "@app/services/ics";
 import { mockStore } from "../__mocks__/stateContext";
+import Error from "@app/Error";
 
 type Global = typeof globalThis & {
   wcjcal_ajax_obj?: typeof defaultEventData;
@@ -74,4 +75,29 @@ it("exportICS creates an ics-file", async () => {
   expect(link.href).toEqual("data:mock");
   jest.restoreAllMocks();
   jest.clearAllMocks();
+});
+
+it("Error can output stringified json", async () => {
+  const mockError = JSON.stringify(
+    {
+      this: "is",
+      a: ["json", "wrapped", "in", "text", 1337],
+    },
+    null,
+    4
+  );
+  const { findByTestId } = render(<Error message={mockError} />);
+
+  const errorMessageEl = await findByTestId("error-message");
+
+  expect(errorMessageEl.innerHTML).toEqual(mockError);
+});
+
+it("Error can output plain string", async () => {
+  const mockError = "this is a plain string";
+  const { findByTestId } = render(<Error message={mockError} />);
+
+  const errorMessageEl = await findByTestId("error-message");
+
+  expect(errorMessageEl.innerHTML).toEqual(mockError);
 });
