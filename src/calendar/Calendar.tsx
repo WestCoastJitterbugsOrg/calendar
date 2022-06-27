@@ -2,6 +2,7 @@ import { StateContext } from "@app/store/StateWrapper";
 import FullCalendar, { DateInput, PluginDef } from "@fullcalendar/react";
 import listPlugin from "@fullcalendar/list";
 import timeGridPlugin from "@fullcalendar/timegrid";
+import dayGridPlugin from "@fullcalendar/daygrid";
 import { useContext, useEffect, useState } from "react";
 import { wcj2fcEvent } from "./CalendarHelpers";
 import { usePopperHandler } from "./popper/CalendarPopperHandler";
@@ -11,7 +12,6 @@ interface Props {
   initialDate?: DateInput;
 }
 
-const importDayGrid = import("@fullcalendar/daygrid");
 const importInteraction = import("@fullcalendar/interaction");
 
 export default function Calendar({ initialDate }: Props) {
@@ -31,17 +31,19 @@ export default function Calendar({ initialDate }: Props) {
 
   const popperHandler = usePopperHandler();
 
-  const [plugins, setPlugins] = useState([listPlugin, timeGridPlugin]);
+  const [plugins, setPlugins] = useState([
+    listPlugin,
+    timeGridPlugin,
+    dayGridPlugin,
+  ]);
 
   const addPlugin = (importObject: { default: PluginDef }) => {
     setPlugins((p) => [...p, importObject.default]);
   };
 
   useEffect(() => {
-    const plugins = Promise.all([importDayGrid, importInteraction]);
     return () => {
-      plugins.then(([dayGrid, interaction]) => {
-        addPlugin(dayGrid);
+      importInteraction.then((interaction) => {
         addPlugin(interaction);
       });
     };
