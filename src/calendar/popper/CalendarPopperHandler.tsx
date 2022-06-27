@@ -15,6 +15,7 @@ export function usePopperHandler() {
   const root = appContainer ?? document.body;
   let tooltipWrapper: HTMLElement;
   let tooltipRoot: Root;
+  let popperIsActive = false;
 
   function createTooltip(event: EventApi, target: HTMLElement) {
     if (tooltipWrapper == null) {
@@ -44,28 +45,43 @@ export function usePopperHandler() {
           strategy: "absolute",
         }
       );
+      popperIsActive = true;
     });
   }
 
   function removePopper() {
+    const element = getPopperInstance();
+    if (!element) {
+      return;
+    }
+    element.firstElementChild?.classList.remove(...highlightClass);
+    tooltipRoot?.unmount();
+    if (popper.current) {
+      popper.current.destroy();
+      popper.current.forceUpdate();
+    }
+    document.removeEventListener("click", removePopper);
+    popperIsActive = false;
+  }
+
+  function getPopperInstance() {
     if (!popper.current?.state) {
       return;
     }
     const elements = popper.current.state.elements;
-    const reference = elements.reference as HTMLElement;
-
-    reference.firstElementChild?.classList.remove(...highlightClass);
-    tooltipRoot?.unmount();
-    popper.current.destroy();
-    document.removeEventListener("click", removePopper);
+    return elements.reference as HTMLElement;
   }
 
   function handleEventClick(fc: EventClickArg) {
     fc.jsEvent.stopPropagation();
     if (fc.el) {
-      removePopper();
-      createTooltip(fc.event, fc.el);
-      document.addEventListener("click", removePopper);
+      if (!popperIsActive || getPopperInstance() !== fc.el) {
+        removePopper();
+        createTooltip(fc.event, fc.el);
+        document.addEventListener("click", removePopper);
+      } else {
+        removePopper();
+      }
     } else {
       return;
     }
