@@ -7,11 +7,10 @@ export default function ErrorViewer({ message }: { message: unknown }) {
     console.error(message);
   });
   return (
-    <div className="container m-auto my-8">
-      <h1 className="text-accented text-2xl font-bold underline">
+    <div className="container m-auto p-5">
+      <h1 className="text-accented text-2xl font-bold">
         Error while loading data!
       </h1>
-      <p className="font-bold">Got the following error:</p>
       <pre className="font-mono" data-testid="error-message">
         {getError(message)}
       </pre>
@@ -21,6 +20,9 @@ export default function ErrorViewer({ message }: { message: unknown }) {
 
 function getError(error: unknown): string | undefined {
   if (typeof error === "object") {
+    if (error instanceof Error) {
+      return error.toString();
+    }
     return JSON.stringify(error, null, 4);
   } else {
     return getToStringableError(error as ToStringable | undefined);

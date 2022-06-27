@@ -19,7 +19,7 @@ const customColors = {
   "wcj-sand": "#FFFAF2",
   "wcj-black": "#1D1D1B",
   "wcj-coral": "#EC6350",
-  "wcj-mint": "#73BDBA"
+  "wcj-mint": "#73BDBA",
 };
 
 function rem2px(input, fontSize = 16) {
@@ -78,7 +78,13 @@ module.exports = {
     fontFamily: {
       sans: ["Raleway", "ui-sans-serif", "system-ui"],
       serif: ["ui-serif", "Georgia"],
-      mono: ["ui-monospace", "SFMono-Regular"],
+      mono: [
+        "ui-monospace",
+        "SFMono-Regular",
+        "Andale Mono",
+        "Courier New",
+        "Courier",
+      ],
     },
   }),
   variants: {
