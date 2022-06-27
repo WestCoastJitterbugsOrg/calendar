@@ -35,13 +35,13 @@ exports[`EventSelection Snapshot 1`] = `
         class="bg-light"
       >
         <div
-          class="flex min-h-[32px] flex-row items-center bg-secondary py-2 font-bold text-white"
+          class="flex min-h-[32px] flex-row items-center bg-secondary p-2 font-bold text-white"
         >
           <div
             class="flex flex-grow cursor-pointer items-center"
           >
             <svg
-              class="w-4 h-4 mx-2 transition duration-200 transform "
+              class="h-4 w-4 flex-shrink-0 transform transition duration-200 "
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -53,18 +53,21 @@ exports[`EventSelection Snapshot 1`] = `
                 stroke-width="4"
               />
             </svg>
-            Lindy Hop
+            <span
+              class="ml-2"
+            >
+              Lindy Hop
+            </span>
           </div>
-          <div
-            class="mx-3 flex"
+          <label
+            class="w-[22px]"
           >
-            <label>
-              <input
-                checked=""
-                class="
+            <input
+              checked=""
+              class="
         checkbox
-        
-        h-5 w-5 rounded-md border-[2px]
+
+        m-0 h-5 w-5 rounded-md border-[2px]
         border-solid border-dark bg-light
         
         checked:after:left-[6px] checked:after:-top-[5px] 
@@ -76,52 +79,47 @@ exports[`EventSelection Snapshot 1`] = `
         indeterminate:after:top-[6px] indeterminate:after:left-[2px] indeterminate:after:h-1 indeterminate:after:w-3 
         indeterminate:after:rotate-0 indeterminate:after:bg-dark
         "
-                data-testid="group-checkbox"
-                readonly=""
-                type="checkbox"
-              />
-            </label>
-          </div>
+              data-testid="group-checkbox"
+              readonly=""
+              type="checkbox"
+            />
+          </label>
         </div>
         <div
           class="overflow-hidden bg-light max-h-0"
         >
           <div
-            class="my-2 flex min-h-[32px] flex-row items-center px-2"
-            data-testid="event-item"
+            class="m-2 flex min-h-[32px] items-center"
           >
-            <div
-              class="mr-2 h-4 w-4 flex-none"
+            <svg
+              class="mr-2 block h-4 w-4 flex-none cursor-pointer text-black opacity-50 hover:opacity-100"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                class="block text-black opacity-50 hover:opacity-100 cursor-pointer"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+              <path
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="3"
+              />
+            </svg>
+            <div
+              class="flex flex-grow items-center"
+              data-testid="event-item"
+            >
+              <div
+                class="flex-grow cursor-pointer pr-2 leading-tight"
               >
-                <path
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="3"
-                />
-              </svg>
-            </div>
-            <div
-              class="flex-grow cursor-pointer pr-2 leading-tight"
-            >
-              Grundkurs Lindy Hop
-            </div>
-            <div
-              class="flex flex-none"
-            >
+                Grundkurs Lindy Hop
+              </div>
               <label>
                 <input
                   checked=""
                   class="
           checkbox
-          h-6 w-6 rounded-full 
+          m-0 h-6 w-6 rounded-full 
           border border-solid border-black border-opacity-50 
           after:top-[3px] after:left-[8px] after:h-[12px] after:w-[6px] after:rotate-45 
           after:border-0 after:border-solid after:border-white 
