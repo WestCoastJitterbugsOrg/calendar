@@ -11,7 +11,7 @@ const consentCookies = [
 export function storeConsentCookie() {
   // Store cookie 1 year to comply with ePrivacy Regulation
   const oneYear = 60 * 60 * 24 * 365;
-  document.cookie = `${defaultConsentCookie}=yes; max-age=${oneYear}`;
+  document.cookie = `${defaultConsentCookie}=yes; max-age=${oneYear}; SameSite=Lax`;
 }
 
 export function canStoreSelection() {
