@@ -71,7 +71,7 @@ it("Clicking on Download calls exportICS", () => {
 it("exportICS creates an ics-file", async () => {
   const link = document.createElement("a");
   jest.spyOn(document, "createElement").mockImplementation(() => link);
-  URL.createObjectURL = jest.fn((_) => "data:mock");
+  URL.createObjectURL = jest.fn(() => "data:mock");
   URL.revokeObjectURL = jest.fn(() => undefined);
 
   await ics.exportICS(mockStore.events);

@@ -7,6 +7,7 @@ export interface ButtonData {
 export default function Button(props: ButtonData) {
   return (
     <button
+      type="button"
       className={`button 
         ${props.size === "sm" ? "sm" : ""}
         ${props.size === "lg" ? "lg" : ""}

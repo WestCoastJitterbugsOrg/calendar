@@ -14,6 +14,7 @@ exports[`EventSelection Snapshot 1`] = `
         
         
     "
+          type="button"
         >
           Select all
         </button>
@@ -22,6 +23,7 @@ exports[`EventSelection Snapshot 1`] = `
         
         
     "
+          type="button"
         >
           Deselect all
         </button>

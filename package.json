@@ -99,6 +99,9 @@
       "@typescript-eslint/consistent-type-definitions": [
         "error",
         "interface"
+      ],
+      "react/button-has-type": [
+        "warn"
       ]
     },
     "ignorePatterns": [
