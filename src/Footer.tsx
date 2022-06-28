@@ -4,14 +4,13 @@ import { useContext } from "react";
 import { StateContext } from "./store/StateWrapper";
 import { exportICS } from "./services/ics";
 
-
 export function Footer() {
   const { events } = useContext(StateContext);
 
   return (
-    <div className="flex min-h-[16px] flex-wrap items-center justify-between bg-black p-2">
+    <div className="flex flex-wrap items-center justify-between bg-dark p-2">
       <div className="flex-grow" data-testid="download-ics-button">
-        <Button size="sm" onClick={() => exportICS(events)}>
+        <Button onClick={() => exportICS(events)}>
           <>
             Download
             <svg
@@ -35,8 +34,8 @@ export function Footer() {
         className="flex flex-grow-0 items-center no-underline"
         href="https://github.com/WestCoastJitterbugsOrg/Personalized-Calendar"
       >
-        <span className="max-w-[90px] text-right text-xs font-bold text-white">
-          Contribute to this project
+        <span className="max-w-[120px] text-right text-xs font-bold text-white">
+          Help with development or report an issue
         </span>
         <img src={githublogo} className="px-2"></img>
       </a>
