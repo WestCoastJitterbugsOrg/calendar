@@ -7,8 +7,12 @@ function displayDate(date: Date) {
   });
 }
 
-export default function EventInfoTable(event: Wcj.Event) {
-  const { first, last } = event.occasions.reduce(
+interface Props {
+  event: Wcj.Event;
+}
+
+export default function EventInfoTable(props: Props) {
+  const { first, last } = props.event.occasions.reduce(
     ({ first, last }, curr) => ({
       first: Math.min(first, curr.start.getTime()),
       last: Math.max(last, curr.start.getTime()),
@@ -25,9 +29,12 @@ export default function EventInfoTable(event: Wcj.Event) {
   return (
     <table className="w-full">
       <tbody>
-        <EventOverviewTableRow title="Place" value={event.place} />
-        <EventOverviewTableRow title="Price" value={event.price} />
-        <EventOverviewTableRow title="Instructors" value={event.instructors} />
+        <EventOverviewTableRow title="Place" value={props.event.place} />
+        <EventOverviewTableRow title="Price" value={props.event.price} />
+        <EventOverviewTableRow
+          title="Instructors"
+          value={props.event.instructors}
+        />
         <EventOverviewTableRow title="First occasion" value={firstDate} />
         <EventOverviewTableRow title="Last occasion" value={lastDate} />
       </tbody>

@@ -28,7 +28,7 @@ export function TooltipComponent({
             minute: "2-digit",
           })}
       </div>
-      <EventInfoTable {...(event.extendedProps as Wcj.Event)} />
+      <EventInfoTable event={event.extendedProps as Wcj.Event} />
       <div>
         <div
           className="mb-2 cursor-pointer text-center font-bold text-secondary-alt underline"

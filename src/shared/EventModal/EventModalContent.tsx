@@ -24,7 +24,7 @@ export function EventSeriesModalContent({ event, onCloseClick }: props) {
       )}
       <div className="mt-8 flex flex-wrap items-end justify-between gap-8">
         <div>
-          <EventInfoTable {...event}></EventInfoTable>
+          <EventInfoTable event={event}></EventInfoTable>
         </div>
         <div className="ml-auto">
           <LinkButton href={event.registrationUrl} size="lg">

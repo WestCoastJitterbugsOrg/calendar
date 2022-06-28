@@ -34,6 +34,8 @@ declare namespace Wcj {
   };
 }
 
+type MaybeArray<T> = T | T[];
+
 declare namespace Cogwork {
   interface Event {
     "@attributes": { eventId: string };
@@ -42,13 +44,13 @@ declare namespace Cogwork {
     schedule: Schedule;
     category: string;
     primaryEventGroup: string;
-    requirements: {
+    requirements: MaybeArray<{
       level: { "@attributes": { minValue: number } };
-    };
-    registration: {
+    }>;
+    registration: MaybeArray<{
       "@attributes": { status: "ONLY_INFO" | "STOPED_SHOWING" | "OPEN" };
       url: string;
-    };
+    }>;
     place: string;
     pricing: {
       base: string;
