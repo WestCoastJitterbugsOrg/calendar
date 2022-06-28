@@ -1,10 +1,10 @@
-export interface ButtonData {
+interface Props {
   size?: "sm" | "lg";
   onClick?: () => void;
   children: JSX.Element | string;
 }
 
-export default function Button(props: ButtonData) {
+export function Button(props: Props) {
   return (
     <button
       type="button"

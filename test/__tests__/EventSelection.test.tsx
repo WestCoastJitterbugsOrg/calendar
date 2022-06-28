@@ -1,8 +1,8 @@
+import { EventSelection } from "@app/event-selection/EventSelection";
+import { StateWrapper } from "@app/store/StateWrapper";
 import "@testing-library/jest-dom";
+import { act, render, RenderResult } from "@testing-library/react";
 import { mockStore } from "../__mocks__/stateContext";
-import StateWrapper from "@app/store/StateWrapper";
-import { render, RenderResult, act } from "@testing-library/react";
-import EventSelection from "@app/event-selection/EventSelection";
 
 it("EventSelection Snapshot", async () => {
   const { baseElement } = render(

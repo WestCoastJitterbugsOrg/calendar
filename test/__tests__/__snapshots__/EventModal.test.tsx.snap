@@ -56,69 +56,69 @@ exports[`EventModal Snapshot 1`] = `
               >
                 <tbody>
                   <tr
-                    class="border-solid border-[rgba(0,0,0,0.5)] border-x-0 border-b-0 first:border-t-0 border-t"
+                    class="border-x-0 border-b-0 border-t border-solid border-[rgba(0,0,0,0.5)] first:border-t-0"
                   >
                     <td
-                      class="font-bold py-1 pr-2 md:pr-4 border-0 break-words"
+                      class="break-words border-0 py-1 pr-2 font-bold md:pr-4"
                     >
                       Place
                     </td>
                     <td
-                      class="py-1 pl-2 md:pl-4 border-0"
+                      class="border-0 py-1 pl-2 md:pl-4"
                     >
                       Forum
                     </td>
                   </tr>
                   <tr
-                    class="border-solid border-[rgba(0,0,0,0.5)] border-x-0 border-b-0 first:border-t-0 border-t"
+                    class="border-x-0 border-b-0 border-t border-solid border-[rgba(0,0,0,0.5)] first:border-t-0"
                   >
                     <td
-                      class="font-bold py-1 pr-2 md:pr-4 border-0 break-words"
+                      class="break-words border-0 py-1 pr-2 font-bold md:pr-4"
                     >
                       Price
                     </td>
                     <td
-                      class="py-1 pl-2 md:pl-4 border-0"
+                      class="border-0 py-1 pl-2 md:pl-4"
                     >
                       1337
                     </td>
                   </tr>
                   <tr
-                    class="border-solid border-[rgba(0,0,0,0.5)] border-x-0 border-b-0 first:border-t-0 border-t"
+                    class="border-x-0 border-b-0 border-t border-solid border-[rgba(0,0,0,0.5)] first:border-t-0"
                   >
                     <td
-                      class="font-bold py-1 pr-2 md:pr-4 border-0 break-words"
+                      class="break-words border-0 py-1 pr-2 font-bold md:pr-4"
                     >
                       Instructors
                     </td>
                     <td
-                      class="py-1 pl-2 md:pl-4 border-0"
+                      class="border-0 py-1 pl-2 md:pl-4"
                     />
                   </tr>
                   <tr
-                    class="border-solid border-[rgba(0,0,0,0.5)] border-x-0 border-b-0 first:border-t-0 border-t"
+                    class="border-x-0 border-b-0 border-t border-solid border-[rgba(0,0,0,0.5)] first:border-t-0"
                   >
                     <td
-                      class="font-bold py-1 pr-2 md:pr-4 border-0 break-words"
+                      class="break-words border-0 py-1 pr-2 font-bold md:pr-4"
                     >
                       First occasion
                     </td>
                     <td
-                      class="py-1 pl-2 md:pl-4 border-0"
+                      class="border-0 py-1 pl-2 md:pl-4"
                     >
                       1 Jan 2022
                     </td>
                   </tr>
                   <tr
-                    class="border-solid border-[rgba(0,0,0,0.5)] border-x-0 border-b-0 first:border-t-0 border-t"
+                    class="border-x-0 border-b-0 border-t border-solid border-[rgba(0,0,0,0.5)] first:border-t-0"
                   >
                     <td
-                      class="font-bold py-1 pr-2 md:pr-4 border-0 break-words"
+                      class="break-words border-0 py-1 pr-2 font-bold md:pr-4"
                     >
                       Last occasion
                     </td>
                     <td
-                      class="py-1 pl-2 md:pl-4 border-0"
+                      class="border-0 py-1 pl-2 md:pl-4"
                     >
                       1 Jan 2022
                     </td>

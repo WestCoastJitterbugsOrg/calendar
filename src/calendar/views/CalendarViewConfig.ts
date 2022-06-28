@@ -2,7 +2,7 @@ import FullCalendar, {
   RawOptionsFromRefiners,
   BaseOptionRefiners,
 } from "@fullcalendar/react";
-import createListEternal from "./CalendarViewConfigList";
+import { createListEternal } from "./CalendarViewConfigList";
 import dayGridMonth from "./CalendarViewConfigMonth";
 import timeGridWeek from "./CalendarViewConfigWeek";
 

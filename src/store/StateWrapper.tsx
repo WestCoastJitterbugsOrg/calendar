@@ -18,7 +18,7 @@ interface Props {
   eventModal?: string | false;
 }
 
-export default function StateWrapper(props: Props) {
+export function StateWrapper(props: Props) {
   const [categories, setCategories] = useState<Record<string, CategoryStore>>(
     props.categories
   );

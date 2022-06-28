@@ -1,10 +1,10 @@
-import "@testing-library/jest-dom";
-import EventGroup from "@app/event-selection/event-group/EventGroup";
-import { mockStore } from "../__mocks__/stateContext";
-import StateWrapper from "@app/store/StateWrapper";
-import { fireEvent, render, act } from "@testing-library/react";
-import EventItem from "@app/event-selection/event/EventItem";
+import { EventGroup } from "@app/event-selection/event-group/EventGroup";
+import { EventItem } from "@app/event-selection/event/EventItem";
 import { InfoButton } from "@app/event-selection/event/InfoButton";
+import { StateWrapper } from "@app/store/StateWrapper";
+import "@testing-library/jest-dom";
+import { act, fireEvent, render } from "@testing-library/react";
+import { mockStore } from "../__mocks__/stateContext";
 
 it("Unchecking a group causes all events to be unchecked", async () => {
   const result = render(
@@ -25,7 +25,7 @@ it("Unchecking a group causes all events to be unchecked", async () => {
   expect(allEventCheckboxes.every((x) => x.checked)).toBeFalsy();
 });
 
-it("Unchecking an events causes it to be unchecked", async () => {
+it("Unchecking an event causes it to be unchecked", async () => {
   const result = render(
     <StateWrapper categories={mockStore.categories} events={mockStore.events}>
       <EventItem event={Object.values(mockStore.events)[0]} />

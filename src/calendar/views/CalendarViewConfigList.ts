@@ -92,7 +92,7 @@ function viewWillUnmount(mountArg: ViewMountArg) {
     });
 }
 
-export default function createListEternal(start: Date, end: Date): ViewOptions {
+export function createListEternal(start: Date, end: Date): ViewOptions {
   return {
     type: "list",
     listDaySideFormat,

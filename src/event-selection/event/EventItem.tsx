@@ -1,13 +1,13 @@
 import { StateContext } from "@app/store/StateWrapper";
 import { useContext } from "react";
-import EventCheckbox from "./EventCheckbox";
+import { EventCheckbox } from "./EventCheckbox";
 import { InfoButton } from "./InfoButton";
 
 interface Props {
   event: Wcj.Event;
 }
 
-export default function EventItem(props: Props) {
+export function EventItem(props: Props) {
   const { events, setEvents } = useContext(StateContext);
 
   const toggle = () => {
@@ -18,7 +18,6 @@ export default function EventItem(props: Props) {
         showInCalendar: !events[props.event.id].showInCalendar,
       },
     };
-
     setEvents?.(newEvents);
   };
 

@@ -1,9 +1,9 @@
 import { StateContext } from "@app/store/StateWrapper";
 import { useContext } from "react";
-import EventGroup from "./event-group/EventGroup";
-import ToggleAllButtons from "./ToggleAllButtons";
+import { EventGroup } from "./event-group/EventGroup";
+import { ToggleAllButtons } from "./ToggleAllButtons";
 
-export default function EventSelection() {
+export function EventSelection() {
   const { categories } = useContext(StateContext);
   return (
     <>

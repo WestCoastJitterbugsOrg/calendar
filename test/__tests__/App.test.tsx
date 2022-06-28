@@ -1,12 +1,12 @@
-import "@testing-library/jest-dom";
-import App from "../../src/App";
-import { defaultEventData } from "../__mocks__/cwEvents";
+import { ErrorViewer } from "@app/ErrorViewer";
 import { storeConsentCookie } from "@app/services/cookies";
+import * as ics from "@app/services/ics";
+import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
-import * as ics from "@app/services/ics";
+import App from "../../src/App";
+import { defaultEventData } from "../__mocks__/cwEvents";
 import { mockStore } from "../__mocks__/stateContext";
-import ErrorViewer from "@app/Error";
 
 type Global = typeof globalThis & {
   wcjcal_ajax_obj?: typeof defaultEventData;

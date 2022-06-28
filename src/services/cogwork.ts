@@ -1,6 +1,6 @@
 import StateContext from "@app/store/model";
 
-export default function initContext() {
+export function initContext() {
   const response = asArray(wcjcal_ajax_obj.data.events.event);
 
   const cogworkEvents = response.filter(

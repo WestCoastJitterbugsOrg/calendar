@@ -2,9 +2,13 @@ import { useEffect } from "react";
 
 type ToStringable = boolean | number | bigint | string | symbol;
 
-export default function ErrorViewer({ message }: { message: unknown }) {
+interface Props {
+  message: unknown;
+}
+
+export function ErrorViewer(props: Props) {
   useEffect(() => {
-    console.error(message);
+    console.error(props.message);
   });
   return (
     <div className="container m-auto p-5">
@@ -12,7 +16,7 @@ export default function ErrorViewer({ message }: { message: unknown }) {
         Error while loading data!
       </h1>
       <pre className="font-mono" data-testid="error-message">
-        {getError(message)}
+        {getError(props.message)}
       </pre>
     </div>
   );

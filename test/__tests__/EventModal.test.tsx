@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { mockStore } from "../__mocks__/stateContext";
-import StateWrapper from "@app/store/StateWrapper";
+import { StateWrapper } from "@app/store/StateWrapper";
 import { EventSeriesModal } from "@app/shared/EventModal/EventSeriesModal";
 import { fireEvent, render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";

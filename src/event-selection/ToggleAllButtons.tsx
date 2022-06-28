@@ -1,8 +1,8 @@
-import Button from "@app/shared/Buttons/Button";
+import { Button } from "@app/shared/Buttons/Button";
 import { StateContext } from "@app/store/StateWrapper";
 import { useContext } from "react";
 
-export default function ToggleAllButtons() {
+export function ToggleAllButtons() {
   const { events, setEvents } = useContext(StateContext) ?? {};
 
   const select = (show: boolean) => {

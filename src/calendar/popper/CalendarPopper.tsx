@@ -1,13 +1,12 @@
+import { EventInfoTable } from "@app/shared/EventInfoTable/EventInfoTable";
 import { EventApi, formatRange } from "@fullcalendar/react";
-import EventInfoTable from "@app/shared/EventInfoTable/EventInfoTable";
 
-export function TooltipComponent({
-  event,
-  openModal,
-}: {
+interface Props {
   event: EventApi;
   openModal: () => void;
-}) {
+}
+
+export function TooltipComponent(props: Props) {
   return (
     <div
       id="wcj-tooltip"
@@ -18,21 +17,23 @@ export function TooltipComponent({
           opacity-95 shadow-2xl shadow-dark
         `}
     >
-      <div className="mb-1 whitespace-normal font-bold">{event.title}</div>
+      <div className="mb-1 whitespace-normal font-bold">
+        {props.event.title}
+      </div>
       <div className="mb-2">
-        {event.start &&
-          event.end &&
-          formatRange(event.start, event.end, {
+        {props.event.start &&
+          props.event.end &&
+          formatRange(props.event.start, props.event.end, {
             hour12: false,
             hour: "2-digit",
             minute: "2-digit",
           })}
       </div>
-      <EventInfoTable event={event.extendedProps as Wcj.Event} />
+      <EventInfoTable event={props.event.extendedProps as Wcj.Event} />
       <div>
         <div
           className="mb-2 cursor-pointer text-center font-bold text-secondary-alt underline"
-          onClick={openModal}
+          onClick={props.openModal}
         >
           About event series
         </div>

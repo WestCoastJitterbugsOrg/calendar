@@ -1,17 +1,11 @@
 import { EventOverviewTableRow } from "./EventInfoTableRow";
 
-function displayDate(date: Date) {
-  return date.toLocaleString("en-GB", {
-    dateStyle: "medium",
-    timeZone: "UTC",
-  });
-}
-
 interface Props {
   event: Wcj.Event;
 }
 
-export default function EventInfoTable(props: Props) {
+export function EventInfoTable(props: Props) {
+
   const { first, last } = props.event.occasions.reduce(
     ({ first, last }, curr) => ({
       first: Math.min(first, curr.start.getTime()),
@@ -23,6 +17,12 @@ export default function EventInfoTable(props: Props) {
     }
   );
 
+  const displayDate = (date: Date) =>
+    date.toLocaleString("en-GB", {
+      dateStyle: "medium",
+      timeZone: "UTC",
+    });
+
   const firstDate = displayDate(new Date(first));
   const lastDate = displayDate(new Date(last));
 
@@ -31,10 +31,7 @@ export default function EventInfoTable(props: Props) {
       <tbody>
         <EventOverviewTableRow title="Place" value={props.event.place} />
         <EventOverviewTableRow title="Price" value={props.event.price} />
-        <EventOverviewTableRow
-          title="Instructors"
-          value={props.event.instructors}
-        />
+        <EventOverviewTableRow title="Instructors" value={props.event.instructors} />
         <EventOverviewTableRow title="First occasion" value={firstDate} />
         <EventOverviewTableRow title="Last occasion" value={lastDate} />
       </tbody>

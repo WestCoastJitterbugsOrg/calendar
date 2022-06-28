@@ -4,8 +4,12 @@ import { EventSeriesModalContent } from "./EventModalContent";
 import { appContainer } from "@app/app-container";
 import { StateContext } from "@app/store/StateWrapper";
 
-export function EventSeriesModal(props: { parent?: HTMLElement }) {
-  const { events, eventModal, setEventModal } = useContext(StateContext);
+interface Props {
+  parent?: HTMLElement;
+}
+
+export function EventSeriesModal(props: Props) {
+  const { eventModal, setEventModal } = useContext(StateContext);
 
   return (
     <Modal
@@ -20,12 +24,7 @@ export function EventSeriesModal(props: { parent?: HTMLElement }) {
       parentSelector={() => props.parent ?? appContainer}
       appElement={props.parent ?? document.body ?? appContainer}
     >
-      {eventModal && (
-        <EventSeriesModalContent
-          event={events[eventModal]}
-          onCloseClick={() => setEventModal?.(false)}
-        ></EventSeriesModalContent>
-      )}
+      {eventModal && <EventSeriesModalContent eventId={eventModal} />}
     </Modal>
   );
 }

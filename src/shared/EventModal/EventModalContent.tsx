@@ -1,17 +1,21 @@
+import { StateContext } from "@app/store/StateWrapper";
+import { useContext } from "react";
 import { LinkButton } from "../Buttons/LinkButton";
-import EventInfoTable from "../EventInfoTable";
+import { EventInfoTable } from "../EventInfoTable/EventInfoTable";
 
-interface props {
-  event: Wcj.Event;
-  onCloseClick: () => void;
+interface Props {
+  eventId: string;
 }
 
-export function EventSeriesModalContent({ event, onCloseClick }: props) {
+export function EventSeriesModalContent(props: Props) {
+  const { events, setEventModal } = useContext(StateContext);
+  const event = events[props.eventId];
+
   return (
     <div className="md:min-w-[700px]" data-testid="event-series-modal-content">
       <div
         className="absolute right-5 top-5 cursor-pointer"
-        onClick={onCloseClick}
+        onClick={() => setEventModal?.(false)}
         data-testid="modal-close-button"
       >
         ✖

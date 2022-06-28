@@ -1,11 +1,11 @@
-import ErrorViewer from "./Error";
+import { Calendar } from "./calendar/Calendar";
+import { ErrorViewer } from "./ErrorViewer";
+import { EventSelection } from "./event-selection/EventSelection";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
-import initContext from "./services/cogwork";
-import EventSeriesModal from "./shared/EventModal";
-import StateWrapper from "./store/StateWrapper";
-import EventSelection from "./event-selection/EventSelection";
-import Calendar from "./calendar/Calendar";
+import { initContext } from "./services/cogwork";
+import { EventSeriesModal } from "./shared/EventModal/EventSeriesModal";
+import { StateWrapper } from "./store/StateWrapper";
 
 export default function App() {
   try {

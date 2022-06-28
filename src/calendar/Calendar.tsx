@@ -1,8 +1,8 @@
 import { StateContext } from "@app/store/StateWrapper";
 import FullCalendar, { DateInput, PluginDef } from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import dayGridPlugin from "@fullcalendar/daygrid";
 import { useContext, useEffect, useState } from "react";
 import { wcj2fcEvent } from "./CalendarHelpers";
 import { usePopperHandler } from "./popper/CalendarPopperHandler";
@@ -14,7 +14,7 @@ interface Props {
 
 const importInteraction = import("@fullcalendar/interaction");
 
-export default function Calendar({ initialDate }: Props) {
+export function Calendar(props: Props) {
   const stateContext = useContext(StateContext);
 
   const allWcjEvents = Object.values(stateContext.events);
@@ -53,7 +53,7 @@ export default function Calendar({ initialDate }: Props) {
     <div className="wcjcal-fc" data-testid="fc-wrapper">
       <FullCalendar
         plugins={plugins}
-        initialDate={initialDate}
+        initialDate={props.initialDate}
         initialView={window.innerWidth <= 640 ? "listEternal" : "timeGridWeek"}
         height="100%"
         views={CalendarViewConfig(

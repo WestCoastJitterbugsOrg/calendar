@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { canStoreSelection, storeConsentCookie } from "./services/cookies";
-import Button from "./shared/Buttons/Button";
+import { Button } from "./shared/Buttons/Button";
 
 export function Header() {
   const [accepted, accept] = useState(false);

@@ -1,10 +1,10 @@
-export interface ButtonLinkData {
+interface Props {
   size: "sm" | "md" | "lg";
   href: string;
   children?: JSX.Element | string;
 }
 
-export function LinkButton(props: ButtonLinkData) {
+export function LinkButton(props: Props) {
   return (
     <a className="button" href={props.href} target="_blank" rel="noreferrer">
       <div className="flex items-center">

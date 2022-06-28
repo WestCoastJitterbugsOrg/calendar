@@ -1,14 +1,14 @@
-import EventItem from "../event/EventItem";
 import { StateContext } from "@app/store/StateWrapper";
-import { useContext, useState } from "react";
-import { EventGroupHeader } from "./EventGroupHeader";
 import { getCategoryEvents } from "@app/store/utils";
+import { useContext, useState } from "react";
+import { EventItem } from "../event/EventItem";
+import { EventGroupHeader } from "./EventGroupHeader";
 
 interface Props {
   category: string;
 }
 
-export default function EventGroup(props: Props) {
+export function EventGroup(props: Props) {
   const [expanded, setExpanded] = useState(false);
   const { categories, events } = useContext(StateContext);
 

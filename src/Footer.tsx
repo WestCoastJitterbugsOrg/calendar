@@ -1,8 +1,8 @@
-import githublogo from "./assets/github-logo.png";
-import Button from "./shared/Buttons/Button";
 import { useContext } from "react";
-import { StateContext } from "./store/StateWrapper";
+import githublogo from "./assets/github-logo.png";
 import { exportICS } from "./services/ics";
+import { Button } from "./shared/Buttons/Button";
+import { StateContext } from "./store/StateWrapper";
 
 export function Footer() {
   const { events } = useContext(StateContext);

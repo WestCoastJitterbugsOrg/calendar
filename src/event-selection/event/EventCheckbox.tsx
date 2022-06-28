@@ -1,8 +1,8 @@
-interface EventCheckboxProps {
+interface Props {
   checked: boolean | undefined;
 }
 
-export default function EventCheckbox(props: EventCheckboxProps) {
+export function EventCheckbox(props: Props) {
   return (
     <label>
       <input
