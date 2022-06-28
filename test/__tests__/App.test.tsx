@@ -81,34 +81,40 @@ it("exportICS creates an ics-file", async () => {
   jest.clearAllMocks();
 });
 
-it("Error can output stringified json", async () => {
-  const error = jest.spyOn(console, "error").mockImplementation();
-  const mockError = JSON.stringify(
+it.each([
+  "this is a plain string",
+  JSON.stringify(
     {
       this: "is",
       a: ["json", "wrapped", "in", "text", 1337],
     },
     null,
     4
-  );
+  ),
+  new Error("This is an Error object"),
+])("Error can output strings", async (mockError) => {
+  const error = jest.spyOn(console, "error").mockImplementation();
   const { findByTestId } = render(<ErrorViewer message={mockError} />);
 
   const errorMessageEl = await findByTestId("error-message");
 
-  expect(errorMessageEl.innerHTML).toEqual(mockError);
+  expect(errorMessageEl.innerHTML).toEqual(mockError.toString());
   expect(error).toBeCalledTimes(1);
 
   error.mockReset();
 });
 
-it("Error can output plain string", async () => {
+it("Error can output objects", async () => {
+  const mockError = {
+    this: "is",
+    an: ["object"],
+  };
   const error = jest.spyOn(console, "error").mockImplementation();
-  const mockError = "this is a plain string";
   const { findByTestId } = render(<ErrorViewer message={mockError} />);
 
   const errorMessageEl = await findByTestId("error-message");
 
-  expect(errorMessageEl.innerHTML).toEqual(mockError);
+  expect(JSON.parse(errorMessageEl.innerHTML)).toEqual(mockError);
   expect(error).toBeCalledTimes(1);
 
   error.mockReset();
