@@ -12,6 +12,7 @@ module.exports = (env) => {
       path: path.join(__dirname, "build"),
       filename: "wcjcal.js",
       clean: true,
+      chunkFilename: "[chunkhash].wcjcal.js"
     },
     resolve: {
       extensions: [".tsx", ".ts", ".js"],
