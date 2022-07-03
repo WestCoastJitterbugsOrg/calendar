@@ -5,35 +5,29 @@ interface Props {
 }
 
 export function EventInfoTable(props: Props) {
+  let first = Number.MAX_SAFE_INTEGER;
+  let last = Number.MIN_SAFE_INTEGER;
 
-  const { first, last } = props.event.occasions.reduce(
-    ({ first, last }, curr) => ({
-      first: Math.min(first, curr.start.getTime()),
-      last: Math.max(last, curr.start.getTime()),
-    }),
-    {
-      first: Number.MAX_SAFE_INTEGER,
-      last: Number.MIN_SAFE_INTEGER,
-    }
-  );
+  for (const occ of props.event.occasions) {
+    first = Math.min(first, occ.start.getTime());
+    last = Math.max(last, occ.start.getTime());
+  }
 
-  const displayDate = (date: Date) =>
-    date.toLocaleString("en-GB", {
+  const displayDate = (time: number) =>
+    new Date(time).toLocaleString("en-GB", {
       dateStyle: "medium",
       timeZone: "UTC",
     });
 
-  const firstDate = displayDate(new Date(first));
-  const lastDate = displayDate(new Date(last));
+  const dateInterval = `${displayDate(first)} - ${displayDate(last)}`;
 
   return (
     <table className="w-full">
       <tbody>
-        <EventOverviewTableRow title="Place" value={props.event.place} />
-        <EventOverviewTableRow title="Price" value={props.event.price} />
+        <EventOverviewTableRow title="Where" value={props.event.place} />
+        <EventOverviewTableRow title="When" value={dateInterval} />
         <EventOverviewTableRow title="Instructors" value={props.event.instructors} />
-        <EventOverviewTableRow title="First occasion" value={firstDate} />
-        <EventOverviewTableRow title="Last occasion" value={lastDate} />
+        <EventOverviewTableRow title="Price" value={props.event.price} />
       </tbody>
     </table>
   );

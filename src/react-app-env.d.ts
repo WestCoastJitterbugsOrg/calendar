@@ -19,9 +19,9 @@ declare namespace Wcj {
     occasions: Occasion[];
     description?: string;
     registrationUrl: string;
-    place: string;
-    price: string;
-    instructors: string;
+    place?: string;
+    price?: string;
+    instructors?: string;
     /* colors in hex rgb */
     color: string;
     /* state */
@@ -51,11 +51,11 @@ declare namespace Cogwork {
       "@attributes": { status: "ONLY_INFO" | "STOPED_SHOWING" | "OPEN" };
       url: string;
     }>;
-    place: string;
-    pricing: {
+    place?: string;
+    pricing?: {
       base: string;
     };
-    instructors: { combinedTitle: string };
+    instructors?: { combinedTitle: string };
   }
 
   interface Schedule {

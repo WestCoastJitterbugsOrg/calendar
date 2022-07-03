@@ -52,9 +52,9 @@ function cogwork2wcjEvent(event: Cogwork.Event): Wcj.Event {
     color: "",
     description: event.longdescription,
     registrationUrl: asArray(event.registration)[0]?.url,
-    place: event.place ?? "Unknown",
-    price: event.pricing?.base ?? "Unknown",
-    instructors: event.instructors?.combinedTitle ?? "Unknown",
+    place: event.place,
+    price: event.pricing?.base,
+    instructors: event.instructors?.combinedTitle,
   };
 }
 
