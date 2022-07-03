@@ -15,19 +15,20 @@ interface Props {
 const importInteraction = import("@fullcalendar/interaction");
 
 export function Calendar(props: Props) {
-  const stateContext = useContext(StateContext);
+  const { events } = useContext(StateContext);
 
-  const allWcjEvents = Object.values(stateContext.events);
+  const allWcjEvents = Object.values(events);
   const shownWcjEvents = allWcjEvents.filter((event) => event.showInCalendar);
 
   const shownOccasions = shownWcjEvents.flatMap((event) => event.occasions);
 
-  const firstOccasion = Math.min(
-    ...shownOccasions.map((occasion) => occasion.start.getTime())
-  );
-  const lastOccasion = Math.max(
-    ...shownOccasions.map((occasion) => occasion.end.getTime())
-  );
+  let firstOccasion = Number.MAX_SAFE_INTEGER;
+  let lastOccasion = Number.MIN_SAFE_INTEGER;
+
+  for (const occ of shownOccasions) {
+    firstOccasion = Math.min(firstOccasion, occ.start.getTime());
+    lastOccasion = Math.max(lastOccasion, occ.end.getTime());
+  }
 
   const popperHandler = usePopperHandler();
 
@@ -42,10 +43,9 @@ export function Calendar(props: Props) {
   };
 
   useEffect(() => {
+    console.log('hello')
     return () => {
-      importInteraction.then((interaction) => {
-        addPlugin(interaction);
-      });
+      importInteraction.then(addPlugin);
     };
   }, []);
 
@@ -75,7 +75,6 @@ export function Calendar(props: Props) {
         }}
         firstDay={1}
         nowIndicator
-        timeZone="UTC"
         displayEventEnd
         eventTimeFormat={{
           hour: "2-digit",
