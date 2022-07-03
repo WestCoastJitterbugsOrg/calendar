@@ -61,7 +61,7 @@ exports[`EventModal Snapshot 1`] = `
                     <td
                       class="break-words border-0 py-1 pr-2 font-bold md:pr-4"
                     >
-                      Place
+                      Where
                     </td>
                     <td
                       class="border-0 py-1 pl-2 md:pl-4"
@@ -75,12 +75,12 @@ exports[`EventModal Snapshot 1`] = `
                     <td
                       class="break-words border-0 py-1 pr-2 font-bold md:pr-4"
                     >
-                      Price
+                      When
                     </td>
                     <td
                       class="border-0 py-1 pl-2 md:pl-4"
                     >
-                      1337
+                      1 Jan 2022 - 1 Jan 2022
                     </td>
                   </tr>
                   <tr
@@ -101,26 +101,12 @@ exports[`EventModal Snapshot 1`] = `
                     <td
                       class="break-words border-0 py-1 pr-2 font-bold md:pr-4"
                     >
-                      First occasion
+                      Price
                     </td>
                     <td
                       class="border-0 py-1 pl-2 md:pl-4"
                     >
-                      1 Jan 2022
-                    </td>
-                  </tr>
-                  <tr
-                    class="border-x-0 border-b-0 border-t border-solid border-[rgba(0,0,0,0.5)] first:border-t-0"
-                  >
-                    <td
-                      class="break-words border-0 py-1 pr-2 font-bold md:pr-4"
-                    >
-                      Last occasion
-                    </td>
-                    <td
-                      class="border-0 py-1 pl-2 md:pl-4"
-                    >
-                      1 Jan 2022
+                      1337
                     </td>
                   </tr>
                 </tbody>

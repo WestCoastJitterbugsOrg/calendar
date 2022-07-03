@@ -42,11 +42,9 @@ export function Calendar(props: Props) {
     setPlugins((p) => [...p, importObject.default]);
   };
 
-  useEffect(() => {
-    console.log('hello')
-    return () => {
+  // lazy load interaction plugin to save on calendar bundle size
+  useEffect(() => () => {
       importInteraction.then(addPlugin);
-    };
   }, []);
 
   return (
