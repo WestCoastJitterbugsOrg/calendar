@@ -14,19 +14,6 @@
   @apply -left-1;
 }
 
-.checkbox {
-  @apply cursor-pointer appearance-none;
-
-  &:after {
-    @apply relative block opacity-0 content-[''];
-  }
-
-  &:indeterminate:after,
-  &:checked:after {
-    @apply opacity-100;
-  }
-}
-
 .button {
   @apply flex cursor-pointer items-center rounded-full
    border-0 bg-primary font-bold
