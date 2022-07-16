@@ -51,9 +51,9 @@ async function getEventGroupInputs(
   const group = eventGroup[0];
   const eventsWrapper = eventGroup[1];
 
-  const groupInput = group.querySelector("input");
+  const groupInput = group.querySelector("[role='checkbox']");
   const eventInputs = Array.from(
-    eventsWrapper.children[0].querySelectorAll("input")
+    eventsWrapper.children[0].querySelectorAll("[role='checkbox']")
   );
 
   return [groupInput, eventInputs] as const;

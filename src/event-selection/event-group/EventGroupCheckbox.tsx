@@ -35,6 +35,7 @@ export function GroupCheckbox(props: Props) {
 
   return (
     <img
+      data-testid="group-checkbox"
       role="checkbox"
       className="bg-white"
       aria-checked={globalCheckState}

@@ -26,131 +26,30 @@ exports[`EventModal Snapshot 1`] = `
         aria-modal="true"
         class="ReactModal__Content 
         absolute top-1/2 left-1/2 right-auto bottom-auto -mr-[50%]
-        max-h-[max(80vh,200px)] max-w-[800px]  -translate-x-1/2 -translate-y-1/2 
-        overflow-auto rounded-md bg-light p-5 outline-none sm:p-10"
+        h-[max(80vh,200px)] max-w-[1200px] -translate-x-1/2 -translate-y-1/2 overflow-auto 
+        rounded-md bg-white pt-12 outline-none"
         role="dialog"
         tabindex="-1"
       >
         <div
-          class="md:min-w-[700px]"
+          class="h-full w-[min(1200px,100vw)]"
           data-testid="event-series-modal-content"
         >
           <div
             class="absolute right-5 top-5 cursor-pointer"
             data-testid="modal-close-button"
           >
-            ✖
+            <img
+              height="16"
+              src="test-file-stub"
+              width="16"
+            />
           </div>
-          <h4
-            class="mt-0"
-          >
-            Grundkurs Lindy Hop
-          </h4>
-          <p />
-          <div
-            class="mt-8 flex flex-wrap items-end justify-between gap-8"
-          >
-            <div>
-              <table
-                class="w-full"
-              >
-                <tbody>
-                  <tr
-                    class="border-x-0 border-b-0 border-t border-solid border-[rgba(0,0,0,0.5)] first:border-t-0"
-                  >
-                    <td
-                      class="break-words border-0 py-1 pr-2 font-bold md:pr-4"
-                    >
-                      Where
-                    </td>
-                    <td
-                      class="border-0 py-1 pl-2 md:pl-4"
-                    >
-                      Forum
-                    </td>
-                  </tr>
-                  <tr
-                    class="border-x-0 border-b-0 border-t border-solid border-[rgba(0,0,0,0.5)] first:border-t-0"
-                  >
-                    <td
-                      class="break-words border-0 py-1 pr-2 font-bold md:pr-4"
-                    >
-                      When
-                    </td>
-                    <td
-                      class="border-0 py-1 pl-2 md:pl-4"
-                    >
-                      1 Jan 2022 - 1 Jan 2022
-                    </td>
-                  </tr>
-                  <tr
-                    class="border-x-0 border-b-0 border-t border-solid border-[rgba(0,0,0,0.5)] first:border-t-0"
-                  >
-                    <td
-                      class="break-words border-0 py-1 pr-2 font-bold md:pr-4"
-                    >
-                      Instructors
-                    </td>
-                    <td
-                      class="border-0 py-1 pl-2 md:pl-4"
-                    />
-                  </tr>
-                  <tr
-                    class="border-x-0 border-b-0 border-t border-solid border-[rgba(0,0,0,0.5)] first:border-t-0"
-                  >
-                    <td
-                      class="break-words border-0 py-1 pr-2 font-bold md:pr-4"
-                    >
-                      Price
-                    </td>
-                    <td
-                      class="border-0 py-1 pl-2 md:pl-4"
-                    >
-                      1337
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div
-              class="ml-auto"
-            >
-              <a
-                class="button"
-                href="https://example.com/registration"
-                rel="noreferrer"
-                target="_blank"
-              >
-                <div
-                  class="flex items-center"
-                >
-                  <span>
-                    Registration
-                  </span>
-                  <svg
-                    height="24px"
-                    viewBox="0 0 24 24"
-                    width="24px"
-                  >
-                    <g
-                      fill="none"
-                      stroke="white"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2.1"
-                    >
-                      <polyline
-                        points="17 13.5 17 19.5 5 19.5 5 7.5 11 7.5"
-                      />
-                      <path
-                        d="M14,4.5 L20,4.5 L20,10.5 M20,4.5 L11,13.5"
-                      />
-                    </g>
-                  </svg>
-                </div>
-              </a>
-            </div>
-          </div>
+          <iframe
+            class="h-full w-full overflow-hidden border-none outline-none"
+            src="https://example.com/registration"
+            title="Grundkurs Lindy Hop"
+          />
         </div>
       </div>
     </div>
