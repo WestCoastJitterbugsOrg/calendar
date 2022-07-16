@@ -26,13 +26,13 @@ exports[`EventModal Snapshot 1`] = `
         aria-modal="true"
         class="ReactModal__Content 
         absolute top-1/2 left-1/2 right-auto bottom-auto -mr-[50%]
-        h-[max(80vh,200px)] max-w-[1200px] -translate-x-1/2 -translate-y-1/2 overflow-auto 
+        h-[max(80vh,200px)] max-w-[900px] -translate-x-1/2 -translate-y-1/2 overflow-auto 
         rounded-md bg-white pt-12 outline-none"
         role="dialog"
         tabindex="-1"
       >
         <div
-          class="h-full w-[min(1200px,100vw)]"
+          class="h-full w-[min(900px,100vw)]"
           data-testid="event-series-modal-content"
         >
           <div

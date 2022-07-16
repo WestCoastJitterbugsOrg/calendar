@@ -1,10 +1,10 @@
+import checked from "@app/assets/checkbox-checked.svg";
+import indeterminate from "@app/assets/checkbox-indeterminate.svg";
+import unchecked from "@app/assets/checkbox-unchecked.svg";
 import { CategoryStore } from "@app/store/model";
 import { StateContext } from "@app/store/StateWrapper";
 import { getCategoryEvents } from "@app/store/utils";
 import { useContext } from "react";
-import checked from "@app/assets/checkbox-checked.svg";
-import unchecked from "@app/assets/checkbox-unchecked.svg";
-import indeterminate from "@app/assets/checkbox-indeterminate.svg";
 
 interface Props {
   category: CategoryStore;
@@ -44,6 +44,8 @@ export function GroupCheckbox(props: Props) {
         setAllChecked(globalCheckState !== true);
       }}
       src={imgSrc}
+      width={16}
+      height={16}
     />
   );
 }

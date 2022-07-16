@@ -74,7 +74,7 @@ function cogwork2WcjOccasions(
   };
 }
 
-function asArray<T>(objOrArr: T | T[]) {
+function asArray<T>(objOrArr: MaybeArray<T>) {
   if (Array.isArray(objOrArr)) {
     return objOrArr;
   } else {

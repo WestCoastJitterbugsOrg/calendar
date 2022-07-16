@@ -1,26 +1,26 @@
-type VCALENDAR = {
+interface VCALENDAR {
   new (): VCALENDAR;
-  addProp: (
+  addProp(
     name: string,
     value: unknown,
     props: Record = {},
     skipTransformer = false
-  ) => void;
-  addComponent: (component: VEVENT) => void;
-  toString: () => string;
-  toBlob: () => Blob;
-  toBase64: () => string;
-};
+  ): void;
+  addComponent(component: VEVENT): void;
+  toString(): string;
+  toBlob(): Blob;
+  toBase64(): string;
+}
 
-type VEVENT = {
+interface VEVENT {
   new (): VEVENT;
-  addProp: (
+  addProp(
     name: string,
     value?: unknown,
     props: Record = {},
     skipTransformer = false
-  ) => void;
-};
+  ): void;
+}
 
 declare module "ics-js" {
   const VCALENDAR: VCALENDAR;

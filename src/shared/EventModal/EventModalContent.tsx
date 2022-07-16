@@ -12,7 +12,7 @@ export function EventSeriesModalContent(props: Props) {
 
   return (
     <div
-      className="h-full w-[min(1200px,100vw)]"
+      className="h-full w-[min(900px,100vw)]"
       data-testid="event-series-modal-content"
     >
       <div

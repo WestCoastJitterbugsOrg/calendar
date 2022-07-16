@@ -53,8 +53,10 @@ exports[`EventSelection Snapshot 1`] = `
               aria-checked="true"
               class="bg-white"
               data-testid="group-checkbox"
+              height="16"
               role="checkbox"
               src="test-file-stub"
+              width="16"
             />
           </div>
         </div>
@@ -87,7 +89,9 @@ exports[`EventSelection Snapshot 1`] = `
                 role="checkbox"
               >
                 <img
+                  height="16"
                   src="test-file-stub"
+                  width="16"
                 />
               </span>
             </div>

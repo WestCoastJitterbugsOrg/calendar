@@ -18,7 +18,7 @@ export function EventSeriesModal(props: Props) {
       isOpen={!!eventModal}
       className={`
         absolute top-1/2 left-1/2 right-auto bottom-auto -mr-[50%]
-        h-[max(80vh,200px)] max-w-[1200px] -translate-x-1/2 -translate-y-1/2 overflow-auto 
+        h-[max(80vh,200px)] max-w-[900px] -translate-x-1/2 -translate-y-1/2 overflow-auto 
         rounded-md bg-white pt-12 outline-none`}
       overlayClassName="fixed z-50 inset-0 bg-black bg-opacity-75"
       parentSelector={() => props.parent ?? appContainer}

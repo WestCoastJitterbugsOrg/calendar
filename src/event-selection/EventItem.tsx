@@ -44,7 +44,9 @@ export function EventItem(props: Props) {
           aria-checked={props.event.showInCalendar}
           className="cursor-pointer"
         >
-          {props.event.showInCalendar && <img src={checked} />}
+          {props.event.showInCalendar && (
+            <img src={checked} width={16} height={16} />
+          )}
         </span>
       </div>
     </div>

@@ -26,7 +26,7 @@ declare namespace Cogwork {
 
   interface Schedule {
     occasions: {
-      occasion: Occasion | Occasion[];
+      occasion: MaybeArray<Occasion>;
     };
     startDate?: string;
     startTime?: string;
@@ -40,7 +40,7 @@ declare namespace Cogwork {
   }
   interface Response {
     events: {
-      event: Event[] | Event;
+      event: MaybeArray<Event>;
     };
   }
 }
