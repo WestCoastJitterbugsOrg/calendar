@@ -6,6 +6,7 @@
         "dbaeumer.vscode-eslint",
         "bradlc.vscode-tailwindcss",
         "hbenl.vscode-test-explorer",
-        "kavod-io.vscode-jest-test-adapter"
+        "kavod-io.vscode-jest-test-adapter",
+        "ms-azuretools.vscode-docker"
     ]
 }
