@@ -1,6 +1,5 @@
 import { StrictMode, lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
-import reportWebVitals from "./reportWebVitals";
 import { appContainer, appTag } from "./app-container";
 const App = lazy(() => import("./App"));
 
@@ -21,14 +20,6 @@ try {
         </Suspense>
       </StrictMode>
     );
-
-    // If you want to start measuring performance in your app, pass a function
-    // to log results (for example: reportWebVitals(console.log))
-    // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-    if (process.env.NODE_ENV === "development") {
-      console.log("reporting web vitals");
-      reportWebVitals(console.log);
-    }
   }
 } catch (error) {
   console.error(

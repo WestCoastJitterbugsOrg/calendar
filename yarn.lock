@@ -9792,20 +9792,12 @@ __metadata:
     ts-loader: ^9.3.1
     tsconfig-paths-webpack-plugin: ^3.5.2
     typescript: ^4.7.4
-    web-vitals: ^2.1.4
     webpack: ^5.73.0
     webpack-cli: ^4.10.0
     webpack-dev-server: ^4.9.3
     webpack-sources: ^3.2.3
   languageName: unknown
   linkType: soft
-
-"web-vitals@npm:^2.1.4":
-  version: 2.1.4
-  resolution: "web-vitals@npm:2.1.4"
-  checksum: 03d3f47dbf55c3dce07beb0ff5de8ddd52e2d0a53a8df5c84e7a16dda93543341d67231fa79b1d9772b091419af4ec0fd395b8bcf451a0e26846e3f76b3d0efc
-  languageName: node
-  linkType: hard
 
 "webidl-conversions@npm:^7.0.0":
   version: 7.0.0
