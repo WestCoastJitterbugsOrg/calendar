@@ -38,8 +38,10 @@
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-webpack-plugin": "^3.2.0",
+    "husky": "^8.0.0",
     "jest": "^28.1.2",
     "jest-environment-jsdom": "^28.1.2",
+    "lint-staged": "^13.0.3",
     "path": "^0.12.7",
     "postcss": "^8.4.14",
     "postcss-import": "^14.1.0",
@@ -63,7 +65,9 @@
     "build": "yarn build:prod",
     "build:prod": "yarn webpack --config webpack.wordpress-config.js --env production",
     "test": "jest --coverage",
-    "test-ci": "jest --ci --coverage"
+    "test-ci": "jest --ci --coverage",
+    "postinstall": "husky install",
+    "test:staged": "jest --bail --findRelatedTests"
   },
   "eslintConfig": {
     "env": {
@@ -109,6 +113,13 @@
       "build/**/*",
       "*config.js",
       "*.d.ts"
+    ]
+  },
+  "lint-staged": {
+    "{src,test,public}/**/*.{js,jsx,ts,tsx}": [
+      "prettier --list-different",
+      "eslint",
+      "yarn test:staged"
     ]
   },
   "babel": {
