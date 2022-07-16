@@ -26,8 +26,7 @@ type the organization's password. Then you can add it to a page by using the sho
 
 ### Setting up a local wordpress development and deploying the plugin to it
 
-Install docker and docker-compose. Run `yarn start:wordpress`. In another terminal, run `docker-compose up -d` 
-with elevated permissions (root/admin). Go to http://localhost:8000/wp-admin/install.php and set up the wordpress installation 
+Install docker and docker-compose. Run `yarn start:wordpress`. In another terminal, run `docker-compose up -d`. Go to http://localhost:8000/wp-admin/install.php and set up the wordpress installation 
 with the credentials found in docker-compose.yml.
 
 ### Production plugin deployment

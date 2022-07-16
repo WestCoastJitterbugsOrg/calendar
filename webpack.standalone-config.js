@@ -1,6 +1,5 @@
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const { DefinePlugin } = require("webpack");
 const ESLintPlugin = require("eslint-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
@@ -36,9 +35,13 @@ module.exports = (env) => ({
         use: ["css-loader", "postcss-loader"],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|jpe?g|gif)$/i,
         type: "asset/resource",
       },
+      {
+        test: /\.svg/,
+        type: "asset/inline"
+      }
     ],
   },
   plugins: [
@@ -61,7 +64,6 @@ module.exports = (env) => ({
         },
       ],
     }),
-    new DefinePlugin({ API_URL: `"${env.API_URL}"` }),
     new ESLintPlugin({}),
     new TsconfigPathsPlugin({}),
   ],

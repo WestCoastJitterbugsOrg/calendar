@@ -63,7 +63,7 @@ function wcjcal_apikey_cb($args)
     $options = get_option('wcjcal_options');
     $id = $args['label_for'];
     //echo $id;
-    $hasOption = array_key_exists($id, $options);
+    $hasOption = $options && array_key_exists($id, $options);
     $value = $hasOption ? $options[$id] : '';
 ?>
     <input type="text" id="<?php echo esc_attr($id); ?>" name="wcjcal_options[<?php echo esc_attr($id); ?>]" value="<?php echo (esc_attr($value)) ?>">
