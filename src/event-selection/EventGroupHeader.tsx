@@ -1,6 +1,6 @@
+import plusIcon from "@app/assets/plus.svg";
 import { CategoryStore } from "@app/store/model";
 import { GroupCheckbox } from "./EventGroupCheckbox";
-import { ExpandIcon } from "./ExpandIcon";
 
 interface Props {
   category: CategoryStore;
@@ -14,7 +14,12 @@ export function EventGroupHeader(props: Props) {
       onClick={props.toggleExpanded}
     >
       <div className="flex flex-grow items-center">
-        <ExpandIcon open={props.expanded} />
+        <img
+          className={`h-4 w-4 flex-shrink-0 transform transition duration-200 ${
+            props.expanded ? "rotate-45" : ""
+          }`}
+          src={plusIcon}
+        />
         <span className="ml-2">{props.category.id}</span>
       </div>
 

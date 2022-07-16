@@ -16,15 +16,15 @@ export default function App() {
         <StateWrapper categories={categories} events={events}>
           <div className="min-h-[calc(100vh-128px)]">
             <div className="flex flex-row flex-wrap items-stretch bg-white">
-              <div className="flex max-h-[calc(100vh-128px)] w-96 flex-grow flex-col">
+              <aside className="flex max-h-[calc(100vh-128px)] w-96 flex-grow flex-col">
                 <EventSelection />
-              </div>
-              <div
+              </aside>
+              <main
                 className="min-h-[calc(100vh-128px)] min-w-[calc(100%-384px)] flex-shrink-0 flex-grow"
                 data-testid="calendar-wrapper"
               >
                 <Calendar />
-              </div>
+              </main>
             </div>
             <Footer />
           </div>

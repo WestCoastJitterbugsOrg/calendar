@@ -14,7 +14,7 @@ export function Header() {
     return <></>;
   }
   return (
-    <div
+    <header
       data-testid="cookie-header"
       className="flex min-h-[64px] flex-wrap items-center justify-between border-8 border-solid border-primary bg-dark p-4"
     >
@@ -26,6 +26,6 @@ export function Header() {
         Your consent is needed for this functionality.
       </div>
       <Button onClick={consent}>Consent</Button>
-    </div>
+    </header>
   );
 }

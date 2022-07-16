@@ -1,6 +1,5 @@
-import { EventGroup } from "@app/event-selection/event-group/EventGroup";
-import { EventItem } from "@app/event-selection/event/EventItem";
-import { InfoButton } from "@app/event-selection/event/InfoButton";
+import { EventGroup } from "@app/event-selection/EventGroup";
+import { EventItem } from "@app/event-selection/EventItem";
 import { StateWrapper } from "@app/store/StateWrapper";
 import "@testing-library/jest-dom";
 import { act, fireEvent, render } from "@testing-library/react";
@@ -47,7 +46,7 @@ it("Unchecking an event causes it to be unchecked", async () => {
 it("Click info button opens modal", async () => {
   const result = render(
     <StateWrapper categories={mockStore.categories} events={mockStore.events}>
-      <InfoButton eventId={Object.keys(mockStore.events)[0]} />
+      <EventItem event={Object.values(mockStore.events)[0]} />
     </StateWrapper>
   );
 

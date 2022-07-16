@@ -4,33 +4,31 @@ exports[`EventSelection Snapshot 1`] = `
 <body>
   <div>
     <div
-      class="flex-none"
+      class="flex h-16 flex-row items-center justify-center space-x-4 bg-dark"
     >
-      <div
-        class="font-xs flex h-16 flex-row items-center justify-center space-x-4 bg-dark"
+      <button
+        class="button 
+    "
+        type="button"
       >
-        <button
-          class="button 
+        Select all
+      </button>
+      <button
+        class="button 
     "
-          type="button"
-        >
-          Select all
-        </button>
-        <button
-          class="button 
-    "
-          type="button"
-        >
-          Deselect all
-        </button>
-      </div>
+        type="button"
+      >
+        Deselect all
+      </button>
     </div>
     <div
       class="w-full flex-grow divide-y divide-secondary-alt overflow-auto bg-light"
       data-testid="event-selection-groups"
+      role="list"
     >
       <div
         class="bg-light"
+        role="group"
       >
         <div
           class="flex min-h-[32px] cursor-pointer flex-row items-center bg-secondary p-2 font-bold text-white"
@@ -65,6 +63,7 @@ exports[`EventSelection Snapshot 1`] = `
         >
           <div
             class="m-2 flex min-h-[32px] items-center"
+            role="listitem"
           >
             <img
               class="mr-2 block h-4 w-4 flex-none cursor-pointer text-black opacity-50 hover:opacity-100"
@@ -75,11 +74,11 @@ exports[`EventSelection Snapshot 1`] = `
               class="flex flex-grow items-center"
               data-testid="event-item"
             >
-              <div
+              <span
                 class="flex-grow cursor-pointer pr-2 leading-tight"
               >
                 Grundkurs Lindy Hop
-              </div>
+              </span>
               <span
                 aria-checked="true"
                 aria-readonly="true"

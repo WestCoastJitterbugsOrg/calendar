@@ -12,7 +12,7 @@ export type CategoryMap = Readonly<Record<string, CategoryStore>>;
 export type EventMap = Readonly<Record<string, Readonly<Wcj.Event>>>;
 
 interface Props {
-  children: JSX.Element[] | JSX.Element;
+  children: MaybeArray<JSX.Element>;
   categories: CategoryMap;
   events: EventMap;
   eventModal?: string | false;

@@ -1,7 +1,7 @@
 import { StateContext } from "@app/store/StateWrapper";
 import { getCategoryEvents } from "@app/store/utils";
 import { useContext, useState } from "react";
-import { EventItem } from "../event/EventItem";
+import { EventItem } from "./EventItem";
 import { EventGroupHeader } from "./EventGroupHeader";
 
 interface Props {
@@ -16,7 +16,7 @@ export function EventGroup(props: Props) {
   const catEvents = getCategoryEvents(category, events);
 
   return (
-    <div className="bg-light">
+    <div className="bg-light" role="group">
       <EventGroupHeader
         category={category}
         expanded={expanded}

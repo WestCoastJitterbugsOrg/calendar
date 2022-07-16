@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import fileDownload from "./assets/file-download.svg";
-import githublogo from "./assets/github-logo.png";
+import githubLogo from "./assets/github-logo.png";
 import { exportICS } from "./services/ics";
 import { Button } from "./shared/Buttons/Button";
 import { StateContext } from "./store/StateWrapper";
@@ -9,7 +9,7 @@ export function Footer() {
   const { events } = useContext(StateContext);
 
   return (
-    <div className="flex flex-wrap items-center justify-between bg-dark p-2">
+    <footer className="flex flex-wrap items-center justify-between bg-dark p-2">
       <div className="flex-grow" data-testid="download-ics-button">
         <Button onClick={() => exportICS(events)}>
           Download <img src={fileDownload} className="h-4 w-4" />
@@ -22,8 +22,8 @@ export function Footer() {
         <span className="max-w-[120px] text-right text-xs font-bold text-white">
           Help with development or report an issue
         </span>
-        <img src={githublogo} className="px-2"></img>
+        <img src={githubLogo} className="px-2"></img>
       </a>
-    </div>
+    </footer>
   );
 }
