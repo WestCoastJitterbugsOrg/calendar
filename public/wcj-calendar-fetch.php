@@ -6,7 +6,7 @@ function wcjcal_get_events()
 	$options = get_option('wcjcal_options');
 
 	$body = [
-		'org' => 'wcj',
+		'org' => $options['wcjcal_field_org'],
 		'pw' => $options['wcjcal_field_apikey'],
 		'regStatus' => 0,
 		'dateInterval' => 'future'

@@ -14,12 +14,12 @@ for (const color of deprecatedColors) {
 }
 
 const customColors = {
-  "wcj-cyan": "#349995",
-  "wcj-red": "#AB2814",
-  "wcj-sand": "#FFFAF2",
-  "wcj-black": "#1D1D1B",
-  "wcj-coral": "#EC6350",
-  "wcj-mint": "#73BDBA",
+  primary: "var(--cw-color-primary, #AB2814)",
+  secondary: "var(--cw-color-secondary, #349995)",
+  "primary-alt": "var(--cw-color-primary-alt, #EC6350)",
+  "secondary-alt": "var(--cw-color-secondary-alt, #73BDBA)",
+  dark: "var(--cw-color-dark, #1D1D1B)",
+  light: "var(--cw-color-light, #FFFAF2)",
 };
 
 function rem2px(input, fontSize = 16) {
@@ -68,12 +68,6 @@ module.exports = {
     colors: {
       ...defaultColors,
       ...customColors,
-      primary: customColors["wcj-red"],
-      secondary: customColors["wcj-cyan"],
-      "primary-alt": customColors["wcj-coral"],
-      "secondary-alt": customColors["wcj-mint"],
-      dark: customColors["wcj-black"],
-      light: customColors["wcj-sand"],
     },
     fontFamily: {
       sans: ["Raleway", "ui-sans-serif", "system-ui"],

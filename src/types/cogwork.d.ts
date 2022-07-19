@@ -1,6 +1,4 @@
-declare const wcjcal_ajax_obj: {
-  data: Cogwork.Response;
-};
+declare const cw_data: Cogwork.Response;
 
 declare namespace Cogwork {
   interface Event {

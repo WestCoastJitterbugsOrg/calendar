@@ -12,7 +12,7 @@ export const mockStore: EventStore = {
     "1": {
       id: "1",
       category: "Lindy Hop",
-      instructors: "",
+      instructors: undefined,
       occasions: [
         {
           start: new Date("2022-01-01 18:00"),

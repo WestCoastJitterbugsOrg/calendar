@@ -1,7 +1,7 @@
 import StateContext from "@app/store/model";
 
 export function initContext() {
-  const response = asArray(wcjcal_ajax_obj.data.events.event);
+  const response = asArray(cw_data.events.event);
 
   const cogworkEvents = response.filter(
     (event) => event.schedule?.occasions?.occasion != null

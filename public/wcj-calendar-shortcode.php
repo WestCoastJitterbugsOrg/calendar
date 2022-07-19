@@ -10,15 +10,28 @@ function wcjcal_shortcode_wp_enqueue_assets()
 	$js_to_load  = plugin_dir_url(__FILE__) . 'wcjcal.js';
 
 	wp_register_script('wcjcal-script', $js_to_load, [], $plugin_data["Version"], true);
+	wp_register_style('wcjcal-style', '', [], $plugin_data["Version"], true);
+
 	$result = wcjcal_get_events();
 	wp_add_inline_script(
 		'wcjcal-script',
-		'window[\'wcjcal_ajax_obj\'] = ' . json_encode(
-			[
-				'data' => $result
-			]
-		),
+		'window[\'cw_data\'] = ' . json_encode($result),
 		'before'
+	);
+
+
+	$options = get_option('wcjcal_options');
+
+	wp_add_inline_style(
+		"wcjcal-style",
+		":root {\r\n" .
+			($options['wcjcal_field_color-primary'] ? '--cw-color-primary: ' . $options['wcjcal_field_color-primary'] . ";\n" : '') .
+			($options['wcjcal_field_color-secondary'] ? '--cw-color-secondary: ' . $options['wcjcal_field_color-secondary'] . ";\n" : '') .
+			($options['wcjcal_field_color-dark'] ? '--cw-color-dark: ' . $options['wcjcal_field_color-dark'] . ";\n" : '') .
+			($options['wcjcal_field_color-light'] ? '--cw-color-light: ' . $options['wcjcal_field_color-light'] . ";\n" : '') .
+			($options['wcjcal_field_color-primary-alt'] ? '--cw-color-primary-alt: ' . $options['wcjcal_field_color-primary-alt'] . ";\n" : '') .
+			($options['wcjcal_field_color-secondary-alt'] ? '--cw-color-secondary-alt: ' . $options['wcjcal_field_color-secondary-alt'] : '') .
+			"\r\n}"
 	);
 }
 
@@ -44,6 +57,7 @@ function wcjcal_shortcode($attributes)
 	));
 
 	wp_enqueue_script('wcjcal-script');
+	wp_enqueue_style('wcjcal-style');
 
 	return '<div id="wcjcal" data-wcjcal-settings="' . esc_attr(wp_json_encode($settings)) . '" class="alignwide"></div>';
 }

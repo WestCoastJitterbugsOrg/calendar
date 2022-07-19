@@ -9,16 +9,16 @@ import { defaultEventData } from "../__mocks__/cwEvents";
 import { mockStore } from "../__mocks__/stateContext";
 
 type Global = typeof globalThis & {
-  wcjcal_ajax_obj?: typeof defaultEventData;
+  cw_data?: typeof defaultEventData;
 };
 
 beforeEach(() => {
-  (global as Global).wcjcal_ajax_obj = defaultEventData;
+  (global as Global).cw_data = defaultEventData;
   document.cookie = "";
 });
 
 afterEach(() => {
-  delete (global as Global).wcjcal_ajax_obj;
+  delete (global as Global).cw_data;
 });
 
 it("Cookie header is shown by default", async () => {
@@ -40,10 +40,8 @@ it("Cookie header is hidden if there are cookies", async () => {
 it("undefined data results in error", () => {
   const error = jest.spyOn(console, "error").mockImplementation();
   act(() => {
-    (global as Global).wcjcal_ajax_obj = {
-      data: {
-        events: {},
-      },
+    (global as Global).cw_data = {
+      events: {},
     } as typeof defaultEventData;
   });
   const { baseElement } = render(<App />);

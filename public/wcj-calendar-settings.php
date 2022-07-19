@@ -16,16 +16,28 @@ function wcjcal_settings_init()
         'wcjcal'
     );
 
-    // Register a new field in the "wcjcal_section_developers" section, inside the "wcjcal" page.
-    add_settings_field(
-        'wcjcal_field_apikey', // As of WP 4.6 this value is used only internally.
+    // Register new fields in the "wcjcal_section_developers" section, inside the "wcjcal" page.
+    wcjcal_add_textinput_settings_field('Organization', 'org');
+    wcjcal_add_textinput_settings_field('API Key', 'apikey');
+    wcjcal_add_textinput_settings_field('Primary color', 'color-primary');
+    wcjcal_add_textinput_settings_field('Secondary color', 'color-secondary');
+    wcjcal_add_textinput_settings_field('Light color', 'color-light');
+    wcjcal_add_textinput_settings_field('Dark color', 'color-dark');
+    wcjcal_add_textinput_settings_field('Primary alt color', 'color-primary-alt');
+    wcjcal_add_textinput_settings_field('Secondary alt color', 'color-secondary-alt');
+}
+
+function wcjcal_add_textinput_settings_field($text, $key)
+{
+    return add_settings_field(
+        'wcjcal_field_' . $key, // As of WP 4.6 this value is used only internally.
         // Use $args' label_for to populate the id inside the callback.
-        __('API Key', 'wcjcal'),
-        'wcjcal_apikey_cb',
+        __($text, 'wcjcal'),
+        'wcjcal_settingfield_cb',
         'wcjcal',
         'wcjcal_section_developers',
         [
-            'label_for'         => 'wcjcal_field_apikey',
+            'label_for'         => 'wcjcal_field_' . $key,
             'class'             => 'wcjcal_row',
             'wcjcal_custom_data' => 'custom'
         ]
@@ -57,12 +69,11 @@ function wcjcal_section_developers_callback($args)
  *
  * @param array $args
  */
-function wcjcal_apikey_cb($args)
+function wcjcal_settingfield_cb($args)
 {
     // Get the value of the setting we've registered with register_setting()
     $options = get_option('wcjcal_options');
     $id = $args['label_for'];
-    //echo $id;
     $hasOption = $options && array_key_exists($id, $options);
     $value = $hasOption ? $options[$id] : '';
 ?>
