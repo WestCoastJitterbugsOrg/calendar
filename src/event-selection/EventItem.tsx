@@ -8,18 +8,16 @@ interface Props {
 }
 
 export function EventItem(props: Props) {
-  const { events, setEvents, setEventModal } = useContext(StateContext);
+  const { setEvents, setEventModal } = useContext(StateContext);
 
-  const toggle = () => {
-    const newEvents = {
-      ...events,
+  const toggle = () =>
+    setEvents?.((prevEvents) => ({
+      ...prevEvents,
       [props.event.id]: {
-        ...events[props.event.id],
-        showInCalendar: !events[props.event.id].showInCalendar,
+        ...prevEvents[props.event.id],
+        showInCalendar: !prevEvents[props.event.id].showInCalendar,
       },
-    };
-    setEvents?.(newEvents);
-  };
+    }));
 
   return (
     <div className="m-2 flex min-h-[32px] items-center" role="listitem">

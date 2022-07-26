@@ -23,15 +23,16 @@ export function GroupCheckbox(props: Props) {
       ? [true, checked]
       : ["mixed" as const, indeterminate];
 
-  const setAllChecked = (show: boolean) => {
-    const newEvents: Record<string, Wcj.Event> = { ...events };
+  const setAllChecked = (show: boolean) =>
+    setEvents?.((prevEvents) => {
+      const newEvents: Record<string, Wcj.Event> = { ...prevEvents };
 
-    for (const eventId of props.category.events) {
-      newEvents[eventId].showInCalendar = show;
-    }
+      for (const eventId of props.category.events) {
+        newEvents[eventId].showInCalendar = show;
+      }
 
-    setEvents?.(newEvents);
-  };
+      return newEvents;
+    });
 
   return (
     <img

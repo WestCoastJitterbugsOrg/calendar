@@ -20,7 +20,7 @@ export function EventGroup(props: Props) {
       <EventGroupHeader
         category={category}
         expanded={expanded}
-        toggleExpanded={() => setExpanded(!expanded)}
+        toggleExpanded={() => setExpanded((e) => !e)}
       />
 
       <div

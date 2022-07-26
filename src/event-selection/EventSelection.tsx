@@ -5,21 +5,18 @@ import { EventGroup } from "./EventGroup";
 
 export function EventSelection() {
   const { categories } = useContext(StateContext);
-  const { events, setEvents } = useContext(StateContext) ?? {};
+  const { setEvents } = useContext(StateContext) ?? {};
 
-  const select = (show: boolean) => {
+  const select = (show: boolean) =>
+    setEvents?.((events) => {
     const newEvents: Record<string, Wcj.Event> = {};
 
-    for (const eventId of Object.keys(events)) {
-      newEvents[eventId] = {
-        ...events[eventId],
-        showInCalendar: show,
-      };
-    }
+      for (const eventId in events) {
+        newEvents[eventId].showInCalendar = show;
+      }
 
-    setEvents?.(newEvents);
-  };
-
+      return newEvents;
+    });
   return (
     <>
       <div className="flex h-16 flex-row items-center justify-center space-x-4 bg-dark">
