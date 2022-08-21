@@ -43,7 +43,7 @@ export function TooltipComponent(props: Props) {
         data-popper-arrow
         className={`invisible absolute h-2 w-2 bg-inherit
            before:visible before:absolute before:h-2 before:w-2
-           before:rotate-45 before:bg-inherit before:bg-dark before:content-['']
+           before:rotate-45 before:bg-dark before:content-['']
           `}
       ></div>
     </div>

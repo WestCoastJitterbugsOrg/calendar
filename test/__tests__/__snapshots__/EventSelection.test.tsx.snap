@@ -4,7 +4,7 @@ exports[`EventSelection Snapshot 1`] = `
 <body>
   <div>
     <div
-      class="flex h-16 flex-row items-center justify-center space-x-4 bg-dark"
+      class="flex h-16 flex-shrink-0 flex-row items-center justify-center space-x-4 bg-dark"
     >
       <button
         class="button 

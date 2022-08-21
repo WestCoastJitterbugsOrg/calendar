@@ -13,6 +13,16 @@ function wcjcal_shortcode_wp_enqueue_assets()
 	wp_register_style('wcjcal-style', '', [], $plugin_data["Version"], true);
 
 	$result = wcjcal_get_events();
+
+	if(is_wp_error($result)) {
+		wp_add_inline_script(
+			'wcjcal-script',
+			'window[\'cw_error\'] = ' . json_encode($result),
+			'before'
+		);
+
+		return;
+	}
 	wp_add_inline_script(
 		'wcjcal-script',
 		'window[\'cw_data\'] = ' . json_encode($result),

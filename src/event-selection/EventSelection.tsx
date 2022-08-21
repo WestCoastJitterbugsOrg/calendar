@@ -9,17 +9,20 @@ export function EventSelection() {
 
   const select = (show: boolean) =>
     setEvents?.((events) => {
-    const newEvents: Record<string, Wcj.Event> = {};
+      const newEvents: Record<string, Wcj.Event> = {};
 
       for (const eventId in events) {
-        newEvents[eventId].showInCalendar = show;
+        newEvents[eventId] = {
+          ...events[eventId],
+          showInCalendar: show,
+        };
       }
 
       return newEvents;
     });
   return (
     <>
-      <div className="flex h-16 flex-row items-center justify-center space-x-4 bg-dark">
+      <div className="flex h-16 flex-shrink-0 flex-row items-center justify-center space-x-4 bg-dark">
         <Button onClick={() => select(true)}>Select all</Button>
         <Button onClick={() => select(false)}>Deselect all</Button>
       </div>

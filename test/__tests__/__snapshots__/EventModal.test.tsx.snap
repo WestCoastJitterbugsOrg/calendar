@@ -27,7 +27,7 @@ exports[`EventModal Snapshot 1`] = `
         class="ReactModal__Content 
         absolute top-1/2 left-1/2 right-auto bottom-auto -mr-[50%]
         h-[max(80vh,200px)] max-w-[900px] -translate-x-1/2 -translate-y-1/2 
-        rounded-md bg-white pt-12 outline-none"
+        rounded-md bg-dark pt-12 outline-none"
         role="dialog"
         tabindex="-1"
       >
@@ -47,7 +47,7 @@ exports[`EventModal Snapshot 1`] = `
           </div>
           <iframe
             class="h-full w-full overflow-hidden border-none outline-none"
-            src="https://example.com/registration"
+            src="https://example.com/registration&layout=calendar"
             title="Grundkurs Lindy Hop"
           />
         </div>

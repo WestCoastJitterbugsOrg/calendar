@@ -1,3 +1,5 @@
+import { Cogwork } from "@app/types/cogwork";
+
 export const defaultEventData: Cogwork.Response = {
   events: {
     event: [

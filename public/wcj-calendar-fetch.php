@@ -5,6 +5,10 @@ function wcjcal_get_events()
 
 	$options = get_option('wcjcal_options');
 
+	if(!$options) {
+		return new WP_Error( 'broke', "Cogwork calendar options not set" );
+	}
+
 	$body = [
 		'org' => $options['wcjcal_field_org'],
 		'pw' => $options['wcjcal_field_apikey'],

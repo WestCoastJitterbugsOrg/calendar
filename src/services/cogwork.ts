@@ -1,7 +1,12 @@
 import StateContext from "@app/store/model";
+import { Cogwork } from "@app/types/cogwork";
 
 export function initContext() {
-  const response = asArray(cw_data.events.event);
+  if (window.cw_error) {
+    throw window.cw_error;
+  }
+
+  const response = asArray(window.cw_data.events.event);
 
   const cogworkEvents = response.filter(
     (event) => event.schedule?.occasions?.occasion != null
@@ -68,9 +73,13 @@ function cogwork2WcjOccasions(
     return null;
   }
 
+  // Dates returned by the CogWork API doesn't follow the ISO8601 standard.
+  // To make sure it works on all browsers, we need to replace empty spaces with T
+  // Cogwork API: 2021-08-21 18:00:00
+  // ISO 8601:    2021-08-21T18:00:00
   return {
-    start: new Date(start),
-    end: new Date(end),
+    start: new Date(start.replace(" ", "T")),
+    end: new Date(end.replace(" ", "T")),
   };
 }
 

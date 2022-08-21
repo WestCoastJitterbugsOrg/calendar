@@ -1,4 +1,21 @@
-declare const cw_data: Cogwork.Response;
+export { Cogwork };
+
+declare global {
+  interface Window {
+    cw_error: WP_Error;
+    cw_data: Cogwork.Response;
+  }
+}
+
+window.cw_error = window.cw_error || {};
+window.cw_data = window.cw_data || {};
+
+interface WP_Error {
+  errors: {
+    broke: string[];
+  };
+  error_data: unknown[];
+}
 
 declare namespace Cogwork {
   interface Event {
