@@ -9,7 +9,7 @@
  * Plugin Name:       WCJ Calendar
  * Plugin URI:        https://github.com/WestCoastJitterbugsOrg/Personalized-Calendar
  * Description:       Filterable calendar using data from cogwork
- * Version:           1.5.0-alpha1
+ * Version:           1.4.3
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Jean-Philippe Green
