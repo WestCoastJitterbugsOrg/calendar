@@ -9,9 +9,10 @@ export function EventSelection() {
 
   const select = (show: boolean) =>
     setEvents?.((events) => {
-    const newEvents: Record<string, Wcj.Event> = {};
+      const newEvents: Record<string, Wcj.Event> = {};
 
       for (const eventId in events) {
+        newEvents[eventId] = events[eventId];
         newEvents[eventId].showInCalendar = show;
       }
 
