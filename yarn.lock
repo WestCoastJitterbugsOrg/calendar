@@ -1400,32 +1400,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fullcalendar/common@npm:~5.11.2":
-  version: 5.11.2
-  resolution: "@fullcalendar/common@npm:5.11.2"
+"@fullcalendar/common@npm:~5.11.2, @fullcalendar/common@npm:~5.11.3":
+  version: 5.11.3
+  resolution: "@fullcalendar/common@npm:5.11.3"
   dependencies:
     tslib: ^2.1.0
-  checksum: 7f0002148caf8f79005ada4ae0e82dc251306e1dcd3bead3103fc7ecda0c090170dfbb4846c1f9018b2cfee26b098c3f2cf9cf42771d1bd8553d444d46b51e74
+  checksum: be4b365dca5ed075cc03aedbc0d6dcaa11f6e2ea6833c783212c79c7b657686a2dfc5390f1ead32bf596445a025daaa1a1179f2d4d563b71b4e1986d801c2fd4
   languageName: node
   linkType: hard
 
-"@fullcalendar/daygrid@npm:^5.11.0, @fullcalendar/daygrid@npm:~5.11.2":
-  version: 5.11.2
-  resolution: "@fullcalendar/daygrid@npm:5.11.2"
+"@fullcalendar/daygrid@npm:^5.11.0, @fullcalendar/daygrid@npm:~5.11.3":
+  version: 5.11.3
+  resolution: "@fullcalendar/daygrid@npm:5.11.3"
   dependencies:
-    "@fullcalendar/common": ~5.11.2
+    "@fullcalendar/common": ~5.11.3
     tslib: ^2.1.0
-  checksum: e182dfd3dd764dc5dd0e0934416d74825455249501f9675bc8cbccbd55983564228007d89e13725538afe1c1e5de7be3aa21d1acf4f8802facd89c80fec74289
+  checksum: 426b53c5bb21a9e7df82bf70b44221fb5c50e0d6216fbc91d586abffe48e61ed582aa4b5cb1ede78ba16063ded30f5ea1ec1cc5db51932b644825fcef87d2b15
   languageName: node
   linkType: hard
 
-"@fullcalendar/interaction@npm:^5.11.0":
-  version: 5.11.2
-  resolution: "@fullcalendar/interaction@npm:5.11.2"
+"@fullcalendar/interaction@npm:^5.11.3":
+  version: 5.11.3
+  resolution: "@fullcalendar/interaction@npm:5.11.3"
   dependencies:
-    "@fullcalendar/common": ~5.11.2
+    "@fullcalendar/common": ~5.11.3
     tslib: ^2.1.0
-  checksum: d7c3c2eac24ac6ad4774dc36d52a1fa181cc79faaa7074e8cb0a508faec4365a8702cfa20ccf465694e46987fa7a780ac82d7123a26edb278f42dc6c5d8761fa
+  checksum: e8a1b49f2f89d2139decb1a85aebc3ae45d324151fe5a2bd4b3e9f75ed48a7a8548bf05a25bc01015a1242b90ffe23ccc24f2787f5cf9b6e5ce22f74d7c3d731
   languageName: node
   linkType: hard
 
@@ -1452,14 +1452,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fullcalendar/timegrid@npm:^5.11.0":
-  version: 5.11.2
-  resolution: "@fullcalendar/timegrid@npm:5.11.2"
+"@fullcalendar/timegrid@npm:^5.11.3":
+  version: 5.11.3
+  resolution: "@fullcalendar/timegrid@npm:5.11.3"
   dependencies:
-    "@fullcalendar/common": ~5.11.2
-    "@fullcalendar/daygrid": ~5.11.2
+    "@fullcalendar/common": ~5.11.3
+    "@fullcalendar/daygrid": ~5.11.3
     tslib: ^2.1.0
-  checksum: e70c0d39a2a25b2798a14e0095d7b738c422096a039161d43b1da7c4549a40dfed280be9f0a4fd8bba6bcbcdfbadcab736490d978060bbb14a6c66dbe1267549
+  checksum: ce675eca7da78ec7aab5c16eb951a70802998a0215c2c42a003afd375680817cf05a7bab1b271333e88634da3ebd50fc238c368ce49241ec9716b0f57276d4f0
   languageName: node
   linkType: hard
 
@@ -2154,7 +2154,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:*, @types/jest@npm:^28.1.4":
+"@types/jest@npm:*, @types/jest@npm:^28.1.7":
   version: 28.1.7
   resolution: "@types/jest@npm:28.1.7"
   dependencies:
@@ -6366,7 +6366,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest@npm:^28.1.2":
+"jest@npm:^28.1.3":
   version: 28.1.3
   resolution: "jest@npm:28.1.3"
   dependencies:
@@ -9489,7 +9489,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-jest@npm:^28.0.5":
+"ts-jest@npm:^28.0.8":
   version: 28.0.8
   resolution: "ts-jest@npm:28.0.8"
   dependencies:
@@ -9634,23 +9634,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.7.4":
-  version: 4.7.4
-  resolution: "typescript@npm:4.7.4"
+"typescript@npm:^4.8.2":
+  version: 4.8.2
+  resolution: "typescript@npm:4.8.2"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 5750181b1cd7e6482c4195825547e70f944114fb47e58e4aa7553e62f11b3f3173766aef9c281783edfd881f7b8299cf35e3ca8caebe73d8464528c907a164df
+  checksum: 7f5b81d0d558c9067f952c7af52ab7f19c2e70a916817929e4a5b256c93990bf3178eccb1ac8a850bc75df35f6781b6f4cb3370ce20d8b1ded92ed462348f628
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>":
-  version: 4.7.4
-  resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=7ad353"
+"typescript@patch:typescript@^4.8.2#~builtin<compat/typescript>":
+  version: 4.8.2
+  resolution: "typescript@patch:typescript@npm%3A4.8.2#~builtin<compat/typescript>::version=4.8.2&hash=7ad353"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 9096d8f6c16cb80ef3bf96fcbbd055bf1c4a43bd14f3b7be45a9fbe7ada46ec977f604d5feed3263b4f2aa7d4c7477ce5f9cd87de0d6feedec69a983f3a4f93e
+  checksum: 6f49363af8af2fe480da1d5fa68712644438785208b06690a3cbe5e7365fd652c3a0f1e587bc8684d78fb69de3dde4de185c0bad7bb4f3664ddfc813ce8caad6
   languageName: node
   linkType: hard
 
@@ -9872,15 +9872,15 @@ __metadata:
     "@babel/preset-env": ^7.18.6
     "@babel/preset-react": ^7.18.6
     "@fullcalendar/daygrid": ^5.11.0
-    "@fullcalendar/interaction": ^5.11.0
+    "@fullcalendar/interaction": ^5.11.3
     "@fullcalendar/list": ^5.11.0
     "@fullcalendar/react": ^5.11.1
-    "@fullcalendar/timegrid": ^5.11.0
+    "@fullcalendar/timegrid": ^5.11.3
     "@popperjs/core": ^2.11.5
     "@prettier/plugin-php": ^0.18.9
     "@testing-library/jest-dom": ^5.16.4
     "@testing-library/react": ^13.2.0
-    "@types/jest": ^28.1.4
+    "@types/jest": ^28.1.7
     "@types/react": ^18.0.9
     "@types/react-dom": ^18.0.3
     "@types/react-modal": ^3.13.1
@@ -9898,7 +9898,7 @@ __metadata:
     eslint-webpack-plugin: ^3.2.0
     husky: ^8.0.1
     ics-js: ^0.10.2
-    jest: ^28.1.2
+    jest: ^28.1.3
     jest-environment-jsdom: ^28.1.2
     lint-staged: ^13.0.3
     path: ^0.12.7
@@ -9911,10 +9911,10 @@ __metadata:
     react-dom: ^18.2.0
     react-modal: ^3.15.1
     tailwindcss: ^3.1.7
-    ts-jest: ^28.0.5
+    ts-jest: ^28.0.8
     ts-loader: ^9.3.1
     tsconfig-paths-webpack-plugin: ^3.5.2
-    typescript: ^4.7.4
+    typescript: ^4.8.2
     webpack: ^5.74.0
     webpack-cli: ^4.10.0
     webpack-dev-server: ^4.9.3
