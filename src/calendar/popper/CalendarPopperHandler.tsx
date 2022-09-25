@@ -30,7 +30,7 @@ export function usePopperHandler() {
     tooltipRoot.render(
       <TooltipComponent
         event={event}
-        openModal={() => setEventModal?.(event.extendedProps.id)}
+        openModal={() => setEventModal?.(event.extendedProps.id as string)}
       />
     );
 

@@ -14,7 +14,7 @@ export function initContext() {
 
   const uncheckedEventsStr = localStorage.getItem("uncheckedEvents");
   const uncheckedEvents: string[] = uncheckedEventsStr
-    ? JSON.parse(uncheckedEventsStr)
+    ? (JSON.parse(uncheckedEventsStr) as string[])
     : [];
 
   const categories: StateContext["categories"] = {};

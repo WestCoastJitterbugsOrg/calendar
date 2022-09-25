@@ -5,7 +5,9 @@ export function wcj2fcEvent(wcjEvent: Wcj.Event): EventSourceInput {
     id: wcjEvent.id,
     events: wcjEvent.occasions.map(
       (occasion): EventInput => ({
-        id: `${wcjEvent.id}-${occasion.start}-${occasion.end}`,
+        id: `${
+          wcjEvent.id
+        }-${occasion.start.toISOString()}-${occasion.end.toISOString()}`,
         title: wcjEvent.title,
         start: occasion.start,
         end: occasion.end,

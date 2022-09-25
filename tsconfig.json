@@ -27,7 +27,7 @@
     ]
   },
   "include": [
-    "test/__tests__/**/*",
+    "test/**/*",
     "src/**/*",
     "./tailwind.config.js"
   ]

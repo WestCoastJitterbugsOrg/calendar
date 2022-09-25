@@ -44,8 +44,8 @@ export function Calendar(props: Props) {
 
   // lazy load interaction plugin to save on calendar bundle size
   useEffect(() => () => {
-      importInteraction.then(addPlugin);
-  }, []);
+    void importInteraction.then(addPlugin), [];
+  });
 
   return (
     <div className="wcjcal-fc" data-testid="fc-wrapper">

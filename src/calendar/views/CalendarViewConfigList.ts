@@ -33,7 +33,9 @@ function viewDidMount(mountArg: ViewMountArg) {
 
   if (nextEvent != null) {
     const eventStr = nextEvent.start?.toISOString().slice(0, 10);
-    const eventEl = mountArg.el.querySelector(`[data-date="${eventStr}"]`);
+    const eventEl = mountArg.el.querySelector(
+      `[data-date="${eventStr ?? ""}"]`
+    );
     const scrollContainer =
       eventEl?.parentElement?.parentElement?.parentElement;
 
@@ -73,7 +75,9 @@ function eventDidMount(e: EventMountArg) {
   if (title != null && place == null) {
     title.outerHTML = `
         <td class="fc-list-event-title">${e.event.title}</td>
-        <td class="fc-list-event-place text-right">${e.event.extendedProps["place"]}</td>
+        <td class="fc-list-event-place text-right">${
+          e.event.extendedProps["place"] as string
+        }</td>
     `;
   }
   // Change colspan of day header

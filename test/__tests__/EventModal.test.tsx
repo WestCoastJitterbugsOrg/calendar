@@ -5,7 +5,7 @@ import { EventSeriesModal } from "@app/shared/EventModal/EventSeriesModal";
 import { fireEvent, render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 
-it("EventModal Snapshot", async () => {
+it("EventModal Snapshot", () => {
   const eventModal = Object.values(mockStore.events)[0].id;
 
   const { baseElement } = render(
@@ -42,7 +42,7 @@ it("EventModal clicking on close button closes modal", async () => {
   expect(baseElement.querySelector(".ReactModalPortal")).toBeEmptyDOMElement();
 });
 
-it("EventModal clicking escape closes modal", async () => {
+it("EventModal clicking escape closes modal", () => {
   const eventModal = Object.values(mockStore.events)[0].id;
 
   const { baseElement } = render(

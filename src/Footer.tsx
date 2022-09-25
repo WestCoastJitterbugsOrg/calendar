@@ -11,7 +11,7 @@ export function Footer() {
   return (
     <footer className="flex flex-wrap items-center justify-between bg-dark p-2">
       <div className="flex-grow" data-testid="download-ics-button">
-        <Button onClick={() => exportICS(events)}>
+        <Button onClick={() => void exportICS(events)}>
           Download <img src={fileDownload} className="h-4 w-4" />
         </Button>
       </div>

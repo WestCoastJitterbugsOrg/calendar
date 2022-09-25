@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import { act, render, RenderResult } from "@testing-library/react";
 import { mockStore } from "../__mocks__/stateContext";
 
-it("EventSelection Snapshot", async () => {
+it("EventSelection Snapshot", () => {
   const { baseElement } = render(
     <StateWrapper categories={mockStore.categories} events={mockStore.events}>
       <EventSelection />

@@ -4,9 +4,9 @@ appContainer.id = "wcjcal-shadow-root";
 const appTag = document.createElement("div");
 appContainer?.appendChild(appTag);
 
-import("./styles/index.css").then((style) => {
+void import("./styles/index.css").then((style) => {
   const styleTag = document.createElement("style");
-  styleTag.innerHTML = style.default.toString();
+  styleTag.innerHTML = style.default.join("\n");
   appContainer.appendChild(styleTag);
 });
 

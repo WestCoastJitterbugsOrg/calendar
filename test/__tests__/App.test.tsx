@@ -28,8 +28,8 @@ it("Cookie header is shown by default", async () => {
   expect(cookieHeader).toBeTruthy();
 });
 
-it("Cookie header is hidden if there are cookies", async () => {
-  await act(async () => {
+it("Cookie header is hidden if there are cookies", () => {
+  act(() => {
     storeConsentCookie();
   });
   const renderResult = render(<App />);

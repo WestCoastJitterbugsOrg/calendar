@@ -66,7 +66,8 @@
     "build:prod": "yarn webpack --config webpack.wordpress-config.js --env production",
     "test": "jest --coverage",
     "test-ci": "jest --ci --coverage",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "lint": "eslint ."
   },
   "eslintConfig": {
     "env": {
@@ -79,39 +80,43 @@
       "plugin:react-hooks/recommended",
       "plugin:react/jsx-runtime",
       "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/recommended-requiring-type-checking",
       "prettier"
     ],
-    "parser": "@typescript-eslint/parser",
+    "ignorePatterns": [
+      "public/**/*",
+      "build/**/*",
+      "dist/**/*",
+      "coverage/**/*",
+      "*config.js",
+      "*.d.ts"
+    ],
     "parserOptions": {
+      "project": "./tsconfig.json",
       "ecmaFeatures": {
         "jsx": true
       },
       "ecmaVersion": "latest",
       "sourceType": "module"
     },
-    "plugins": [
-      "react",
-      "@typescript-eslint"
-    ],
     "settings": {
       "react": {
         "version": "detect"
       }
     },
-    "rules": {
-      "@typescript-eslint/consistent-type-definitions": [
-        "error",
-        "interface"
-      ],
-      "react/button-has-type": [
-        "warn"
-      ]
-    },
-    "ignorePatterns": [
-      "public/**/*",
-      "build/**/*",
-      "*config.js",
-      "*.d.ts"
+    "overrides": [
+      {
+        "files": ".tsx",
+        "rules": {
+          "@typescript-eslint/consistent-type-definitions": [
+            "error",
+            "interface"
+          ],
+          "react/button-has-type": [
+            "warn"
+          ]
+        }
+      }
     ]
   },
   "lint-staged": {

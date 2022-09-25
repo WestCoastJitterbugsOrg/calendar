@@ -1,6 +1,6 @@
 import { appContainer } from "@app/app-container";
 import { StateContext } from "@app/store/StateWrapper";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import Modal from "react-modal";
 import { EventSeriesModalContent } from "./EventModalContent";
 
@@ -12,16 +12,16 @@ const rootHtmlElement = document.documentElement;
 
 export function EventSeriesModal(props: Props) {
   const { eventModal, setEventModal } = useContext(StateContext);
-  let previousOverflowStyle: string;
+  const previousOverflowStyle = useRef<string>();
   useEffect(() => {
     // Code to prevent scrolling events getting triggered on the main page:
     if (eventModal) {
-      previousOverflowStyle = rootHtmlElement.style.overflow;
+      previousOverflowStyle.current = rootHtmlElement.style.overflow;
       // Hide root html element overflow when showing modal
       rootHtmlElement.style.overflow = "hidden";
-    } else if (previousOverflowStyle) {
+    } else if (previousOverflowStyle?.current) {
       // When modal is closed, we either have to reapply the style that was before
-      rootHtmlElement.style.overflow = previousOverflowStyle;
+      rootHtmlElement.style.overflow = previousOverflowStyle.current;
     } else {
       // Or remove it if there was none
       rootHtmlElement.style.removeProperty("overflow");
