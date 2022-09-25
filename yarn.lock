@@ -1419,13 +1419,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fullcalendar/interaction@npm:^5.11.0":
-  version: 5.11.2
-  resolution: "@fullcalendar/interaction@npm:5.11.2"
+"@fullcalendar/interaction@npm:^5.11.3":
+  version: 5.11.3
+  resolution: "@fullcalendar/interaction@npm:5.11.3"
   dependencies:
-    "@fullcalendar/common": ~5.11.2
+    "@fullcalendar/common": ~5.11.3
     tslib: ^2.1.0
-  checksum: d7c3c2eac24ac6ad4774dc36d52a1fa181cc79faaa7074e8cb0a508faec4365a8702cfa20ccf465694e46987fa7a780ac82d7123a26edb278f42dc6c5d8761fa
+  checksum: e8a1b49f2f89d2139decb1a85aebc3ae45d324151fe5a2bd4b3e9f75ed48a7a8548bf05a25bc01015a1242b90ffe23ccc24f2787f5cf9b6e5ce22f74d7c3d731
   languageName: node
   linkType: hard
 
@@ -9872,7 +9872,7 @@ __metadata:
     "@babel/preset-env": ^7.18.6
     "@babel/preset-react": ^7.18.6
     "@fullcalendar/daygrid": ^5.11.0
-    "@fullcalendar/interaction": ^5.11.0
+    "@fullcalendar/interaction": ^5.11.3
     "@fullcalendar/list": ^5.11.0
     "@fullcalendar/react": ^5.11.1
     "@fullcalendar/timegrid": ^5.11.3
