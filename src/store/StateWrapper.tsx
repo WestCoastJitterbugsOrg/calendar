@@ -5,7 +5,7 @@ import StateContext, { CategoryStore } from "./model";
 export const StateContext = createContext<StateContext>({
   categories: {},
   events: {},
-  eventModal: false,
+  eventModal: undefined,
 });
 
 export type CategoryMap = Readonly<Record<string, CategoryStore>>;
@@ -15,7 +15,7 @@ interface Props {
   children: MaybeArray<JSX.Element>;
   categories: CategoryMap;
   events: EventMap;
-  eventModal?: string | false;
+  eventModal?: string;
 }
 
 export function StateWrapper(props: Props) {
@@ -23,8 +23,8 @@ export function StateWrapper(props: Props) {
     props.categories
   );
   const [events, setEvents] = useState<EventMap>(props.events);
-  const [eventModal, setEventModal] = useState<string | false>(
-    props.eventModal ?? false
+  const [eventModal, setEventModal] = useState<string | undefined>(
+    props.eventModal
   );
 
   useEffect(() => {

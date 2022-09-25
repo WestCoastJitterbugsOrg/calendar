@@ -7,7 +7,7 @@ export const mockStore: EventStore = {
       id: "Lindy Hop",
     },
   },
-  eventModal: false,
+  eventModal: undefined,
   events: {
     "1": {
       id: "1",

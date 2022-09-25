@@ -16,21 +16,19 @@ export function GroupCheckbox(props: Props) {
   const catEvents = getCategoryEvents(props.category, events);
 
   const eventsShown = catEvents.filter((event) => event.showInCalendar).length;
-  const [globalCheckState, imgSrc] =
+  const [globalCheckState, imgSrc, alt] =
     eventsShown === 0
-      ? [false, unchecked]
+      ? [false, unchecked, "☐"]
       : eventsShown === props.category.events.length
-      ? [true, checked]
-      : ["mixed" as const, indeterminate];
+      ? [true, checked, "☑"]
+      : ["mixed" as const, indeterminate, "🞕"];
 
   const setAllChecked = (show: boolean) =>
     setEvents?.((prevEvents) => {
-      const newEvents: Record<string, Wcj.Event> = { ...prevEvents };
-
+      const newEvents = { ...prevEvents };
       for (const eventId of props.category.events) {
         newEvents[eventId].showInCalendar = show;
       }
-
       return newEvents;
     });
 
@@ -38,7 +36,7 @@ export function GroupCheckbox(props: Props) {
     <img
       data-testid="group-checkbox"
       role="checkbox"
-      className="bg-white"
+      className="bg-white text-2xl leading-4 text-black" // For looking good when alt
       aria-checked={globalCheckState}
       onClick={(e) => {
         e.stopPropagation();
@@ -47,6 +45,7 @@ export function GroupCheckbox(props: Props) {
       src={imgSrc}
       width={16}
       height={16}
+      alt={alt}
     />
   );
 }

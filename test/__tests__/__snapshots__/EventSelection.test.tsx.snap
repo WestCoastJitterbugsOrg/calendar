@@ -50,8 +50,9 @@ exports[`EventSelection Snapshot 1`] = `
             class="flex"
           >
             <img
+              alt="☑"
               aria-checked="true"
-              class="bg-white"
+              class="bg-white text-black text-2xl leading-4"
               data-testid="group-checkbox"
               height="16"
               role="checkbox"
@@ -77,7 +78,7 @@ exports[`EventSelection Snapshot 1`] = `
               data-testid="event-item"
             >
               <span
-                class="flex-grow cursor-pointer pr-2 leading-tight"
+                class="flex-grow cursor-pointer pr-2 leading-tight opacity-100"
               >
                 Grundkurs Lindy Hop
               </span>
@@ -89,6 +90,7 @@ exports[`EventSelection Snapshot 1`] = `
                 role="checkbox"
               >
                 <img
+                  alt="✔️"
                   height="16"
                   src="test-file-stub"
                   width="16"

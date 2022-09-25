@@ -10,7 +10,7 @@ module.exports = {
     "^.+\\.tsx?$": "ts-jest",
   },
   testRegex: "(/test/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-  testPathIgnorePatterns: ["/public/*"],
+  testPathIgnorePatterns: ["public", "dist", "build"],
   coveragePathIgnorePatterns: ["/tailwind.config.js"],
   testEnvironment: "jsdom",
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],

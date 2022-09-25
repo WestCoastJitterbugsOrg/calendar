@@ -12,12 +12,12 @@ export function EventSeriesModalContent(props: Props) {
 
   return (
     <div
-      className="h-full w-[min(900px,100vw)]"
+      className="h-full w-[min(900px,100dvw)]"
       data-testid="event-series-modal-content"
     >
       <div
         className="absolute right-5 top-5 cursor-pointer"
-        onClick={() => setEventModal?.(false)}
+        onClick={() => setEventModal?.(undefined)}
         data-testid="modal-close-button"
       >
         <img src={closeIcon} width="16" height="16" />

@@ -32,7 +32,11 @@ export function EventItem(props: Props) {
         className="flex flex-grow items-center"
         onClick={toggle}
       >
-        <span className="flex-grow cursor-pointer pr-2 leading-tight">
+        <span
+          className={`flex-grow cursor-pointer pr-2 leading-tight ${
+            props.event.showInCalendar ? "opacity-100" : "opacity-50"
+          }`}
+        >
           {props.event.title}
         </span>
         <span
@@ -43,7 +47,7 @@ export function EventItem(props: Props) {
           className="cursor-pointer"
         >
           {props.event.showInCalendar && (
-            <img src={checked} width={16} height={16} />
+            <img src={checked} width={16} height={16} alt="✔️" />
           )}
         </span>
       </div>
