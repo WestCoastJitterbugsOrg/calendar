@@ -52,7 +52,7 @@ exports[`EventSelection Snapshot 1`] = `
             <img
               alt="☑"
               aria-checked="true"
-              class="bg-white text-black text-2xl leading-4"
+              class="bg-white text-2xl leading-4 text-black"
               data-testid="group-checkbox"
               height="16"
               role="checkbox"
