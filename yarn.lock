@@ -1430,12 +1430,12 @@ __metadata:
   linkType: hard
 
 "@fullcalendar/list@npm:^5.11.0":
-  version: 5.11.2
-  resolution: "@fullcalendar/list@npm:5.11.2"
+  version: 5.11.3
+  resolution: "@fullcalendar/list@npm:5.11.3"
   dependencies:
-    "@fullcalendar/common": ~5.11.2
+    "@fullcalendar/common": ~5.11.3
     tslib: ^2.1.0
-  checksum: c89eff14c2e3a92dfdd7348bccfad0985d781aff225014ab958703bb67596c8b6277c0cafef7fdefb40405d429ad2941dcddd50bc729b5ef530244ae8ac0b81f
+  checksum: 976da49b12fbfbf19a37411b48e2ea334ae9150dedea4df98154d8240c00e9da5fead392a5be8a7af5c88dccc56e13796872645bd05b534cff7010a6a0596f06
   languageName: node
   linkType: hard
 

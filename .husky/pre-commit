@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-yarn tsc --project tsconfig.json --noEmit
+yarn tsc --project tsconfig.json --noEmit --skipLibCheck
 yarn lint-staged # lint-staged will also run tests related to staged files

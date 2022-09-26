@@ -2,12 +2,12 @@
   "compilerOptions": {
     "outDir": "dist",
     "allowJs": true,
-    "skipLibCheck": true,
     "esModuleInterop": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "ES2020",
+    "target": "ES6",
     "moduleResolution": "node",
     "jsx": "react-jsx",
     "sourceMap": true,
@@ -16,7 +16,10 @@
       "src/types",
       "node_modules/@types"
     ],
-    "types": ["jest", "node"],
+    "types": [
+      "jest",
+      "node"
+    ],
     "paths": {
       "@app/*": [
         "./src/*"
