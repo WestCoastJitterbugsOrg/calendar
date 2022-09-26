@@ -1,6 +1,7 @@
 import { ErrorViewer } from "@app/ErrorViewer";
 import { storeConsentCookie } from "@app/services/cookies";
 import * as ics from "@app/services/ics";
+import { Cogwork } from "@app/types/cogwork";
 import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
@@ -8,22 +9,18 @@ import App from "../../src/App";
 import { defaultEventData } from "../__mocks__/cwEvents";
 import { mockStore } from "../__mocks__/stateContext";
 
-type Global = typeof globalThis & {
-  cw_data?: typeof defaultEventData;
-};
-
 beforeEach(() => {
-  (global as Global).cw_data = defaultEventData;
+  global.cw_data = defaultEventData;
   document.cookie = "";
 });
 
 afterEach(() => {
-  delete (global as Global).cw_data;
+  delete global.cw_data;
 });
 
 it("Cookie header is shown by default", async () => {
   const renderResult = render(<App />);
-  const cookieHeader = await renderResult?.findByTestId("cookie-header");
+  const cookieHeader = await renderResult.findByTestId("cookie-header");
 
   expect(cookieHeader).toBeTruthy();
 });
@@ -40,9 +37,9 @@ it("Cookie header is hidden if there are cookies", () => {
 it("undefined data results in error", () => {
   const error = jest.spyOn(console, "error").mockImplementation();
   act(() => {
-    (global as Global).cw_data = {
+    global.cw_data = {
       events: {},
-    } as typeof defaultEventData;
+    } as Cogwork.Response;
   });
   const { baseElement } = render(<App />);
   expect(baseElement).toHaveTextContent("Error while loading data");

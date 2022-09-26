@@ -17,7 +17,6 @@ export function EventSeriesModal(props: Props) {
     // Code to prevent scrolling events getting triggered on the main page:
     if (eventModal) {
       previousOverflowStyle.current = rootHtmlElement.style.overflow;
-      // Hide root html element overflow when showing modal
       rootHtmlElement.style.overflow = "hidden";
     } else if (previousOverflowStyle?.current) {
       // When modal is closed, we either have to reapply the style that was before

@@ -5,8 +5,11 @@ export function initContext() {
   if (window.cw_error) {
     throw window.cw_error;
   }
+  if (!window.cw_data) {
+    throw "Data not loaded";
+  }
 
-  const response = asArray(window.cw_data.events.event);
+  const response = asArray(window.cw_data?.events.event);
 
   const cogworkEvents = response.filter(
     (event) => event.schedule?.occasions?.occasion != null
@@ -30,19 +33,19 @@ export function initContext() {
     // Add category if it hasn't been seen before,
     // and in any case make sure the event id is
     // added to the category
-    if (!Object.keys(categories).includes(event.category)) {
+    if (event.category in categories) {
+      categories[event.category].events.push(event.id);
+    } else {
       categories[event.category] = {
         id: event.category,
         events: [event.id],
       };
-    } else {
-      categories[event.category].events.push(event.id);
     }
   }
 
   return {
-    categories: categories,
-    events: events,
+    categories,
+    events,
   };
 }
 

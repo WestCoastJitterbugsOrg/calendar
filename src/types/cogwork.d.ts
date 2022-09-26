@@ -1,14 +1,9 @@
 export { Cogwork };
 
 declare global {
-  interface Window {
-    cw_error: WP_Error;
-    cw_data: Cogwork.Response;
-  }
+  var cw_error: WP_Error | undefined;
+  var cw_data: Cogwork.Response | undefined;
 }
-
-window.cw_error = window.cw_error || {};
-window.cw_data = window.cw_data || {};
 
 interface WP_Error {
   errors: {
