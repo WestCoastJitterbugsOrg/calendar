@@ -17,7 +17,7 @@ jobs:
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
       - name: Check types
-        run: yarn tsc --project tsconfig.json --noEmit
+        run: yarn tsc --project tsconfig.json --noEmit --skipLibCheck
 
   eslint:
     runs-on: ubuntu-latest
