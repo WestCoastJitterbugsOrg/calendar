@@ -6,7 +6,10 @@ appContainer?.appendChild(appTag);
 
 void import("./styles/index.css").then((style) => {
   const styleTag = document.createElement("style");
-  styleTag.innerHTML = style.default.toString();
+  styleTag.innerHTML = style.default.
+  toString(
+    
+  )
   appContainer.appendChild(styleTag);
 });
 

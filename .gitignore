@@ -7,6 +7,8 @@ dist
 .nyc_output
 coverage
 tsc_build
+.npm
+.eslintcache
 
 # production
 /build
@@ -18,9 +20,12 @@ tsc_build
 .env.test.local
 .env.production.local
 
+# logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+logs
+*.log
 
 /public/wordpress_data
 

@@ -1,0 +1,9 @@
+{
+	"plugins": ["./build"],
+	"config": {},
+	"env": {
+		"tests": {
+			"port": 3000
+		}
+	}
+}
