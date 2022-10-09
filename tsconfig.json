@@ -9,7 +9,7 @@
     "module": "ES2020",
     "target": "ES6",
     "moduleResolution": "node",
-    // "resolveJsonModule": true,
+    "resolveJsonModule": true,
     "jsx": "react-jsx",
     "sourceMap": true,
     "baseUrl": "./",
@@ -33,7 +33,6 @@
   },
   "include": [
     "test/**/*",
-    "src/**/*",
-    "./tailwind.config.js"
+    "src/**/*"
   ]
 }

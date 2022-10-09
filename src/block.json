@@ -1,16 +1,18 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "wcj/calendar",
+	"name": "cw-addons/cw-filter-calendar",
 	"version": "0.1.0",
+	"title": "Cw Filter Calendar",
 	"category": "widgets",
 	"icon": "calendar-alt",
 	"description": "Example block scaffolded with Create Block tool.",
 	"supports": {
 		"html": false
 	},
-	"textdomain": ".",
-	"editorScript": "file:./index.js",
+	"textdomain": "cwfiltercalendar",
+	"editorScript": "file:./index.tsx",
 	"editorStyle": "file:./index.css",
+	"viewScript": "file:./view.tsx",
 	"style": "file:./style-index.css"
 }

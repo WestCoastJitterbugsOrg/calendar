@@ -1,3 +1,4 @@
+import { WPElement } from '@wordpress/element/build-types';
 /**
  * Retrieves the translation of text.
  *
@@ -27,12 +28,14 @@ import './editor.scss';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  *
- * @return {WPElement} Element to render.
  */
-export default function Edit() {
+export default function Edit(): WPElement {
 	return (
-		<p { ...useBlockProps() }>
-			{ __( ' – hello from the editor!', '.' ) }
+		<p {...useBlockProps()}>
+			{__(
+				'Cw Filter Calendar - hello from the editor!',
+				'cwfiltercalendar'
+			)}
 		</p>
 	);
 }

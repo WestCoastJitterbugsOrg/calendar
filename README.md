@@ -1,35 +1,55 @@
-# About this project
+=== Cw Filter Calendar ===
+Contributors:      The WordPress Contributors
+Tags:              block
+Tested up to:      6.0
+Stable tag:        0.1.0
+License:           GPL-2.0-or-later
+License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
-This is a web calendar that fetches information from dans.se (or other CogWork API) 
-and allows users to filter on courses, dance styles and more. At the moment it's a 
-wordpress plugin that can be included on any page by using the shortcode `[wcjcal]`, 
-but it shouldn't be impossible to create a standalone PHP application.
+Example block scaffolded with Create Block tool.
 
-It's used by the Gothenburg swing dance association "WCJ" at https://wcj.se/kalender/. 
-Work is done to allow all clubs using CogWork to use it. 
+== Description ==
 
-# Contributing
+This is the long description. No limit, and you can use Markdown (as well as in the following sections).
 
-To get started, make sure you have Node.js >= 16.10 and [yarn](https://yarnpkg.com/getting-started/install) installed.
+For backwards compatibility, if this section is missing, the full length of the short description will be used, and
+Markdown parsed.
 
-Now, run `yarn`. This will install all dependencies needed to get you started.
+== Installation ==
 
-## Standalone local development environment
+This section describes how to install the plugin and get it working.
 
-There are no documented instructions to get this going yet. I might add it later.
+e.g.
 
-## Wordpress plugin
+1. Upload the plugin files to the `/wp-content/plugins/cwfiltercalendar` directory, or install the plugin through the WordPress plugins screen directly.
+1. Activate the plugin through the 'Plugins' screen in WordPress
 
-You can run the plugin locally or deploy it to https://wcj.se/, see below for the steps to run/deploy it. 
-When you have done that, go ahead and activate in the admin page, go to the settings page for WCJ Calendar and 
-type the organization's password. Then you can add it to a page by using the shortcode `[wcjcal]`.
 
-### Setting up a local wordpress development and deploying the plugin to it
+== Frequently Asked Questions ==
 
-Install docker and docker-compose. Run `yarn start:wordpress`. In another terminal, run `docker-compose up -d`. Go to http://localhost:8000/wp-admin/install.php and set up the wordpress installation 
-with the credentials found in docker-compose.yml.
+= A question that someone might have =
 
-### Production plugin deployment
+An answer to that question.
 
-If you want to deploy it to https://wcj.se, run `yarn build:prod` and copy the files from the build folder to the a 
-directory named wcjcal inside the wp-content directory on the server.
+= What about foo bar? =
+
+Answer to foo bar dilemma.
+
+== Screenshots ==
+
+1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
+the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
+directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
+(or jpg, jpeg, gif).
+2. This is the second screen shot
+
+== Changelog ==
+
+= 0.1.0 =
+* Release
+
+== Arbitrary section ==
+
+You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
+plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
+"installation." Arbitrary sections will be shown below the built-in sections outlined above.
