@@ -1,0 +1,46 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "extensions": {
+        "recommendations": [
+            "bradlc.vscode-tailwindcss",
+            "csstools.postcss",
+            "esbenp.prettier-vscode",
+            "rvest.vs-code-prettier-eslint",
+            "dbaeumer.vscode-eslint",
+            "firsttris.vscode-jest-runner",
+            "hbenl.vscode-test-explorer",
+            "kavod-io.vscode-jest-test-adapter",
+            "ms-azuretools.vscode-docker",
+            "xdebug.php-debug"
+        ]
+    },
+    "settings": {
+        "intelephense.environment.documentRoot": "cw-filter-calendar.php",
+        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+        "[php]": {
+            "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+        }
+    },
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "Listen for XDebug",
+                "type": "php",
+                "request": "launch",
+                "port": 9003,
+                "pathMappings": {
+                  "/var/www/html/wp-content/plugins/cw-filter-calendar": "${workspaceFolder}/"
+                }
+            }
+        ],
+    },
+    "tasks": {
+        "version": "2.0.0",
+        "command": "yarn wp-env start --xdebug"
+    }
+}

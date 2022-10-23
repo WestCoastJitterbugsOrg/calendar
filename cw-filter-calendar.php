@@ -6,12 +6,12 @@
  * Description:       Filterable calendar using data from cogwork
  * Version:           1.5.0-apha1
  * Requires at least: 5.9
- * Requires PHP:      7.0
+ * Requires PHP:      7.4
  * Author:            Jean-Philippe Green
  * Author URI:        https://github.com/PooSham
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       cwfiltercalendar
+ * Text Domain:       cw-filter-calendar
  *
  * @package           wcj
  */
@@ -49,6 +49,6 @@ function cwfiltercalendar_block_render_callback($attributes, $content, $block_in
 	 * Keeping the markup to be returned in a separate file is sometimes better, especially if there is very complicated markup.
 	 * All of passed parameters are still accessible in the file.
 	 */
-	require plugin_dir_path(__FILE__) . 'template.php';
+	require plugin_dir_path(__FILE__) . 'src/template.php';
 	return ob_get_clean();
 }

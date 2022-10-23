@@ -1,5 +1,4 @@
 # Wordpress files
-wp-env/
 .wp-env.override.json
 
 # Logs

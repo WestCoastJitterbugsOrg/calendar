@@ -3852,6 +3852,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@wordpress/browserslist-config@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "@wordpress/browserslist-config@npm:5.2.0"
+  checksum: 3cb316c230f9e03d384eac36bdd96f6a07a547f221222099b47a59e872688d31a57cfcdf381426f7650fb41f1ab5fb560c09e6eb7c3aa5c302ee61679af47901
+  languageName: node
+  linkType: hard
+
 "@wordpress/components@npm:^21.1.0":
   version: 21.1.0
   resolution: "@wordpress/components@npm:21.1.0"
@@ -6283,6 +6290,7 @@ __metadata:
     "@types/wordpress__blocks": ^11.0.7
     "@typescript-eslint/parser": ^5.39.0
     "@wordpress/block-editor": ^10.1.0
+    "@wordpress/browserslist-config": ^5.2.0
     "@wordpress/env": ^5.4.0
     "@wordpress/eslint-plugin": ^13.2.0
     "@wordpress/scripts": ^24.2.0

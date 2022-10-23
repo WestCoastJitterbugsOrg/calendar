@@ -3,6 +3,18 @@
 	"version": "1.5.0-apha.1",
 	"author": "Jean-Philippe Green",
 	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build",
+		"format": "wp-scripts format",
+		"lint": "yarn lint:js && yarn lint:css",
+		"lint:js": "wp-scripts lint-js",
+		"lint:css": "wp-scripts lint-style",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start",
+		"test:unit": "wp-scripts test-unit-js",
+		"wp-env": "wp-env"
+	},
 	"dependencies": {
 		"@fullcalendar/daygrid": "^5.11.3",
 		"@fullcalendar/interaction": "^5.11.3",
@@ -25,6 +37,7 @@
 		"@types/wordpress__block-editor": "^7.0.0",
 		"@types/wordpress__blocks": "^11.0.7",
 		"@typescript-eslint/parser": "^5.39.0",
+		"@wordpress/browserslist-config": "^5.2.0",
 		"@wordpress/env": "^5.4.0",
 		"@wordpress/eslint-plugin": "^13.2.0",
 		"@wordpress/scripts": "^24.2.0",
@@ -39,23 +52,14 @@
 		"stylelint-config-prettier": "^9.0.3",
 		"typescript": "^4.8.2"
 	},
-	"scripts": {
-		"build": "wp-scripts build",
-		"format": "wp-scripts format",
-		"lint": "yarn lint:js && yarn lint:css",
-		"lint:js": "wp-scripts lint-js",
-		"lint:css": "wp-scripts lint-style",
-		"packages-update": "wp-scripts packages-update",
-		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start",
-		"test:unit": "wp-scripts test-unit-js",
-		"wp-env": "cross-env WP_ENV_HOME=wp-env wp-env"
-	},
 	"lint-staged": {
 		"{src,test,public}/**/*.{js,jsx,ts,tsx}": [
 			"prettier --list-different",
 			"eslint"
 		]
 	},
+	"browserslist": [
+		"extends @wordpress/browserslist-config"
+	],
 	"packageManager": "yarn@3.2.3"
 }

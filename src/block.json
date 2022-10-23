@@ -10,7 +10,7 @@
 	"supports": {
 		"html": false
 	},
-	"textdomain": "cwfiltercalendar",
+	"textdomain": "cw-filter-calendar",
 	"editorScript": "file:./index.tsx",
 	"editorStyle": "file:./index.css",
 	"viewScript": "file:./view.tsx",
