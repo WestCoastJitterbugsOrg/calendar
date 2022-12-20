@@ -5,8 +5,8 @@
  * Plugin Name:       Cogwork Filter Calendar
  * Description:       Filterable calendar using data from cogwork
  * Version:           1.5.0-apha1
- * Requires at least: 5.9
- * Requires PHP:      7.4
+ * Requires at least: 5.0
+ * Requires PHP:      7.3
  * Author:            Jean-Philippe Green
  * Author URI:        https://github.com/PooSham
  * License:           GPL-2.0-or-later

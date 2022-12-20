@@ -4,8 +4,8 @@
         "es2020": true
     },
     "extends": [
-        "plugin:@wordpress/eslint-plugin/recommended",
-        "prettier"
+        "eslint:recommended",
+        "plugin:@wordpress/eslint-plugin/recommended"
     ],
     "ignorePatterns": [
         "build/**/*",
@@ -13,48 +13,14 @@
         "*config.js",
         "*.d.ts"
     ],
-    "overrides": [
-        {
-            "files": [
-                ".js",
-                ".jsx",
-                ".ts",
-                ".tsx"
-            ],
-            "rules": {
-                "@typescript-eslint/consistent-type-definitions": [
-                    "error",
-                    "interface"
-                ],
-                "eqeqeq": [
-                    "error",
-                    "smart"
-                ]
-            },
-            "parserOptions": {
-                "project": [
-                    "./tsconfig.json"
-                ],
-                "ecmaFeatures": {
-                    "jsx": true
-                },
-                "ecmaVersion": "latest",
-                "sourceType": "module"
-            },
-            "settings": {
-                "import/parsers": {
-                    "@typescript-eslint/parser": [
-                        ".ts",
-                        ".tsx"
-                    ]
-                },
-                "import/resolver": {
-                    "typescript": {}
-                },
-                "react": {
-                    "version": "detect"
-                }
-            }
-        }
-    ]
+    "rules": {
+        "@typescript-eslint/consistent-type-definitions": [
+            "error",
+            "interface"
+        ],
+        "eqeqeq": [
+            "error",
+            "smart"
+        ]
+    }
 }

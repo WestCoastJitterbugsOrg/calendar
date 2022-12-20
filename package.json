@@ -22,7 +22,7 @@
 		"@fullcalendar/react": "^5.11.2",
 		"@fullcalendar/timegrid": "^5.11.3",
 		"@popperjs/core": "^2.11.6",
-		"@wordpress/block-editor": "^10.1.0",
+		"@wordpress/block-editor": "^11.0.0",
 		"ics-js": "^0.10.2",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
@@ -36,6 +36,7 @@
 		"@types/react-modal": "^3.13.1",
 		"@types/wordpress__block-editor": "^7.0.0",
 		"@types/wordpress__blocks": "^11.0.7",
+		"@typescript-eslint/eslint-plugin": "^5.40.1",
 		"@typescript-eslint/parser": "^5.39.0",
 		"@wordpress/browserslist-config": "^5.2.0",
 		"@wordpress/env": "^5.4.0",
@@ -45,15 +46,17 @@
 		"cross-env": "^7.0.3",
 		"eslint": "^8.24.0",
 		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-import": "^2.26.0",
 		"husky": "^8.0.1",
 		"lint-staged": "^13.0.3",
+		"postcss": "^8.4.18",
 		"prettier": "^2.7.1",
 		"stylelint": "^14.13.0",
 		"stylelint-config-prettier": "^9.0.3",
-		"typescript": "^4.8.2"
+		"typescript": "~4.8.2"
 	},
 	"lint-staged": {
-		"{src,test,public}/**/*.{js,jsx,ts,tsx}": [
+		"{cw-filter-calendar,test,public}/**/*.{js,jsx,ts,tsx}": [
 			"prettier --list-different",
 			"eslint"
 		]

@@ -1,12 +1,12 @@
-import { StrictMode, lazy, Suspense } from "react";
-import { createRoot } from "react-dom/client";
-const App = lazy(() => import("./App"));
+import { StrictMode, lazy, Suspense } from 'react';
+import { createRoot } from 'react-dom/client';
+const App = lazy(() => import('./App'));
 
 try {
-	const wcjCalElement = document.getElementById("wcjcal");
+	const wcjCalElement = document.getElementById('wcjcal');
 
 	if (wcjCalElement == null) {
-		throw Error("Could not find #wcjcal element in DOM");
+		throw Error('Could not find #wcjcal element in DOM');
 	} else {
 		const root = createRoot(wcjCalElement);
 
