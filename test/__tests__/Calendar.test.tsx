@@ -14,7 +14,7 @@ jest.mock("@popperjs/core", () => {
   };
 });
 
-it("Click event in calendar opens popper", () => {
+it("Click event in calendar opens popper", async () => {
   jest.useFakeTimers();
 
   const initialDate = mockStore.events["1"].occasions[0].start;
@@ -29,7 +29,7 @@ it("Click event in calendar opens popper", () => {
     ".fc-event-title-container"
   );
 
-  act(() => {
+  await act(() => {
     fcEventContainer?.click();
     jest.runAllTimers();
   });
@@ -37,7 +37,7 @@ it("Click event in calendar opens popper", () => {
   expect(createPopper).toHaveBeenCalledTimes(1);
 });
 
-it("Can open list view", () => {
+it("Can open list view", async () => {
   const initialDate = mockStore.events["1"].occasions[0].start;
 
   const { baseElement } = render(
@@ -50,7 +50,7 @@ it("Can open list view", () => {
     ".fc-listEternal-button"
   );
 
-  act(() => {
+  await act(() => {
     fcListEternalButton?.click();
   });
 

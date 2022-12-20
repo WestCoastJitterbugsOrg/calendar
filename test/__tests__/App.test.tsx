@@ -25,8 +25,8 @@ it("Cookie header is shown by default", async () => {
   expect(cookieHeader).toBeTruthy();
 });
 
-it("Cookie header is hidden if there are cookies", () => {
-  act(() => {
+it("Cookie header is hidden if there are cookies", async () => {
+  await act(() => {
     storeConsentCookie();
   });
   const renderResult = render(<App />);
@@ -34,9 +34,9 @@ it("Cookie header is hidden if there are cookies", () => {
   expect(cookieHeader).toBeNull();
 });
 
-it("undefined data results in error", () => {
+it("undefined data results in error", async () => {
   const error = jest.spyOn(console, "error").mockImplementation();
-  act(() => {
+  await act(() => {
     global.cw_data = {
       events: {},
     } as Cogwork.Response;
@@ -48,14 +48,14 @@ it("undefined data results in error", () => {
   error.mockReset();
 });
 
-it("Clicking on Download calls exportICS", () => {
+it("Clicking on Download calls exportICS", async () => {
   const { getByTestId } = render(<App />);
 
   const exportICS = jest.spyOn(ics, "exportICS").mockImplementation();
 
   const downloadButton = getByTestId("download-ics-button")
     .children[0] as HTMLButtonElement;
-  act(() => {
+  await act(() => {
     downloadButton.click();
   });
 

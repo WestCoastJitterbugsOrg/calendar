@@ -35,14 +35,14 @@ it("EventModal clicking on close button closes modal", async () => {
   );
   const modalCloseButton = await findByTestId("modal-close-button");
 
-  act(() => {
+  await act(() => {
     modalCloseButton.click();
   });
 
   expect(baseElement.querySelector(".ReactModalPortal")).toBeEmptyDOMElement();
 });
 
-it("EventModal clicking escape closes modal", () => {
+it("EventModal clicking escape closes modal", async () => {
   const eventModal = Object.values(mockStore.events)[0].id;
 
   const { baseElement } = render(
@@ -55,7 +55,7 @@ it("EventModal clicking escape closes modal", () => {
     </StateWrapper>
   );
 
-  act(() => {
+  await act(() => {
     fireEvent.keyDown(document.activeElement || document.body, {
       keyCode: 27, // Escape
     });
