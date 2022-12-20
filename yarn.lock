@@ -2443,7 +2443,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^5.30.0":
+"@typescript-eslint/parser@npm:^5.47.0":
   version: 5.47.0
   resolution: "@typescript-eslint/parser@npm:5.47.0"
   dependencies:
@@ -10200,7 +10200,7 @@ __metadata:
     "@types/react-modal": ^3.13.1
     "@types/tailwindcss": ^3.1.0
     "@typescript-eslint/eslint-plugin": ^5.30.0
-    "@typescript-eslint/parser": ^5.30.0
+    "@typescript-eslint/parser": ^5.47.0
     autoprefixer: ^10.4.7
     copy-webpack-plugin: ^11.0.0
     css-loader: ^6.7.1
