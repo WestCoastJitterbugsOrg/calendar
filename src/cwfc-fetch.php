@@ -1,6 +1,6 @@
 <?php
 
-function wcjcal_get_events()
+function cwfc_get_events()
 {
 
 	$options = get_option('cwfc_options');

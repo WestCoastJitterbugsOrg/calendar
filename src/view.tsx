@@ -3,12 +3,12 @@ import { createRoot } from 'react-dom/client';
 const App = lazy(() => import('./App'));
 
 try {
-	const wcjCalElement = document.getElementById('wcjcal');
+	const cwfcElement = document.getElementById('cwfc');
 
-	if (wcjCalElement == null) {
-		throw Error('Could not find #wcjcal element in DOM');
+	if (cwfcElement == null) {
+		throw Error('Could not find #cwfc element in DOM');
 	} else {
-		const root = createRoot(wcjCalElement);
+		const root = createRoot(cwfcElement);
 
 		root.render(
 			<StrictMode>

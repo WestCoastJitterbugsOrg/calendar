@@ -32,10 +32,7 @@ import './editor.scss';
 export default function Edit(): WPElement {
 	return (
 		<p {...useBlockProps()}>
-			{__(
-				'Cw Filter Calendar - hello from the editor!',
-				'cwfiltercalendar'
-			)}
+			{__('Cw Filter Calendar - hello from the editor!', 'cwfc')}
 		</p>
 	);
 }

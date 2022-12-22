@@ -23,16 +23,16 @@
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function cwfiltercalendar_block_init()
+function cwfc_block_init()
 {
 	register_block_type(
 		__DIR__ . '/build',
 		[
-			'render_callback' => 'cwfiltercalendar_block_render_callback'
+			'render_callback' => 'cwfc_block_render_callback'
 		]
 	);
 }
-add_action('init', 'cwfiltercalendar_block_init');
+add_action('init', 'cwfc_block_init');
 
 
 /**
@@ -42,7 +42,7 @@ add_action('init', 'cwfiltercalendar_block_init');
  * @param string   $content        Rendered block output. ie. <InnerBlocks.Content />.
  * @param WP_Block $block_instance The instance of the WP_Block class that represents the block being rendered.
  */
-function cwfiltercalendar_block_render_callback($attributes, $content, $block_instance)
+function cwfc_block_render_callback($attributes, $content, $block_instance)
 {
 	ob_start();
 	/**
