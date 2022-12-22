@@ -13,6 +13,7 @@
 		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start",
 		"test:unit": "wp-scripts test-unit-js",
+		"setup-env": "wp-env start --xdebug",
 		"wp-env": "wp-env"
 	},
 	"dependencies": {
@@ -43,7 +44,6 @@
 		"@wordpress/eslint-plugin": "^13.2.0",
 		"@wordpress/scripts": "^24.2.0",
 		"@wordpress/stylelint-config": "^21.1.0",
-		"cross-env": "^7.0.3",
 		"eslint": "^8.24.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-import": "^2.26.0",
@@ -52,12 +52,6 @@
 		"stylelint": "^14.13.0",
 		"stylelint-config-prettier": "^9.0.3",
 		"typescript": "~4.8.2"
-	},
-	"lint-staged": {
-		"{cw-filter-calendar,test,public}/**/*.{js,jsx,ts,tsx}": [
-			"prettier --list-different",
-			"eslint"
-		]
 	},
 	"browserslist": [
 		"extends @wordpress/browserslist-config"
