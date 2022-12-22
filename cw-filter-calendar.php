@@ -31,6 +31,7 @@ function cwfc_block_init()
 			'render_callback' => 'cwfc_block_render_callback'
 		]
 	);
+	require_once(__DIR__ . '/src/cwfc-settings.php');
 }
 add_action('init', 'cwfc_block_init');
 

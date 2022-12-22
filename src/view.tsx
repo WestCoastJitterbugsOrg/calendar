@@ -22,7 +22,7 @@ try {
 	// eslint-disable-next-line no-console
 	console.error(
 		`
-  An error occured in WCJ Calendar!
+  An error occured in CogWork filter calendar!
   Please contact it@wcj.se with the error message:
   `,
 		error

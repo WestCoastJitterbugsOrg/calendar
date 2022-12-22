@@ -24,7 +24,7 @@ Create a file called `.wp-env.override.json` and fill it with the following:
 The organization code/key is for CogWork/dans.se/minaaktiviteter.se. If you don't know it, contact the IT responsible for your 
 organization and explain why you should be trusted. For WCJ (West Coast Jitterbugs), contact it@wcj.se.
 
-Run `yarn start-env`. This will host Wordpress on http://localhost:8888.
+Run `yarn setup-env`. This will host Wordpress on http://localhost:8888.
 
 By running `yarn start`, the plugin should become available in the wordpress installation. Go to http://localhost:8888/wp-admin 
 to make sure. The default user is `admin` and the password is `password`. 
