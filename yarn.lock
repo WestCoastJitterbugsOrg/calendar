@@ -1427,13 +1427,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fullcalendar/list@npm:^5.11.3":
-  version: 5.11.3
-  resolution: "@fullcalendar/list@npm:5.11.3"
-  dependencies:
-    "@fullcalendar/common": ~5.11.3
-    tslib: ^2.1.0
-  checksum: 976da49b12fbfbf19a37411b48e2ea334ae9150dedea4df98154d8240c00e9da5fead392a5be8a7af5c88dccc56e13796872645bd05b534cff7010a6a0596f06
+"@fullcalendar/list@npm:^6.0.2":
+  version: 6.0.2
+  resolution: "@fullcalendar/list@npm:6.0.2"
+  peerDependencies:
+    "@fullcalendar/core": ~6.0.2
+  checksum: 05472acace27616109165eec895f17ce7682a995a0c15cfe856c9bf3b584afda2bbfdb19003d3de35dc4268ad1bfbadce867a5f37b3afc59009f9d9ff25c8d48
   languageName: node
   linkType: hard
 
@@ -10187,7 +10186,7 @@ __metadata:
     "@babel/preset-react": ^7.18.6
     "@fullcalendar/daygrid": ^5.11.0
     "@fullcalendar/interaction": ^5.11.3
-    "@fullcalendar/list": ^5.11.3
+    "@fullcalendar/list": ^6.0.2
     "@fullcalendar/react": ^5.11.1
     "@fullcalendar/timegrid": ^5.11.3
     "@popperjs/core": ^2.11.5
