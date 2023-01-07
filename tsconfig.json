@@ -7,14 +7,13 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "ES2020",
-    "target": "ES6",
+    "target": "ESNext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "sourceMap": true,
     "baseUrl": "./",
     "typeRoots": [
-      "src/types",
       "node_modules/@types"
     ],
     "types": [
@@ -23,7 +22,7 @@
     ],
     "paths": {
       "@app/*": [
-        "./src/*"
+        "src/app/*"
       ]
     },
     "lib": [

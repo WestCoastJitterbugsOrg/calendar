@@ -15,9 +15,8 @@
         ]
     },
     "settings": {
-        "eslint.format.enable": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
         "intelephense.environment.documentRoot": "cw-filter-calendar.php",
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
         "[php]": {
             "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
         },
@@ -94,7 +93,9 @@
             "zip",
             "zlib",
             "wordpress"
-        ]
+        ],
+        "typescript.tsdk": "node_modules/typescript/lib",
+        "editor.formatOnSave": false
     },
     "launch": {
         "version": "0.2.0",
@@ -105,8 +106,20 @@
                 "request": "launch",
                 "port": 9003,
                 "pathMappings": {
-                  "/var/www/html/wp-content/plugins/cw-filter-calendar": "${workspaceFolder}/"
+                    "/var/www/html/wp-content/plugins/cw-filter-calendar": "${workspaceFolder}/"
                 }
+            },
+            {
+                "name": "Debug JS with Firefox",
+                "type": "firefox",
+                "request": "launch",
+                "url": "http://localhost:8888",
+                "pathMappings": [
+                    {
+                        "url": "http://localhost:8888/wp-content/plugins/cw-filter-calendar",
+                        "path": "${workspaceFolder}/"
+                    }
+                ]
             }
         ],
     },

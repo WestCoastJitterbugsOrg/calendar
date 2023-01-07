@@ -1,37 +1,40 @@
-import { StrictMode, lazy, Suspense } from 'react';
-import { createRoot } from 'react-dom/client';
-const App = lazy(() => import('./App'));
+import CW from './app/types/cogwork';
+import { initContext } from './app/services/cogwork';
+import { initApp } from './app';
 
-try {
-	const cwfcElement = document.getElementById('cwfc');
+/**
+ * Listen for a custom event
+ */
 
-	if (cwfcElement == null) {
-		throw Error('Could not find #cwfc element in DOM');
-	} else {
-		const root = createRoot(cwfcElement);
+window.addEventListener(
+	'cw-filter-events-loaded',
+	(event: Event) => {
+		if (!(event instanceof CustomEvent)) {
+			throw Error('Expected event to be an instance of CustomEvent');
+		}
 
-		root.render(
-			<StrictMode>
-				<Suspense fallback={<SpinLoader />}>
-					<App />
-				</Suspense>
-			</StrictMode>
-		);
-	}
-} catch (error) {
-	// eslint-disable-next-line no-console
-	console.error(
-		`
-  An error occured in CogWork filter calendar!
-  Please contact it@wcj.se with the error message:
-  `,
-		error
-	);
-}
-function SpinLoader() {
-	return (
-		<div className="flex h-screen items-center justify-center bg-light">
-			<div className="h-16 w-16 animate-spin rounded-[50%] border-8 border-solid border-t-primary-alt border-r-secondary border-b-primary border-l-secondary-alt"></div>
-		</div>
-	);
-}
+		try {
+			const element = document.getElementById('cwfc-wrapper');
+			const response = event.detail as CW.OkResponse | null;
+			if (
+				element == null ||
+				!(element instanceof Element) ||
+				response == null
+			) {
+				throw Error('Could not load calendar!');
+			}
+			const data = initContext(response);
+			initApp(element, data);
+		} catch (error) {
+			// eslint-disable-next-line no-console
+			console.error(
+				`
+                    An error occured in CW Filter Calendar!
+                    Please contact it@wcj.se with the error message:
+                `,
+				error
+			);
+		}
+	},
+	{ once: true }
+);

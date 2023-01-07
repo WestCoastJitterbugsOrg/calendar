@@ -16,6 +16,9 @@
  * @package           wcj
  */
 
+require_once __DIR__ . '/src/cwfc-settings.php';
+require_once __DIR__ . '/src/cwfc-fetch.php';
+
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
  * Behind the scenes, it registers also all assets so they can be enqueued
@@ -31,10 +34,9 @@ function cwfc_block_init()
 			'render_callback' => 'cwfc_block_render_callback'
 		]
 	);
-	require_once(__DIR__ . '/src/cwfc-settings.php');
 }
-add_action('init', 'cwfc_block_init');
 
+add_action('init', 'cwfc_block_init');
 
 /**
  * This function is called when the block is being rendered on the front end of the site
@@ -45,11 +47,7 @@ add_action('init', 'cwfc_block_init');
  */
 function cwfc_block_render_callback($attributes, $content, $block_instance)
 {
-	ob_start();
-	/**
-	 * Keeping the markup to be returned in a separate file is sometimes better, especially if there is very complicated markup.
-	 * All of passed parameters are still accessible in the file.
-	 */
-	require plugin_dir_path(__FILE__) . 'src/template.php';
-	return ob_get_clean();
+	require_once plugin_dir_path(__FILE__) . 'src/template.php';
+
+	return '<div id="cwfc-wrapper"></div>';
 }

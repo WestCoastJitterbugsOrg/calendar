@@ -1,26 +1,56 @@
 {
+    "root": true,
     "env": {
         "browser": true,
         "es2020": true
     },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": [
+            "./tsconfig.json"
+        ]
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "import"
+    ],
     "extends": [
         "eslint:recommended",
-        "plugin:@wordpress/eslint-plugin/recommended"
+        "plugin:@wordpress/eslint-plugin/recommended-with-formatting",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:@typescript-eslint/strict",
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime",
+        "plugin:import/recommended",
+        "plugin:import/typescript",
+        "prettier"
     ],
     "ignorePatterns": [
         "build/**/*",
-        "coverage/**/*",
-        "*config.js",
-        "*.d.ts"
+        "coverage/**/*"
     ],
     "rules": {
         "@typescript-eslint/consistent-type-definitions": [
-            "error",
-            "interface"
+            "warn",
+            "type"
         ],
         "eqeqeq": [
             "error",
             "smart"
         ]
+    },
+    "settings": {
+        "import/parsers": {
+            "@typescript-eslint/parser": [
+                ".ts",
+                ".tsx"
+            ]
+        },
+        "import/resolver": {
+            "typescript": {
+                "alwaysTryTypes": true
+            }
+        }
     }
 }

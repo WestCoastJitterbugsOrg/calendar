@@ -5,7 +5,6 @@
 	"version": "0.1.0",
 	"title": "Cw Filter Calendar",
 	"category": "widgets",
-	"icon": "calendar-alt",
 	"description": "Example block scaffolded with Create Block tool.",
 	"supports": {
 		"html": false
@@ -14,5 +13,5 @@
 	"editorScript": "file:./index.tsx",
 	"editorStyle": "file:./index.css",
 	"viewScript": "file:./view.tsx",
-	"style": "file:./style-index.css"
+	"attributes": {}
 }
