@@ -5,5 +5,5 @@ type AppProps = {
 };
 
 export default function App(props: AppProps) {
-	return <div>{props.data?.categories}</div>;
+	return <div>{Object.values(props.data.categories).map((cat) => cat.id)}</div>;
 }

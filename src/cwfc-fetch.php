@@ -29,7 +29,7 @@ function cwfc_get_events()
 		$args
 	);
 	if (is_wp_error($response)) {
-		return $response->get_error_message();
+		return $response;
 	} else {
 		$body = wp_remote_retrieve_body($response);
 		$xml = simplexml_load_string($body, null, LIBXML_NOCDATA);

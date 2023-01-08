@@ -28,7 +28,8 @@
     ],
     "ignorePatterns": [
         "build/**/*",
-        "coverage/**/*"
+        "coverage/**/*",
+        "*.config.js"
     ],
     "rules": {
         "@typescript-eslint/consistent-type-definitions": [

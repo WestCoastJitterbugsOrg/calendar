@@ -8,6 +8,9 @@ To get started, make sure you have the following installed:
 
 I recommend using VS Code and installing the workspace recommendations.
 
+Make sure the root directory where this code resides is named `cw-filter-calendar`,
+otherwise it will not work
+
 Now run `yarn`, this will install all dependencies. 
 
 Create a file called `.wp-env.override.json` and fill it with the following:
