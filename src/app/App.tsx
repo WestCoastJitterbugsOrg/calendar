@@ -2,6 +2,9 @@ import { StateWrapper } from './store/StateWrapper';
 import * as WCJ from "./types/wcj";
 import { EventSelection } from './event-selection/EventSelection';
 import { Calendar } from './calendar/Calendar';
+import { Header } from './Header';
+import { Footer } from './Footer';
+import { EventSeriesModal } from './shared/EventModal/EventSeriesModal';
 
 
 type Props = WCJ.Context;
@@ -10,7 +13,7 @@ export default function App({ categories, events }: Props) {
 	return (
 		<StateWrapper categories={categories} events={events}>
 			<div className="min-h-[calc(100dvh-128px)]">
-				{/* <Header /> */}
+				<Header />
 				<div className="flex flex-row flex-wrap items-stretch bg-white">
 					<aside className="flex max-h-[calc(100dvh-128px)] w-96 flex-grow flex-col">
 						<EventSelection />
@@ -22,9 +25,9 @@ export default function App({ categories, events }: Props) {
 						<Calendar />
 					</main>
 				</div>
-				{/* <Footer /> */}
+				<Footer />
 			</div>
-			{/* <EventSeriesModal /> */}
+			<EventSeriesModal />
 		</StateWrapper>
 	);
 }
