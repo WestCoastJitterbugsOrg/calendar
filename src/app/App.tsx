@@ -1,6 +1,7 @@
 import { StateWrapper } from './store/StateWrapper';
 import * as WCJ from "./types/wcj";
 import { EventSelection } from './event-selection/EventSelection';
+import { Calendar } from './calendar/Calendar';
 
 
 type Props = WCJ.Context;
@@ -18,7 +19,7 @@ export default function App({ categories, events }: Props) {
 						className="min-h-[calc(100dvh-128px)] min-w-[calc(100%-384px)] flex-shrink-0 flex-grow"
 						data-testid="calendar-wrapper"
 					>
-						{/* <Calendar /> */}
+						<Calendar />
 					</main>
 				</div>
 				{/* <Footer /> */}
