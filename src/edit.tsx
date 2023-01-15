@@ -13,7 +13,38 @@ import { __ } from '@wordpress/i18n';
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import { useBlockProps } from '@wordpress/block-editor';
+import App from './app/App';
+import { WCJ } from './app/types';
 
+const now = new Date();
+const unixStart = new Date().setHours(now.getHours() + 1, 0);
+const startDate = new Date(unixStart);
+const unixEnd = new Date(unixStart).setHours(startDate.getHours() + 2);
+const endDate = new Date(unixEnd);
+
+const mockContext: WCJ.Context = {
+	categories: {
+		'Test Category': {
+			id: 'Test Category',
+			events: ['testEvent'],
+		},
+	},
+	events: {
+		testEvent: {
+			id: 'testEvent',
+			category: 'testCategory',
+			occasions: [
+				{
+					start: startDate,
+					end: endDate,
+				},
+			],
+			registrationUrl: 'https://example.com/',
+			title: 'Test Event',
+			showInCalendar: true,
+		},
+	},
+};
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -25,7 +56,7 @@ import { useBlockProps } from '@wordpress/block-editor';
 export default function Edit(): WPElement {
 	return (
 		<p {...useBlockProps()}>
-			{__('Cw Filter Calendar - hello from the editor!', 'cwfc')}
+			<App {...mockContext} />
 		</p>
 	);
 }

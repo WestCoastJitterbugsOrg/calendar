@@ -13,8 +13,6 @@ export type Event = {
 	place?: string;
 	price?: string;
 	instructors?: string;
-	/* colors in hex rgb */
-	color: string;
 	/* state */
 	showInCalendar?: boolean;
 };

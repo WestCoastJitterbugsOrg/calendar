@@ -62,8 +62,6 @@ export function Calendar(props: Props) {
           new Date(lastOccasion)
         )}
         buttonText={{
-          next: "▶",
-          prev: "◀",
           today: "Today",
           month: "Month",
           week: "Week",
@@ -86,7 +84,7 @@ export function Calendar(props: Props) {
         eventDisplay="block"
         allDaySlot={false}
         eventSources={shownWcjEvents.map(wcj2fcEvent)}
-        eventClassNames={["bg-primary"]}
+        eventBackgroundColor="var(--cw-color-primary, #AB2814)"
         eventBorderColor="transparent"
         eventClick={popperHandler.handleEventClick}
         selectable={false}

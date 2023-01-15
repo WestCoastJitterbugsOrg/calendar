@@ -3,7 +3,7 @@
 @import "@fullcalendar/list/main.css";
 @import "@fullcalendar/timegrid/main.css";
 
-.wcjcal-fc {
+#cw-filter-calendar-root .wcjcal-fc {
   /* #region CSS Variables  */
   /* The default values for these variables can be found on the following links:
   //

@@ -1,35 +1,37 @@
-#wcj-tooltip[data-popper-placement^="top"] > #wcj-arrow {
-  @apply -bottom-1;
-}
+#cw-filter-calendar-root {
+	#wcj-tooltip[data-popper-placement^='top'] > #wcj-arrow {
+		@apply -bottom-1;
+	}
 
-#wcj-tooltip[data-popper-placement^="bottom"] > #wcj-arrow {
-  @apply -top-1;
-}
+	#wcj-tooltip[data-popper-placement^='bottom'] > #wcj-arrow {
+		@apply -top-1;
+	}
 
-#wcj-tooltip[data-popper-placement^="left"] > #wcj-arrow {
-  @apply -right-1;
-}
+	#wcj-tooltip[data-popper-placement^='left'] > #wcj-arrow {
+		@apply -right-1;
+	}
 
-#wcj-tooltip[data-popper-placement^="right"] > #wcj-arrow {
-  @apply -left-1;
-}
+	#wcj-tooltip[data-popper-placement^='right'] > #wcj-arrow {
+		@apply -left-1;
+	}
 
-.button {
-  @apply flex cursor-pointer items-center rounded-full
+	.button {
+		@apply flex cursor-pointer items-center rounded-full
    border-0 bg-primary font-bold
    text-white no-underline transition-colors;
 
-  @apply px-4 py-2 text-base leading-4;
+		@apply px-4 py-2 text-base leading-4;
 
-  &:hover {
-    @apply brightness-[1.185];
-  }
+		&:hover {
+			@apply brightness-[1.185];
+		}
 
-  &.sm {
-    @apply px-3 py-1 text-sm leading-4;
-  }
+		&.sm {
+			@apply px-3 py-1 text-sm leading-4;
+		}
 
-  &.lg {
-    @apply px-6 py-3;
-  }
+		&.lg {
+			@apply px-6 py-3;
+		}
+	}
 }
