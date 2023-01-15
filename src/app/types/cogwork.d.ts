@@ -1,4 +1,4 @@
-import { MaybeArray } from '.';
+import { MaybeArray } from './utils';
 
 export type Event = {
 	'@attributes': { eventId: string };

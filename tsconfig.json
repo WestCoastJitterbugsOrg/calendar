@@ -2,36 +2,24 @@
   "compilerOptions": {
     "outDir": "dist",
     "allowJs": true,
-    "esModuleInterop": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "ES2020",
+    "module": "ES2022",
     "target": "ESNext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "sourceMap": true,
     "baseUrl": "./",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "types": [
-      "jest",
-      "node"
-    ],
-    "paths": {
-      "@app/*": [
-        "src/app/*"
-      ]
-    },
     "lib": [
       "ES2020",
       "dom"
     ]
   },
   "include": [
+    "src/**/*",
     "test/**/*",
-    "src/**/*"
+    "./tailwind.config.js",
   ]
 }

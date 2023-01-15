@@ -31,6 +31,7 @@ function cwfc_block_init()
 	register_block_type(__DIR__ . '/build', [
 		'render_callback' => 'cwfc_block_render_callback',
 	]);
+	wp_enqueue_style('cwfc-style', plugin_dir_url(__FILE__) . '/build/view.css');
 }
 
 add_action('init', 'cwfc_block_init');
@@ -50,8 +51,7 @@ function cwfc_block_render_callback($attributes, $content, $block_instance)
 	return '<div id="cwfc-wrapper"></div>
 		<script>
 		const event = new CustomEvent("cw-filter-events-loaded", { 
-			detail: ' .
-				$events .
+			detail: ' . $events .
 		'});
 		window.dispatchEvent(event);
 		</script>';

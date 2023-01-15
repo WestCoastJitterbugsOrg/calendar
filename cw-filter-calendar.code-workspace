@@ -95,7 +95,10 @@
             "wordpress"
         ],
         "typescript.tsdk": "node_modules/typescript/lib",
-        "editor.formatOnSave": false
+        "editor.formatOnSave": false,
+        "[xml]": {
+            "editor.defaultFormatter": "DotJoshJohnson.xml"
+        }
     },
     "launch": {
         "version": "0.2.0",

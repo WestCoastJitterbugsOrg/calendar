@@ -1,9 +1,29 @@
-import { initContext } from './services/cogwork';
+import { StateWrapper } from './store/StateWrapper';
+import * as WCJ from "./types/wcj";
+import { EventSelection } from './event-selection/EventSelection';
 
-type AppProps = {
-	data: ReturnType<typeof initContext>;
-};
 
-export default function App(props: AppProps) {
-	return <div>{Object.values(props.data.categories).map((cat) => cat.id)}</div>;
+type Props = WCJ.Context;
+
+export default function App({ categories, events }: Props) {
+	return (
+		<StateWrapper categories={categories} events={events}>
+			<div className="min-h-[calc(100dvh-128px)]">
+				{/* <Header /> */}
+				<div className="flex flex-row flex-wrap items-stretch bg-white">
+					<aside className="flex max-h-[calc(100dvh-128px)] w-96 flex-grow flex-col">
+						<EventSelection />
+					</aside>
+					<main
+						className="min-h-[calc(100dvh-128px)] min-w-[calc(100%-384px)] flex-shrink-0 flex-grow"
+						data-testid="calendar-wrapper"
+					>
+						{/* <Calendar /> */}
+					</main>
+				</div>
+				{/* <Footer /> */}
+			</div>
+			{/* <EventSeriesModal /> */}
+		</StateWrapper>
+	);
 }

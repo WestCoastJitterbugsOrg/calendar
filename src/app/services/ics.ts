@@ -1,6 +1,6 @@
-import Wcj from '@app/types/wcj';
+import * as WCJ from '../types/wcj';
 
-export async function wcj2ics(events: Wcj.Event[]) {
+export async function wcj2ics(events: WCJ.Event[]) {
 	const { VCALENDAR, VEVENT } = await import('ics-js');
 	const calendar = new VCALENDAR();
 	calendar.addProp('PRODID', 'WCJ personal calendar');
@@ -24,7 +24,7 @@ export async function wcj2ics(events: Wcj.Event[]) {
 	return calendar.toString();
 }
 
-export async function exportICS(events: Record<string, Wcj.Event>) {
+export async function exportICS(events: Record<string, WCJ.Event>) {
 	const selectedEvents = Object.values(events).filter(
 		(event) => event.showInCalendar
 	);

@@ -1,6 +1,7 @@
 import { StrictMode, lazy, Suspense } from 'react';
 import { render } from 'react-dom';
-import WCJ from './types/wcj';
+import * as WCJ from './types/wcj';
+import './styles/index.css';
 
 const App = lazy(() => import('./App'));
 
@@ -8,7 +9,7 @@ export function initApp(el: Element, data: WCJ.Context) {
 	render(
 		<StrictMode>
 			<Suspense fallback={<SpinLoader />}>
-				<App data={data} />
+				<App {...data} />
 			</Suspense>
 		</StrictMode>,
 		el

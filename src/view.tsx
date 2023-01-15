@@ -1,4 +1,4 @@
-import CW from './app/types/cogwork';
+import * as CW from './app/types/cogwork';
 import { initContext } from './app/services/cogwork';
 import { initApp } from './app';
 
