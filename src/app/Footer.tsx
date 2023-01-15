@@ -13,7 +13,7 @@ export function Footer() {
     <footer className="flex flex-wrap items-center justify-between bg-dark p-2">
       <div className="flex-grow" data-testid="download-ics-button">
         <Button onClick={() => void exportICS(events)}>
-          Download <img src={fileDownload} className="h-4 w-4" />
+          Export iCal <img src={fileDownload} className="h-4 w-4" />
         </Button>
       </div>
       <a

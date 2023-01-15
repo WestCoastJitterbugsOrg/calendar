@@ -7,19 +7,23 @@ export async function wcj2ics(events: WCJ.Event[]) {
 	calendar.addProp('VERSION', 1);
 
 	for (const event of events) {
-		for (const occ of event.occasions) {
-			const vevent = new VEVENT();
-			vevent.addProp('UID');
-			vevent.addProp('DTSTART', new Date(occ.start));
-			vevent.addProp('DTEND', new Date(occ.end));
-			vevent.addProp('DTSTAMP', new Date());
-			vevent.addProp('SUMMARY', event.title);
-			vevent.addProp('DESCRIPTION', event.description);
-			vevent.addProp('URL', event.registrationUrl);
-			vevent.addProp('LOCATION', event.place);
-			vevent.addProp('CATEGORIES', [event.category]);
-			calendar.addComponent(vevent);
-		}
+		const vevent = new VEVENT();
+		vevent.addProp('UID');
+		const occasions = event.occasions
+			.map((occ) => `${occ.start.toISOString()}/${occ.end.toISOString()}`)
+			.join(',\n');
+		vevent.addProp(
+			'DTSTART',
+			new Date(Math.min(...event.occasions.map((occ) => occ.start.getTime())))
+		);
+		vevent.addProp('RDATE', occasions, { VALUE: 'PERIOD' });
+		vevent.addProp('DTSTAMP', new Date());
+		vevent.addProp('SUMMARY', event.title);
+		vevent.addProp('DESCRIPTION', event.description);
+		vevent.addProp('URL', event.registrationUrl);
+		vevent.addProp('LOCATION', event.place);
+		vevent.addProp('CATEGORIES', [event.category]);
+		calendar.addComponent(vevent);
 	}
 	return calendar.toString();
 }
@@ -34,7 +38,7 @@ export async function exportICS(events: Record<string, WCJ.Event>) {
 	const url = URL.createObjectURL(file);
 	const a = document.createElement('a');
 	a.href = url;
-	a.download = 'wcj-events.ics';
+	a.download = 'cw-events.ics';
 	document.body.appendChild(a);
 	a.click();
 	return setTimeout(() => {

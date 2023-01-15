@@ -13,7 +13,7 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       cw-filter-calendar
  *
- * @package           wcj
+ * @package           cw-filter-calendar
  */
 
 require_once __DIR__ . '/src/cwfc-settings.php';
