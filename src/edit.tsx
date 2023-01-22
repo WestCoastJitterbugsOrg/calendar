@@ -16,6 +16,10 @@ import { useBlockProps } from '@wordpress/block-editor';
 import App from './app/App';
 import { WCJ } from './app/types';
 
+// Setup start and stop dates for an example event to be shown in the edit view.
+// The calendar will automatically go to the current date, 
+// so we take the next closest full hour as start and take two hours later as end date.
+// It should be immediately visible in the calendar. 
 const now = new Date();
 const unixStart = new Date().setHours(now.getHours() + 1, 0);
 const startDate = new Date(unixStart);
@@ -55,8 +59,8 @@ const mockContext: WCJ.Context = {
  */
 export default function Edit(): WPElement {
 	return (
-		<p {...useBlockProps()}>
+		<div {...useBlockProps()}>
 			<App {...mockContext} />
-		</p>
+		</div>
 	);
 }

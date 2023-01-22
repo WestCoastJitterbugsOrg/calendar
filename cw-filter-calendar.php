@@ -45,6 +45,8 @@ add_action('init', 'cwfc_block_init');
  */
 function cwfc_block_render_callback($attributes, $content, $block_instance)
 {
+	wp_enqueue_style('cwfc-style', plugin_dir_url(__FILE__) . '/build/view.css');
+
 	$result = cwfc_get_events();
 	$events = json_encode($result);
 

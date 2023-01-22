@@ -13,5 +13,6 @@
 	"editorScript": "file:./index.tsx",
 	"editorStyle": "file:./editor.css",
 	"viewScript": "file:./view.tsx",
+	"style": "file:./view.scss",
 	"attributes": {}
 }

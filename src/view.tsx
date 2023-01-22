@@ -1,10 +1,18 @@
 import * as CW from './app/types/cogwork';
 import { initContext } from './app/services/cogwork';
 import { initApp } from './app';
+import { appContainer, appTag } from './app-container';
+import './view.scss';
 
-/**
- * Listen for a custom event
- */
+function isOkResponse(detail: unknown): detail is CW.OkResponse {
+	return detail != null && typeof detail === 'object' && 'events' in detail;
+}
+
+function isOkResponseEvent(
+	event: CustomEvent
+): event is CustomEvent<CW.OkResponse> {
+	return event instanceof CustomEvent && isOkResponse(event.detail);
+}
 
 window.addEventListener(
 	'cw-filter-events-loaded',
@@ -15,16 +23,14 @@ window.addEventListener(
 
 		try {
 			const element = document.getElementById('cwfc-wrapper');
-			const response = event.detail as CW.OkResponse | null;
-			if (
-				element == null ||
-				!(element instanceof Element) ||
-				response == null
-			) {
+			if (!(element instanceof Element) || !isOkResponseEvent(event)) {
 				throw Error('Could not load calendar!');
 			}
-			const data = initContext(response);
-			initApp(element, data);
+
+			element.appendChild(appContainer);
+
+			const data = initContext(event.detail);
+			initApp(appTag, data);
 		} catch (error) {
 			// eslint-disable-next-line no-console
 			console.error(
