@@ -1,5 +1,6 @@
 .wp-block-cw-addons-cw-filter-calendar,
-#cwfc-wrapper {
+#cwfc-wrapper,
+#wcj-tooltip {
 	--tw-border-opacity: 1;
 	border-color: rgb(0 0 0 / var(--tw-border-opacity));
 	border-style: solid;
@@ -1527,46 +1528,7 @@
 			padding-top: 16px;
 		}
 	}
-	.container {
-		width: 100%;
-	}
-	@media (min-width: 640px) {
-		.container {
-			max-width: 640px;
-		}
-	}
-	@media (min-width: 768px) {
-		.container {
-			max-width: 768px;
-		}
-	}
-	@media (min-width: 1024px) {
-		.container {
-			max-width: 1024px;
-		}
-	}
-	@media (min-width: 1280px) {
-		.container {
-			max-width: 1280px;
-		}
-	}
-	@media (min-width: 1536px) {
-		.container {
-			max-width: 1536px;
-		}
-	}
-	#wcj-tooltip[data-popper-placement^='top'] > #wcj-arrow {
-		bottom: -4px;
-	}
-	#wcj-tooltip[data-popper-placement^='bottom'] > #wcj-arrow {
-		top: -4px;
-	}
-	#wcj-tooltip[data-popper-placement^='left'] > #wcj-arrow {
-		right: -4px;
-	}
-	#wcj-tooltip[data-popper-placement^='right'] > #wcj-arrow {
-		left: -4px;
-	}
+
 	button.button,
 	a.button,
 	button.button:focus,
@@ -1648,6 +1610,9 @@
 	}
 	.right-auto {
 		right: auto;
+	}
+	.right-0 {
+		right: 0;
 	}
 	.bottom-auto {
 		bottom: auto;
@@ -2013,16 +1978,7 @@
 	.opacity-95 {
 		opacity: 0.95;
 	}
-	.shadow-2xl {
-		--tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-		--tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
-		box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-			var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-	}
-	.shadow-dark {
-		--tw-shadow-color: var(--cw-color-dark, #1d1d1b);
-		--tw-shadow: var(--tw-shadow-colored);
-	}
+
 	.outline-none {
 		outline: 2px solid transparent;
 		outline-offset: 2px;
@@ -2100,4 +2056,34 @@
 			padding-left: 16px;
 		}
 	}
+}
+
+#wcj-tooltip[data-popper-placement^='top'] > #wcj-arrow {
+	bottom: -4px;
+}
+#wcj-tooltip[data-popper-placement^='bottom'] > #wcj-arrow {
+	top: -4px;
+}
+#wcj-tooltip[data-popper-placement^='left'] > #wcj-arrow {
+	right: -4px;
+}
+#wcj-tooltip[data-popper-placement^='right'] > #wcj-arrow {
+	left: -4px;
+}
+
+#wcj-tooltip {
+	z-index: 50;
+	min-width: 300px;
+	max-width: 350px;
+	white-space: pre;
+	border-radius: 6px;
+	background-color: var(--cw-color-dark, #1d1d1b);
+	padding: 8px;
+	line-height: 1.5rem;
+	color: white;
+	opacity: 0.95;
+	--tw-shadow-color: var(--cw-color-dark, #1d1d1b);
+	--tw-shadow: var(--tw-shadow-colored);
+	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+		var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
