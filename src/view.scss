@@ -1529,55 +1529,7 @@
 		}
 	}
 
-	button.button,
-	a.button,
-	button.button:focus,
-	a.button:focus,
-	button.button:hover,
-	a.button:hover,
-	button.button:focus-within,
-	a.button:focus-within button.button::-moz-focus-inner,
-	a.button::-moz-focus-inner {
-		--tw-text-opacity: 1;
-		align-items: center;
-		background-color: var(--cw-color-primary, #ab2814);
-		border-radius: 9999px;
-		border-width: 0;
-		color: rgb(255 255 255 / var(--tw-text-opacity));
-		cursor: pointer;
-		display: flex;
-		font-size: 16px;
-		font-weight: 700;
-		line-height: 16px;
-		padding: 8px 16px;
-		-webkit-text-decoration-line: none;
-		text-decoration-line: none;
-		transition-duration: 0.15s;
-		transition-property: color, background-color, border-color, fill, stroke,
-			-webkit-text-decoration-color;
-		transition-property: color, background-color, border-color,
-			text-decoration-color, fill, stroke;
-		transition-property: color, background-color, border-color,
-			text-decoration-color, fill, stroke, -webkit-text-decoration-color;
-		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-	}
-	.button:hover {
-		--tw-brightness: brightness(1.185);
-		-webkit-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast)
-			var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert)
-			var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-		filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast)
-			var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert)
-			var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-	}
-	.button.sm {
-		font-size: 14px;
-		line-height: 16px;
-		padding: 4px 12px;
-	}
-	.button.lg {
-		padding: 12px 24px;
-	}
+	
 	.visible {
 		visibility: visible;
 	}

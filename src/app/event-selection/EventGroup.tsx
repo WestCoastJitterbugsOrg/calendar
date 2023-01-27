@@ -6,11 +6,11 @@ import { EventGroupHeader } from './EventGroupHeader';
 
 type Props = {
 	category: string;
-}
+};
 
 export function EventGroup(props: Props) {
 	const [expanded, setExpanded] = useState(false);
-	const { categories, events } = useContext(stateContext);
+	const { categories, events, setEvents } = useContext(stateContext);
 
 	const category = categories[props.category];
 	const catEvents = getCategoryEvents(category, events);
@@ -20,6 +20,8 @@ export function EventGroup(props: Props) {
 			<EventGroupHeader
 				category={category}
 				expanded={expanded}
+				events={events}
+				setEvents={setEvents}
 				toggleExpanded={() => setExpanded((e) => !e)}
 			/>
 
