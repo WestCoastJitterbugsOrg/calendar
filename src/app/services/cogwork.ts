@@ -54,7 +54,6 @@ function cogwork2wcjEvent(event: CW.Event): WCJ.Event {
 				: asArray(event.schedule.occasions.occasion)
 						.map(cogwork2WcjOccasions)
 						.filter((x): x is WCJ.Occasion => x != null),
-		color: '',
 		description: event.longdescription,
 		registrationUrl: asArray(event.registration)[0]?.url,
 		place: event.place,
