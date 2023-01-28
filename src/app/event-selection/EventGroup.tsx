@@ -3,6 +3,7 @@ import { getCategoryEvents } from '../store/utils';
 import { useContext, useState } from 'react';
 import { EventItem } from './EventItem';
 import { EventGroupHeader } from './EventGroupHeader';
+import { default as eventGroupStyle } from './EventGroup.module.scss';
 
 type Props = {
 	category: string;
@@ -16,7 +17,7 @@ export function EventGroup(props: Props) {
 	const catEvents = getCategoryEvents(category, events);
 
 	return (
-		<div className="bg-light" role="group">
+		<div className={eventGroupStyle.eventGroup} role="group">
 			<EventGroupHeader
 				category={category}
 				expanded={expanded}
@@ -25,11 +26,7 @@ export function EventGroup(props: Props) {
 				toggleExpanded={() => setExpanded((e) => !e)}
 			/>
 
-			<div
-				className={`overflow-hidden bg-light ${
-					expanded ? 'max-h-full' : 'max-h-0'
-				}`}
-			>
+			<div className={eventGroupStyle.panel + (expanded ? ' ' + eventGroupStyle.expanded : '')}>
 				{catEvents.map((event) => (
 					<EventItem event={event} key={event.id} />
 				))}

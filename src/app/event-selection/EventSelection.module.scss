@@ -1,0 +1,17 @@
+.actionButtons {
+	display: flex;
+	height: 64px;
+	flex-shrink: 0;
+	flex-direction: row;
+	align-items: center;
+	gap: 16px;
+	justify-content: center;
+	background-color: var(--cw-color-dark);
+}
+
+.eventGroupList {
+	width: 100%;
+	flex-grow: 1;
+	overflow: auto;
+	background-color: white;
+}

@@ -5,6 +5,7 @@ import plusIcon from '../assets/plus.svg';
 import StateContext, { CategoryStore, EventStore } from '../store/model';
 import { getCategoryEvents } from '../store/utils';
 import { WCJ } from '../types';
+import { default as eventGroupHeaderStyle } from './EventGroupHeader.module.scss';
 
 type Props = {
 	category: CategoryStore;
@@ -30,18 +31,19 @@ export function EventGroupHeader(props: Props) {
 	return (
 		// eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
 		<div
-			className="flex min-h-[32px] cursor-pointer flex-row items-center bg-secondary p-2 font-bold text-white"
+			className={eventGroupHeaderStyle.headerWrapper}
 			onClick={props.toggleExpanded}
 		>
-			<div className="flex flex-grow items-center">
+			<div className={eventGroupHeaderStyle.headerText}>
 				{/* eslint-disable-next-line jsx-a11y/alt-text*/}
 				<img
-					className={`h-4 w-4 flex-shrink-0 transform transition duration-200 ${
-						props.expanded ? 'rotate-45' : ''
-					}`}
+					className={
+						eventGroupHeaderStyle.expandIcon +
+						(props.expanded ? ' ' + eventGroupHeaderStyle.rotate : '')
+					}
 					src={plusIcon}
 				/>
-				<span className="ml-2">{props.category.id}</span>
+				<span>{props.category.id}</span>
 			</div>
 
 			<div className="flex">
@@ -50,7 +52,7 @@ export function EventGroupHeader(props: Props) {
 					data-testid="group-checkbox"
 					// eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
 					role="checkbox"
-					className="bg-white text-2xl leading-4 text-black" // For looking good when alt
+					className={eventGroupHeaderStyle.checkbox}
 					aria-checked={state}
 					onClick={(e) => {
 						e.stopPropagation();
