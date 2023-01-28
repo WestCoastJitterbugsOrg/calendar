@@ -1,0 +1,26 @@
+.root {
+	min-height: calc(100dvh - 128px);
+}
+
+.contentWrapper {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: stretch;
+	background: white;
+}
+
+.eventSelection {
+	display: flex;
+	max-height: calc(100dvh - 128px);
+	width: 384px;
+	flex-grow: 1;
+	flex-direction: column;
+}
+
+.calendar {
+	min-height: calc(100dvh - 128px);
+	min-width: calc(100% - 384px);
+	flex-shrink: 0;
+	flex-grow: 1;
+}

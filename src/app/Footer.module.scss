@@ -1,0 +1,38 @@
+.footer {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-items: center;
+	background-color: var(--cw-color-dark);
+	padding: 8px;
+}
+
+.downloadIcsButton {
+	flex-grow: 1;
+}
+
+.downloadIcsImg {
+	height: 16px;
+	width: 16px;
+}
+
+.githubWrapper {
+	display: flex;
+	flex-grow: 0;
+	align-items: center;
+	text-decoration-line: none;
+}
+
+.githubText {
+	max-width: 120px;
+	text-align: right;
+	font-size: 12px;
+	line-height: 16px;
+	font-weight: bold;
+	color: white;
+}
+
+.githubLogo {
+    padding-left: 8px;
+    padding-right: 8px;
+}

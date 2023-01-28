@@ -1,0 +1,14 @@
+.header {
+    display: flex;
+    min-height: 64px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    border: 8px solid red;
+    background-color: var(--cw-color-dark);
+    padding: 16px;
+}
+
+.headerText {
+    color: white;
+}
