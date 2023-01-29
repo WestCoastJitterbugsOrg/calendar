@@ -34,5 +34,3 @@ module.exports = {
 		rules: wpRules,
 	},
 };
-
-console.log(module.exports.module);
