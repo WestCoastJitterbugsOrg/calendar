@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { canStoreSelection, storeConsentCookie } from './services/cookies';
 import { Button } from './shared/Buttons/Button';
-import { default as headerStyle } from './Header.module.scss';
+import style from './Header.module.scss';
 
 export function Header() {
 	const [accepted, accept] = useState(false);
@@ -15,8 +15,8 @@ export function Header() {
 		return <></>;
 	}
 	return (
-		<header data-testid="cookie-header" className={headerStyle.header}>
-			<div className={headerStyle.headerText}>
+		<header data-testid="cookie-header" className={style.header}>
+			<div className={style.headerText}>
 				<p>
 					This calendar can remember which events are selected between sessions.
 				</p>

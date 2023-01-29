@@ -8,7 +8,7 @@ import infoCircle from '../assets/info-circle.svg';
 import { useContext } from 'react';
 import { stateContext } from '../store/StateWrapper';
 import * as WCJ from '../types/wcj';
-import { default as style } from './EventItem.module.scss';
+import style from './EventItem.module.scss';
 
 type Props = {
 	event: WCJ.Event;

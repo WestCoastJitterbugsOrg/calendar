@@ -4,6 +4,7 @@
 	inset: 0;
 	background-color: rgba(0, 0, 0, 0.75);
 }
+
 .modal {
 	position: absolute;
 	top: 50%;
@@ -20,6 +21,7 @@
 	padding-top: 32px;
 	background-color: var(--cw-color-dark);
 }
+
 .content {
 	height: 100%;
 	width: min(900px, 100dvw);
@@ -33,9 +35,9 @@
 }
 
 .iframe {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    border: none;
-    outline: none;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	border: none;
+	outline: none;
 }

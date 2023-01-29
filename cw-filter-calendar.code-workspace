@@ -100,7 +100,19 @@
         "editor.formatOnSave": false,
         "[xml]": {
             "editor.defaultFormatter": "DotJoshJohnson.xml"
-        }
+        },
+        "stylelint.snippet": [
+            "css",
+            "less",
+            "postcss",
+            "scss"
+        ],
+        "stylelint.validate": [
+            "css",
+            "less",
+            "postcss",
+            "scss"
+        ]
     },
     "launch": {
         "version": "0.2.0",

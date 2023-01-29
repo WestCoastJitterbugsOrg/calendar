@@ -7,33 +7,26 @@
 	background-color: var(--cw-color-dark);
 	padding: 8px;
 	line-height: 24px;
-	color: white;
+	color: #fff;
 	opacity: 0.95;
 	box-shadow: 0 0 16px 16px var(--cw-color-dark);
-
-	&[data-popper-placement^='top'] > .arrow {
-		bottom: -4px;
-	}
-	&[data-popper-placement^='bottom'] > .arrow {
-		top: -4px;
-	}
 }
 
 .title {
 	margin-bottom: 4px;
 	white-space: normal;
-	font-weight: bold;
+	font-weight: 700;
 }
 
 .date {
-    margin-bottom: 8px;
+	margin-bottom: 8px;
 }
 
 .about {
 	margin-bottom: 8px;
 	cursor: pointer;
 	text-align: center;
-	font-weight: bold;
+	font-weight: 700;
 	color: var(--cw-color-secondary-alt);
 	text-decoration: underline;
 }
@@ -45,7 +38,7 @@
 	width: 8px;
 	background: inherit;
 
-	&:before {
+	&::before {
 		content: '';
 		visibility: visible;
 		position: absolute;
@@ -53,5 +46,13 @@
 		width: 8px;
 		transform: rotate(45deg);
 		background-color: var(--cw-color-dark);
+	}
+
+	.tooltip[data-popper-placement^='top'] > & {
+		bottom: -4px;
+	}
+
+	.tooltip[data-popper-placement^='bottom'] > & {
+		top: -4px;
 	}
 }

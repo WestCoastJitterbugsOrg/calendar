@@ -18,7 +18,7 @@
 	height: 16px;
 	width: 16px;
 	flex: none;
-	color: black;
+	color: #000;
 	opacity: 50%;
 
 	.content:hover & {
@@ -31,6 +31,7 @@
 	padding-right: 8px;
 	line-height: 1.25;
 	opacity: 50%;
+
 	&.showInCalendar {
 		opacity: 100%;
 	}

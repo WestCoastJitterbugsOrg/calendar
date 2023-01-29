@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { EventInfoTable } from '../../shared/EventInfoTable/EventInfoTable';
-import { EventApi, formatRange } from '@fullcalendar/react';
+import { EventApi, formatRange } from '@fullcalendar/core';
 import { WCJ } from 'src/app/types';
-import { default as style } from './CalendarPopper.module.scss';
+import style from './CalendarPopper.module.scss';
 
 type Props = {
 	event: EventApi;

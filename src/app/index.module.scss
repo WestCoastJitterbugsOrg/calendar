@@ -1,0 +1,32 @@
+
+.spinLoader {
+	display: flex;
+	height: 100vh;
+	align-items: center;
+	justify-content: center;
+	background: var(--cw-color-light);
+}
+
+.spinner {
+	height: 64px;
+	width: 64px;
+	animation: spin 1s linear infinite;
+
+	@keyframes spin {
+
+		from {
+			transform: rotate(0deg);
+		}
+
+		to {
+			transform: rotate(360deg);
+		}
+	}
+	border-radius: 50%;
+	border: 8px solid #000;
+
+	border-top-color: var(--cw-color-primary-alt);
+	border-right-color: var(--cw-color-secondary);
+	border-bottom-color: var(--cw-color-primary);
+	border-left-color: var(--cw-color-secondary-alt);
+}

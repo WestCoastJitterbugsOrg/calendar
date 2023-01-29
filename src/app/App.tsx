@@ -5,7 +5,7 @@ import { Calendar } from './calendar/Calendar';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { EventSeriesModal } from './shared/EventModal/EventSeriesModal';
-import { default as appStyle } from './App.module.scss';
+import appStyle from './App.module.scss';
 
 type Props = WCJ.Context;
 

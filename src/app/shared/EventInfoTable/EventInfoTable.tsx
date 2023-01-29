@@ -1,6 +1,6 @@
 import { EventOverviewTableRow } from './EventInfoTableRow';
 import * as WCJ from '../../types/wcj';
-import { default as style } from './EventInfoTable.module.scss';
+import style from './EventInfoTable.module.scss';
 
 type Props = {
 	event: WCJ.Event;

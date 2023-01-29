@@ -1,5 +1,5 @@
 import { stateContext } from '../../store/StateWrapper';
-import { EventApi, EventClickArg } from '@fullcalendar/react';
+import { EventApi, EventClickArg } from '@fullcalendar/core';
 import { createPopper, Instance } from '@popperjs/core';
 import { useContext, useRef } from 'react';
 import { render } from 'react-dom';
@@ -12,7 +12,7 @@ export function usePopperHandler() {
 	const { setEventModal } = useContext(stateContext);
 
 	const root = document.body;
-	let tooltipWrapper: HTMLElement;
+	let tooltipWrapper: HTMLElement | null;
 	let popperIsActive = false;
 
 	function createTooltip(event: EventApi, target: HTMLElement) {
@@ -34,9 +34,12 @@ export function usePopperHandler() {
 		target.firstElementChild?.classList.add(...highlightClass);
 
 		setTimeout(() => {
+			if (!(tooltipWrapper?.firstElementChild instanceof HTMLElement)) {
+				return;
+			}
 			popper.current = createPopper(
 				target,
-				tooltipWrapper.firstElementChild as HTMLElement,
+				tooltipWrapper.firstElementChild,
 				{
 					placement: 'bottom',
 					strategy: 'absolute',

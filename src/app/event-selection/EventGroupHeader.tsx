@@ -5,7 +5,7 @@ import plusIcon from '../assets/plus.svg';
 import StateContext, { CategoryStore, EventStore } from '../store/model';
 import { getCategoryEvents } from '../store/utils';
 import { WCJ } from '../types';
-import { default as eventGroupHeaderStyle } from './EventGroupHeader.module.scss';
+import style from './EventGroupHeader.module.scss';
 
 type Props = {
 	category: CategoryStore;
@@ -31,28 +31,28 @@ export function EventGroupHeader(props: Props) {
 	return (
 		// eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
 		<div
-			className={eventGroupHeaderStyle.headerWrapper}
+			className={style.headerWrapper}
 			onClick={props.toggleExpanded}
 		>
-			<div className={eventGroupHeaderStyle.headerText}>
+			<div className={style.headerText}>
 				{/* eslint-disable-next-line jsx-a11y/alt-text*/}
 				<img
 					className={
-						eventGroupHeaderStyle.expandIcon +
-						(props.expanded ? ' ' + eventGroupHeaderStyle.rotate : '')
+						style.expandIcon +
+						(props.expanded ? ' ' + style.rotate : '')
 					}
 					src={plusIcon}
 				/>
 				<span>{props.category.id}</span>
 			</div>
 
-			<div className="flex">
+			<div>
 				{/* eslint-disable-next-line jsx-a11y/click-events-have-key-events*/}
 				<img
 					data-testid="group-checkbox"
 					// eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
 					role="checkbox"
-					className={eventGroupHeaderStyle.checkbox}
+					className={style.checkbox}
 					aria-checked={state}
 					onClick={(e) => {
 						e.stopPropagation();

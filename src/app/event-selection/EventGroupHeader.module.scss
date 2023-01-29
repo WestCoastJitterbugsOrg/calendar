@@ -6,8 +6,8 @@
 	align-items: center;
 	background-color: var(--cw-color-secondary);
 	padding: 8px;
-	font-weight: bold;
-	color: white;
+	font-weight: 700;
+	color: #fff;
 }
 
 .headerText {
@@ -21,19 +21,21 @@
 	width: 16px;
 	flex-shrink: 0;
 	transition: transform 0.1s linear;
-    margin-right: 8px;
+	margin-right: 8px;
+
 	&.rotate {
 		transform: rotate(45deg);
 	}
 }
 
 .checkbox {
-    // Some styling to make it ok when checkbox falls back on alt
-    background-color: white;
-    font-size: 24px;
-    line-height: 16px;
-    color: black;
-    &::before {
-        transform: translateX(-1px);
-    }
+	// Some styling to make it ok when checkbox falls back on alt
+	background-color: #fff;
+	font-size: 24px;
+	line-height: 16px;
+	color: #000;
+
+	&::before {
+		transform: translateX(-1px);
+	}
 }

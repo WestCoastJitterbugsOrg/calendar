@@ -2,10 +2,10 @@ import {
 	EventApi,
 	EventMountArg,
 	formatDate,
-	VerboseFormattingArg,
 	ViewMountArg,
-} from '@fullcalendar/react';
-import { ViewOptions } from './CalendarViewConfig';
+} from '@fullcalendar/core';
+import { VerboseFormattingArg } from '@fullcalendar/core/internal';
+import { ViewOptions } from 'src/app/types/fc';
 
 function byStartTime(a: EventApi, b: EventApi) {
 	if (a.start == null) {
@@ -108,7 +108,7 @@ function listDaySideFormat(args: VerboseFormattingArg) {
 	);
 }
 
-export function createListEternal(start: Date, end: Date): ViewOptions {
+export function createListView(start: Date, end: Date): ViewOptions {
 	return {
 		type: 'list',
 		listDaySideFormat,

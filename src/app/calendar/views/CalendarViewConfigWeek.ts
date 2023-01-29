@@ -1,5 +1,5 @@
-import { formatDate, FormatterInput } from "@fullcalendar/react";
-import { ViewOptions } from "./CalendarViewConfig";
+import { formatDate, FormatterInput } from "@fullcalendar/core";
+import { ViewOptions } from "src/app/types/fc";
 
 const titleFormat: FormatterInput = (args) =>
   `Week ${formatDate(args.date.marker, { week: "numeric" })}, 

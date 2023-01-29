@@ -1,5 +1,5 @@
 import { MaybeArray } from '../../types/utils';
-import { default as btnStyle } from './Button.module.scss';
+import style from './Button.module.scss';
 
 type Props = {
 	size?: 'sm' | 'lg';
@@ -11,7 +11,7 @@ export function Button(props: Props) {
 	return (
 		<button
 			type="button"
-			className={`${btnStyle.button} ${props.size === 'sm' ? btnStyle.sm : btnStyle.lg}`}
+			className={`${style.button} ${props.size === 'sm' ? style.sm : style.lg}`}
 			onClick={props.onClick}
 		>
 			{props.children}

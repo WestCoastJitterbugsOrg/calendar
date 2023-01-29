@@ -1,6 +1,7 @@
 import { StrictMode, lazy, Suspense } from 'react';
 import { render } from 'react-dom';
 import * as WCJ from './types/wcj';
+import style from './index.module.scss';
 
 const App = lazy(() => import('./App'));
 
@@ -17,8 +18,8 @@ export function initApp(el: Element, data: WCJ.Context) {
 
 function SpinLoader() {
 	return (
-		<div className="spinLoader">
-			<div className="spinner"></div>
+		<div className={style.spinLoader}>
+			<div className={style.spinner}></div>
 		</div>
 	);
 }

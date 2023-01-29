@@ -4,7 +4,7 @@ import { WPElement } from '@wordpress/element/build-types';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
-import { __ } from '@wordpress/i18n';
+// import { __ } from '@wordpress/i18n';
 
 /**
  * React hook that is used to mark the block wrapper element.

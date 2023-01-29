@@ -1,4 +1,4 @@
-import { default as style } from './EventInfoTable.module.scss';
+import style from './EventInfoTable.module.scss';
 
 type Props = {
 	title: string;
