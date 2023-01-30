@@ -11,8 +11,8 @@
 	},
 	"textdomain": "cw-filter-calendar",
 	"editorScript": "file:./index.tsx",
-	"editorStyle": "file:./editor.css",
+	"editorStyle": "file:./index.css",
 	"viewScript": "file:./view.tsx",
-	"style": "file:./view.scss",
+	"style": "file:./view.css",
 	"attributes": {}
 }

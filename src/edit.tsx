@@ -17,7 +17,7 @@ import App from './app/App';
 import { WCJ } from './app/types';
 
 // Setup start and stop dates for an example event to be shown in the edit view.
-// The calendar will automatically go to the current date, 
+// The calendar will automatically go to the current date,
 // so we take the next closest full hour as start and take two hours later as end date.
 // This should assure that the event is visible when the calendar has loaded
 const now = new Date();
@@ -59,7 +59,7 @@ const mockContext: WCJ.Context = {
  */
 export default function Edit(): WPElement {
 	return (
-		<div {...useBlockProps()}>
+		<div {...useBlockProps()} >
 			<App {...mockContext} />
 		</div>
 	);
