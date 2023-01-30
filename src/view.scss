@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap');
+
 :root {
 	--cw-color-dark: #1d1d1b;
 	--cw-color-light: #fffaf2;
@@ -8,7 +10,11 @@
 }
 
 .wp-block-cw-addons-cw-filter-calendar,
-#cwfc-wrapper {
+#cwfc-wrapper,
+#wcj-tooltip {
+	font-family: Raleway, ui-sans-serif, system-ui;
+	font-size: 16px;
+
 	* {
 		box-sizing: border-box;
 	}

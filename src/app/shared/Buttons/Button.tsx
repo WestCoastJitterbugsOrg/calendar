@@ -11,7 +11,9 @@ export function Button(props: Props) {
 	return (
 		<button
 			type="button"
-			className={`${style.button} ${props.size === 'sm' ? style.sm : style.lg}`}
+			className={`${style.button} ${
+				props.size == null ? '' : style[props.size]
+			}`}
 			onClick={props.onClick}
 		>
 			{props.children}

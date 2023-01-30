@@ -3,13 +3,13 @@
 	min-width: 300px;
 	max-width: 350px;
 	white-space: pre;
-	border-radius: 16px;
+	border-radius: 6px;
 	background-color: var(--cw-color-dark);
 	padding: 8px;
 	line-height: 24px;
 	color: #fff;
 	opacity: 0.95;
-	box-shadow: 0 0 16px 16px var(--cw-color-dark);
+	box-shadow: var(--cw-color-dark) 0 25px 50px -12px;
 }
 
 .title {

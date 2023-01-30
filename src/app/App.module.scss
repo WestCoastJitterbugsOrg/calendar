@@ -1,12 +1,7 @@
 .root {
-	border-color: #000;
-	border-style: solid;
-	border-width: 1px;
+	border: 1px solid #000;
 	display: block;
-	font-family: Raleway, ui-sans-serif, system-ui;
-	font-size: 16px;
 	line-height: 24px;
-	line-height: 1;
 	min-height: calc(100dvh - 128px);
 }
 
