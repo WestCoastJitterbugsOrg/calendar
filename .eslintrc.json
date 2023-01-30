@@ -1,5 +1,13 @@
 {
     "root": true,
+    "overrides": [
+        {
+            "files": [
+                "./src/**/*",
+                "./test/**/*"
+            ]
+        }
+    ],
     "env": {
         "browser": true,
         "es2020": true
