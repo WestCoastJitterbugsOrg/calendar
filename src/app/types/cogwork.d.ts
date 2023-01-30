@@ -19,7 +19,7 @@ export type Event = {
 		base: string;
 	};
 	instructors?: { combinedTitle: string };
-}
+};
 
 export type Schedule = {
 	occasions?: {
@@ -29,27 +29,29 @@ export type Schedule = {
 	startTime?: string;
 	endDate?: string;
 	endTime?: string;
-}
+};
 
 export type Occasion = {
 	startDateTime?: string;
 	endDateTime?: string;
-}
+};
 
-export type Response = {
-	type: 'error',
-	data: ErrorResponse
-} | {
-	type: 'ok',
-	data: OkResponse
-}
+export type Response =
+	| {
+			type: 'error';
+			data: ErrorResponse;
+	  }
+	| {
+			type: 'ok';
+			data: OkResponse;
+	  };
 
 export type ErrorResponse = {
-	error: unknown
-}
+	error: unknown;
+};
 
 export type OkResponse = {
 	events: {
 		event: MaybeArray<Event>;
 	};
-}
+};

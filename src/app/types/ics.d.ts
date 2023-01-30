@@ -17,7 +17,7 @@ type IVCalendar = {
 	toString(): string;
 	toBlob(): Blob;
 	toBase64(): string;
-}
+};
 
 type IVEvent = {
 	/**
@@ -34,7 +34,7 @@ type IVEvent = {
 		props?: Record<string, unknown>,
 		skipTransformer?: boolean
 	): void;
-}
+};
 
 declare module 'ics-js' {
 	const VCALENDAR: IVCalendar & (new () => typeof VCALENDAR);

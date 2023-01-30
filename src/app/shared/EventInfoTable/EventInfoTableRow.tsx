@@ -11,9 +11,7 @@ export function EventOverviewTableRow(props: Props) {
 	}
 	return (
 		<tr>
-			<td className={style.rowTitle}>
-				{props.title}
-			</td>
+			<td className={style.rowTitle}>{props.title}</td>
 			<td className={style.rowValue}>{props.value}</td>
 		</tr>
 	);

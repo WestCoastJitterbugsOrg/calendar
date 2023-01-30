@@ -3,7 +3,7 @@ import { stateContext } from '../../store/StateWrapper';
 import { useContext, useEffect, useRef } from 'react';
 import * as Modal from 'react-modal';
 import { EventSeriesModalContent } from './EventModalContent';
-import {default as style }from './EventSeriesModal.module.scss';
+import { default as style } from './EventSeriesModal.module.scss';
 
 type Props = {
 	parent?: HTMLElement;

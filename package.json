@@ -5,7 +5,7 @@
 	"main": "build/index.js",
 	"scripts": {
 		"build": "wp-scripts build",
-		"format": "wp-scripts format",
+		"format": "prettier --write src/**",
 		"lint": "yarn lint:js && yarn lint:css",
 		"lint:js": "wp-scripts lint-js src/**/*.{ts,tsx}",
 		"lint:style": "wp-scripts lint-style",

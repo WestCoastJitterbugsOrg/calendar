@@ -37,14 +37,10 @@ export function usePopperHandler() {
 			if (!(tooltipWrapper?.firstElementChild instanceof HTMLElement)) {
 				return;
 			}
-			popper.current = createPopper(
-				target,
-				tooltipWrapper.firstElementChild,
-				{
-					placement: 'bottom',
-					strategy: 'absolute',
-				}
-			);
+			popper.current = createPopper(target, tooltipWrapper.firstElementChild, {
+				placement: 'bottom',
+				strategy: 'absolute',
+			});
 			popperIsActive = true;
 		});
 	}

@@ -12,9 +12,13 @@ export function Footer() {
 
 	return (
 		<footer className={style.footer}>
-			<div className={style.downloadIcsButton} data-testid="download-ics-button">
+			<div
+				className={style.downloadIcsButton}
+				data-testid="download-ics-button"
+			>
 				<Button onClick={() => void exportICS(events)}>
-					Export iCal <img src={fileDownload} className={style.downloadIcsImg} />
+					Export iCal{' '}
+					<img src={fileDownload} className={style.downloadIcsImg} />
 				</Button>
 			</div>
 			<a

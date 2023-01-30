@@ -3,4 +3,4 @@ export type error = {
 		broke: string[];
 	};
 	error_data: unknown[];
-}
+};

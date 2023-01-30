@@ -30,16 +30,12 @@ export function EventGroupHeader(props: Props) {
 
 	return (
 		// eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-		<div
-			className={style.headerWrapper}
-			onClick={props.toggleExpanded}
-		>
+		<div className={style.headerWrapper} onClick={props.toggleExpanded}>
 			<div className={style.headerText}>
 				{/* eslint-disable-next-line jsx-a11y/alt-text*/}
 				<img
 					className={
-						style.expandIcon +
-						(props.expanded ? ' ' + style.rotate : '')
+						style.expandIcon + (props.expanded ? ' ' + style.rotate : '')
 					}
 					src={plusIcon}
 				/>

@@ -59,7 +59,7 @@ const mockContext: WCJ.Context = {
  */
 export default function Edit(): WPElement {
 	return (
-		<div {...useBlockProps()} >
+		<div {...useBlockProps()}>
 			<App {...mockContext} />
 		</div>
 	);
