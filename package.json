@@ -4,14 +4,14 @@
 	"author": "Jean-Philippe Green",
 	"main": "build/index.js",
 	"scripts": {
-		"build": "wp-scripts build",
+		"build": "wp-scripts build --webpack-copy-php",
 		"format": "prettier --write src/**",
 		"lint": "yarn lint:js && yarn lint:css",
 		"lint:js": "wp-scripts lint-js src/**/*.{ts,tsx}",
 		"lint:style": "wp-scripts lint-style",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start",
+		"start": "wp-scripts start --webpack-copy-php",
 		"test:unit": "wp-scripts test-unit-js",
 		"setup-env": "wp-env start --xdebug",
 		"wp-env": "wp-env"
