@@ -1,7 +1,14 @@
-import * as webpack from 'webpack';
+// @ts-check
 
-const wpDefaults = // eslint-disable-next-line @typescript-eslint/no-var-requires
-	require('@wordpress/scripts/config/webpack.config') as webpack.Configuration;
+/**
+ * @typedef { import("webpack").Configuration } WpConfig
+ */
+
+/**
+ * @type {WpConfig}
+ */
+// @ts-ignore
+const wpDefaults = require('@wordpress/scripts/config/webpack.config');
 
 const rules = wpDefaults.module?.rules ?? [];
 // Look for the css-loader from the wp defaults and modify it to output better css module class names
@@ -20,10 +27,9 @@ for (const rule of rules) {
 		continue;
 	}
 
-	const ruleUse = rule.use as {
-		loader: string;
-		options: { modules: { localIdentName: string } };
-	}[];
+	/** @type {{ loader: string; options: { modules: { localIdentName: string } };}[]}*/
+	// @ts-ignore
+	const ruleUse = rule.use;
 
 	const cssLoader = ruleUse.find(
 		(use) =>
@@ -43,7 +49,8 @@ for (const rule of rules) {
 	};
 }
 
-const config: webpack.Configuration = {
+/** @type {WpConfig} */
+const config = {
 	...wpDefaults,
 	externals: {
 		react: 'React',
@@ -55,4 +62,4 @@ const config: webpack.Configuration = {
 	},
 };
 
-export default config;
+module.exports = config;

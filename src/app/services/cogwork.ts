@@ -25,16 +25,10 @@ export function initContext(data: CW.OkResponse): WCJ.Context {
 		events[event.id] = event;
 
 		// Add category if it hasn't been seen before,
-		// and in any case make sure the event id is
-		// added to the category
-		if (event.category in categories) {
-			categories[event.category].events.push(event.id);
-		} else {
-			categories[event.category] = {
-				id: event.category,
-				events: [event.id],
-			};
+		if (!(event.category in categories)) {
+			categories[event.category] = { id: event.category, events: [] };
 		}
+		categories[event.category].events.push(event.id);
 	}
 
 	return {
@@ -46,7 +40,9 @@ export function initContext(data: CW.OkResponse): WCJ.Context {
 function cogwork2wcjEvent(event: CW.Event): WCJ.Event {
 	return {
 		id: event['@attributes'].eventId,
-		category: event.primaryEventGroup ?? event.category ?? 'Övrigt',
+		category:
+			event.primaryEventGroup ??
+			(typeof event.category === 'string' ? event.category : 'Övrigt'),
 		title: event.title,
 		occasions:
 			event.schedule?.occasions == null

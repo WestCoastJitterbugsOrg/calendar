@@ -4,7 +4,7 @@
  * Plugin URI:        https://github.com/WestCoastJitterbugsOrg/Personalized-Calendar
  * Plugin Name:       Cogwork Filter Calendar
  * Description:       Filterable calendar using data from cogwork
- * Version:           1.5.0-alpha6
+ * Version:           1.5.0-alpha8
  * Requires at least: 5.0
  * Requires PHP:      7.3
  * Author:            Jean-Philippe Green
@@ -55,6 +55,8 @@ function cwfc_block_render_callback($attributes, $content, $block_instance)
 		const event = new CustomEvent("cw-filter-events-loaded", { 
 			detail: ' . $events .
 		'});
-		window.dispatchEvent(event);
+		window.addEventListener("load", (loadEvent) => {
+			window.dispatchEvent(event);
+		});
 		</script>';
 }

@@ -5,7 +5,7 @@ export type Event = {
 	title: string;
 	longdescription?: string;
 	schedule?: Schedule;
-	category?: string;
+	category?: string | { '@attributes': { catId: number } };
 	primaryEventGroup?: string;
 	requirements: MaybeArray<{
 		level: { '@attributes': { minValue: number } };

@@ -20,6 +20,6 @@
   "include": [
     "src/**/*",
     "test/**/*",
-    "webpack.config.ts"
+    "webpack.config.js"
   ]
 }
