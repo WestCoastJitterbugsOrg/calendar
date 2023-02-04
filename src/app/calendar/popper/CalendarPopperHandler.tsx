@@ -11,11 +11,11 @@ export function usePopperHandler() {
 	const popper = useRef<Instance>();
 	const { setEventModal } = useContext(stateContext);
 
-	const root = document.body;
+	const root = document.querySelector('#cwfc-container') ?? document;
 	let tooltipWrapper: HTMLElement | null;
 	let popperIsActive = false;
 
-	function createTooltip(event: EventApi, target: HTMLElement) {
+	const createTooltip = (event: EventApi, target: HTMLElement) => {
 		if (tooltipWrapper == null) {
 			tooltipWrapper = document.createElement('div');
 		}
@@ -43,42 +43,41 @@ export function usePopperHandler() {
 			});
 			popperIsActive = true;
 		});
-	}
+	};
 
-	function removePopper() {
+	const removePopper = () => {
 		const element = getPopperInstance();
 		if (!element) {
 			return;
 		}
 		element.firstElementChild?.classList.remove(...highlightClass);
+		tooltipWrapper?.remove();
 		if (popper.current) {
 			popper.current.destroy();
 			popper.current.forceUpdate();
 		}
 		document.removeEventListener('click', removePopper);
 		popperIsActive = false;
-	}
+	};
 
-	function getPopperInstance() {
+	const getPopperInstance = () => {
 		if (!popper.current?.state) {
 			return;
 		}
 		const elements = popper.current.state.elements;
 		return elements.reference as HTMLElement;
-	}
+	};
 
-	function handleEventClick(fc: EventClickArg) {
+	const handleEventClick = (fc: EventClickArg) => {
 		fc.jsEvent.stopPropagation();
-		if (fc.el) {
-			if (!popperIsActive || getPopperInstance() !== fc.el) {
-				removePopper();
-				createTooltip(fc.event, fc.el);
-				document.addEventListener('click', removePopper);
-			} else {
-				removePopper();
-			}
+		if (!popperIsActive || getPopperInstance() !== fc.el) {
+			removePopper();
+			createTooltip(fc.event, fc.el);
+			document.addEventListener('click', removePopper);
+		} else {
+			removePopper();
 		}
-	}
+	};
 
 	return { removePopper, handleEventClick };
 }

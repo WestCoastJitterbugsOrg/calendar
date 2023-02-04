@@ -1,6 +1,5 @@
 {
 	"name": "cw-filter-calendar",
-	"version": "1.5.0-apha.1",
 	"author": "Jean-Philippe Green",
 	"main": "build/index.js",
 	"engines": {
