@@ -1,0 +1,10 @@
+{
+    "extends": [
+        "@wordpress/stylelint-config/scss",
+        "stylelint-config-prettier"
+    ],
+    "rules": {
+        "selector-class-pattern": "[a-z]([A-Z][a-z]+)*",
+        "rule-empty-line-before": null
+    }
+}

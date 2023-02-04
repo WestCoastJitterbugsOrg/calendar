@@ -1,39 +1,23 @@
-import { StrictMode, lazy, Suspense } from "react";
-import { createRoot } from "react-dom/client";
-import { appContainer, appTag } from "./app-container";
-const App = lazy(() => import("./App"));
+/**
+ * Registers a new block provided a unique name and an object defining its behavior.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
+ */
+import { registerBlockType } from '@wordpress/blocks';
 
-try {
-  const wcjCalElement = document.getElementById("wcjcal");
+/**
+ * Internal dependencies
+ */
+import edit from './edit';
+import * as metadata from './block.json';
 
-  if (wcjCalElement == null) {
-    throw Error("Could not find #wcjcal element in DOM");
-  } else {
-    const shadowRoot = wcjCalElement.attachShadow({ mode: "open" });
-    shadowRoot.appendChild(appContainer);
-    const root = createRoot(appTag);
-
-    root.render(
-      <StrictMode>
-        <Suspense fallback={<SpinLoader />}>
-          <App />
-        </Suspense>
-      </StrictMode>
-    );
-  }
-} catch (error) {
-  console.error(
-    `
-  An error occured in WCJ Calendar!
-  Please contact it@wcj.se with the error message:
-  `,
-    error
-  );
-}
-function SpinLoader() {
-  return (
-    <div className="flex h-screen items-center justify-center bg-light">
-      <div className="h-16 w-16 animate-spin rounded-[50%] border-8 border-solid border-t-primary-alt border-r-secondary border-b-primary border-l-secondary-alt"></div>
-    </div>
-  );
-}
+/**
+ * Every block starts by registering a new block type definition.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
+ */
+registerBlockType(metadata, {
+	edit,
+	icon: 'calendar-alt',
+	attributes: {},
+});

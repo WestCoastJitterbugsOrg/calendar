@@ -1,0 +1,18 @@
+.eventGroup {
+	background-color: var(--cw-color-secondary);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+	&:last-child {
+		background-color: #000;
+	}
+}
+
+.panel {
+	overflow: hidden;
+	background: var(--cw-color-light);
+	max-height: 0;
+
+	&.expanded {
+		max-height: 100%;
+	}
+}

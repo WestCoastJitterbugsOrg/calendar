@@ -1,0 +1,29 @@
+.button {
+	align-items: center;
+	background-color: var(--cw-color-primary);
+	border-radius: 9999px;
+	border-width: 0;
+	color: #fff;
+	cursor: pointer;
+	display: flex;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 16px;
+	padding: 8px 16px;
+	text-decoration-line: none;
+	transition: 0.15s filter cubic-bezier(0.4, 0, 0.2, 1);
+
+	&:hover {
+		filter: brightness(1.185);
+	}
+
+	&.sm {
+		font-size: 14px;
+		line-height: 16px;
+		padding: 4px 12px;
+	}
+
+	&.lg {
+		padding: 12px 24px;
+	}
+}

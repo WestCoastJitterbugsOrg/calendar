@@ -33,7 +33,7 @@ it("Clicking deselect all deselects all events and groups", async () => {
   );
   const deselectAllBtn = await renderResult.findByText("Deselect all");
 
-  await act(() => deselectAllBtn.click());
+  act(() => deselectAllBtn.click());
 
   const [groupInput, eventInputs] = await getEventGroupInputs(renderResult);
   expect(groupInput).not.toBeChecked();

@@ -1,0 +1,42 @@
+.wrapper {
+	margin: 8px;
+	display: flex;
+	min-height: 32px;
+	align-items: center;
+}
+
+.content {
+	display: flex;
+	align-items: center;
+	flex-grow: 1;
+	cursor: help;
+}
+
+.infoButton {
+	margin-right: 8px;
+	display: block;
+	height: 16px;
+	width: 16px;
+	flex: none;
+	color: #000;
+	opacity: 50%;
+
+	.content:hover & {
+		opacity: 100%;
+	}
+}
+
+.title {
+	flex-grow: 1;
+	padding-right: 8px;
+	line-height: 1.25;
+	opacity: 50%;
+
+	&.showInCalendar {
+		opacity: 100%;
+	}
+}
+
+.checkbox {
+	cursor: pointer;
+}
