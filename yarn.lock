@@ -1802,12 +1802,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fullcalendar/list@npm:^6.0.3":
-  version: 6.0.3
-  resolution: "@fullcalendar/list@npm:6.0.3"
+"@fullcalendar/list@npm:^6.1.1":
+  version: 6.1.1
+  resolution: "@fullcalendar/list@npm:6.1.1"
   peerDependencies:
-    "@fullcalendar/core": ~6.0.3
-  checksum: 75165592cfd2395acb961f9ce97d45b8db3da7df630efdb80f2036e4c4e5fe4edbbfc2393e44cd8016dafbb7f1c50ad6200035dc58d6bae433ece5e1cd701706
+    "@fullcalendar/core": ~6.1.1
+  checksum: da2443812b9a477a5fdc2b647bbe8ca4a86e92c3bd000229b5e50b38b3cdee467dc69743ebd58035abee663de5ced392850ac2fa567b0d0487e324b836a0b863
   languageName: node
   linkType: hard
 
@@ -6700,7 +6700,7 @@ __metadata:
     "@fullcalendar/core": ^6.0.3
     "@fullcalendar/daygrid": ^6.0.3
     "@fullcalendar/interaction": ^6.0.3
-    "@fullcalendar/list": ^6.0.3
+    "@fullcalendar/list": ^6.1.1
     "@fullcalendar/react": ^6.0.4
     "@fullcalendar/timegrid": ^6.0.3
     "@popperjs/core": ^2.11.6
