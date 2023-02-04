@@ -15,9 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci
       - name: Check types
-        run: yarn tsc --project tsconfig.json --noEmit --skipLibCheck
+        run: npm run tsc --project tsconfig.json --noEmit --skipLibCheck
 
   eslint:
     runs-on: ubuntu-latest
@@ -27,9 +27,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci
       - name: Run ESLint
-        run: yarn lint
+        run: npm run lint
 
   test:
     runs-on: ubuntu-latest
@@ -39,6 +39,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci
       - name: Run Jest
-        run: yarn test-ci .
+        run: npm run test-ci .

@@ -3,17 +3,21 @@
 	"version": "1.5.0-apha.1",
 	"author": "Jean-Philippe Green",
 	"main": "build/index.js",
+	"engines": {
+		"node": ">=18.4.0 <19",
+		"npm": ">=9.3.1 <10"
+	},
 	"scripts": {
 		"build": "wp-scripts build --webpack-copy-php",
 		"format": "prettier --write src/**",
-		"lint": "yarn lint:js && yarn lint:style",
+		"lint": "npm run lint:js && npm run lint:style",
 		"lint:js": "wp-scripts lint-js src/**/*.{ts,tsx}",
 		"lint:style": "wp-scripts lint-style",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start --webpack-copy-php",
 		"test:unit": "wp-scripts test-unit-js",
-		"test-ci": "yarn test:unit",
+		"test-ci": "npm run test:unit",
 		"setup-env": "wp-env start --xdebug",
 		"wp-env": "wp-env"
 	},
@@ -28,8 +32,8 @@
 		"@wordpress/block-editor": "^11.1.0",
 		"@wordpress/element": "^5.1.0",
 		"ics-js": "^0.10.2",
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
 		"react-modal": "^3.16.1",
 		"react-query": "^3.39.2"
 	},
@@ -39,10 +43,10 @@
 		"@babel/preset-typescript": "^7.18.6",
 		"@prettier/plugin-php": "^0.19.1",
 		"@testing-library/jest-dom": "^5.16.5",
-		"@testing-library/react": "^12.1.5",
+		"@testing-library/react": "^13.4.0",
 		"@types/node": "^18.11.18",
-		"@types/react": "^17.0.2",
-		"@types/react-dom": "^17.0.2",
+		"@types/react": "^18.0.27",
+		"@types/react-dom": "^18.0.10",
 		"@types/react-modal": "^3.13.1",
 		"@types/testing-library__jest-dom": "^5.14.5",
 		"@types/webpack": "^5.28.0",
@@ -75,11 +79,10 @@
 		"ts-node": "^10.9.1",
 		"tsconfig-paths-webpack-plugin": "^4.0.0",
 		"typescript": "^4.9.5",
-		"typescript-plugin-css-modules": "^4.1.1",
+		"typescript-plugin-css-modules": "^1.3.1",
 		"webpack": "^5.75.0"
 	},
 	"browserslist": [
 		"extends @wordpress/browserslist-config"
-	],
-	"packageManager": "yarn@3.2.3"
+	]
 }
