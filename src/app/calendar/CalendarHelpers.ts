@@ -1,4 +1,4 @@
-import { EventInput, EventSourceInput } from '@fullcalendar/react';
+import { EventInput, EventSourceInput } from '@fullcalendar/core';
 import { WCJ } from '../types';
 
 export function wcj2fcEvent(wcjEvent: WCJ.Event): EventSourceInput {
