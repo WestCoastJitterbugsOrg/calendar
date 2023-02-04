@@ -14,7 +14,7 @@ it("Unchecking a group causes all events to be unchecked", async () => {
 
   const el = await result.findByTestId("group-checkbox");
 
-  await act(() => {
+  act(() => {
     fireEvent.click(el);
   });
 
@@ -33,7 +33,7 @@ it("Unchecking an event causes it to be unchecked", async () => {
 
   const el = await result.findByTestId("event-item");
 
-  await act(() => {
+  act(() => {
     fireEvent.click(el);
   });
 
@@ -52,7 +52,7 @@ it("Click info button opens modal", async () => {
 
   const infoButton = await result.findByTestId("info-button");
 
-  await act(() => {
+  act(() => {
     infoButton.click();
   });
 

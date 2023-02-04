@@ -1,6 +1,6 @@
-import { Cogwork } from "@app/types/cogwork";
+import * as Cogwork from "@app/types/cogwork";
 
-export const defaultEventData: Cogwork.Response = {
+export const defaultEventData: Cogwork.OkResponse = {
   events: {
     event: [
       {

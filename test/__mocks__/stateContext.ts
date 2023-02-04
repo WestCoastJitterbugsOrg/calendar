@@ -21,7 +21,6 @@ export const mockStore: EventStore = {
       ],
       place: "Forum",
       price: "1337",
-      color: "green",
       registrationUrl: "https://example.com/registration",
       title: "Grundkurs Lindy Hop",
       description: "",

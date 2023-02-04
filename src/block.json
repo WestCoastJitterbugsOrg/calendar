@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "cw-addons/cw-filter-calendar",
+	"version": "0.1.0",
+	"title": "Cw Filter Calendar",
+	"category": "widgets",
+	"description": "Example block scaffolded with Create Block tool.",
+	"supports": {
+		"html": false
+	},
+	"textdomain": "cw-filter-calendar",
+	"editorScript": "file:./index.tsx",
+	"editorStyle": "file:./index.css",
+	"viewScript": "file:./view.tsx",
+	"style": "file:./view.css",
+	"attributes": {}
+}
