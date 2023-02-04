@@ -58,7 +58,7 @@
 		"@wordpress/stylelint-config": "^21.7.0",
 		"autoprefixer": "^10.4.13",
 		"css-loader": "^6.7.3",
-		"eslint": "^8.31.0",
+		"eslint": "^8.33.0",
 		"eslint-config-prettier": "^8.6.0",
 		"eslint-import-resolver-typescript": "^3.5.2",
 		"eslint-plugin-import": "^2.26.0",
