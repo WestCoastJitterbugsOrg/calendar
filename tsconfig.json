@@ -3,6 +3,7 @@
     "outDir": "dist",
     "allowJs": true,
     "strict": true,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "ES2022",
@@ -15,6 +16,16 @@
     "lib": [
       "ES2020",
       "dom"
+    ],
+    "paths": {
+      "@app/*": [
+        "./src/app/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
     ]
   },
   "include": [

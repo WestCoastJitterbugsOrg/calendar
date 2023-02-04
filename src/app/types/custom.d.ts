@@ -3,8 +3,8 @@ declare module '*.css' {
 	export default content;
 }
 declare module '*.module.scss' {
-	const classNames: Record<'default', Record<string, string>>;
-	export = classNames;
+	const classes: Record<string, string>;
+	export default classes;
 }
 declare module '*.png' {
 	const content: string | undefined;

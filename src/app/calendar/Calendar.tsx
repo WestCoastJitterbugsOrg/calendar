@@ -1,10 +1,11 @@
 import { stateContext } from '../store/StateWrapper';
-import { DateInput, PluginDef } from '@fullcalendar/core';
+import { DateInput } from '@fullcalendar/core';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import listPlugin from '@fullcalendar/list';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import { useContext, useEffect, useState } from 'react';
+import interaction from '@fullcalendar/interaction';
+import { useContext } from 'react';
 import { wcj2fcEvent } from './CalendarHelpers';
 import { usePopperHandler } from './popper/CalendarPopperHandler';
 import dayGridMonth from './views/CalendarViewConfigMonth';
@@ -15,8 +16,6 @@ import './Calendar.scss';
 type Props = {
 	initialDate?: DateInput;
 };
-
-const importInteraction = import('@fullcalendar/interaction');
 
 export function Calendar(props: Props) {
 	const { events } = useContext(stateContext);
@@ -36,28 +35,10 @@ export function Calendar(props: Props) {
 
 	const popperHandler = usePopperHandler();
 
-	const [plugins, setPlugins] = useState([
-		listPlugin,
-		timeGridPlugin,
-		dayGridPlugin,
-	]);
-
-	const addPlugin = (importObject: { default: PluginDef }) => {
-		setPlugins((p) => [...p, importObject.default]);
-	};
-
-	// lazy load interaction plugin to save on calendar bundle size
-	useEffect(
-		() => () => {
-			void importInteraction.then(addPlugin);
-		},
-		[]
-	);
-
 	return (
 		<div className="wcjcal-fc" data-testid="fc-wrapper">
 			<FullCalendar
-				plugins={plugins}
+				plugins={[listPlugin, timeGridPlugin, dayGridPlugin, interaction]}
 				initialDate={props.initialDate}
 				initialView={window.innerWidth <= 640 ? 'listRange' : 'timeGridWeek'}
 				height="100%"

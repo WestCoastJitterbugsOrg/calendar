@@ -27,7 +27,7 @@ export function EventItem(props: Props) {
 		}));
 
 	return (
-		<div className={style.wrapper} role="listitem">
+		<div className={style.wrapper} role="listitem" data-testid="event-item">
 			<div
 				className={style.content}
 				onClick={() => setEventModal?.(props.event.id)}

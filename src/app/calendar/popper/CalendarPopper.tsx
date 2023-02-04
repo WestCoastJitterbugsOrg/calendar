@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import { EventInfoTable } from '../../shared/EventInfoTable/EventInfoTable';
+import { EventInfoTable } from '@app/shared/EventInfoTable/EventInfoTable';
 import { EventApi, formatRange } from '@fullcalendar/core';
 import { WCJ } from 'src/app/types';
 import style from './CalendarPopper.module.scss';

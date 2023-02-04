@@ -4,7 +4,7 @@
 import closeIcon from '../../assets/close.svg';
 import { stateContext } from '../../store/StateWrapper';
 import { useContext } from 'react';
-import { default as style } from './EventSeriesModal.module.scss';
+import style from './EventSeriesModal.module.scss';
 
 type Props = {
 	eventId: string;
