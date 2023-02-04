@@ -4031,9 +4031,90 @@ __metadata:
   languageName: node
   linkType: hard
 
-"data-urls@npm:^3.0.1":
-  version: 3.0.2
-  resolution: "data-urls@npm:3.0.2"
+"cw-filter-calendar@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "cw-filter-calendar@workspace:."
+  dependencies:
+    "@babel/core": ^7.19.3
+    "@babel/plugin-transform-react-jsx": ^7.20.7
+    "@babel/preset-typescript": ^7.18.6
+    "@fullcalendar/core": ^6.0.3
+    "@fullcalendar/daygrid": ^6.0.3
+    "@fullcalendar/interaction": ^6.0.3
+    "@fullcalendar/list": ^6.0.3
+    "@fullcalendar/react": ^6.0.4
+    "@fullcalendar/timegrid": ^6.0.3
+    "@popperjs/core": ^2.11.6
+    "@prettier/plugin-php": ^0.19.1
+    "@testing-library/jest-dom": ^5.16.5
+    "@testing-library/react": 12.1.5
+    "@types/node": ^18.11.18
+    "@types/react": ^17.0.2
+    "@types/react-dom": ^17.0.2
+    "@types/react-modal": ^3.13.1
+    "@types/testing-library__jest-dom": ^5
+    "@types/webpack": ^5.28.0
+    "@types/wordpress__block-editor": ^11.0.1
+    "@types/wordpress__blocks": ^12.0.1
+    "@typescript-eslint/eslint-plugin": ^5.48.0
+    "@wordpress/babel-plugin-import-jsx-pragma": ^4.7.0
+    "@wordpress/babel-preset-default": ^7.8.0
+    "@wordpress/block-editor": ^11.1.0
+    "@wordpress/browserslist-config": ^5.7.0
+    "@wordpress/element": ^5.1.0
+    "@wordpress/env": ^5.9.0
+    "@wordpress/eslint-plugin": ^13.8.0
+    "@wordpress/scripts": ^25.1.0
+    "@wordpress/stylelint-config": ^21.7.0
+    autoprefixer: ^10.4.13
+    css-loader: ^6.7.3
+    eslint: ^8.31.0
+    eslint-config-prettier: ^8.6.0
+    eslint-import-resolver-typescript: ^3.5.2
+    eslint-plugin-import: ^2.26.0
+    eslint-plugin-react: ^7.31.11
+    ics-js: ^0.10.2
+    jest: ^29.4.1
+    postcss: ^8.4.21
+    postcss-import: ^15.1.0
+    postcss-loader: ^7.0.2
+    prettier: ^2.8.1
+    react: ^17.0.2
+    react-dom: ^17.0.2
+    react-modal: ^3.16.1
+    react-query: ^3.39.2
+    stylelint: ^14.16.1
+    stylelint-config-prettier: ^9.0.3
+    ts-jest: ^29.0.5
+    ts-loader: ^9.4.2
+    ts-node: ^10.9.1
+    tsconfig-paths-webpack-plugin: ^4.0.0
+    typescript: ^4.9.5
+    typescript-plugin-css-modules: ^4.1.1
+    webpack: ^5.75.0
+  languageName: unknown
+  linkType: soft
+
+"cwd@npm:^0.10.0":
+  version: 0.10.0
+  resolution: "cwd@npm:0.10.0"
+  dependencies:
+    find-pkg: ^0.1.2
+    fs-exists-sync: ^0.1.0
+  checksum: 55ab180af86306fe7268c63dd87a737a12e1cb5146be6bcd7fe298df5f5c594cad85907a47fee02cee322d7dc98197a2b45e4d7ebfb0b2c93892bde7d787fe56
+  languageName: node
+  linkType: hard
+
+"damerau-levenshtein@npm:^1.0.8":
+  version: 1.0.8
+  resolution: "damerau-levenshtein@npm:1.0.8"
+  checksum: d240b7757544460ae0586a341a53110ab0a61126570ef2d8c731e3eab3f0cb6e488e2609e6a69b46727635de49be20b071688698744417ff1b6c1d7ccd03e0de
+  languageName: node
+  linkType: hard
+
+"data-urls@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "data-urls@npm:2.0.0"
   dependencies:
     abab: ^2.0.6
     whatwg-mimetype: ^3.0.0
@@ -4389,6 +4470,15 @@ __metadata:
   dependencies:
     iconv-lite: ^0.6.2
   checksum: bb98632f8ffa823996e508ce6a58ffcf5856330fde839ae42c9e1f436cc3b5cc651d4aeae72222916545428e54fd0f6aa8862fd8d25bdbcc4589f1e3f3715e7f
+  languageName: node
+  linkType: hard
+
+"end-of-stream@npm:^1.1.0, end-of-stream@npm:^1.4.1":
+  version: 1.4.4
+  resolution: "end-of-stream@npm:1.4.4"
+  dependencies:
+    once: ^1.4.0
+  checksum: 530a5a5a1e517e962854a31693dbb5c0b2fc40b46dad2a56a2deec656ca040631124f4795823acc68238147805f8b021abbe221f4afed5ef3c8e8efc2024908b
   languageName: node
   linkType: hard
 
@@ -9859,7 +9949,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsconfig-paths@npm:^3.9.0":
+"tsconfig-paths-webpack-plugin@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "tsconfig-paths-webpack-plugin@npm:4.0.0"
+  dependencies:
+    chalk: ^4.1.0
+    enhanced-resolve: ^5.7.0
+    tsconfig-paths: ^4.0.0
+  checksum: 7ff7d63c1153e6dd30ce660b006495ae5cb5cbb78b30bb59b3cb627567325d4af52c7a69dda8aec7b94d576f5385581a69307472992954c40fe6949564155397
+  languageName: node
+  linkType: hard
+
+"tsconfig-paths@npm:^3.14.1":
   version: 3.14.1
   resolution: "tsconfig-paths@npm:3.14.1"
   dependencies:
@@ -9871,7 +9972,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^1.8.1":
+"tsconfig-paths@npm:^4.0.0, tsconfig-paths@npm:^4.1.1":
+  version: 4.1.2
+  resolution: "tsconfig-paths@npm:4.1.2"
+  dependencies:
+    json5: ^2.2.2
+    minimist: ^1.2.6
+    strip-bom: ^3.0.0
+  checksum: 3d9151ecea139594e25618717de15769ab9f38f8e6d510ac16e592b23e7f7105ea13cec5694c3de7e132c98277b775e18edd1651964164ee6d75737c408494cc
+  languageName: node
+  linkType: hard
+
+"tslib@npm:2.0.1":
+  version: 2.0.1
+  resolution: "tslib@npm:2.0.1"
+  checksum: 507f32fc24a614c5097d414b622373b6cbb99e305413517e7fd49bef1e63570c0dd15b417ae68152088c3496218e82a5d8c7cd6b48c7a32dcee1a3f7191fff74
+  languageName: node
+  linkType: hard
+
+"tslib@npm:2.4.0":
+  version: 2.4.0
+  resolution: "tslib@npm:2.4.0"
+  checksum: 8c4aa6a3c5a754bf76aefc38026134180c053b7bd2f81338cb5e5ebf96fefa0f417bff221592bf801077f5bf990562f6264fecbc42cd3309b33872cb6fc3b113
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^1.8.1, tslib@npm:^1.9.0":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: dbe628ef87f66691d5d2959b3e41b9ca0045c3ee3c7c7b906cc1e328b39f199bb1ad9e671c39025bd56122ac57dfbf7385a94843b1cc07c60a4db74795829acd
