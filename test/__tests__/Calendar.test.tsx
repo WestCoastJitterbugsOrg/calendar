@@ -1,9 +1,9 @@
+import { mockStore } from '../__mocks__/stateContext';
 import { Calendar } from '@app/calendar/Calendar';
 import { StateWrapper } from '@app/store/StateWrapper';
 import { createPopper } from '@popperjs/core';
 import '@testing-library/jest-dom';
 import { act, render } from '@testing-library/react';
-import { mockStore } from '../__mocks__/stateContext';
 
 jest.mock('@popperjs/core', () => {
 	const originalModule = jest.requireActual<{
@@ -53,7 +53,7 @@ it('Can open list view', () => {
 		'.fc-listRange-button'
 	);
 
-  act(() => {
+	act(() => {
 		fcListRangeButton?.click();
 	});
 

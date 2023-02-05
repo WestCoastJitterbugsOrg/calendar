@@ -1,14 +1,17 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+
 /* eslint-disable jsx-a11y/alt-text */
 import checked from '../assets/checkbox-checked.svg';
 import unchecked from '../assets/checkbox-unchecked.svg';
 import infoCircle from '../assets/info-circle.svg';
-import { useContext } from 'react';
 import { stateContext } from '../store/StateWrapper';
-import * as WCJ from '../types/wcj';
+import WCJ from '../types/wcj';
 import style from './EventItem.module.scss';
+import { useContext } from 'react';
 
 type Props = {
 	event: WCJ.Event;

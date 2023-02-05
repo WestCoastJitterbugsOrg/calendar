@@ -1,9 +1,9 @@
 import { stateContext } from '../../store/StateWrapper';
+import { TooltipComponent } from './CalendarPopper';
 import { EventApi, EventClickArg } from '@fullcalendar/core';
 import { createPopper, Instance } from '@popperjs/core';
 import { useContext, useRef } from 'react';
 import { render } from 'react-dom';
-import { TooltipComponent } from './CalendarPopper';
 
 const highlightClass = ['bg-primary-alt'];
 

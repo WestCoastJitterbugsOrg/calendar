@@ -1,9 +1,9 @@
 import { appContainer } from '../../../app-container';
 import { stateContext } from '../../store/StateWrapper';
-import { useContext, useEffect, useRef } from 'react';
-import Modal from 'react-modal';
 import { EventSeriesModalContent } from './EventModalContent';
 import style from './EventSeriesModal.module.scss';
+import { useContext, useEffect, useRef } from 'react';
+import Modal from 'react-modal';
 
 type Props = {
 	parent?: HTMLElement;

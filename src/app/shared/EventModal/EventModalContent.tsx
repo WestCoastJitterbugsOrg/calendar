@@ -1,10 +1,12 @@
 /* eslint-disable jsx-a11y/alt-text */
+
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import closeIcon from '../../assets/close.svg';
 import { stateContext } from '../../store/StateWrapper';
-import { useContext } from 'react';
 import style from './EventSeriesModal.module.scss';
+import { useContext } from 'react';
 
 type Props = {
 	eventId: string;

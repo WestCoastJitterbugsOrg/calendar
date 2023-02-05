@@ -20,7 +20,7 @@ const config = merge(wpDefaults, {
 	resolve: {
 		extensions: ['.js', '.jsx', '.ts', '.tsx'],
 		plugins: [new TsconfigPathsPlugin({})],
-	}
+	},
 });
 
 module.exports = config;

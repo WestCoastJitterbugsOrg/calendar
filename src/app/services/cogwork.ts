@@ -1,6 +1,6 @@
+import CW from '../types/cogwork';
 import { MaybeArray } from '../types/utils';
-import * as CW from '../types/cogwork';
-import * as WCJ from '../types/wcj';
+import WCJ from '../types/wcj';
 
 export function initContext(data: CW.OkResponse): WCJ.Context {
 	const response = asArray(data.events.event);

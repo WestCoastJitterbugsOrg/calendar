@@ -1,11 +1,11 @@
-import { StateWrapper } from './store/StateWrapper';
-import * as WCJ from './types/wcj';
-import { EventSelection } from './event-selection/EventSelection';
-import { Calendar } from './calendar/Calendar';
-import { Header } from './Header';
-import { Footer } from './Footer';
-import { EventSeriesModal } from './shared/EventModal/EventSeriesModal';
 import appStyle from './App.module.scss';
+import { Footer } from './Footer';
+import { Header } from './Header';
+import { Calendar } from './calendar/Calendar';
+import { EventSelection } from './event-selection/EventSelection';
+import { EventSeriesModal } from './shared/EventModal/EventSeriesModal';
+import { StateWrapper } from './store/StateWrapper';
+import WCJ from './types/wcj';
 
 type Props = WCJ.Context;
 

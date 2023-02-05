@@ -1,4 +1,4 @@
-import * as WCJ from '../types/wcj';
+import WCJ from '../types/wcj';
 
 export async function wcj2ics(events: WCJ.Event[]) {
 	const { VCALENDAR, VEVENT } = await import('ics-js');

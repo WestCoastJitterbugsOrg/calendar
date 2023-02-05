@@ -1,36 +1,27 @@
 {
-  "compilerOptions": {
-    "outDir": "dist",
-    "allowJs": true,
-    "strict": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "ES2022",
-    "target": "ESNext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "jsx": "react-jsx",
-    "sourceMap": true,
-    "baseUrl": "./",
-    "lib": [
-      "ES2020",
-      "dom"
-    ],
-    "paths": {
-      "@app/*": [
-        "./src/app/*"
-      ]
-    },
-    "plugins": [
-      {
-        "name": "typescript-plugin-css-modules"
-      }
-    ]
-  },
-  "include": [
-    "src/**/*",
-    "test/**/*",
-    "webpack.config.js"
-  ]
+	"compilerOptions": {
+		"outDir": "dist",
+		"allowJs": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"noFallthroughCasesInSwitch": true,
+		"module": "ES2022",
+		"target": "ESNext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"jsx": "react-jsx",
+		"sourceMap": true,
+		"baseUrl": "./",
+		"lib": ["ES2020", "dom"],
+		"paths": {
+			"@app/*": ["./src/app/*"]
+		},
+		"plugins": [
+			{
+				"name": "typescript-plugin-css-modules"
+			}
+		]
+	}
 }

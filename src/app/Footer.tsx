@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { useContext } from 'react';
+import style from './Footer.module.scss';
 import fileDownload from './assets/file-download.svg';
 import githubLogo from './assets/github-logo.png';
 import { exportICS } from './services/ics';
 import { Button } from './shared/Buttons/Button';
 import { stateContext } from './store/StateWrapper';
-import style from './Footer.module.scss';
+import { useContext } from 'react';
 
 export function Footer() {
 	const { events } = useContext(stateContext);

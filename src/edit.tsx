@@ -1,4 +1,6 @@
-import { WPElement } from '@wordpress/element/build-types';
+import App from './app/App';
+import { WCJ } from './app/types';
+
 /**
  * Retrieves the translation of text.
  *
@@ -13,8 +15,7 @@ import { WPElement } from '@wordpress/element/build-types';
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import { useBlockProps } from '@wordpress/block-editor';
-import App from './app/App';
-import { WCJ } from './app/types';
+import { WPElement } from '@wordpress/element/build-types';
 
 // Setup start and stop dates for an example event to be shown in the edit view.
 // The calendar will automatically go to the current date,

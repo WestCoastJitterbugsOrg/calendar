@@ -1,26 +1,26 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Listen for XDebug",
-            "type": "php",
-            "request": "launch",
-            "port": 9003,
-            "pathMappings": {
-                "/var/www/html/wp-content/plugins/cw-filter-calendar": "${workspaceFolder}/"
-            }
-        },
-        {
-            "name": "Debug JS with Firefox",
-            "type": "firefox",
-            "request": "launch",
-            "url": "http://localhost:8888",
-            "pathMappings": [
-                {
-                    "url": "http://localhost:8888/wp-content/plugins/cw-filter-calendar",
-                    "path": "${workspaceFolder}/"
-                }
-            ]
-        }
-    ],
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Listen for XDebug",
+			"type": "php",
+			"request": "launch",
+			"port": 9003,
+			"pathMappings": {
+				"/var/www/html/wp-content/plugins/cw-filter-calendar": "${workspaceFolder}/"
+			}
+		},
+		{
+			"name": "Debug JS with Firefox",
+			"type": "firefox",
+			"request": "launch",
+			"url": "http://localhost:8888",
+			"pathMappings": [
+				{
+					"url": "http://localhost:8888/wp-content/plugins/cw-filter-calendar",
+					"path": "${workspaceFolder}/"
+				}
+			]
+		}
+	]
 }

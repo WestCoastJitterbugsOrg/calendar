@@ -1,7 +1,7 @@
-import { StrictMode, lazy, Suspense } from 'react';
-import { render } from 'react-dom';
-import * as WCJ from './types/wcj';
 import style from './index.module.scss';
+import WCJ from './types/wcj';
+import { lazy, StrictMode, Suspense } from 'react';
+import { render } from 'react-dom';
 
 const App = lazy(() => import('./App'));
 

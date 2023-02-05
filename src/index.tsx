@@ -3,13 +3,13 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
-import { registerBlockType } from '@wordpress/blocks';
+import metadata from './block.json';
 
 /**
  * Internal dependencies
  */
 import edit from './edit';
-import * as metadata from './block.json';
+import { registerBlockType } from '@wordpress/blocks';
 
 /**
  * Every block starts by registering a new block type definition.

@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import style from './Header.module.scss';
 import { canStoreSelection, storeConsentCookie } from './services/cookies';
 import { Button } from './shared/Buttons/Button';
-import style from './Header.module.scss';
+import { useState } from 'react';
 
 export function Header() {
 	const [accepted, accept] = useState(false);

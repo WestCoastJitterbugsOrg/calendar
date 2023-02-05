@@ -1,17 +1,17 @@
 import { stateContext } from '../store/StateWrapper';
-import { DateInput } from '@fullcalendar/core';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import listPlugin from '@fullcalendar/list';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interaction from '@fullcalendar/interaction';
-import { useContext } from 'react';
+import './Calendar.scss';
 import { wcj2fcEvent } from './CalendarHelpers';
 import { usePopperHandler } from './popper/CalendarPopperHandler';
+import { createListView } from './views/CalendarViewConfigList';
 import dayGridMonth from './views/CalendarViewConfigMonth';
 import timeGridWeek from './views/CalendarViewConfigWeek';
-import { createListView } from './views/CalendarViewConfigList';
-import './Calendar.scss';
+import { DateInput } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interaction from '@fullcalendar/interaction';
+import listPlugin from '@fullcalendar/list';
+import FullCalendar from '@fullcalendar/react';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import { useContext } from 'react';
 
 type Props = {
 	initialDate?: DateInput;

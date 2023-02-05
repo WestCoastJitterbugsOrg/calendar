@@ -1,12 +1,12 @@
+import { defaultEventData } from '../__mocks__/cwEvents';
+import { mockStore } from '../__mocks__/stateContext';
+import App from '@app/App';
+import { initContext } from '@app/services/cogwork';
 import { storeConsentCookie } from '@app/services/cookies';
 import * as ics from '@app/services/ics';
 import '@testing-library/jest-dom';
-import { render,  } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import App from '@app/App';
-import { defaultEventData } from '../__mocks__/cwEvents';
-import { mockStore } from '../__mocks__/stateContext';
-import { initContext } from '@app/services/cogwork';
 
 beforeEach(() => {
 	document.cookie = '';

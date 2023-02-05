@@ -1,9 +1,9 @@
 import { stateContext } from '../store/StateWrapper';
 import { getCategoryEvents } from '../store/utils';
-import { useContext, useState } from 'react';
-import { EventItem } from './EventItem';
-import { EventGroupHeader } from './EventGroupHeader';
 import style from './EventGroup.module.scss';
+import { EventGroupHeader } from './EventGroupHeader';
+import { EventItem } from './EventItem';
+import { useContext, useState } from 'react';
 
 type Props = {
 	category: string;

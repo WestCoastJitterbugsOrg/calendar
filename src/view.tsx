@@ -1,7 +1,7 @@
-import * as CW from './app/types/cogwork';
-import { initContext } from './app/services/cogwork';
 import { initApp } from './app';
 import { appContainer, appTag } from './app-container';
+import { initContext } from './app/services/cogwork';
+import CW from './app/types/cogwork';
 import './view.scss';
 
 function isOkResponse(detail: unknown): detail is CW.OkResponse {

@@ -1,8 +1,8 @@
 import { canStoreSelection } from '../services/cookies';
 import { MaybeArray } from '../types/utils';
-import * as WCJ from '../types/wcj';
-import { createContext, useEffect, useState } from 'react';
+import WCJ from '../types/wcj';
 import StateContext, { CategoryStore } from './model';
+import { createContext, useEffect, useState } from 'react';
 
 export const stateContext = createContext<StateContext>({
 	categories: {},
