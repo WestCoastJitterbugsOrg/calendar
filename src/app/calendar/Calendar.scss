@@ -120,8 +120,27 @@
 				td {
 					background-color: #fff;
 					line-break: auto;
-					word-break: keep-all;
+					word-break: normal;
 				}
+			}
+
+			.fc-list-event-title {
+				width: 50%;
+			}
+
+			.fc-list-event-time,
+			.fc-list-event-place {
+				white-space: normal;
+				width: 0;
+				min-width: 6ch;
+			}
+
+			.fc-list-event-place {
+				text-align: right;
+			}
+
+			.fc-list-event-graphic {
+				display: none;
 			}
 		}
 
@@ -161,7 +180,7 @@
 
 					.fc-event-time {
 						line-height: 16px;
-						white-space: normal;
+						white-space: break-spaces;
 					}
 
 					.fc-event-title {

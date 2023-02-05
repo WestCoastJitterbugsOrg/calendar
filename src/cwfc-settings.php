@@ -57,8 +57,8 @@ add_action('admin_init', 'cwfc_settings_init');
  */
 function cwfc_section_developers_callback($args)
 {
-	?>
-    <p id="<?php echo esc_attr($args['id']); ?>"></p>
+?>
+	<p id="<?php echo esc_attr($args['id']); ?>"></p>
 <?php
 }
 
@@ -83,13 +83,8 @@ function cwfc_settingfield_cb($args)
 		: (array_key_exists($id, $defined_constants)
 			? $defined_constants[$id]
 			: '');
-	?>
-    <input 
-        type="<?php echo esc_attr($type); ?>" 
-        id="<?php echo esc_attr($id); ?>" 
-        name="cwfc_options[<?php echo esc_attr($id); ?>]" 
-        value="<?php echo esc_attr($value); ?>"
-    >
+?>
+	<input type="<?php echo esc_attr($type); ?>" id="<?php echo esc_attr($id); ?>" name="cwfc_options[<?php echo esc_attr($id); ?>]" value="<?php echo esc_attr($value); ?>">
 <?php
 }
 
@@ -138,19 +133,19 @@ function cwcal_options_page_html()
 
 	// show error/update messages
 	settings_errors('cwfc_messages');
-	?>
-    <div class="wrap">
-        <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
-        <form action="options.php" method="post">
-            <?php
-            // output security fields for the registered setting "cwfc"
-            settings_fields('cwfc');
-            // output setting sections and their fields
-            // (sections are registered for "cwfc", each field is registered to a specific section)
-            do_settings_sections('cwfc');
-            // output save settings button
-            submit_button('Save Settings');?>
-        </form>
-    </div>
+?>
+	<div class="wrap">
+		<h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+		<form action="options.php" method="post">
+			<?php
+			// output security fields for the registered setting "cwfc"
+			settings_fields('cwfc');
+			// output setting sections and their fields
+			// (sections are registered for "cwfc", each field is registered to a specific section)
+			do_settings_sections('cwfc');
+			// output save settings button
+			submit_button('Save Settings'); ?>
+		</form>
+	</div>
 <?php
 }

@@ -17,6 +17,9 @@ const path = require('path');
 /** @type {WpConfig} */
 const config = merge(wpDefaults, {
 	mode: 'development',
+	output: {
+		chunkFilename: '[name]-[chunkhash].js',
+	},
 	resolve: {
 		extensions: ['.js', '.jsx', '.ts', '.tsx'],
 		plugins: [new TsconfigPathsPlugin({})],

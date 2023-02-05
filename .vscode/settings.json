@@ -81,5 +81,19 @@
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"editor.formatOnSave": true,
 	"stylelint.snippet": ["css", "less", "postcss", "scss"],
-	"stylelint.validate": ["css", "less", "postcss", "scss"]
+	"stylelint.validate": ["css", "less", "postcss", "scss"],
+	"spellright.language": ["en-US-10-1."],
+	"spellright.documentTypes": ["latex", "plaintext"],
+	"explorer.fileNesting.patterns": {
+		"*.ts": "${capture}.js",
+		"*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+		"*.tsx": "${capture}.ts, ${capture}.js, ${capture}.module.scss, ${capture}.scss",
+		"tsconfig.json": "tsconfig.*.json",
+		"package.json": "package-lock.json",
+		".eslintrc.json": ".stylelintrc, .babelrc, .editorconfig, .npmpackagejsonlintrc.json",
+		".wp-env.json": ".wp-env.override.json",
+		"README.md": "CONTRIBUTING.md, LICENSE"
+	},
+	"explorer.fileNesting.enabled": true,
+	"explorer.sortOrder": "foldersNestsFiles"
 }

@@ -1,8 +1,10 @@
-import { initApp } from './app';
 import { appContainer, appTag } from './app-container';
 import { initContext } from './app/services/cogwork';
 import CW from './app/types/cogwork';
+import { SpinLoader } from './spin-loader';
 import './view.scss';
+import { lazy, StrictMode, Suspense } from 'react';
+import { render } from 'react-dom';
 
 function isOkResponse(detail: unknown): detail is CW.OkResponse {
 	return detail != null && typeof detail === 'object' && 'events' in detail;
@@ -30,7 +32,17 @@ window.addEventListener(
 			element.appendChild(appContainer);
 
 			const data = initContext(event.detail);
-			initApp(appTag, data);
+
+			const App = lazy(() => import('./app/App'));
+
+			render(
+				<StrictMode>
+					<Suspense fallback={<SpinLoader />}>
+						<App {...data} />
+					</Suspense>
+				</StrictMode>,
+				appTag
+			);
 		} catch (error) {
 			// eslint-disable-next-line no-console
 			console.error(

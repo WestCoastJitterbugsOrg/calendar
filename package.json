@@ -2,16 +2,14 @@
 	"name": "cw-filter-calendar",
 	"author": "Jean-Philippe Green",
 	"main": "build/index.js",
-	"engines": {
-		"node": ">=16.19.0 <17",
-		"npm": ">=8.19.3 <9"
-	},
 	"scripts": {
 		"build": "wp-scripts build --webpack-copy-php",
 		"format": "prettier --write src/**",
-		"lint": "npm run lint:js && npm run lint:style",
+		"lint": "npm run lint:js && npm run lint:style && npm run lint:pkg-json && npm run lint:md:docs",
 		"lint:js": "wp-scripts lint-js {src,test}/**/*.{js,jsx,ts,tsx}",
 		"lint:style": "wp-scripts lint-style",
+		"lint:pkg-json": "wp-scripts lint-pkg-json",
+		"lint:md:docs": "wp-scripts lint-md-docs",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start --webpack-copy-php",
@@ -82,6 +80,10 @@
 		"typescript-plugin-css-modules": "^4.1.1",
 		"webpack": "^5.75.0",
 		"webpack-merge": "^5.8.0"
+	},
+	"engines": {
+		"node": ">=16.19.0 <17",
+		"npm": ">=8.19.3 <9"
 	},
 	"browserslist": [
 		"extends @wordpress/browserslist-config"

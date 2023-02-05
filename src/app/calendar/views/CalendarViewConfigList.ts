@@ -74,7 +74,7 @@ function eventDidMount(e: EventMountArg) {
 	if (title != null && place == null) {
 		title.outerHTML = `
         <td class="fc-list-event-title">${e.event.title}</td>
-        <td class="fc-list-event-place text-right">${
+        <td class="fc-list-event-place">${
 					e.event.extendedProps.place as string
 				}</td>
     `;
