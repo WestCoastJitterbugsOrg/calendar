@@ -1,10 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-
-/* eslint-disable jsx-a11y/alt-text */
 import checked from '../assets/checkbox-checked.svg';
 import unchecked from '../assets/checkbox-unchecked.svg';
 import infoCircle from '../assets/info-circle.svg';
@@ -15,6 +8,7 @@ import { useContext } from 'react';
 
 type Props = {
 	event: WCJ.Event;
+	expanded: boolean;
 };
 
 export function EventItem(props: Props) {
@@ -31,12 +25,20 @@ export function EventItem(props: Props) {
 
 	return (
 		<div className={style.wrapper} role="listitem" data-testid="event-item">
-			<div
+			<button
 				className={style.content}
 				onClick={() => setEventModal?.(props.event.id)}
+				tabIndex={props.expanded ? 0 : -1}
+				onKeyUp={(e) => {
+					if (['Enter', 'Space'].includes(e.code)) {
+						e.stopPropagation();
+						setEventModal?.(props.event.id);
+					}
+				}}
 			>
 				<img
 					data-testid="info-button"
+					alt="info"
 					src={infoCircle}
 					className={style.infoButton}
 				/>
@@ -48,14 +50,21 @@ export function EventItem(props: Props) {
 				>
 					{props.event.title}
 				</span>
-			</div>
+			</button>
 			<div
 				role="checkbox"
 				data-testid="event-checkbox"
 				aria-checked={props.event.showInCalendar}
-				tabIndex={0}
+				tabIndex={props.expanded ? 0 : -1}
 				className={style.checkbox}
 				onClick={toggle}
+				onKeyUp={(e) => {
+					if (['Enter', 'Space'].includes(e.code)) {
+						e.stopPropagation();
+						e.preventDefault();
+						toggle();
+					}
+				}}
 			>
 				{props.event.showInCalendar ? (
 					<img src={checked} width={16} height={16} alt="☑" />

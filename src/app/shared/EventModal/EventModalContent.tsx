@@ -27,7 +27,7 @@ export function EventSeriesModalContent(props: Props) {
 			</div>
 			<iframe
 				className={style.iframe}
-				src={event.registrationUrl + '&layout=calendar'}
+				src={event.registrationUrl}
 				title={event.title}
 			></iframe>
 		</div>

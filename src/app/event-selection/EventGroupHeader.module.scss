@@ -1,4 +1,6 @@
 .headerWrapper {
+	all: unset;
+	width: 100%;
 	display: flex;
 	min-height: 32px;
 	cursor: pointer;
@@ -8,6 +10,10 @@
 	padding: 8px;
 	font-weight: 700;
 	color: #fff;
+
+	&:focus {
+		background-color: var(--cw-color-secondary-alt);
+	}
 }
 
 .headerText {

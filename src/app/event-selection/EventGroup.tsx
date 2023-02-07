@@ -26,9 +26,12 @@ export function EventGroup(props: Props) {
 				toggleExpanded={() => setExpanded((e) => !e)}
 			/>
 
-			<div className={style.panel + (expanded ? ' ' + style.expanded : '')}>
+			<div
+				id={`Event group ${category.id}`}
+				className={style.panel + (expanded ? ' ' + style.expanded : '')}
+			>
 				{catEvents.map((event) => (
-					<EventItem event={event} key={event.id} />
+					<EventItem event={event} key={event.id} expanded={expanded} />
 				))}
 			</div>
 		</div>

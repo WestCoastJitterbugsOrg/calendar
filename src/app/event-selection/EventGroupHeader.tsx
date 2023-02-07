@@ -29,11 +29,16 @@ export function EventGroupHeader(props: Props) {
 		});
 
 	return (
-		// eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-		<div className={style.headerWrapper} onClick={props.toggleExpanded}>
+		<button
+			type="button"
+			aria-expanded={props.expanded}
+			aria-controls={`Event group ${props.category.id}`}
+			className={style.headerWrapper}
+			onClick={props.toggleExpanded}
+		>
 			<div className={style.headerText}>
-				{/* eslint-disable-next-line jsx-a11y/alt-text*/}
 				<img
+					alt="+"
 					className={
 						style.expandIcon + (props.expanded ? ' ' + style.rotate : '')
 					}
@@ -42,25 +47,31 @@ export function EventGroupHeader(props: Props) {
 				<span>{props.category.id}</span>
 			</div>
 
-			<div>
-				{/* eslint-disable-next-line jsx-a11y/click-events-have-key-events*/}
+			<div
+				role="checkbox"
+				aria-checked={state}
+				tabIndex={0}
+				onClick={(e) => {
+					e.stopPropagation();
+					setAllChecked(state !== true);
+				}}
+				onKeyUp={(e) => {
+					if (['Enter', 'Space'].includes(e.code)) {
+						e.preventDefault();
+						setAllChecked(state !== true);
+					}
+				}}
+			>
 				<img
 					data-testid="group-checkbox"
-					// eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
-					role="checkbox"
 					className={style.checkbox}
-					aria-checked={state}
-					onClick={(e) => {
-						e.stopPropagation();
-						setAllChecked(state !== true);
-					}}
 					src={img}
 					width={16}
 					height={16}
 					alt={alt}
 				/>
 			</div>
-		</div>
+		</button>
 	);
 }
 

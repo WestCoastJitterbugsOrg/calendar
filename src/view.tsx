@@ -6,15 +6,7 @@ import './view.scss';
 import { lazy, StrictMode, Suspense } from 'react';
 import { render } from 'react-dom';
 
-function isOkResponse(detail: unknown): detail is CW.OkResponse {
-	return detail != null && typeof detail === 'object' && 'events' in detail;
-}
-
-function isOkResponseEvent(
-	event: CustomEvent
-): event is CustomEvent<CW.OkResponse> {
-	return event instanceof CustomEvent && isOkResponse(event.detail);
-}
+const App = lazy(() => import('./app/App'));
 
 window.addEventListener(
 	'cw-filter-events-loaded',
@@ -32,8 +24,6 @@ window.addEventListener(
 			element.appendChild(appContainer);
 
 			const data = initContext(event.detail);
-
-			const App = lazy(() => import('./app/App'));
 
 			render(
 				<StrictMode>
@@ -56,3 +46,13 @@ window.addEventListener(
 	},
 	{ once: true }
 );
+
+function isOkResponse(detail: unknown): detail is CW.OkResponse {
+	return detail != null && typeof detail === 'object' && 'events' in detail;
+}
+
+function isOkResponseEvent(
+	event: CustomEvent
+): event is CustomEvent<CW.OkResponse> {
+	return event instanceof CustomEvent && isOkResponse(event.detail);
+}

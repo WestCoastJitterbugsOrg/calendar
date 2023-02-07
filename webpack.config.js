@@ -35,6 +35,7 @@ const configWithReadableCssClasses = replaceLoaderOptions(wpDefaults, {
 						loader: require.resolve('css-loader'),
 						options: {
 							modules: {
+								auto: true,
 								localIdentName: '[path][name]__[local]--[hash:base64:5]',
 							},
 						},
@@ -57,6 +58,7 @@ let resultConfig = mergeWithCustomize({
 	mode: 'development',
 	output: {
 		chunkFilename: '[name]-[chunkhash].js',
+		clean: true,
 	},
 	resolve: {
 		extensions: ['.js', '.jsx', '.ts', '.tsx'],

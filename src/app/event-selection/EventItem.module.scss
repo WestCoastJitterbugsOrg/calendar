@@ -10,10 +10,14 @@
 }
 
 .content {
+	all: unset;
 	display: flex;
 	align-items: center;
 	flex-grow: 1;
 	cursor: help;
+	&:focus {
+		outline: 5px solid var(--cw-color-secondary-alt);
+	}
 }
 
 .infoButton {
