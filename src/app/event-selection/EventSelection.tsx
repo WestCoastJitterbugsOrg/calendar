@@ -1,4 +1,4 @@
-import { Button } from '../shared/Buttons/Button';
+import { Button } from '../shared/Button';
 import { stateContext } from '../store/StateWrapper';
 import WCJ from '../types/wcj';
 import { EventGroup } from './EventGroup';

@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import style from './CalendarPopper.module.scss';
 import { EventInfoTable } from '@app/shared/EventInfoTable/EventInfoTable';
 import { EventApi, formatRange } from '@fullcalendar/core';
@@ -26,9 +23,9 @@ export function TooltipComponent(props: Props) {
 			</div>
 			<EventInfoTable event={props.event.extendedProps as WCJ.Event} />
 			<div>
-				<div className={style.about} onClick={props.openModal}>
+				<button type="button" className={style.about} onClick={props.openModal}>
 					About event series
-				</div>
+				</button>
 			</div>
 			<div id="wcj-arrow" data-popper-arrow className={style.arrow}></div>
 		</div>

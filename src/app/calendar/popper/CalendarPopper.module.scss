@@ -16,17 +16,22 @@
 	margin-bottom: 4px;
 	white-space: normal;
 	font-weight: 700;
+	text-align: center;
 }
 
 .date {
 	margin-bottom: 8px;
+	text-align: center;
 }
 
 .about {
-	margin-bottom: 8px;
+	display: block;
+	margin: 0 auto 8px auto;
 	cursor: pointer;
 	text-align: center;
 	font-weight: 700;
+	background-color: transparent;
+	border: none;
 	color: var(--cw-color-secondary-alt);
 	text-decoration: underline;
 }

@@ -1,6 +1,6 @@
-import { appContainer } from '../../../app-container';
-import { stateContext } from '../../store/StateWrapper';
-import { EventSeriesModalContent } from './EventModalContent';
+import { appContainer } from '../../app-container';
+import closeIcon from '../assets/close.svg';
+import { stateContext } from '../store/StateWrapper';
 import style from './EventSeriesModal.module.scss';
 import { useContext, useEffect, useRef } from 'react';
 import Modal from 'react-modal';
@@ -12,7 +12,9 @@ type Props = {
 const rootHtmlElement = document.documentElement;
 
 export function EventSeriesModal(props: Props) {
-	const { eventModal, setEventModal } = useContext(stateContext);
+	const { events, eventModal, setEventModal } = useContext(stateContext);
+	const event = eventModal && events[eventModal];
+
 	const previousOverflowStyle = useRef<string>();
 	useEffect(() => {
 		// Code to prevent scrolling events getting triggered on the main page:
@@ -38,7 +40,23 @@ export function EventSeriesModal(props: Props) {
 			parentSelector={() => props.parent ?? appContainer}
 			appElement={props.parent ?? appContainer}
 		>
-			{eventModal && <EventSeriesModalContent eventId={eventModal} />}
+			{event && (
+				<div className={style.content} data-testid="event-series-modal-content">
+					<button
+						type="button"
+						className={style.closeButton}
+						onClick={() => setEventModal?.(undefined)}
+						data-testid="modal-close-button"
+					>
+						<img alt="Close" src={closeIcon} width="16" height="16" />
+					</button>
+					<iframe
+						className={style.iframe}
+						src={event.registrationUrl}
+						title={event.title}
+					></iframe>
+				</div>
+			)}
 		</Modal>
 	);
 }

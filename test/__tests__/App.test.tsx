@@ -33,7 +33,7 @@ it('Clicking on Download calls exportICS', () => {
 
 	const exportICS = jest.spyOn(ics, 'exportICS').mockImplementation();
 
-	const downloadButton = getByTestId('download-ics-button')
+	const downloadButton = getByTestId('export-ics-button')
 		.children[0] as HTMLButtonElement;
 	act(() => {
 		downloadButton.click();

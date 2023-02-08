@@ -1,6 +1,6 @@
 import style from './Header.module.scss';
 import { canStoreSelection, storeConsentCookie } from './services/cookies';
-import { Button } from './shared/Buttons/Button';
+import { Button } from './shared/Button';
 import { useState } from 'react';
 
 export function Header() {

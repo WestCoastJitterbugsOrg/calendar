@@ -1,5 +1,6 @@
 {
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true,
 	"intelephense.environment.documentRoot": "cw-filter-calendar.php",
 	"[php]": {
 		"editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
@@ -78,12 +79,14 @@
 		"zlib",
 		"wordpress"
 	],
-	"typescript.tsdk": "node_modules/typescript/lib",
-	"editor.formatOnSave": true,
+	"typescript.enablePromptUseWorkspaceTsdk": true,
+	"typescript.tsdk": "./node_modules/typescript/lib",
 	"stylelint.snippet": ["css", "less", "postcss", "scss"],
 	"stylelint.validate": ["css", "less", "postcss", "scss"],
 	"spellright.language": ["en-US-10-1."],
 	"spellright.documentTypes": ["latex", "plaintext"],
+	"explorer.fileNesting.enabled": true,
+	"explorer.sortOrder": "foldersNestsFiles",
 	"explorer.fileNesting.patterns": {
 		"*.ts": "${capture}.js",
 		"*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
@@ -93,7 +96,5 @@
 		".eslintrc.json": ".stylelintrc, .babelrc, .editorconfig, .npmpackagejsonlintrc.json",
 		".wp-env.json": ".wp-env.override.json",
 		"README.md": "CONTRIBUTING.md, LICENSE"
-	},
-	"explorer.fileNesting.enabled": true,
-	"explorer.sortOrder": "foldersNestsFiles"
+	}
 }

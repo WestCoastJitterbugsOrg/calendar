@@ -7,12 +7,13 @@
 	flex-direction: row;
 	align-items: center;
 	background-color: var(--cw-color-secondary);
-	padding: 8px;
+	padding: 4px;
+	border: 4px solid transparent;
 	font-weight: 700;
 	color: #fff;
 
-	&:focus {
-		background-color: var(--cw-color-secondary-alt);
+	&:focus-within {
+		border: 4px solid var(--cw-color-secondary-alt);
 	}
 }
 
@@ -32,6 +33,11 @@
 	&.rotate {
 		transform: rotate(45deg);
 	}
+}
+
+.checkboxWrapper {
+	display: flex;
+	height: 16px;
 }
 
 .checkbox {

@@ -49,6 +49,7 @@ export function EventGroupHeader(props: Props) {
 
 			<div
 				role="checkbox"
+				className={style.checkboxWrapper}
 				aria-checked={state}
 				tabIndex={0}
 				onClick={(e) => {
@@ -58,6 +59,7 @@ export function EventGroupHeader(props: Props) {
 				onKeyUp={(e) => {
 					if (['Enter', 'Space'].includes(e.code)) {
 						e.preventDefault();
+						e.stopPropagation();
 						setAllChecked(state !== true);
 					}
 				}}
@@ -65,7 +67,7 @@ export function EventGroupHeader(props: Props) {
 				<img
 					data-testid="group-checkbox"
 					className={style.checkbox}
-					src={img}
+					// src={img}
 					width={16}
 					height={16}
 					alt={alt}

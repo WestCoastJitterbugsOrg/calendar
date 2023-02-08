@@ -3,7 +3,7 @@ import { Footer } from './Footer';
 import { Header } from './Header';
 import { Calendar } from './calendar/Calendar';
 import { EventSelection } from './event-selection/EventSelection';
-import { EventSeriesModal } from './shared/EventModal/EventSeriesModal';
+import { EventSeriesModal } from './shared/EventSeriesModal';
 import { StateWrapper } from './store/StateWrapper';
 import WCJ from './types/wcj';
 
