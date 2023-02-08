@@ -8,6 +8,9 @@ import { render } from 'react-dom';
 
 const App = lazy(() => import('./app/App'));
 
+let shadowRoot: ShadowRoot | undefined;
+let styleElement: Node | undefined;
+
 window.addEventListener(
 	'cw-filter-events-loaded',
 	(event: Event) => {
@@ -21,8 +24,12 @@ window.addEventListener(
 				throw Error('Could not load calendar!');
 			}
 
-			element.appendChild(appContainer);
+			shadowRoot = element.attachShadow({ mode: 'open' });
+			shadowRoot.appendChild(appContainer);
 
+			if (styleElement) {
+				shadowRoot.appendChild(styleElement);
+			}
 			const data = initContext(event.detail);
 
 			render(
@@ -42,6 +49,22 @@ window.addEventListener(
                 `,
 				error
 			);
+		}
+	},
+	{ once: true }
+);
+
+window.addEventListener(
+	'cw-filter-style-loaded',
+	(event) => {
+		if (!(event instanceof CustomEvent) || !(event.detail instanceof Node)) {
+			throw Error(
+				'Expected event to be an instance of CustomEvent containing detail of type Node'
+			);
+		}
+		styleElement = event.detail;
+		if (shadowRoot) {
+			shadowRoot.appendChild(styleElement);
 		}
 	},
 	{ once: true }

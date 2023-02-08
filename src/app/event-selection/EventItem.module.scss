@@ -1,7 +1,5 @@
 .wrapper {
-	padding: 8px;
 	display: flex;
-	min-height: 32px;
 	align-items: center;
 
 	&:not(:last-child) {
@@ -10,13 +8,17 @@
 }
 
 .content {
-	all: unset;
 	display: flex;
 	align-items: center;
 	flex-grow: 1;
 	cursor: help;
+	background: transparent;
+	border: 4px solid transparent;
+	text-align: left;
+	padding: 4px;
+
 	&:focus {
-		outline: 5px solid var(--cw-color-secondary-alt);
+		border-color: var(--cw-color-secondary-alt);
 	}
 }
 
@@ -37,7 +39,6 @@
 .title {
 	flex-grow: 1;
 	padding-right: 8px;
-	line-height: 1.25;
 	opacity: 50%;
 
 	&.showInCalendar {
@@ -46,6 +47,8 @@
 }
 
 .checkbox {
+	display: flex;
 	cursor: pointer;
 	min-width: 16px;
+	margin-right: 8px;
 }

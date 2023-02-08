@@ -54,9 +54,7 @@ function cwfc_block_render_callback($attributes, $content, $block_instance)
 		const event = new CustomEvent("cw-filter-events-loaded", {
 			detail: <? echo $events ?>
 		});
-		window.addEventListener("load", (loadEvent) => {
-			window.dispatchEvent(event);
-		});
+		window.addEventListener("load", () => window.dispatchEvent(event));
 	</script>
 <?
 	return ob_get_clean();

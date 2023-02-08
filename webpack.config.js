@@ -66,6 +66,12 @@ let resultConfig = mergeWithCustomize({
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
+			insert: (styleElement) => {
+				const styleLoadedEvent = new CustomEvent('cw-filter-style-loaded', {
+					detail: styleElement,
+				});
+				window.dispatchEvent(styleLoadedEvent);
+			},
 			chunkFilename: '[name]-[chunkhash].css',
 		}),
 	],
