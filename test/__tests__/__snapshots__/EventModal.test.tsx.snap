@@ -33,17 +33,19 @@ exports[`EventModal Snapshot 1`] = `
         <div
           data-testid="event-series-modal-content"
         >
-          <div
+          <button
             data-testid="modal-close-button"
+            type="button"
           >
             <img
+              alt="Close"
               height="16"
               src="test-file-stub"
               width="16"
             />
-          </div>
+          </button>
           <iframe
-            src="https://example.com/registration&layout=calendar"
+            src="https://example.com/registration"
             title="Grundkurs Lindy Hop"
           />
         </div>

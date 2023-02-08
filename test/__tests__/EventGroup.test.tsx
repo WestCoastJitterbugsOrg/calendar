@@ -27,7 +27,7 @@ it('Unchecking a group causes all events to be unchecked', async () => {
 it('Unchecking an event causes it to be unchecked', async () => {
 	const result = render(
 		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
-			<EventItem event={Object.values(mockStore.events)[0]} />
+			<EventItem event={Object.values(mockStore.events)[0]} expanded={true} />
 		</StateWrapper>
 	);
 
@@ -46,7 +46,7 @@ it('Unchecking an event causes it to be unchecked', async () => {
 it('Click info button opens modal', async () => {
 	const result = render(
 		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
-			<EventItem event={Object.values(mockStore.events)[0]} />
+			<EventItem event={Object.values(mockStore.events)[0]} expanded={true} />
 		</StateWrapper>
 	);
 

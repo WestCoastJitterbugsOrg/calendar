@@ -1,4 +1,4 @@
-# Filterable and interactive CogWork calendar
+# Filterable and interactive calendar for CogWork data
 
 This is a wordpress plugin that displays a calendar that fetches information from dans.se (or other CogWork API)
 and allows users to filter on courses, dance styles and more, and also see more detailed infomation on them.

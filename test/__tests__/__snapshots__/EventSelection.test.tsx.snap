@@ -24,9 +24,14 @@ exports[`EventSelection Snapshot 1`] = `
       <div
         role="group"
       >
-        <div>
+        <button
+          aria-controls="Event group Lindy Hop"
+          aria-expanded="false"
+          type="button"
+        >
           <div>
             <img
+              alt="+"
               class="undefined"
               src="test-file-stub"
             />
@@ -34,27 +39,33 @@ exports[`EventSelection Snapshot 1`] = `
               Lindy Hop
             </span>
           </div>
-          <div>
+          <div
+            aria-checked="true"
+            role="checkbox"
+            tabindex="0"
+          >
             <img
               alt="☑"
-              aria-checked="true"
               data-testid="group-checkbox"
               height="16"
-              role="checkbox"
               src="test-file-stub"
               width="16"
             />
           </div>
-        </div>
+        </button>
         <div
           class="undefined"
+          id="Event group Lindy Hop"
         >
           <div
             data-testid="event-item"
             role="listitem"
           >
-            <div>
+            <button
+              tabindex="-1"
+            >
               <img
+                alt="info"
                 data-testid="info-button"
                 src="test-file-stub"
               />
@@ -63,12 +74,12 @@ exports[`EventSelection Snapshot 1`] = `
               >
                 Grundkurs Lindy Hop
               </span>
-            </div>
+            </button>
             <div
               aria-checked="true"
               data-testid="event-checkbox"
               role="checkbox"
-              tabindex="0"
+              tabindex="-1"
             >
               <img
                 alt="☑"

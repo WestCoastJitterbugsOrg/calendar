@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Plugin URI:        https://github.com/WestCoastJitterbugsOrg/Personalized-Calendar
- * Plugin Name:       Cogwork Filter Calendar
- * Description:       Filterable calendar using data from cogwork
+ * Plugin URI:        https://github.com/WestCoastJitterbugsOrg/Interactive-CogWork-Calendar
+ * Plugin Name:       Interactive Calendar for CogWork data
+ * Description:       Calendar using data from cogwork that allows filtering, reading event information and registration
  * Version:           2.0.0-beta3
  * Requires at least: 5.0
  * Requires PHP:      7.3
@@ -49,9 +49,7 @@ function cwfc_block_render_callback($attributes, $content, $block_instance)
 
 	ob_start();
 ?>
-	<div id="cwfc-wrapper">
-		<link rel="stylesheet" href="' . plugin_dir_url(__FILE__) . 'build/view.css">
-	</div>
+	<div id="cwfc-wrapper"> </div>
 	<script>
 		const event = new CustomEvent("cw-filter-events-loaded", {
 			detail: <? echo $events ?>
