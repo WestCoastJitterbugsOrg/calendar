@@ -1,5 +1,5 @@
 import { stateContext } from '../../store/StateWrapper';
-import { TooltipComponent } from './CalendarPopper';
+import { CalendarTooltip } from './CalendarTooltip';
 import { EventApi, EventClickArg } from '@fullcalendar/core';
 import { createPopper, Instance } from '@popperjs/core';
 import { useContext, useRef } from 'react';
@@ -7,7 +7,7 @@ import { render } from 'react-dom';
 
 const highlightClass = ['bg-primary-alt'];
 
-export function usePopperHandler() {
+export function useTooltip() {
 	const popper = useRef<Instance>();
 	const { setEventModal } = useContext(stateContext);
 
@@ -24,7 +24,7 @@ export function usePopperHandler() {
 		}
 
 		render(
-			<TooltipComponent
+			<CalendarTooltip
 				event={event}
 				openModal={() => setEventModal?.(event.extendedProps.id as string)}
 			/>,
@@ -45,7 +45,7 @@ export function usePopperHandler() {
 		});
 	};
 
-	const removePopper = () => {
+	const removeTooltip = () => {
 		const element = getPopperInstance();
 		if (!element) {
 			return;
@@ -56,7 +56,7 @@ export function usePopperHandler() {
 			popper.current.destroy();
 			popper.current.forceUpdate();
 		}
-		document.removeEventListener('click', removePopper);
+		document.removeEventListener('click', removeTooltip);
 		popperIsActive = false;
 	};
 
@@ -71,13 +71,13 @@ export function usePopperHandler() {
 	const handleEventClick = (fc: EventClickArg) => {
 		fc.jsEvent.stopPropagation();
 		if (!popperIsActive || getPopperInstance() !== fc.el) {
-			removePopper();
+			removeTooltip();
 			createTooltip(fc.event, fc.el);
-			document.addEventListener('click', removePopper);
+			document.addEventListener('click', removeTooltip);
 		} else {
-			removePopper();
+			removeTooltip();
 		}
 	};
 
-	return { removePopper, handleEventClick };
+	return { handleEventClick };
 }

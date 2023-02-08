@@ -67,7 +67,7 @@ export function EventGroupHeader(props: Props) {
 				<img
 					data-testid="group-checkbox"
 					className={style.checkbox}
-					// src={img}
+					src={img}
 					width={16}
 					height={16}
 					alt={alt}

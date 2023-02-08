@@ -7,13 +7,20 @@ import {
 import { VerboseFormattingArg } from '@fullcalendar/core/internal';
 import { ViewOptions } from 'src/app/types/fc';
 
-function byStartTime(a: EventApi, b: EventApi) {
-	if (a.start == null) {
-		return -1;
-	} else if (b.start == null) {
-		return 1;
-	}
-	return a.start.getTime() - b.start.getTime();
+export function createListView(start: Date, end: Date): ViewOptions {
+	return {
+		type: 'list',
+		listDaySideFormat,
+		listDayFormat: { month: 'long', day: 'numeric', year: 'numeric' },
+		buttonIcons: false,
+		viewDidMount,
+		viewWillUnmount,
+		eventDidMount,
+		visibleRange: () => ({
+			start,
+			end,
+		}),
+	};
 }
 
 function viewDidMount(mountArg: ViewMountArg) {
@@ -108,18 +115,11 @@ function listDaySideFormat(args: VerboseFormattingArg) {
 	);
 }
 
-export function createListView(start: Date, end: Date): ViewOptions {
-	return {
-		type: 'list',
-		listDaySideFormat,
-		listDayFormat: { month: 'long', day: 'numeric', year: 'numeric' },
-		buttonIcons: false,
-		viewDidMount,
-		viewWillUnmount,
-		eventDidMount,
-		visibleRange: () => ({
-			start,
-			end,
-		}),
-	};
+function byStartTime(a: EventApi, b: EventApi) {
+	if (a.start == null) {
+		return -1;
+	} else if (b.start == null) {
+		return 1;
+	}
+	return a.start.getTime() - b.start.getTime();
 }

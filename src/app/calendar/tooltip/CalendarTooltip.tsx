@@ -1,5 +1,4 @@
-import style from './CalendarPopper.module.scss';
-import { EventInfoTable } from '@app/shared/EventInfoTable/EventInfoTable';
+import style from './CalendarTooltip.module.scss';
 import { EventApi, formatRange } from '@fullcalendar/core';
 import { WCJ } from 'src/app/types';
 
@@ -8,11 +7,12 @@ type Props = {
 	openModal: () => void;
 };
 
-export function TooltipComponent(props: Props) {
+export function CalendarTooltip(props: Props) {
+	const cwfcEvent = props.event.extendedProps as WCJ.Event;
 	return (
 		<div id="wcj-tooltip" role="tooltip" className={style.tooltip}>
 			<div className={style.title}>{props.event.title}</div>
-			<div className={style.date}>
+			<div>
 				{props.event.start &&
 					props.event.end &&
 					formatRange(props.event.start, props.event.end, {
@@ -21,7 +21,8 @@ export function TooltipComponent(props: Props) {
 						minute: '2-digit',
 					})}
 			</div>
-			<EventInfoTable event={props.event.extendedProps as WCJ.Event} />
+			<div>{cwfcEvent.place}</div>
+			<div>{cwfcEvent.instructors}</div>
 			<div>
 				<button type="button" className={style.about} onClick={props.openModal}>
 					About event series

@@ -1,9 +1,9 @@
 import appStyle from './App.module.scss';
+import { EventSeriesModal } from './EventSeriesModal';
 import { Footer } from './Footer';
 import { Header } from './Header';
 import { Calendar } from './calendar/Calendar';
 import { EventSelection } from './event-selection/EventSelection';
-import { EventSeriesModal } from './shared/EventSeriesModal';
 import { StateWrapper } from './store/StateWrapper';
 import WCJ from './types/wcj';
 

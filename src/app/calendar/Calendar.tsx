@@ -1,7 +1,7 @@
 import { stateContext } from '../store/StateWrapper';
 import './Calendar.scss';
 import { wcj2fcEvent } from './CalendarHelpers';
-import { usePopperHandler } from './popper/CalendarPopperHandler';
+import { useTooltip } from './tooltip/useTooltip';
 import { createListView } from './views/CalendarViewConfigList';
 import dayGridMonth from './views/CalendarViewConfigMonth';
 import timeGridWeek from './views/CalendarViewConfigWeek';
@@ -33,7 +33,7 @@ export function Calendar(props: Props) {
 		lastOccasion = Math.max(lastOccasion, occ.end.getTime());
 	}
 
-	const popperHandler = usePopperHandler();
+	const tooltipHandler = useTooltip();
 
 	return (
 		<div className="wcjcal-fc" data-testid="fc-wrapper">
@@ -75,7 +75,7 @@ export function Calendar(props: Props) {
 				eventSources={shownWcjEvents.map(wcj2fcEvent)}
 				eventBackgroundColor="var(--cw-color-primary, #AB2814)"
 				eventBorderColor="transparent"
-				eventClick={popperHandler.handleEventClick}
+				eventClick={tooltipHandler.handleEventClick}
 				selectable={false}
 			/>
 		</div>

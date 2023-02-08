@@ -1,5 +1,5 @@
 import { mockStore } from '../__mocks__/stateContext';
-import { EventSeriesModal } from '@app/shared/EventSeriesModal';
+import { EventSeriesModal } from '@app/EventSeriesModal';
 import { StateWrapper } from '@app/store/StateWrapper';
 import '@testing-library/jest-dom';
 import { fireEvent, render } from '@testing-library/react';

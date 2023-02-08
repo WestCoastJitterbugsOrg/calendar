@@ -17,6 +17,10 @@
 		filter: brightness(1.185);
 	}
 
+	&:focus {
+		outline: 3px solid var(--cw-color-primary-alt);
+	}
+
 	&.sm {
 		font-size: 14px;
 		line-height: 16px;
