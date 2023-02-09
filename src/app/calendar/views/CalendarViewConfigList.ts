@@ -1,3 +1,4 @@
+import { ViewOptions } from '@app/types/fc';
 import {
 	EventApi,
 	EventMountArg,
@@ -5,7 +6,6 @@ import {
 	ViewMountArg,
 } from '@fullcalendar/core';
 import { VerboseFormattingArg } from '@fullcalendar/core/internal';
-import { ViewOptions } from 'src/app/types/fc';
 
 export function createListView(start: Date, end: Date): ViewOptions {
 	return {

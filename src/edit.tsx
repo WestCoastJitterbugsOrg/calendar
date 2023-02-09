@@ -1,5 +1,5 @@
-import App from './app/App';
-import { WCJ } from './app/types';
+import App from '@app/App';
+import { WCJ } from '@app/types';
 
 /**
  * Retrieves the translation of text.

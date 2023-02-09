@@ -1,31 +1,17 @@
-// @ts-check
-
 /**
- * @typedef { import("webpack").Configuration } WpConfig
+ * @typedef { import("webpack").WebpackOptionsNormalized } WpConfig
  */
 
-// @ts-ignore
 const { mergeWithCustomize, unique, mergeWithRules } = require('webpack-merge');
-// @ts-ignore
 const wpDefaults = require('@wordpress/scripts/config/webpack.config');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
+const path = require('path');
 
 // Replace the generated css module class names
-const replaceLoaderOptions = mergeWithRules({
-	module: {
-		rules: {
-			test: 'match',
-			use: {
-				loader: 'match',
-				options: 'replace',
-			},
-		},
-	},
-});
 
 /** @type {WpConfig} */
-const configWithReadableCssClasses = replaceLoaderOptions(wpDefaults, {
+const customLoaderOptions = {
 	module: {
 		rules: [
 			{
@@ -34,6 +20,7 @@ const configWithReadableCssClasses = replaceLoaderOptions(wpDefaults, {
 					{
 						loader: require.resolve('css-loader'),
 						options: {
+							sourceMap: true,
 							modules: {
 								auto: true,
 								localIdentName: '[path][name]__[local]--[hash:base64:5]',
@@ -44,19 +31,34 @@ const configWithReadableCssClasses = replaceLoaderOptions(wpDefaults, {
 			},
 		],
 	},
-});
+};
 
-// Generate css file names with hashes
 /** @type {WpConfig} */
-let resultConfig = mergeWithCustomize({
+let customConfig = mergeWithRules({
+	module: {
+		rules: {
+			test: 'match',
+			use: {
+				loader: 'match',
+				options: 'replace',
+			},
+		},
+	},
+})(wpDefaults, customLoaderOptions);
+
+const mergeWithUpdatedMiniCssConfig = mergeWithCustomize({
 	customizeArray: unique(
 		'plugins',
 		['MiniCssExtractPlugin'],
 		(plugin) => plugin.constructor?.name
 	),
-})(configWithReadableCssClasses, {
+});
+
+/** @type {WpConfig} */
+const toBeMerged = {
 	mode: 'development',
 	output: {
+		path: path.resolve(__dirname, 'build/cw-filter-calendar'),
 		chunkFilename: '[name]-[chunkhash].js',
 		clean: true,
 	},
@@ -75,6 +77,10 @@ let resultConfig = mergeWithCustomize({
 			chunkFilename: '[name]-[chunkhash].css',
 		}),
 	],
-});
+};
 
-module.exports = resultConfig;
+customConfig = mergeWithUpdatedMiniCssConfig(customConfig, toBeMerged);
+
+console.dir(customConfig, { depth: null });
+
+module.exports = customConfig;

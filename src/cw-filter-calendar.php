@@ -16,8 +16,8 @@
  * @package           cw-filter-calendar
  */
 
-require_once __DIR__ . '/build/cwfc-settings.php';
-require_once __DIR__ . '/build/cwfc-fetch.php';
+require_once __DIR__ . '/cwfc-settings.php';
+require_once __DIR__ . '/cwfc-fetch.php';
 
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
@@ -28,7 +28,7 @@ require_once __DIR__ . '/build/cwfc-fetch.php';
  */
 function cwfc_block_init()
 {
-	register_block_type(__DIR__ . '/build', [
+	register_block_type(__DIR__, [
 		'render_callback' => 'cwfc_block_render_callback',
 	]);
 }

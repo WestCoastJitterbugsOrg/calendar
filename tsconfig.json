@@ -7,14 +7,14 @@
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"noFallthroughCasesInSwitch": true,
-		"module": "ES2022",
+		"module": "ESNext",
 		"target": "ESNext",
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
 		"jsx": "react-jsx",
 		"sourceMap": true,
-		"baseUrl": "./",
-		"lib": ["ES2020", "dom"],
+		"baseUrl": ".",
+		"lib": ["ESNext", "dom"],
 		"paths": {
 			"@app/*": ["./src/app/*"]
 		},

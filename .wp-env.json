@@ -1,4 +1,4 @@
 {
 	"core": null,
-	"plugins": ["."]
+	"plugins": ["./build/cw-filter-calendar"]
 }

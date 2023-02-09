@@ -1,12 +1,12 @@
 import { appContainer, appTag } from './app-container';
-import { initContext } from './app/services/cogwork';
-import CW from './app/types/cogwork';
 import { SpinLoader } from './spin-loader';
 import './view.scss';
+import { initContext } from '@app/services/cogwork';
+import CW from '@app/types/cogwork';
 import { lazy, StrictMode, Suspense } from 'react';
 import { render } from 'react-dom';
 
-const App = lazy(() => import('./app/App'));
+const App = lazy(() => import('@app/App'));
 
 let shadowRoot: ShadowRoot | undefined;
 let styleElement: Node | undefined;
