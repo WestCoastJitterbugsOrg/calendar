@@ -11,7 +11,7 @@ import interaction from '@fullcalendar/interaction';
 import listPlugin from '@fullcalendar/list';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 
 type Props = {
 	initialDate?: DateInput;
@@ -33,10 +33,11 @@ export function Calendar(props: Props) {
 		lastOccasion = Math.max(lastOccasion, occ.end.getTime());
 	}
 
-	const tooltipHandler = useTooltip();
+	const fcRootRef = useRef<HTMLDivElement>(null);
+	const tooltipHandler = useTooltip(fcRootRef);
 
 	return (
-		<div className="wcjcal-fc" data-testid="fc-wrapper">
+		<div className="wcjcal-fc" data-testid="fc-wrapper" ref={fcRootRef}>
 			<FullCalendar
 				plugins={[listPlugin, timeGridPlugin, dayGridPlugin, interaction]}
 				initialDate={props.initialDate}

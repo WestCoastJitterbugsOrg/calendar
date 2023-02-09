@@ -4,7 +4,7 @@
  * Plugin URI:        https://github.com/WestCoastJitterbugsOrg/Interactive-CogWork-Calendar
  * Plugin Name:       Interactive Calendar for CogWork data
  * Description:       Calendar using data from cogwork that allows filtering, reading event information and registration
- * Version:           2.0.0-beta3
+ * Version:           2.0.0-beta4
  * Requires at least: 5.0
  * Requires PHP:      7.3
  * Author:            Jean-Philippe Green

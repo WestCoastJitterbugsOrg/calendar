@@ -2,16 +2,15 @@ import { stateContext } from '../../store/StateWrapper';
 import { CalendarTooltip } from './CalendarTooltip';
 import { EventApi, EventClickArg } from '@fullcalendar/core';
 import { createPopper, Instance } from '@popperjs/core';
-import { useContext, useRef } from 'react';
+import { RefObject, useContext, useRef } from 'react';
 import { render } from 'react-dom';
 
 const highlightClass = ['bg-primary-alt'];
 
-export function useTooltip() {
+export function useTooltip(refObj: RefObject<HTMLElement>) {
 	const popper = useRef<Instance>();
 	const { setEventModal } = useContext(stateContext);
 
-	const root = document.querySelector('#cwfc-container') ?? document;
 	let tooltipWrapper: HTMLElement | null;
 	let popperIsActive = false;
 
@@ -19,6 +18,8 @@ export function useTooltip() {
 		if (tooltipWrapper == null) {
 			tooltipWrapper = document.createElement('div');
 		}
+		const root = refObj.current ?? document;
+
 		if (!root.contains(tooltipWrapper)) {
 			root.appendChild(tooltipWrapper);
 		}

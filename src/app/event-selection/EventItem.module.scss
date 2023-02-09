@@ -23,13 +23,14 @@
 }
 
 .infoButton {
-	margin-right: 8px;
+	margin-right: 2px;
 	display: block;
 	height: 16px;
 	width: 16px;
 	flex: none;
 	color: #000;
 	opacity: 50%;
+	padding-top: 2px;
 
 	.content:hover & {
 		opacity: 100%;
