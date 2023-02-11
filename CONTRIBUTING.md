@@ -23,10 +23,6 @@ Create a file called `.wp-env.override.json` and fill it with the following:
 The organization code/key is for CogWork/dans.se/minaaktiviteter.se. If you don't know it, contact the IT responsible for your
 organization and explain why you should be trusted. For WCJ (West Coast Jitterbugs), contact it@wcj.se.
 
-We'll need to setup a local wordpress environment for debugging. But before that, we have to populate the plugin bundle
-inside the build directory so that the wordpress environment can find our plugin. To do this, run `npm build`. If that
-fails, you can manually copy `src/cw-filter-calendar.php` to `build/cw-filter-calendar` (create the folders if they don't exist).
-
 Now run `npm run setup-env`. This will host Wordpress on <http://localhost:8888>.
 
 By running `npm start`, the plugin should become available in the wordpress installation. Go to <http://localhost:8888/wp-admin>

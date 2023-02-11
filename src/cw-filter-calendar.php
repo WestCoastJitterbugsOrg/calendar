@@ -16,7 +16,6 @@
  * @package           cw-filter-calendar
  */
 
-require_once __DIR__ . '/cwfc-settings.php';
 require_once __DIR__ . '/cwfc-fetch.php';
 
 /**
@@ -44,7 +43,7 @@ add_action('init', 'cwfc_block_init');
  */
 function cwfc_block_render_callback($attributes, $content, $block_instance)
 {
-	$result = cwfc_get_events();
+	$result = cwfc_get_events($attributes['Organization'], $attributes['Password']);
 	$events = json_encode($result);
 
 	ob_start();
@@ -52,7 +51,7 @@ function cwfc_block_render_callback($attributes, $content, $block_instance)
 	<div id="cwfc-wrapper"> </div>
 	<script>
 		const event = new CustomEvent("cw-filter-events-loaded", {
-			detail: <? echo $events ?>
+			detail: <?php echo $events ?>
 		});
 		window.addEventListener("load", () => window.dispatchEvent(event));
 	</script>

@@ -1,16 +1,11 @@
 <?php
 
-function cwfc_get_events()
+function cwfc_get_events($org, $pw)
 {
-	$options = get_option('cwfc_options');
-
-	if (!$options) {
-		return new WP_Error('broke', 'Cogwork calendar options not set');
-	}
 
 	$body = [
-		'org' => $options['CWFC_ORG'],
-		'pw' => $options['CWFC_APIKEY'],
+		'org' => $org,
+		'pw' => $pw,
 		'regStatus' => 0,
 		'dateInterval' => 'future',
 	];

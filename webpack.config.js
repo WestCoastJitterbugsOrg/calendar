@@ -81,6 +81,4 @@ const toBeMerged = {
 
 customConfig = mergeWithUpdatedMiniCssConfig(customConfig, toBeMerged);
 
-console.dir(customConfig, { depth: null });
-
 module.exports = customConfig;
