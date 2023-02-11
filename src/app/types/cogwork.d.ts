@@ -54,4 +54,5 @@ export type OkResponse = {
 	events: {
 		event: MaybeArray<Event>;
 	};
+	colors: Record<string, string>;
 };

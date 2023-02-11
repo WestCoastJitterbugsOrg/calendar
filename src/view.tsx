@@ -30,12 +30,12 @@ window.addEventListener(
 			if (styleElement) {
 				shadowRoot.appendChild(styleElement);
 			}
-			const data = initContext(event.detail);
+			const data = initContext(event.detail.events);
 
 			render(
 				<StrictMode>
 					<Suspense fallback={<SpinLoader />}>
-						<App {...data} />
+						<App {...data} colors={event.detail.colors} />
 					</Suspense>
 				</StrictMode>,
 				appTag
@@ -71,7 +71,12 @@ window.addEventListener(
 );
 
 function isOkResponse(detail: unknown): detail is CW.OkResponse {
-	return detail != null && typeof detail === 'object' && 'events' in detail;
+	return (
+		detail != null &&
+		typeof detail === 'object' &&
+		'events' in detail &&
+		'colors' in detail
+	);
 }
 
 function isOkResponseEvent(

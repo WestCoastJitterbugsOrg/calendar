@@ -85,7 +85,6 @@
 	"stylelint.validate": ["css", "less", "postcss", "scss"],
 	"spellright.language": ["en-US-10-1."],
 	"spellright.documentTypes": ["latex", "plaintext"],
-	"explorer.fileNesting.enabled": true,
 	"explorer.sortOrder": "foldersNestsFiles",
 	"explorer.fileNesting.patterns": {
 		"*.ts": "${capture}.js",

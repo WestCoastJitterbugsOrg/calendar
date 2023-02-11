@@ -58,7 +58,6 @@ const mergeWithUpdatedMiniCssConfig = mergeWithCustomize({
 const toBeMerged = {
 	mode: 'development',
 	output: {
-		path: path.resolve(__dirname, 'build/cw-filter-calendar'),
 		chunkFilename: '[name]-[chunkhash].js',
 		clean: true,
 	},

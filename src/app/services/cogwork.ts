@@ -2,8 +2,8 @@ import CW from '../types/cogwork';
 import { MaybeArray } from '../types/utils';
 import WCJ from '../types/wcj';
 
-export function initContext(data: CW.OkResponse): WCJ.Context {
-	const response = asArray(data.events.event);
+export function initContext(cwEvents: CW.OkResponse['events']): WCJ.Context {
+	const response = asArray(cwEvents.event);
 
 	const cogworkEvents = response.filter(
 		(event) => event.schedule?.occasions?.occasion != null

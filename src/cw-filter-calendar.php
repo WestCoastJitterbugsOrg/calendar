@@ -51,7 +51,10 @@ function cwfc_block_render_callback($attributes, $content, $block_instance)
 	<div id="cwfc-wrapper"> </div>
 	<script>
 		const event = new CustomEvent("cw-filter-events-loaded", {
-			detail: <?php echo $events ?>
+			detail: {
+				...<?php echo $events ?>,
+				colors: <?php echo json_encode($attributes['Colors']) ?>
+			}
 		});
 		window.addEventListener("load", () => window.dispatchEvent(event));
 	</script>

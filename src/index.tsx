@@ -3,12 +3,20 @@ import { mockContext } from './editMockData';
 import App from '@app/App';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import { BlockConfiguration, registerBlockType } from '@wordpress/blocks';
-import { TextControl } from '@wordpress/components';
+import {
+	TextControl,
+	Panel,
+	PanelBody,
+	PanelRow,
+	ColorPicker,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { Fragment } from 'react';
 
 type Attributes = {
 	Organization: string;
 	Password: string;
+	Colors: Record<string, string>;
 };
 
 /**
@@ -18,36 +26,51 @@ type Attributes = {
  */
 registerBlockType(metadata as BlockConfiguration<Attributes>, {
 	edit: function Edit({
-		attributes: { Organization, Password },
+		attributes: { Organization, Password, Colors },
 		setAttributes,
 	}) {
 		return (
 			<div {...useBlockProps()}>
 				<InspectorControls key="setting">
-					<div id="cwfc-controls">
-						<fieldset>
-							<legend className="blocks-base-control__label">
-								{__('Organization', 'cw-filter-calendar')}
-							</legend>
-							<TextControl
-								value={Organization}
-								onChange={(org) => setAttributes({ Organization: org })}
-							/>
-						</fieldset>
-
-						<fieldset>
-							<legend className="blocks-base-control__label">
-								{__('Password', 'cw-filter-calendar')}
-							</legend>
-							<TextControl
-								value={Password}
-								type="password"
-								onChange={(pw) => setAttributes({ Password: pw })}
-							/>
-						</fieldset>
-					</div>
+					<Panel>
+						<PanelBody title="Basics" initialOpen={true}>
+							<PanelRow>
+								<TextControl
+									value={Organization}
+									label={__('Organization', 'cw-filter-calendar')}
+									onChange={(org) => setAttributes({ Organization: org })}
+								/>
+							</PanelRow>
+							<PanelRow>
+								<TextControl
+									value={Password}
+									label={__('Password', 'cw-filter-calendar')}
+									type="password"
+									onChange={(pw) => setAttributes({ Password: pw })}
+								/>
+							</PanelRow>
+						</PanelBody>
+						<PanelBody title="Colors" initialOpen={false}>
+							{Object.keys(Colors).map((color) => (
+								<Fragment key={color}>
+									<strong>{color}</strong>
+									<PanelRow key={color}>
+										<ColorPicker
+											disableAlpha={true}
+											color={Colors[color]}
+											onChangeComplete={(newColor) =>
+												setAttributes({
+													Colors: { ...Colors, [color]: newColor.hex },
+												})
+											}
+										/>
+									</PanelRow>
+								</Fragment>
+							))}
+						</PanelBody>
+					</Panel>
 				</InspectorControls>
-				<App {...mockContext} />
+				<App {...mockContext} colors={Colors} />
 			</div>
 		);
 	},
