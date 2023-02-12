@@ -1,3 +1,4 @@
+import { WCJ } from '@app/types';
 import { ViewOptions } from '@app/types/fc';
 import {
 	EventApi,
@@ -79,11 +80,10 @@ function eventDidMount(e: EventMountArg) {
 	const title = e.el.querySelector<HTMLElement>('.fc-list-event-title');
 	const place = e.el.querySelector<HTMLElement>('.fc-list-event-place');
 	if (title != null && place == null) {
+		const cwfcEvent = e.event.extendedProps as WCJ.Event;
 		title.outerHTML = `
         <td class="fc-list-event-title">${e.event.title}</td>
-        <td class="fc-list-event-place">${
-					e.event.extendedProps.place as string
-				}</td>
+        <td class="fc-list-event-place">${cwfcEvent.place ?? ''}</td>
     `;
 	}
 	// Change colspan of day header

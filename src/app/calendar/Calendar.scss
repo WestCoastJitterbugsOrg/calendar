@@ -121,6 +121,11 @@
 					background-color: #fff;
 					line-break: auto;
 					word-break: normal;
+					line-height: 1;
+
+					&.fc-list-event-time {
+						line-height: 0.85;
+					}
 				}
 			}
 
