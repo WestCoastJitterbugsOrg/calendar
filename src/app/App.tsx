@@ -6,26 +6,26 @@ import { Calendar } from './calendar/Calendar';
 import { EventSelection } from './event-selection/EventSelection';
 import { StateWrapper } from './store/StateWrapper';
 import WCJ from './types/wcj';
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 
 type Props = WCJ.Context & { colors: Record<string, string> };
 
 export default function App(props: Props) {
-	const rootRef = useRef<HTMLDivElement>(null);
-
+	const [rootRef, setRef] = useState<HTMLElement | null>(null);
 	useEffect(() => {
-		const root = rootRef.current;
-		if (root) {
-			for (const color in props.colors) {
-				const colorVal = props.colors[color];
-				root.style.setProperty(`--cw-color-${color}`, colorVal);
-			}
+		for (const color in props.colors) {
+			const colorVal = props.colors[color];
+			rootRef?.style.setProperty(`--cw-color-${color}`, colorVal);
 		}
-	}, [props.colors]);
+	}, [props.colors, rootRef]);
 
 	return (
 		<StateWrapper categories={props.categories} events={props.events}>
-			<div id="cw-filter-calendar-root" className={appStyle.root} ref={rootRef}>
+			<div
+				id="cw-filter-calendar-root"
+				className={appStyle.root}
+				ref={(newRef) => setRef(newRef)}
+			>
 				<Header />
 				<div className={appStyle.contentWrapper}>
 					<aside className={appStyle.eventSelection}>
@@ -36,8 +36,8 @@ export default function App(props: Props) {
 					</main>
 				</div>
 				<Footer />
+				<EventSeriesModal parent={rootRef} />
 			</div>
-			<EventSeriesModal />
 		</StateWrapper>
 	);
 }

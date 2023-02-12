@@ -16,8 +16,7 @@ jest.mock('@popperjs/core', () => {
 	};
 });
 
-// TODO: Fix this test
-xit('Click event in calendar opens popper', () => {
+it('Click event in calendar opens popper', () => {
 	jest.useFakeTimers();
 
 	const initialDate = mockStore.events['1'].occasions[0].start;
@@ -34,7 +33,7 @@ xit('Click event in calendar opens popper', () => {
 
 	act(() => {
 		fcEventContainer?.click();
-		jest.runAllTimers();
+		jest.runAllTicks();
 	});
 
 	expect(createPopper).toHaveBeenCalledTimes(1);

@@ -19,7 +19,9 @@ window.addEventListener(
 		}
 
 		try {
-			const element = document.getElementById('cwfc-wrapper');
+			const element = document.querySelector(
+				'.wp-block-cw-addons-cw-filter-calendar'
+			);
 			if (!(element instanceof Element) || !isOkResponseEvent(event)) {
 				throw Error('Could not load calendar!');
 			}

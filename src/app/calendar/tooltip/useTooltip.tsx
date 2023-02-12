@@ -29,21 +29,24 @@ export function useTooltip(refObj: RefObject<HTMLElement>) {
 				event={event}
 				openModal={() => setEventModal?.(event.extendedProps.id as string)}
 			/>,
-			tooltipWrapper
+			tooltipWrapper,
+			() => {
+				if (!(tooltipWrapper?.firstElementChild instanceof HTMLElement)) {
+					return;
+				}
+				popper.current = createPopper(
+					target,
+					tooltipWrapper.firstElementChild,
+					{
+						placement: 'bottom',
+						strategy: 'absolute',
+					}
+				);
+				popperIsActive = true;
+			}
 		);
 
 		target.firstElementChild?.classList.add(...highlightClass);
-
-		setTimeout(() => {
-			if (!(tooltipWrapper?.firstElementChild instanceof HTMLElement)) {
-				return;
-			}
-			popper.current = createPopper(target, tooltipWrapper.firstElementChild, {
-				placement: 'bottom',
-				strategy: 'absolute',
-			});
-			popperIsActive = true;
-		});
 	};
 
 	const removeTooltip = () => {
@@ -74,7 +77,9 @@ export function useTooltip(refObj: RefObject<HTMLElement>) {
 		if (!popperIsActive || getPopperInstance() !== fc.el) {
 			removeTooltip();
 			createTooltip(fc.event, fc.el);
-			document.addEventListener('click', removeTooltip);
+			document.addEventListener('click', removeTooltip, {
+				once: true,
+			});
 		} else {
 			removeTooltip();
 		}

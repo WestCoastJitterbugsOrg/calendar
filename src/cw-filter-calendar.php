@@ -48,7 +48,7 @@ function cwfc_block_render_callback($attributes, $content, $block_instance)
 
 	ob_start();
 ?>
-	<div id="cwfc-wrapper"> </div>
+	<div class="wp-block-cw-addons-cw-filter-calendar"> </div>
 	<script>
 		const event = new CustomEvent("cw-filter-events-loaded", {
 			detail: {

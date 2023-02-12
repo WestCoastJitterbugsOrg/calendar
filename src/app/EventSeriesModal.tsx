@@ -6,7 +6,7 @@ import { useContext, useEffect, useRef } from 'react';
 import Modal from 'react-modal';
 
 type Props = {
-	parent?: HTMLElement;
+	parent?: HTMLElement | null;
 };
 
 const rootHtmlElement = document.documentElement;

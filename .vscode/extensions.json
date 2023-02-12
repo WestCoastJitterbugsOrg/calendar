@@ -3,8 +3,6 @@
 		"dbaeumer.vscode-eslint",
 		"stylelint.vscode-stylelint",
 		"esbenp.prettier-vscode",
-		"hbenl.vscode-test-explorer",
-		"kavod-io.vscode-jest-test-adapter",
 		"xdebug.php-debug",
 		"bmewburn.vscode-intelephense-client",
 		"mrmlnc.vscode-scss"

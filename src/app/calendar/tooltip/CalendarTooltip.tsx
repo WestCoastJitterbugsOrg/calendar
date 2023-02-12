@@ -10,7 +10,7 @@ type Props = {
 export function CalendarTooltip(props: Props) {
 	const cwfcEvent = props.event.extendedProps as WCJ.Event;
 	return (
-		<div id="wcj-tooltip" role="tooltip" className={style.tooltip}>
+		<div role="tooltip" className={style.tooltip}>
 			<div className={style.title}>{props.event.title}</div>
 			<div>
 				{props.event.start &&
