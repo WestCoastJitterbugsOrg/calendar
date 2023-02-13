@@ -17,7 +17,7 @@
 		filter: brightness(1.185);
 	}
 
-	&:focus {
+	&:focus-visible {
 		outline: 3px solid var(--cw-color-primary-alt);
 	}
 

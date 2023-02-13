@@ -11,7 +11,8 @@
 	font-weight: 700;
 	color: #fff;
 
-	&:focus-within {
+	&:focus-visible {
+		outline: none;
 		border: 4px solid var(--cw-color-secondary-alt);
 	}
 }

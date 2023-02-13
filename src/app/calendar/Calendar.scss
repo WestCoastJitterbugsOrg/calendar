@@ -47,19 +47,27 @@
 
 			&:focus {
 				box-shadow: none;
-				outline: 2px solid transparent;
-				outline-offset: 2px;
 			}
+
+			$focus-box-shadow: inset 0 0 0 0.2rem var(--cw-color-light);
+
+			&:focus-visible {
+				box-shadow: $focus-box-shadow;
+			}
+
 			&.fc-button-primary {
-				&:not(:hover):not(:active):not(.has-text-color) {
-					background-color: var(--cw-color-dark);
+				&.fc-button-active,
+				&:active {
+					&:focus {
+						box-shadow: none;
+					}
+					&:focus-visible {
+						box-shadow: $focus-box-shadow;
+					}
 				}
 
-				&:not(:disabled).fc-button-active:focus,
-				&:not(:disabled):active:focus {
-					box-shadow: none;
-					outline: 2px solid transparent;
-					outline-offset: 2px;
+				&:not(:hover):not(:active):not(.has-text-color) {
+					background-color: var(--cw-color-dark);
 				}
 
 				&.fc-today-button {

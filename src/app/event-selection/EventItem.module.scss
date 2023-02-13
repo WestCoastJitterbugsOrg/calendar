@@ -17,7 +17,8 @@
 	text-align: left;
 	padding: 4px;
 
-	&:focus {
+	&:focus-visible {
+		outline: none;
 		border-color: var(--cw-color-secondary-alt);
 	}
 }
