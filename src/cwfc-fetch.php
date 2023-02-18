@@ -1,11 +1,11 @@
 <?php
 
-function cwfc_get_events($org, $pw)
+function cwfc_get_events(array $attributes)
 {
 
 	$body = [
-		'org' => $org,
-		'pw' => $pw,
+		'org' => $attributes['Organization'],
+		'pw' => $attributes['Password'],
 		'regStatus' => 0,
 		'dateInterval' => 'future',
 	];
@@ -24,10 +24,19 @@ function cwfc_get_events($org, $pw)
 		$args
 	);
 	if (is_wp_error($response)) {
-		return $response;
+		return json_encode([
+			'type' => 'error',
+			'data' => $response
+		]);
 	} else {
 		$body = wp_remote_retrieve_body($response);
 		$xml = simplexml_load_string($body, null, LIBXML_NOCDATA);
-		return $xml;
+		return json_encode([
+			'type' => 'ok',
+			'data' => [
+				'events' => $xml->events,
+				'colors' => $attributes['Colors']
+			]
+		]);
 	}
 }

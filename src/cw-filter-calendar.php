@@ -4,7 +4,7 @@
  * Plugin URI:        https://github.com/WestCoastJitterbugsOrg/Interactive-CogWork-Calendar
  * Plugin Name:       Interactive Calendar for CogWork data
  * Description:       Calendar using data from cogwork that allows filtering, reading event information and registration
- * Version:           2.0.0-rc1
+ * Version:           2.0.0-rc2
  * Requires at least: 5.0
  * Requires PHP:      7.3
  * Author:            Jean-Philippe Green
@@ -43,18 +43,14 @@ add_action('init', 'cwfc_block_init');
  */
 function cwfc_block_render_callback($attributes, $content, $block_instance)
 {
-	$result = cwfc_get_events($attributes['Organization'], $attributes['Password']);
-	$events = json_encode($result);
+	$result = cwfc_get_events($attributes);
 
 	ob_start();
 ?>
 	<div class="wp-block-cw-addons-cw-filter-calendar"> </div>
 	<script>
 		const event = new CustomEvent("cw-filter-events-loaded", {
-			detail: {
-				...<?php echo $events ?>,
-				colors: <?php echo json_encode($attributes['Colors']) ?>
-			}
+			detail: <?php echo $result ?>
 		});
 		window.addEventListener("load", () => window.dispatchEvent(event));
 	</script>

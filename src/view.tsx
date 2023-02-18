@@ -1,28 +1,18 @@
-import { appContainer, appTag } from './app-container';
-import { SpinLoader } from './spin-loader';
+import { appContainer, appTag as appDiv } from './app-container';
 import './view.scss';
-import { initContext } from '@app/services/cogwork';
 import CW from '@app/types/cogwork';
-import { lazy, StrictMode, Suspense } from 'react';
-import { render } from 'react-dom';
-
-const App = lazy(() => import('@app/App'));
 
 let shadowRoot: ShadowRoot | undefined;
 let styleElement: Node | undefined;
 
 window.addEventListener(
 	'cw-filter-events-loaded',
-	(event: Event) => {
-		if (!(event instanceof CustomEvent)) {
-			throw Error('Expected event to be an instance of CustomEvent');
-		}
-
+	(event) => {
 		try {
 			const element = document.querySelector(
 				'.wp-block-cw-addons-cw-filter-calendar'
 			);
-			if (!(element instanceof Element) || !isOkResponseEvent(event)) {
+			if (element == null) {
 				throw Error('Could not load calendar!');
 			}
 
@@ -32,24 +22,24 @@ window.addEventListener(
 			if (styleElement) {
 				shadowRoot.appendChild(styleElement);
 			}
-			const data = initContext(event.detail.events);
 
-			render(
-				<StrictMode>
-					<Suspense fallback={<SpinLoader />}>
-						<App {...data} colors={event.detail.colors} />
-					</Suspense>
-				</StrictMode>,
-				appTag
-			);
+			import('@app/index')
+				.then((app) =>
+					app.render((event as CustomEvent<CW.Response>).detail, appDiv)
+				)
+				.catch((error: Error) => {
+					appDiv.innerHTML = `Error!\n<pre>${JSON.stringify(error.message)}`;
+					throw new Error('Wordpress cwfc plugin rendering error', {
+						cause: error,
+					});
+				});
 		} catch (error) {
-			// eslint-disable-next-line no-console
-			console.error(
+			throw new Error(
 				`
                     An error occured in CW Filter Calendar!
                     Please contact it@wcj.se with the error message:
                 `,
-				error
+				{ cause: error }
 			);
 		}
 	},
@@ -64,25 +54,9 @@ window.addEventListener(
 				'Expected event to be an instance of CustomEvent containing detail of type Node'
 			);
 		}
-		styleElement = event.detail;
 		if (shadowRoot) {
-			shadowRoot.appendChild(styleElement);
+			shadowRoot.appendChild(event.detail);
 		}
 	},
 	{ once: true }
 );
-
-function isOkResponse(detail: unknown): detail is CW.OkResponse {
-	return (
-		detail != null &&
-		typeof detail === 'object' &&
-		'events' in detail &&
-		'colors' in detail
-	);
-}
-
-function isOkResponseEvent(
-	event: CustomEvent
-): event is CustomEvent<CW.OkResponse> {
-	return event instanceof CustomEvent && isOkResponse(event.detail);
-}
