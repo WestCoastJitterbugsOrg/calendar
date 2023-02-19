@@ -21,11 +21,7 @@ export default function App(props: Props) {
 
 	return (
 		<StateWrapper categories={props.categories} events={props.events}>
-			<div
-				id="cw-filter-calendar-root"
-				className={appStyle.root}
-				ref={(newRef) => setRef(newRef)}
-			>
+			<div id="cw-filter-calendar-root" className={appStyle.root} ref={setRef}>
 				<Header />
 				<div className={appStyle.contentWrapper}>
 					<aside className={appStyle.eventSelection}>
@@ -36,7 +32,7 @@ export default function App(props: Props) {
 					</main>
 				</div>
 				<Footer />
-				<EventSeriesModal parent={rootRef} />
+				{rootRef && <EventSeriesModal parent={rootRef} />}
 			</div>
 		</StateWrapper>
 	);

@@ -1,4 +1,3 @@
-import { appContainer } from '../app-container';
 import style from './EventSeriesModal.module.scss';
 import closeIcon from './assets/close.svg';
 import { stateContext } from './store/StateWrapper';
@@ -6,7 +5,7 @@ import { useContext, useEffect, useRef } from 'react';
 import Modal from 'react-modal';
 
 type Props = {
-	parent?: HTMLElement | null;
+	parent: HTMLElement;
 };
 
 const rootHtmlElement = document.documentElement;
@@ -37,8 +36,8 @@ export function EventSeriesModal(props: Props) {
 			isOpen={!!eventModal}
 			className={style.modal}
 			overlayClassName={style.overlay}
-			parentSelector={() => props.parent ?? appContainer}
-			appElement={props.parent ?? appContainer}
+			parentSelector={() => props.parent}
+			appElement={props.parent}
 		>
 			{event && (
 				<div className={style.content} data-testid="event-series-modal-content">

@@ -3,7 +3,7 @@ import { MaybeArray } from '../types/utils';
 import WCJ from '../types/wcj';
 
 export function initContext(cwEvents: CW.OkResponse['events']): WCJ.Context {
-	const response = asArray(cwEvents.event);
+	const response = asArray(cwEvents);
 
 	const cogworkEvents = response.filter(
 		(event) => event.schedule?.occasions?.occasion != null

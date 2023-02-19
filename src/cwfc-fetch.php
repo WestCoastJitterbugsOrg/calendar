@@ -31,10 +31,11 @@ function cwfc_get_events(array $attributes)
 	} else {
 		$body = wp_remote_retrieve_body($response);
 		$xml = simplexml_load_string($body, null, LIBXML_NOCDATA);
+		$events = $xml->xpath('//events/event');
 		return json_encode([
 			'type' => 'ok',
 			'data' => [
-				'events' => $xml->events,
+				'events' => $events,
 				'colors' => $attributes['Colors']
 			]
 		]);

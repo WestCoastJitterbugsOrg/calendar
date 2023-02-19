@@ -51,8 +51,6 @@ export type ErrorResponse = {
 };
 
 export type OkResponse = {
-	events: {
-		event: MaybeArray<Event>;
-	};
+	events: MaybeArray<Event>;
 	colors: Record<string, string>;
 };
