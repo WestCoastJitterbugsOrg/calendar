@@ -11,7 +11,7 @@
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
 		"lint:md:docs": "wp-scripts lint-md-docs",
 		"packages-update": "wp-scripts packages-update",
-		"plugin-zip": "npm run build && cd build/cw-filter-calendar && bestzip --force node ../../dist/cw-filter-calendar.zip *",
+		"plugin-zip": "npm run build && cd build/cw-filter-calendar && mkdir ../../dist && bestzip --force node ../../dist/cw-filter-calendar.zip *",
 		"start": "wp-scripts start --webpack-copy-php --output-path=build/cw-filter-calendar",
 		"test:unit": "wp-scripts test-unit-js",
 		"test:unit:updateSnapshots": "wp-scripts test-unit-js -u",
