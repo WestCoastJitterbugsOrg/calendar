@@ -1,5 +1,3 @@
-import { WCJ } from '@app/types';
-import { ViewOptions } from '@app/types/fc';
 import {
 	EventApi,
 	EventMountArg,
@@ -7,8 +5,9 @@ import {
 	ViewMountArg,
 } from '@fullcalendar/core';
 import { VerboseFormattingArg } from '@fullcalendar/core/internal';
+import type { WCJ, FC } from 'types';
 
-export function createListView(start: Date, end: Date): ViewOptions {
+export function createListView(start: Date, end: Date): FC.ViewOptions {
 	return {
 		type: 'list',
 		listDaySideFormat,

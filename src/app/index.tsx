@@ -1,8 +1,8 @@
 import App from './App';
 import { initContext } from './services/cogwork';
-import CW from '@app/types/cogwork';
 import { StrictMode } from 'react';
 import { render as reactRender } from 'react-dom';
+import type { CW } from 'types';
 
 export function render(response: CW.Response, container: Element) {
 	if (response.type === 'error') {

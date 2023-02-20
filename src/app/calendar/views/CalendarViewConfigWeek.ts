@@ -1,5 +1,5 @@
-import { ViewOptions } from '@app/types/fc';
 import { formatDate, FormatterInput } from '@fullcalendar/core';
+import type { FC } from 'types';
 
 const titleFormat: FormatterInput = (args) =>
 	`Week ${formatDate(args.date.marker, { week: 'numeric' })}, 
@@ -13,7 +13,7 @@ const dayHeaderFormat: FormatterInput = (args) =>
 	'\n' +
 	formatDate(args.date.marker, { day: 'numeric' });
 
-const viewOptions: ViewOptions = {
+const viewOptions: FC.ViewOptions = {
 	scrollTimeReset: false,
 	scrollTime: '09:00:00',
 	slotLabelFormat: {

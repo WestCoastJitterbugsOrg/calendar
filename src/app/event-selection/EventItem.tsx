@@ -2,9 +2,9 @@ import checked from '../assets/checkbox-checked.svg';
 import unchecked from '../assets/checkbox-unchecked.svg';
 import infoCircle from '../assets/info-circle.svg';
 import { stateContext } from '../store/StateWrapper';
-import WCJ from '../types/wcj';
 import style from './EventItem.module.scss';
 import { useContext } from 'react';
+import type { WCJ } from 'types';
 
 type Props = {
 	event: WCJ.Event;

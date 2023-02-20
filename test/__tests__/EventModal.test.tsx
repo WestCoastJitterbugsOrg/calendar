@@ -1,8 +1,8 @@
 import { mockStore } from '../__mocks__/stateContext';
-import { EventSeriesModal } from '@app/EventSeriesModal';
-import { StateWrapper } from '@app/store/StateWrapper';
 import '@testing-library/jest-dom';
 import { fireEvent, render } from '@testing-library/react';
+import { EventSeriesModal } from 'app/EventSeriesModal';
+import { StateWrapper } from 'app/store/StateWrapper';
 import { act } from 'react-dom/test-utils';
 
 it('EventModal Snapshot', () => {

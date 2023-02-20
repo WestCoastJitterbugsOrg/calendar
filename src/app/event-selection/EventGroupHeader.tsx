@@ -4,8 +4,8 @@ import unchecked from '../assets/checkbox-unchecked.svg';
 import plusIcon from '../assets/plus.svg';
 import StateContext, { CategoryStore, EventStore } from '../store/model';
 import { getCategoryEvents } from '../store/utils';
-import { WCJ } from '../types';
 import style from './EventGroupHeader.module.scss';
+import type { WCJ } from 'types';
 
 type Props = {
 	category: CategoryStore;

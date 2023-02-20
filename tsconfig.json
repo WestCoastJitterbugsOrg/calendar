@@ -13,11 +13,8 @@
 		"resolveJsonModule": true,
 		"jsx": "react-jsx",
 		"sourceMap": true,
-		"baseUrl": ".",
+		"baseUrl": "src",
 		"lib": ["ESNext", "dom"],
-		"paths": {
-			"@app/*": ["./src/app/*"]
-		},
 		"plugins": [
 			{
 				"name": "typescript-plugin-css-modules"

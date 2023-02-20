@@ -1,6 +1,6 @@
-import Cogwork from '@app/types/cogwork';
+import { CW } from 'types';
 
-export const defaultEventData: Cogwork.OkResponse = {
+export const defaultEventData: CW.OkResponse = {
 	colors: {
 		primary: '#ab2814',
 		'primary-alt': '#ec6350',

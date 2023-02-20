@@ -1,6 +1,6 @@
-import { ViewOptions } from '../../types/fc';
+import type { FC } from 'types';
 
-const viewOptions: ViewOptions = {
+const viewOptions: FC.ViewOptions = {
 	titleFormat: { year: 'numeric', month: 'long' },
 	dayHeaderFormat: { weekday: 'long' },
 };

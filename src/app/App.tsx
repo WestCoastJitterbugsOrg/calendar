@@ -5,8 +5,8 @@ import { Header } from './Header';
 import { Calendar } from './calendar/Calendar';
 import { EventSelection } from './event-selection/EventSelection';
 import { StateWrapper } from './store/StateWrapper';
-import WCJ from './types/wcj';
 import { useEffect, useState } from 'react';
+import type { WCJ } from 'types';
 
 type Props = WCJ.Context & { colors: Record<string, string> };
 
