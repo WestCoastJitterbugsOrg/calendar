@@ -13,10 +13,8 @@ module.exports = {
 			'<rootDir>/test/__mocks__/fileMock.ts',
 		'\\.(css|scss|pcss)$': '<rootDir>/test/__mocks__/styleMock.ts',
 		...wpPreset.moduleNameMapper,
-		...(compilerOptions.paths
-			? pathsToModuleNameMapper(compilerOptions.paths, {
-					prefix: '<rootDir>/',
-			  })
-			: {}),
+		...pathsToModuleNameMapper(compilerOptions.paths ?? { '*': '*' }, {
+			prefix: `<rootDir>/${compilerOptions.baseUrl}`,
+		}),
 	},
 };
