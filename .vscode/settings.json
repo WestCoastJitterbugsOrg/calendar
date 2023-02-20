@@ -83,8 +83,6 @@
 	"typescript.tsdk": "./node_modules/typescript/lib",
 	"stylelint.snippet": ["css", "less", "postcss", "scss"],
 	"stylelint.validate": ["css", "less", "postcss", "scss"],
-	"spellright.language": ["en-US-10-1."],
-	"spellright.documentTypes": ["latex", "plaintext"],
 	"explorer.sortOrder": "foldersNestsFiles",
 	"explorer.fileNesting.patterns": {
 		"*.ts": "${capture}.js",
@@ -95,5 +93,6 @@
 		".eslintrc.json": ".stylelintrc, .babelrc, .editorconfig, .npmpackagejsonlintrc.json",
 		".wp-env.json": ".wp-env.override.json",
 		"README.md": "CONTRIBUTING.md, LICENSE"
-	}
+	},
+	"jest.jestCommandLine": "npm run test:unit --"
 }
