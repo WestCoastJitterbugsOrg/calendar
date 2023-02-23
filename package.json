@@ -33,7 +33,8 @@
 		"ics-js": "^0.10.2",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
-		"react-modal": "^3.16.1"
+		"react-modal": "^3.16.1",
+		"react-query": "^3.39.3"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.20.12",

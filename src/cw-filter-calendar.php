@@ -45,6 +45,12 @@ function cwfc_block_render_callback($attributes, $content, $block_instance)
 {
 	$result = cwfc_get_events($attributes);
 
+	wp_localize_script(
+		'cw-addons-cw-filter-calendar-view-script',
+		'ajaxObject',
+		['ajaxUrl' => admin_url('admin-ajax.php')]
+	);
+
 	ob_start();
 ?>
 	<div class="wp-block-cw-addons-cw-filter-calendar"> </div>

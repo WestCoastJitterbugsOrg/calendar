@@ -26,3 +26,7 @@ declare module '*.svg' {
 	const content: string | undefined;
 	export default content;
 }
+declare namespace ajaxObject {
+	const ajaxUrl: string;
+	export { ajaxUrl };
+}
