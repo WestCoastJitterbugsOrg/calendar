@@ -1,8 +1,8 @@
-import { defaultEventData } from '../__mocks__/cwEvents';
+import { defaultColors, defaultEventData } from '../__mocks__/cwEvents';
 import { mockStore } from '../__mocks__/stateContext';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
-import App from 'app/App';
+import { App } from 'app/App';
 import { initContext } from 'app/services/cogwork';
 import { storeConsentCookie } from 'app/services/cookies';
 import * as ics from 'app/services/ics';
@@ -14,10 +14,7 @@ beforeEach(() => {
 
 it('Cookie header is shown by default', async () => {
 	const renderResult = render(
-		<App
-			{...initContext(defaultEventData.events)}
-			colors={defaultEventData.colors}
-		/>
+		<App {...initContext(defaultEventData)} colors={defaultColors} />
 	);
 	const cookieHeader = await renderResult.findByTestId('cookie-header');
 
@@ -29,10 +26,7 @@ it('Cookie header is hidden if there are cookies', () => {
 		storeConsentCookie();
 	});
 	const renderResult = render(
-		<App
-			{...initContext(defaultEventData.events)}
-			colors={defaultEventData.colors}
-		/>
+		<App {...initContext(defaultEventData)} colors={defaultColors} />
 	);
 	const cookieHeader = renderResult.queryByTestId('cookie-header');
 	expect(cookieHeader).toBeNull();
@@ -40,10 +34,7 @@ it('Cookie header is hidden if there are cookies', () => {
 
 it('Clicking on Download calls exportICS', () => {
 	const { getByTestId } = render(
-		<App
-			{...initContext(defaultEventData.events)}
-			colors={defaultEventData.colors}
-		/>
+		<App {...initContext(defaultEventData)} colors={defaultColors} />
 	);
 
 	const exportICS = jest.spyOn(ics, 'exportICS').mockImplementation();

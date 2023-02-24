@@ -1,4 +1,7 @@
 import './view.scss';
+import { WCJ } from 'types';
+
+declare const wpCwfc: WCJ.WpCwfc;
 
 let shadowRoot: ShadowRoot | undefined;
 

@@ -45,21 +45,16 @@ add_action('wp_ajax_nopriv_cwfc_fetch', 'cwfc_fetch');
  */
 function cwfc_block_render_callback($attributes, $content, $block_instance)
 {
-
 	$password = $attributes['Password'];
-	$pw_hash = password_hash($password,  PASSWORD_DEFAULT);
-	add_option('cwfc_pw-hash-mapping_' . $pw_hash,  $password);
+	$pw_hash = password_hash($password, PASSWORD_DEFAULT);
+	add_option('cwfc_pw-hash-mapping_' . $pw_hash, $password);
 
-	wp_localize_script(
-		'cw-addons-cw-filter-calendar-view-script',
-		'wpCwfc',
-		[
-			'ajaxUrl' => admin_url('admin-ajax.php'),
-			'org' => $attributes['Organization'],
-			'pwHash' => $pw_hash,
-			'colors' => $attributes['Colors']
-		]
-	);
+	wp_localize_script('cw-addons-cw-filter-calendar-view-script', 'wpCwfc', [
+		'ajaxUrl' => admin_url('admin-ajax.php'),
+		'org' => $attributes['Organization'],
+		'pwHash' => $pw_hash,
+		'colors' => $attributes['Colors'],
+	]);
 
 	return '<div class="wp-block-cw-addons-cw-filter-calendar"></div>';
 }

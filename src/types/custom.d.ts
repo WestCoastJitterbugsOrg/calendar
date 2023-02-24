@@ -26,10 +26,3 @@ declare module '*.svg' {
 	const content: string | undefined;
 	export default content;
 }
-declare namespace wpCwfc {
-	const ajaxUrl: string;
-	const org: string;
-	const pwHash: string;
-	const colors: Record<string, string>;
-	export { ajaxUrl, org, pwHash, colors };
-}

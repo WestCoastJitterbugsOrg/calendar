@@ -1,16 +1,17 @@
-import App from './App';
+import AppInit from './AppInit';
 import LogRocket from 'logrocket';
 import { StrictMode } from 'react';
 import { render as reactRender } from 'react-dom';
 import { SWRConfig } from 'swr';
+import { WpCwfc } from 'types/wcj';
 
 LogRocket.init('iwnlra/cogwork-interactive-calendar');
 
-export function render(data: typeof wpCwfc, container: Element) {
+export function render(data: WpCwfc, container: Element) {
 	return reactRender(
 		<StrictMode>
 			<SWRConfig value={{ provider: localStorageProvider }}>
-				<App {...data} />
+				<AppInit {...data} />
 			</SWRConfig>
 		</StrictMode>,
 		container

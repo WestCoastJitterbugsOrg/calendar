@@ -26,3 +26,10 @@ export type Context = {
 	categories: Record<string, { id: string; events: string[] }>;
 	events: Record<string, Event>;
 };
+
+export type WpCwfc = {
+	ajaxUrl: string;
+	org: string;
+	pwHash: string;
+	colors: Record<string, string>;
+};
