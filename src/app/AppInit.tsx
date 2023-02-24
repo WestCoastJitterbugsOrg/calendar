@@ -32,7 +32,9 @@ export default function AppInit(props: Props) {
 		return (
 			<>
 				<h3>An error has occurred</h3>
-				<pre>{error}</pre>
+				<pre style={{ whiteSpace: 'break-spaces' }}>
+					{JSON.stringify(error)}
+				</pre>
 			</>
 		);
 	}

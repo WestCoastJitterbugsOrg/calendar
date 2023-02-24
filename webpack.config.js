@@ -7,6 +7,7 @@ const wpDefaults = require('@wordpress/scripts/config/webpack.config');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
 const path = require('path');
+const { DefinePlugin } = require('webpack');
 
 // Replace the generated css module class names
 
@@ -66,6 +67,9 @@ const toBeMerged = {
 		plugins: [new TsconfigPathsPlugin({})],
 	},
 	plugins: [
+		new DefinePlugin({
+			wpCwfcEnv: JSON.stringify(wpDefaults.mode),
+		}),
 		new MiniCssExtractPlugin({
 			insert: (styleElement) => {
 				const styleLoadedEvent = new CustomEvent('cw-filter-style-loaded', {

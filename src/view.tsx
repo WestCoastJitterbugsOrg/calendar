@@ -2,10 +2,13 @@ import './view.scss';
 import LogRocket from 'logrocket';
 import { WCJ } from 'types';
 
-LogRocket.init('iwnlra/cogwork-interactive-calendar');
-
+declare const wpCwfcEnv: 'development' | 'production';
 declare const wpCwfc: WCJ.WpCwfc;
 let shadowRoot: ShadowRoot | undefined;
+
+if (wpCwfcEnv === 'production') {
+	LogRocket.init('iwnlra/cogwork-interactive-calendar');
+}
 
 const loader = document.createElement('div');
 loader.classList.add('loader-container');
@@ -32,7 +35,9 @@ window.onload = () => {
 			app.render(wpCwfc, appContainer);
 		})
 		.catch((error: Error) => {
-			rootElement.innerHTML = `Error!\n<pre>${JSON.stringify(error.message)}`;
+			rootElement.innerHTML = `Error!\n<pre style="white-space: break-spaces">${JSON.stringify(
+				error.message
+			)}`;
 			throw new Error('Wordpress cwfc plugin rendering error', {
 				cause: error,
 			});
