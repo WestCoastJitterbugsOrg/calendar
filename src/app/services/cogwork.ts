@@ -1,7 +1,7 @@
 import type { CW, WCJ } from 'types';
 import type { MaybeArray } from 'types/utils';
 
-export function initContext(cwEvents: CW.OkResponse['events']): WCJ.Context {
+export function initContext(cwEvents: MaybeArray<CW.Event>): WCJ.Context {
 	const response = asArray(cwEvents);
 
 	const cogworkEvents = response.filter(

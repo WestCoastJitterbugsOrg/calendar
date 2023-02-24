@@ -1,20 +1,34 @@
 import App from './App';
-import { initContext } from './services/cogwork';
+import LogRocket from 'logrocket';
 import { StrictMode } from 'react';
 import { render as reactRender } from 'react-dom';
-import type { CW } from 'types';
+import { SWRConfig } from 'swr';
 
-export function render(response: CW.Response, container: Element) {
-	if (response.type === 'error') {
-		throw new Error('Response returned error', {
-			cause: response.data,
-		});
-	}
-	const data = initContext(response.data.events);
+LogRocket.init('iwnlra/cogwork-interactive-calendar');
+
+export function render(data: typeof wpCwfc, container: Element) {
 	return reactRender(
 		<StrictMode>
-			<App {...data} colors={response.data.colors} />
+			<SWRConfig value={{ provider: localStorageProvider }}>
+				<App {...data} />
+			</SWRConfig>
 		</StrictMode>,
 		container
 	);
+}
+
+function localStorageProvider() {
+	// When initializing, we restore the data from `localStorage` into a map.
+	const map = new Map(
+		JSON.parse(localStorage.getItem('app-cache') ?? '[]') as [string, object][]
+	);
+
+	// Before unloading the app, we write back all the data into `localStorage`.
+	window.addEventListener('beforeunload', () => {
+		const appCache = JSON.stringify(Array.from(map.entries()));
+		localStorage.setItem('app-cache', appCache);
+	});
+
+	// We still use the map for write & read for performance.
+	return map;
 }

@@ -1,11 +1,11 @@
 <?php
 
-function cwfc_get_events(array $attributes)
+function cwfc_fetch()
 {
-
+	$password = get_option('cwfc_pw-hash-mapping_' . $_POST['pw_hash']);
 	$body = [
-		'org' => $attributes['Organization'],
-		'pw' => $attributes['Password'],
+		'org' => $_POST['org'],
+		'pw' => $password,
 		'regStatus' => 0,
 		'dateInterval' => 'future',
 	];
@@ -24,20 +24,14 @@ function cwfc_get_events(array $attributes)
 		$args
 	);
 	if (is_wp_error($response)) {
-		return json_encode([
-			'type' => 'error',
-			'data' => $response
-		]);
+		http_response_code(500);
+		echo json_encode($response);
+		wp_die($response);
 	} else {
 		$body = wp_remote_retrieve_body($response);
 		$xml = simplexml_load_string($body, null, LIBXML_NOCDATA);
 		$events = $xml->xpath('//events/event');
-		return json_encode([
-			'type' => 'ok',
-			'data' => [
-				'events' => $events,
-				'colors' => $attributes['Colors']
-			]
-		]);
+		echo json_encode($events);
+		wp_die();
 	}
 }

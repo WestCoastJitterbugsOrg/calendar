@@ -35,22 +35,3 @@ export type Occasion = {
 	startDateTime?: string;
 	endDateTime?: string;
 };
-
-export type Response =
-	| {
-			type: 'error';
-			data: ErrorResponse;
-	  }
-	| {
-			type: 'ok';
-			data: OkResponse;
-	  };
-
-export type ErrorResponse = {
-	error: unknown;
-};
-
-export type OkResponse = {
-	events: MaybeArray<Event>;
-	colors: Record<string, string>;
-};

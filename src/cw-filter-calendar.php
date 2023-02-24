@@ -33,6 +33,8 @@ function cwfc_block_init()
 }
 
 add_action('init', 'cwfc_block_init');
+add_action('wp_ajax_cwfc_fetch', 'cwfc_fetch');
+add_action('wp_ajax_nopriv_cwfc_fetch', 'cwfc_fetch');
 
 /**
  * This function is called when the block is being rendered on the front end of the site
@@ -43,23 +45,21 @@ add_action('init', 'cwfc_block_init');
  */
 function cwfc_block_render_callback($attributes, $content, $block_instance)
 {
-	$result = cwfc_get_events($attributes);
+
+	$password = $attributes['Password'];
+	$pw_hash = password_hash($password,  PASSWORD_DEFAULT);
+	add_option('cwfc_pw-hash-mapping_' . $pw_hash,  $password);
 
 	wp_localize_script(
 		'cw-addons-cw-filter-calendar-view-script',
-		'ajaxObject',
-		['ajaxUrl' => admin_url('admin-ajax.php')]
+		'wpCwfc',
+		[
+			'ajaxUrl' => admin_url('admin-ajax.php'),
+			'org' => $attributes['Organization'],
+			'pwHash' => $pw_hash,
+			'colors' => $attributes['Colors']
+		]
 	);
 
-	ob_start();
-?>
-	<div class="wp-block-cw-addons-cw-filter-calendar"> </div>
-	<script>
-		const event = new CustomEvent("cw-filter-events-loaded", {
-			detail: <?php echo $result ?>
-		});
-		window.addEventListener("load", () => window.dispatchEvent(event));
-	</script>
-<?
-	return ob_get_clean();
+	return '<div class="wp-block-cw-addons-cw-filter-calendar"></div>';
 }
