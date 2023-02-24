@@ -1,11 +1,8 @@
 import AppInit from './AppInit';
-import LogRocket from 'logrocket';
 import { StrictMode } from 'react';
 import { render as reactRender } from 'react-dom';
 import { SWRConfig } from 'swr';
 import { WpCwfc } from 'types/wcj';
-
-LogRocket.init('iwnlra/cogwork-interactive-calendar');
 
 export function render(data: WpCwfc, container: Element) {
 	return reactRender(

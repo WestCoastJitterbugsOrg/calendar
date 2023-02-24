@@ -1,8 +1,10 @@
 import './view.scss';
+import LogRocket from 'logrocket';
 import { WCJ } from 'types';
 
-declare const wpCwfc: WCJ.WpCwfc;
+LogRocket.init('iwnlra/cogwork-interactive-calendar');
 
+declare const wpCwfc: WCJ.WpCwfc;
 let shadowRoot: ShadowRoot | undefined;
 
 const loader = document.createElement('div');
@@ -23,7 +25,6 @@ window.onload = () => {
 	rootElement.append(loader);
 	rootElement.append(appDiv);
 	shadowRoot = appDiv.attachShadow({ mode: 'open' });
-
 	import('app/index')
 		.then((app) => {
 			const appContainer = document.createElement('div');

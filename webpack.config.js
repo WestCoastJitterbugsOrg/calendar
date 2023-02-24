@@ -56,7 +56,7 @@ const mergeWithUpdatedMiniCssConfig = mergeWithCustomize({
 
 /** @type {WpConfig} */
 const toBeMerged = {
-	mode: 'development',
+	devtool: 'source-map',
 	output: {
 		chunkFilename: '[name]-[chunkhash].js',
 		clean: true,

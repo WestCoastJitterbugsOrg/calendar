@@ -38,8 +38,8 @@ export function App(props: Props) {
 					</div>
 					<Footer />
 				</div>
+				<>{rootRef && <EventSeriesModal parent={rootRef} />}</>
 			</StateWrapper>
-			{rootRef && <EventSeriesModal parent={rootRef} />}
 		</>
 	);
 }
