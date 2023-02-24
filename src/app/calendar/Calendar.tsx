@@ -34,14 +34,21 @@ export function Calendar(props: Props) {
 	}
 
 	const fcRootRef = useRef<HTMLDivElement>(null);
+	const fcRef = useRef<FullCalendar>(null);
 	const tooltipHandler = useTooltip(fcRootRef);
+
+	const fcWidth = fcRootRef.current?.clientWidth;
+	const calendarApi = fcRef.current?.getApi();
+	if (fcWidth != null) {
+		calendarApi?.changeView(fcWidth <= 640 ? 'listRange' : 'timeGridWeek');
+	}
 
 	return (
 		<div className="wcjcal-fc" data-testid="fc-wrapper" ref={fcRootRef}>
 			<FullCalendar
 				plugins={[listPlugin, timeGridPlugin, dayGridPlugin, interaction]}
 				initialDate={props.initialDate}
-				initialView={window.innerWidth <= 640 ? 'listRange' : 'timeGridWeek'}
+				ref={fcRef}
 				height="100%"
 				views={{
 					dayGridMonth,
