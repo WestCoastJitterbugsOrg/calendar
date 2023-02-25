@@ -18,13 +18,13 @@ export function render(data: WpCwfc, container: Element) {
 function localStorageProvider() {
 	// When initializing, we restore the data from `localStorage` into a map.
 	const map = new Map(
-		JSON.parse(localStorage.getItem('app-cache') ?? '[]') as [string, object][]
+		JSON.parse(localStorage.getItem('cwfc-cache') ?? '[]') as [string, object][]
 	);
 
 	// Before unloading the app, we write back all the data into `localStorage`.
 	window.addEventListener('beforeunload', () => {
 		const appCache = JSON.stringify(Array.from(map.entries()));
-		localStorage.setItem('app-cache', appCache);
+		localStorage.setItem('cwfc-cache', appCache);
 	});
 
 	// We still use the map for write & read for performance.

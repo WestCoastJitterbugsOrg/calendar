@@ -33,7 +33,10 @@ export default function AppInit(props: Props) {
 				body: formData,
 			}).then((res) =>
 				res.ok ? res.json() : res.text().then((text) => Promise.reject(text))
-			)
+			),
+		{
+			loadingTimeout: 10000,
+		}
 	);
 
 	const getContent = () => {
@@ -42,7 +45,7 @@ export default function AppInit(props: Props) {
 		}
 
 		if (error) {
-			return <ErrorViewer message={JSON.stringify(error)} />;
+			return <ErrorViewer message={JSON.stringify(error, null, 4)} />;
 		}
 
 		if (!data) {

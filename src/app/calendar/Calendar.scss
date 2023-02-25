@@ -28,7 +28,9 @@
 	--fc-neutral-text-color: #000;
 	--fc-highlight-color: rgba(188, 232, 241, 0.3);
 
+	position: relative;
 	height: 100%;
+	width: 100%;
 	flex-grow: 1;
 
 	.fc {
