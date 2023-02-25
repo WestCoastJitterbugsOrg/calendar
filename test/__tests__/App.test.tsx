@@ -14,7 +14,11 @@ beforeEach(() => {
 
 it('Cookie header is shown by default', async () => {
 	const renderResult = render(
-		<App {...initContext(defaultEventData)} colors={defaultColors} />
+		<App
+			parent={document.documentElement}
+			{...initContext(defaultEventData)}
+			colors={defaultColors}
+		/>
 	);
 	const cookieHeader = await renderResult.findByTestId('cookie-header');
 
@@ -23,10 +27,14 @@ it('Cookie header is shown by default', async () => {
 
 it('Cookie header is hidden if there are cookies', () => {
 	act(() => {
-		storeConsentCookie();
+		storeConsentCookie('yes');
 	});
 	const renderResult = render(
-		<App {...initContext(defaultEventData)} colors={defaultColors} />
+		<App
+			parent={document.documentElement}
+			{...initContext(defaultEventData)}
+			colors={defaultColors}
+		/>
 	);
 	const cookieHeader = renderResult.queryByTestId('cookie-header');
 	expect(cookieHeader).toBeNull();
@@ -34,7 +42,11 @@ it('Cookie header is hidden if there are cookies', () => {
 
 it('Clicking on Download calls exportICS', () => {
 	const { getByTestId } = render(
-		<App {...initContext(defaultEventData)} colors={defaultColors} />
+		<App
+			parent={document.documentElement}
+			{...initContext(defaultEventData)}
+			colors={defaultColors}
+		/>
 	);
 
 	const exportICS = jest.spyOn(ics, 'exportICS').mockImplementation();
