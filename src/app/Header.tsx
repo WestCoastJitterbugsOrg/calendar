@@ -1,17 +1,17 @@
 import style from './Header.module.scss';
-import { canStoreSelection, storeConsentCookie } from './services/cookies';
+import { getConsentCookie, storeConsentCookie } from './services/cookies';
 import { Button } from './shared/Button';
 import { useState } from 'react';
 
 export function Header() {
-	const [accepted, accept] = useState(false);
+	const [decisionMade, decide] = useState(false);
 
-	const consent = () => {
-		storeConsentCookie();
-		accept(true);
+	const storeConsent = (consent: boolean) => {
+		storeConsentCookie(consent ? 'yes' : 'no');
+		decide(true);
 	};
 
-	if (canStoreSelection() || accepted) {
+	if (getConsentCookie() || decisionMade) {
 		return <></>;
 	}
 	return (
@@ -23,7 +23,12 @@ export function Header() {
 				<p>We do not process this data for any other use.</p>
 				<p>Your consent is needed for this functionality.</p>
 			</div>
-			<Button onClick={consent}>Consent</Button>
+			<div style={{ display: 'flex' }}>
+				<Button onClick={() => storeConsent(true)}>Consent</Button>
+				<Button type="ghost" onClick={() => storeConsent(false)}>
+					Don&apos;t consent
+				</Button>
+			</div>
 		</header>
 	);
 }

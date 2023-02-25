@@ -9,9 +9,11 @@ import { DateInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interaction from '@fullcalendar/interaction';
 import listPlugin from '@fullcalendar/list';
-import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import { useContext, useRef } from 'react';
+import Loader from 'app/shared/Loader';
+import { lazy, Suspense, useContext, useEffect, useRef, useState } from 'react';
+
+const FullCalendar = lazy(() => import('@fullcalendar/react'));
 
 type Props = {
 	initialDate?: DateInput;
@@ -34,58 +36,62 @@ export function Calendar(props: Props) {
 	}
 
 	const fcRootRef = useRef<HTMLDivElement>(null);
-	const fcRef = useRef<FullCalendar>(null);
 	const tooltipHandler = useTooltip(fcRootRef);
 
-	const fcWidth = fcRootRef.current?.clientWidth;
-	const calendarApi = fcRef.current?.getApi();
-	if (fcWidth != null) {
-		calendarApi?.changeView(fcWidth <= 640 ? 'listRange' : 'timeGridWeek');
-	}
+	const [initialView, setInitialView] = useState('listView');
+	useEffect(() => {
+		const fcWidth = fcRootRef.current?.clientWidth;
+
+		if (fcWidth != null) {
+			setInitialView(() => (fcWidth <= 640 ? 'listRange' : 'timeGridWeek'));
+		}
+	}, [fcRootRef.current]);
 
 	return (
 		<div className="wcjcal-fc" data-testid="fc-wrapper" ref={fcRootRef}>
-			<FullCalendar
-				plugins={[listPlugin, timeGridPlugin, dayGridPlugin, interaction]}
-				initialDate={props.initialDate}
-				ref={fcRef}
-				height="100%"
-				views={{
-					dayGridMonth,
-					timeGridWeek,
-					listRange: createListView(
-						new Date(firstOccasion),
-						new Date(lastOccasion)
-					),
-				}}
-				buttonText={{
-					today: 'Today',
-					month: 'Month',
-					week: 'Week',
-					list: 'List',
-				}}
-				headerToolbar={{
-					start: 'today,prev,next',
-					center: 'title',
-					end: 'timeGridWeek,dayGridMonth,listRange',
-				}}
-				firstDay={1}
-				nowIndicator
-				displayEventEnd
-				eventTimeFormat={{
-					hour: '2-digit',
-					minute: '2-digit',
-					meridiem: false,
-					hour12: false,
-				}}
-				eventDisplay="block"
-				allDaySlot={false}
-				eventSources={shownWcjEvents.map(wcj2fcEvent)}
-				eventBackgroundColor="var(--cw-color-primary, #AB2814)"
-				eventBorderColor="transparent"
-				eventClick={tooltipHandler.handleEventClick}
-				selectable={false}
-			/>
+			<Suspense fallback={<Loader />}>
+				<FullCalendar
+					plugins={[listPlugin, timeGridPlugin, dayGridPlugin, interaction]}
+					initialDate={props.initialDate}
+					initialView={initialView}
+					height="100%"
+					views={{
+						dayGridMonth,
+						timeGridWeek,
+						listRange: createListView(
+							new Date(firstOccasion),
+							new Date(lastOccasion)
+						),
+					}}
+					buttonText={{
+						today: 'Today',
+						month: 'Month',
+						week: 'Week',
+						list: 'List',
+					}}
+					headerToolbar={{
+						start: 'today,prev,next',
+						center: 'title',
+						end: 'timeGridWeek,dayGridMonth,listRange',
+					}}
+					firstDay={1}
+					nowIndicator
+					displayEventEnd
+					eventTimeFormat={{
+						hour: '2-digit',
+						minute: '2-digit',
+						meridiem: false,
+						hour12: false,
+					}}
+					eventDisplay="block"
+					allDaySlot={false}
+					eventSources={shownWcjEvents.map(wcj2fcEvent)}
+					eventBackgroundColor="var(--cw-color-primary, #AB2814)"
+					eventBorderColor="transparent"
+					eventClick={tooltipHandler.handleEventClick}
+					selectable={false}
+				/>
+			</Suspense>
 		</div>
 	);
 }

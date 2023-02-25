@@ -11,7 +11,7 @@ import {
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { App } from 'app/App';
-import { Fragment } from 'react';
+import { Fragment, useRef } from 'react';
 
 type Attributes = {
 	Organization: string;
@@ -29,6 +29,7 @@ registerBlockType(metadata as BlockConfiguration<Attributes>, {
 		attributes: { Organization, Password, Colors },
 		setAttributes,
 	}) {
+		const { current } = useRef<HTMLElement>();
 		return (
 			<div {...useBlockProps()}>
 				<InspectorControls key="setting">
@@ -70,7 +71,7 @@ registerBlockType(metadata as BlockConfiguration<Attributes>, {
 						</PanelBody>
 					</Panel>
 				</InspectorControls>
-				<App {...mockContext} colors={Colors} />
+				{current && <App parent={current} {...mockContext} colors={Colors} />}
 			</div>
 		);
 	},

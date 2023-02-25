@@ -1,7 +1,7 @@
 {
 	"name": "cw-filter-calendar",
 	"author": "Jean-Philippe Green",
-	"main": "build/index.js",
+	"main": "build/cw-filter-calendar/index.js",
 	"scripts": {
 		"build": "wp-scripts build --webpack-copy-php --output-path=build/cw-filter-calendar",
 		"format": "prettier --write src/**",
@@ -11,12 +11,12 @@
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
 		"lint:md:docs": "wp-scripts lint-md-docs",
 		"packages-update": "wp-scripts packages-update",
-		"plugin-zip": "npm run build && cd build/cw-filter-calendar && mkdir ../../dist && bestzip --force node ../../dist/cw-filter-calendar.zip *",
+		"plugin-zip": "npm run build && cd build/cw-filter-calendar && mkdir -p ../../dist && bestzip --force node ../../dist/cw-filter-calendar.zip *",
 		"start": "wp-scripts start --webpack-copy-php --output-path=build/cw-filter-calendar",
 		"test:unit": "wp-scripts test-unit-js",
 		"test:unit:updateSnapshots": "wp-scripts test-unit-js -u",
 		"test-ci": "npm run test:unit",
-		"setup-env": "npm run build && wp-env start --xdebug",
+		"setup-env": "mkdir -p build/cw-filter-calendar && wp-env start --xdebug",
 		"wp-env": "wp-env"
 	},
 	"dependencies": {

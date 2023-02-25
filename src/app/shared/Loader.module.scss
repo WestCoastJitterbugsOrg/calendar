@@ -1,0 +1,28 @@
+.loaderContainer {
+	position: relative;
+	display: flex;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+	background: var(--cw-color-light);
+}
+
+.loader {
+	position: absolute;
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+	border: 0.5rem solid;
+	border-color: var(--cw-color-primary-alt) var(--cw-color-secondary)
+		var(--cw-color-primary) var(--cw-color-secondary-alt);
+	animation: spin linear 1s infinite;
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}

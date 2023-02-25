@@ -35,7 +35,7 @@ window.onload = () => {
 			app.render(wpCwfc, appContainer);
 		})
 		.catch((error: Error) => {
-			rootElement.innerHTML = `Error!\n<pre style="white-space: break-spaces">${JSON.stringify(
+			rootElement.innerHTML = `<h1>Error!</h1>\n<pre style="white-space: break-spaces">${JSON.stringify(
 				error.message
 			)}`;
 			throw new Error('Wordpress cwfc plugin rendering error', {

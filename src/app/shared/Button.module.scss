@@ -30,4 +30,8 @@
 	&.lg {
 		padding: 12px 24px;
 	}
+
+	&.ghost {
+		background-color: var(--cw-color-dark);
+	}
 }

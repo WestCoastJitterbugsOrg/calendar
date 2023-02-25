@@ -3,7 +3,6 @@
 	"apiVersion": 2,
 	"name": "cw-addons/cw-filter-calendar",
 	"icon": "calendar-alt",
-	"version": "0.1.0",
 	"title": "Cw Filter Calendar",
 	"category": "widgets",
 	"description": "Calendar using data from cogwork that allows filtering, reading event information and registration",

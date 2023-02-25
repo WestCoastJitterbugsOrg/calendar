@@ -8,16 +8,18 @@ const consentCookies = [
 	'cookielawinfo-checkbox-functional',
 ];
 
-export function storeConsentCookie() {
+export function storeConsentCookie(value: 'yes' | 'no') {
 	// Store cookie 1 year to comply with ePrivacy Regulation
 	const oneYear = 60 * 60 * 24 * 365;
-	document.cookie = `${defaultConsentCookie}=yes; max-age=${oneYear}; SameSite=Lax`;
+	document.cookie = `${defaultConsentCookie}=${value}; max-age=${oneYear}; SameSite=Lax`;
+}
+
+export function getConsentCookie() {
+	return getCookies().find((x) => consentCookies.includes(x.key));
 }
 
 export function canStoreSelection() {
-	return getCookies().some(
-		(x) => consentCookies.includes(x.key) && x.value === 'yes'
-	);
+	return getConsentCookie()?.value === 'yes';
 }
 
 function getCookies() {

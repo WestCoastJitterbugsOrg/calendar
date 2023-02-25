@@ -1,5 +1,9 @@
 import { App } from './App';
+import style from './AppInit.module.scss';
 import { initContext } from './services/cogwork';
+import { ErrorViewer } from './shared/ErrorViewer';
+import Loader from './shared/Loader';
+import { useEffect, useState } from 'react';
 import useSwr from 'swr';
 import { CW } from 'types';
 import { MaybeArray } from 'types/utils';
@@ -13,6 +17,14 @@ export default function AppInit(props: Props) {
 	formData.append('org', props.org);
 	formData.append('pw_hash', props.pwHash);
 
+	const [rootRef, setRef] = useState<HTMLElement | null>(null);
+	useEffect(() => {
+		for (const color in props.colors) {
+			const colorVal = props.colors[color];
+			rootRef?.style.setProperty(`--cw-color-${color}`, colorVal);
+		}
+	}, [props.colors, rootRef]);
+
 	const { isLoading, error, data } = useSwr<MaybeArray<CW.Event>, string>(
 		'cwfc_fetch',
 		() =>
@@ -24,26 +36,29 @@ export default function AppInit(props: Props) {
 			)
 	);
 
-	if (isLoading) {
-		return <>Loading...</>;
-	}
+	const getContent = () => {
+		if (isLoading) {
+			return <Loader />;
+		}
 
-	if (error) {
-		return (
-			<>
-				<h3>An error has occurred</h3>
-				<pre style={{ whiteSpace: 'break-spaces' }}>
-					{JSON.stringify(error)}
-				</pre>
-			</>
-		);
-	}
+		if (error) {
+			return <ErrorViewer message={JSON.stringify(error)} />;
+		}
 
-	if (!data) {
-		return <h3>Didn&apos;t get any data</h3>;
-	}
+		if (!data) {
+			return <h3>Didn&apos;t get any data</h3>;
+		}
 
-	const context = initContext(data);
+		if (rootRef)
+			return (
+				<App {...initContext(data)} colors={props.colors} parent={rootRef} />
+			);
+		return <></>;
+	};
 
-	return <App {...context} colors={props.colors} />;
+	return (
+		<div className={style.root} ref={setRef}>
+			{getContent()}
+		</div>
+	);
 }
