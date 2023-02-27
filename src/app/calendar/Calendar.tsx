@@ -38,7 +38,7 @@ export function Calendar(props: Props) {
 	const fcRootRef = useRef<HTMLDivElement>(null);
 	const tooltipHandler = useTooltip(fcRootRef);
 
-	const [initialView, setInitialView] = useState('listView');
+	const [initialView, setInitialView] = useState('listRange');
 	useEffect(() => {
 		const fcWidth = fcRootRef.current?.clientWidth;
 
@@ -48,7 +48,7 @@ export function Calendar(props: Props) {
 	}, [fcRootRef.current]);
 
 	return (
-		<div className="wcjcal-fc" data-testid="fc-wrapper" ref={fcRootRef}>
+		<div className="wcjcal-fc" ref={fcRootRef}>
 			<Suspense fallback={<Loader />}>
 				<FullCalendar
 					plugins={[listPlugin, timeGridPlugin, dayGridPlugin, interaction]}

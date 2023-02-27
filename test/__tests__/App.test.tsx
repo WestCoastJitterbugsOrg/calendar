@@ -20,7 +20,7 @@ it('Cookie header is shown by default', async () => {
 			colors={defaultColors}
 		/>
 	);
-	const cookieHeader = await renderResult.findByTestId('cookie-header');
+	const cookieHeader = await renderResult.findByRole('banner');
 
 	expect(cookieHeader).toBeTruthy();
 });
@@ -36,12 +36,12 @@ it('Cookie header is hidden if there are cookies', () => {
 			colors={defaultColors}
 		/>
 	);
-	const cookieHeader = renderResult.queryByTestId('cookie-header');
+	const cookieHeader = renderResult.queryByRole('banner');
 	expect(cookieHeader).toBeNull();
 });
 
 it('Clicking on Download calls exportICS', () => {
-	const { getByTestId } = render(
+	const renderResult = render(
 		<App
 			parent={document.documentElement}
 			{...initContext(defaultEventData)}
@@ -51,8 +51,9 @@ it('Clicking on Download calls exportICS', () => {
 
 	const exportICS = jest.spyOn(ics, 'exportICS').mockImplementation();
 
-	const downloadButton = getByTestId('export-ics-button')
-		.children[0] as HTMLButtonElement;
+	const downloadButton = renderResult.getByText(
+		'Export iCal'
+	) as HTMLButtonElement;
 	act(() => {
 		downloadButton.click();
 	});

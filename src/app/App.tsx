@@ -20,7 +20,7 @@ export function App(props: Props) {
 				<aside className={appStyle.eventSelection}>
 					<EventSelection />
 				</aside>
-				<main className={appStyle.calendar} data-testid="calendar-wrapper">
+				<main className={appStyle.calendar}>
 					<Calendar />
 				</main>
 			</div>

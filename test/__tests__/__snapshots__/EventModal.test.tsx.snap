@@ -30,11 +30,9 @@ exports[`EventModal Snapshot 1`] = `
         style="position: absolute; top: 40px; left: 40px; right: 40px; bottom: 40px; border: 1px solid #ccc; background: rgb(255, 255, 255); overflow: auto; border-radius: 4px; outline: none; padding: 20px;"
         tabindex="-1"
       >
-        <div
-          data-testid="event-series-modal-content"
-        >
+        <div>
           <button
-            data-testid="modal-close-button"
+            aria-label="modal-close-button"
             type="button"
           >
             <img

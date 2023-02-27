@@ -15,7 +15,7 @@ export function Header() {
 		return <></>;
 	}
 	return (
-		<header data-testid="cookie-header" className={style.header}>
+		<header className={style.header}>
 			<div className={style.headerText}>
 				<p>
 					This calendar can remember which events are selected between sessions.

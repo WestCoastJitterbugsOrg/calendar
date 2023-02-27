@@ -13,9 +13,7 @@ export function ErrorViewer(props: Props) {
 	return (
 		<div className={style.wrapper}>
 			<h1>Error!</h1>
-			<pre className={style.message} data-testid="error-message">
-				{props.message}
-			</pre>
+			<pre className={style.message}>{props.message}</pre>
 		</div>
 	);
 }

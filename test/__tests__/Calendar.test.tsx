@@ -16,45 +16,41 @@ jest.mock('@popperjs/core', () => {
 	};
 });
 
-it('Click event in calendar opens popper', () => {
+it('Click event in calendar opens popper', async () => {
 	jest.useFakeTimers();
 
 	const initialDate = mockStore.events['1'].occasions[0].start;
 
-	const { baseElement } = render(
+	const result = render(
 		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
 			<Calendar initialDate={initialDate} />
 		</StateWrapper>
 	);
 
-	const fcEventContainer = baseElement.querySelector<HTMLDivElement>(
-		'.fc-event-title-container'
-	);
+	const fcEventContainer = await result.findByText('Grundkurs Lindy Hop');
 
 	act(() => {
-		fcEventContainer?.click();
+		fcEventContainer.click();
 		jest.runAllTicks();
 	});
 
 	expect(createPopper).toHaveBeenCalledTimes(1);
 });
 
-it('Can open list view', () => {
+it('Can open list view', async () => {
 	const initialDate = mockStore.events['1'].occasions[0].start;
 
-	const { baseElement } = render(
+	const result = render(
 		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
 			<Calendar initialDate={initialDate} />
 		</StateWrapper>
 	);
 
-	const fcListRangeButton = baseElement.querySelector<HTMLDivElement>(
-		'.fc-listRange-button'
-	);
+	const fcListRangeButton = await result.findByText('List');
 
 	act(() => {
-		fcListRangeButton?.click();
+		fcListRangeButton.click();
 	});
 
-	expect(baseElement.querySelector('.fc-listRange-view')).toBeTruthy();
+	expect(result.baseElement.querySelector('.fc-listRange-view')).toBeTruthy();
 });

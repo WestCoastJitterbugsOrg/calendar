@@ -45,7 +45,7 @@ async function getEventGroupInputs(
 	groupSelector = (collection: HTMLCollection) => collection[0]
 ) {
 	const eventGroup = groupSelector(
-		(await renderResult.findByTestId('event-selection-groups')).children
+		(await renderResult.findByRole('list')).children
 	).children;
 
 	const group = eventGroup[0];

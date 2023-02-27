@@ -11,7 +11,7 @@ export function Footer() {
 
 	return (
 		<footer className={style.footer}>
-			<div className={style.exportIcsButton} data-testid="export-ics-button">
+			<div className={style.exportIcsButton}>
 				<Button onClick={() => void exportICS(events)}>
 					Export iCal{' '}
 					<img

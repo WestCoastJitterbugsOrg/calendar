@@ -12,14 +12,14 @@ it('Unchecking a group causes all events to be unchecked', async () => {
 		</StateWrapper>
 	);
 
-	const el = await result.findByTestId('group-checkbox');
+	const el = (await result.findAllByAltText('☑'))[0];
 
 	act(() => {
 		fireEvent.click(el);
 	});
 
-	const allEventCheckboxes = (await result.findAllByTestId(
-		'event-checkbox'
+	const allEventCheckboxes = (await result.findAllByRole(
+		'checkbox'
 	)) as HTMLInputElement[];
 	expect(allEventCheckboxes.every((x) => x.checked)).toBeFalsy();
 });
@@ -31,14 +31,14 @@ it('Unchecking an event causes it to be unchecked', async () => {
 		</StateWrapper>
 	);
 
-	const el = await result.findByTestId('event-item');
+	const el = await result.findByRole('listitem');
 
 	act(() => {
 		fireEvent.click(el);
 	});
 
-	const eventCheckbox = (await result.findByTestId(
-		'event-checkbox'
+	const eventCheckbox = (await result.findByRole(
+		'checkbox'
 	)) as HTMLInputElement;
 	expect(eventCheckbox.checked).toBeFalsy();
 });
@@ -50,13 +50,13 @@ it('Click info button opens modal', async () => {
 		</StateWrapper>
 	);
 
-	const infoButton = await result.findByTestId('info-button');
+	const infoButton = await result.findByAltText('info');
 
 	act(() => {
 		infoButton.click();
 	});
 
-	const modalContent = result.findByTestId('event-series-modal-content');
+	const modalContent = result.findByRole('dialog');
 
 	expect(modalContent).toBeTruthy();
 });

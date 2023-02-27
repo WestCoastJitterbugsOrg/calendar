@@ -27,11 +27,7 @@ export function EventSelection() {
 				<Button onClick={() => select(true)}>Select all</Button>
 				<Button onClick={() => select(false)}>Deselect all</Button>
 			</div>
-			<div
-				className={style.eventGroupList}
-				data-testid="event-selection-groups"
-				role="list"
-			>
+			<div className={style.eventGroupList} role="list">
 				{Object.keys(categories).map((categoryId) => (
 					<EventGroup key={categoryId} category={categoryId} />
 				))}

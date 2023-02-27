@@ -24,7 +24,7 @@ it('EventModal Snapshot', () => {
 it('EventModal clicking on close button closes modal', async () => {
 	const eventModal = Object.values(mockStore.events)[0].id;
 
-	const { baseElement, findByTestId } = render(
+	const { baseElement, findByLabelText } = render(
 		<StateWrapper
 			categories={mockStore.categories}
 			events={mockStore.events}
@@ -33,7 +33,7 @@ it('EventModal clicking on close button closes modal', async () => {
 			<EventSeriesModal parent={document.body} />
 		</StateWrapper>
 	);
-	const modalCloseButton = await findByTestId('modal-close-button');
+	const modalCloseButton = await findByLabelText('modal-close-button');
 
 	act(() => {
 		modalCloseButton.click();

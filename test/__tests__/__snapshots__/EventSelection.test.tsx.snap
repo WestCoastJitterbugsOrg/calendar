@@ -5,20 +5,19 @@ exports[`EventSelection Snapshot 1`] = `
   <div>
     <div>
       <button
-        class="undefined "
+        class="undefined  "
         type="button"
       >
         Select all
       </button>
       <button
-        class="undefined "
+        class="undefined  "
         type="button"
       >
         Deselect all
       </button>
     </div>
     <div
-      data-testid="event-selection-groups"
       role="list"
     >
       <div
@@ -46,7 +45,6 @@ exports[`EventSelection Snapshot 1`] = `
           >
             <img
               alt="☑"
-              data-testid="group-checkbox"
               height="16"
               src="test-file-stub"
               width="16"
@@ -58,7 +56,6 @@ exports[`EventSelection Snapshot 1`] = `
           id="Event group Lindy Hop"
         >
           <div
-            data-testid="event-item"
             role="listitem"
           >
             <button
@@ -66,7 +63,6 @@ exports[`EventSelection Snapshot 1`] = `
             >
               <img
                 alt="info"
-                data-testid="info-button"
                 src="test-file-stub"
               />
               <span
@@ -77,7 +73,6 @@ exports[`EventSelection Snapshot 1`] = `
             </button>
             <div
               aria-checked="true"
-              data-testid="event-checkbox"
               role="checkbox"
               tabindex="-1"
             >

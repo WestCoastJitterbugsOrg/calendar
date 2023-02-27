@@ -40,12 +40,12 @@ export function EventSeriesModal(props: Props) {
 			appElement={props.parent}
 		>
 			{event && (
-				<div className={style.content} data-testid="event-series-modal-content">
+				<div className={style.content}>
 					<button
 						type="button"
 						className={style.closeButton}
 						onClick={() => setEventModal?.(undefined)}
-						data-testid="modal-close-button"
+						aria-label="modal-close-button"
 					>
 						<img alt="Close" src={closeIcon} width="16" height="16" />
 					</button>

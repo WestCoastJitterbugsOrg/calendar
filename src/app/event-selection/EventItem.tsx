@@ -24,7 +24,7 @@ export function EventItem(props: Props) {
 		}));
 
 	return (
-		<div className={style.wrapper} role="listitem" data-testid="event-item">
+		<div className={style.wrapper} role="listitem">
 			<button
 				className={style.content}
 				onClick={() => setEventModal?.(props.event.id)}
@@ -36,12 +36,7 @@ export function EventItem(props: Props) {
 					}
 				}}
 			>
-				<img
-					data-testid="info-button"
-					alt="info"
-					src={infoCircle}
-					className={style.infoButton}
-				/>
+				<img alt="info" src={infoCircle} className={style.infoButton} />
 				<span
 					className={
 						style.title +
@@ -53,7 +48,6 @@ export function EventItem(props: Props) {
 			</button>
 			<div
 				role="checkbox"
-				data-testid="event-checkbox"
 				aria-checked={props.event.showInCalendar}
 				tabIndex={props.expanded ? 0 : -1}
 				className={style.checkbox}
