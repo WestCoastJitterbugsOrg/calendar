@@ -57,7 +57,7 @@
 		"@wordpress/babel-preset-default": "^7.10.0",
 		"@wordpress/browserslist-config": "^5.9.0",
 		"@wordpress/env": "^5.11.0",
-		"@wordpress/eslint-plugin": "^13.10.0",
+		"@wordpress/eslint-plugin": "^14.0.0",
 		"@wordpress/jest-preset-default": "^10.7.0",
 		"@wordpress/scripts": "^24.6.0",
 		"@wordpress/stylelint-config": "^21.9.0",
