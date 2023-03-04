@@ -1,9 +1,9 @@
 import './view.scss';
 import LogRocket from 'logrocket';
-import { WCJ } from 'types';
+import type { WpCwfc } from 'types';
 
 declare const wpCwfcEnv: 'development' | 'production';
-declare const wpCwfc: WCJ.WpCwfc;
+declare const wpCwfc: WpCwfc;
 let shadowRoot: ShadowRoot | undefined;
 
 if (wpCwfcEnv === 'production') {
@@ -28,7 +28,7 @@ window.onload = () => {
 	rootElement.append(loader);
 	rootElement.append(appDiv);
 	shadowRoot = appDiv.attachShadow({ mode: 'open' });
-	import('app/index')
+	import('../app/src')
 		.then((app) => {
 			const appContainer = document.createElement('div');
 			shadowRoot?.appendChild(appContainer);

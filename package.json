@@ -20,22 +20,10 @@
 		"wp-env": "wp-env"
 	},
 	"dependencies": {
-		"@fullcalendar/core": "^6.1.4",
-		"@fullcalendar/daygrid": "^6.1.4",
-		"@fullcalendar/interaction": "^6.1.4",
-		"@fullcalendar/list": "^6.1.4",
-		"@fullcalendar/react": "^6.1.4",
-		"@fullcalendar/timegrid": "^6.1.4",
 		"@popperjs/core": "^2.11.6",
 		"@wordpress/block-editor": "^10.5.0",
 		"@wordpress/components": "^22.1.0",
-		"@wordpress/element": "^5.4.0",
-		"ics-js": "^0.10.2",
-		"logrocket": "^3.0.1",
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2",
-		"react-modal": "^3.16.1",
-		"swr": "^2.0.3"
+		"@wordpress/element": "^5.4.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.20.12",
@@ -45,22 +33,11 @@
 		"@testing-library/jest-dom": "^5.16.5",
 		"@testing-library/react": "^12.1.5",
 		"@trivago/prettier-plugin-sort-imports": "^4.0.0",
-		"@types/react": "^17.0.53",
-		"@types/react-dom": "^17.0.19",
 		"@types/react-modal": "^3.13.1",
 		"@types/testing-library__jest-dom": "^5.14.5",
 		"@types/webpack": "^5.28.0",
-		"@types/wordpress__block-editor": "^11.0.1",
-		"@types/wordpress__blocks": "^12.0.3",
-		"@typescript-eslint/eslint-plugin": "^5.54.0",
-		"@wordpress/babel-plugin-import-jsx-pragma": "^4.9.0",
-		"@wordpress/babel-preset-default": "^7.10.0",
-		"@wordpress/browserslist-config": "^5.9.0",
 		"@wordpress/env": "^5.11.0",
-		"@wordpress/eslint-plugin": "^14.0.0",
-		"@wordpress/jest-preset-default": "^10.7.0",
 		"@wordpress/scripts": "^24.6.0",
-		"@wordpress/stylelint-config": "^21.9.0",
 		"babel-jest": "^29.4.3",
 		"bestzip": "^2.2.1",
 		"eslint": "^8.35.0",
@@ -83,5 +60,9 @@
 	},
 	"browserslist": [
 		"extends @wordpress/browserslist-config"
+	],
+	"workspaces": [
+		"src/app",
+		"src/types"
 	]
 }

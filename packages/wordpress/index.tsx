@@ -1,3 +1,4 @@
+import { App } from '../app/src/App';
 import metadata from './block.json';
 import { mockContext } from './editMockData';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
@@ -10,7 +11,6 @@ import {
 	ColorPicker,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { App } from 'app/App';
 import { Fragment, useRef } from 'react';
 
 type Attributes = {
