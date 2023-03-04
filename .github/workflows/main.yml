@@ -41,4 +41,4 @@ jobs:
       - name: Install Dependencies
         run: npm ci
       - name: Run Jest
-        run: npm run test-ci .
+        run: npm run test .
