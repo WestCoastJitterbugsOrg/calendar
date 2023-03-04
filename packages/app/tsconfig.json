@@ -16,7 +16,7 @@
 		"sourceMap": true,
 		"baseUrl": "src",
 		"lib": ["ESNext", "dom"],
-		"paths": { "app/*": ["app/*"], "types/*": ["types/*"] },
+		"paths": { "app/*": ["app/*"] },
 		"plugins": [
 			{
 				"name": "typescript-plugin-css-modules"
