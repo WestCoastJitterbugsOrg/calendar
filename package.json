@@ -62,7 +62,7 @@
 		"@wordpress/scripts": "^24.6.0",
 		"@wordpress/stylelint-config": "^21.9.0",
 		"bestzip": "^2.2.1",
-		"eslint": "^8.33.0",
+		"eslint": "^8.35.0",
 		"eslint-config-prettier": "^8.6.0",
 		"eslint-import-resolver-typescript": "^3.5.3",
 		"eslint-plugin-import": "^2.27.5",
