@@ -5,6 +5,7 @@ import { Header } from './Header';
 import { Calendar } from './calendar/Calendar';
 import { EventSelection } from './event-selection/EventSelection';
 import { StateWrapper } from './store/StateWrapper';
+import { useEffect } from 'react';
 import { WCJ } from 'types';
 
 type Props = WCJ.Context & {
@@ -13,6 +14,13 @@ type Props = WCJ.Context & {
 };
 
 export function App(props: Props) {
+	useEffect(() => {
+		for (const color in props.colors) {
+			const colorVal = props.colors[color];
+			props.parent.style.setProperty(`--cw-color-${color}`, colorVal);
+		}
+	}, [props.colors, props.parent]);
+
 	return (
 		<StateWrapper categories={props.categories} events={props.events}>
 			<Header />

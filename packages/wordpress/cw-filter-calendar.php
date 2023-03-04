@@ -55,7 +55,6 @@ function cwfc_block_render_callback($attributes, $content, $block_instance)
 	return '<div class="wp-block-cw-addons-cw-filter-calendar"></div>';
 }
 
-
 add_action('init', 'cwfc_block_init');
 add_action('wp_ajax_cwfc_fetch', 'cwfc_fetch');
 add_action('wp_ajax_nopriv_cwfc_fetch', 'cwfc_fetch');

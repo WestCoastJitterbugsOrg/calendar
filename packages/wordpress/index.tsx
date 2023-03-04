@@ -11,7 +11,7 @@ import {
 	ColorPicker,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Fragment, useRef } from 'react';
+import { Fragment, useState } from 'react';
 
 type Attributes = {
 	Organization: string;
@@ -29,9 +29,15 @@ registerBlockType(metadata as BlockConfiguration<Attributes>, {
 		attributes: { Organization, Password, Colors },
 		setAttributes,
 	}) {
-		const { current } = useRef<HTMLElement>();
+		const props = useBlockProps();
+		const [wrapperRef, setRef] = useState<HTMLDivElement>();
+		const oldRefFn = props.ref;
+		props.ref = (el: HTMLDivElement) => {
+			oldRefFn(el);
+			setRef(el);
+		};
 		return (
-			<div {...useBlockProps()}>
+			<div {...props}>
 				<InspectorControls key="setting">
 					<Panel>
 						<PanelBody title="Basics" initialOpen={true}>
@@ -71,7 +77,9 @@ registerBlockType(metadata as BlockConfiguration<Attributes>, {
 						</PanelBody>
 					</Panel>
 				</InspectorControls>
-				{current && <App parent={current} {...mockContext} colors={Colors} />}
+				{wrapperRef && (
+					<App parent={wrapperRef} {...mockContext} colors={Colors} />
+				)}
 			</div>
 		);
 	},

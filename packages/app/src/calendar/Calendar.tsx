@@ -45,7 +45,7 @@ export function Calendar(props: Props) {
 		if (fcWidth != null) {
 			setInitialView(() => (fcWidth <= 640 ? 'listRange' : 'timeGridWeek'));
 		}
-	}, [fcRootRef.current]);
+	}, []);
 
 	return (
 		<div className="wcjcal-fc" ref={fcRootRef}>
