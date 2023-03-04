@@ -1,21 +1,5 @@
 {
 	"name": "wordpress",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.tsx",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/WestCoastJitterbugsOrg/Personalized-Calendar.git"
-	},
-	"author": "",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/WestCoastJitterbugsOrg/Personalized-Calendar/issues"
-	},
-	"homepage": "https://github.com/WestCoastJitterbugsOrg/Personalized-Calendar#readme",
 	"dependencies": {
 		"app": "*",
 		"logrocket": "^3.0.1",

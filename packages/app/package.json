@@ -1,9 +1,11 @@
 {
 	"name": "app",
-	"main": "index.tsx",
+	"module": "dist/index.js",
 	"scripts": {
+		"build": "tsc",
 		"test": "wp-scripts test-unit-js"
 	},
+	"files": ["dist", "src"],
 	"dependencies": {
 		"@fullcalendar/core": "^6.1.4",
 		"@fullcalendar/daygrid": "^6.1.4",

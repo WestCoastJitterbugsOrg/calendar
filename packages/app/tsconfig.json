@@ -11,12 +11,12 @@
 		"target": "ESNext",
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
+		"declaration": true,
 		"jsx": "react-jsx",
-		"noEmit": true,
 		"sourceMap": true,
-		"baseUrl": "src",
+		"baseUrl": ".",
 		"lib": ["ESNext", "dom"],
-		"paths": { "app/*": ["app/*"] },
+		"paths": { "app/*": ["src/app/*"], "types/*": ["../shared/*"] },
 		"plugins": [
 			{
 				"name": "typescript-plugin-css-modules"

@@ -62,7 +62,8 @@
 		"extends @wordpress/browserslist-config"
 	],
 	"workspaces": [
-		"src/app",
-		"src/types"
+		"packages/app",
+		"packages/types",
+		"packages/wordpress"
 	]
 }

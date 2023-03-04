@@ -1,4 +1,4 @@
-import type { WCJ } from 'types';
+import type * as WCJ from '../shared';
 
 // Setup start and stop dates for an example event to be shown in the edit view.
 // The calendar will automatically go to the current date,

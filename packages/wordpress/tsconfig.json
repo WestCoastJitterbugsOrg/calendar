@@ -13,9 +13,10 @@
 		"resolveJsonModule": true,
 		"jsx": "react-jsx",
 		"sourceMap": true,
-		"baseUrl": "src",
+		"baseUrl": ".",
 		"lib": ["ESNext", "dom"],
-		"paths": { "app/*": ["../app/*"], "types/*": ["../types/*"] },
+		"paths": { "app/*": ["../app/*"], "types/*": ["../shared/*"] },
+		"types": [".."],
 		"plugins": [
 			{
 				"name": "typescript-plugin-css-modules"
