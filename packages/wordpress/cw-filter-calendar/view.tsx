@@ -29,10 +29,10 @@ window.onload = () => {
 	rootElement.append(appDiv);
 	shadowRoot = appDiv.attachShadow({ mode: 'open' });
 	import('@cwfc/app')
-		.then(({AppInit}) => {
+		.then((app) => {
 			const appContainer = document.createElement('div');
 			shadowRoot?.appendChild(appContainer);
-			AppInit.render(wpCwfc, appContainer);
+			app.render(wpCwfc, appContainer);
 		})
 		.catch((error: Error) => {
 			rootElement.innerHTML = `<h1>Error!</h1>\n<pre style="white-space: break-spaces">${JSON.stringify(

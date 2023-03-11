@@ -1,7 +1,6 @@
 {
 	"compilerOptions": {
 		"outDir": "dist",
-		"allowJs": true,
 		"skipLibCheck": true,
 		"strict": true,
 		"esModuleInterop": true,
@@ -35,6 +34,9 @@
 		]
 	},
 	"include": [
-		"src"
+		"src",
+		"./index.js",
+		"./build.mjs",
+		"types"
 	]
 }

@@ -14,12 +14,19 @@
 		"jsx": "react-jsx",
 		"sourceMap": true,
 		"baseUrl": ".",
-		"lib": ["ESNext", "dom"],
-		"paths": { "shared/*": ["../shared/*"] },
+		"lib": [
+			"ESNext",
+			"dom"
+		],
+		"paths": {
+			"shared/*": [
+				"../shared/*"
+			]
+		},
 		"plugins": [
 			{
 				"name": "typescript-plugin-css-modules"
 			}
-		]
+		],
 	}
 }

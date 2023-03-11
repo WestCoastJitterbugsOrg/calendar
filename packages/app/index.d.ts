@@ -1,2 +1,2 @@
-export * as App from './dist/App.d.ts';
-export * as AppInit from './dist/AppInit.d.ts';
+export * as App from './dist/App';
+export { render } from './dist/index';
