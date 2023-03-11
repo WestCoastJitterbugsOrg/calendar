@@ -4,10 +4,10 @@ import { initContext } from './services/cogwork';
 import { ErrorViewer } from './shared/ErrorViewer';
 import Loader from './shared/Loader';
 import { useState } from 'react';
+import type { WpCwfc } from 'shared/types';
 import useSwr from 'swr';
-import { CW } from 'types';
-import { MaybeArray } from 'types/utils';
-import { WpCwfc } from 'types/wcj';
+import type { CW } from 'types';
+import type { MaybeArray } from 'types/utils';
 
 type Props = WpCwfc;
 

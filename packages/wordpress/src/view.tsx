@@ -1,6 +1,6 @@
 import './view.scss';
 import LogRocket from 'logrocket';
-import type { WpCwfc } from 'types/index';
+import type { WpCwfc } from 'shared/types';
 
 declare const wpCwfcEnv: 'development' | 'production';
 declare const wpCwfc: WpCwfc;
@@ -28,11 +28,11 @@ window.onload = () => {
 	rootElement.append(loader);
 	rootElement.append(appDiv);
 	shadowRoot = appDiv.attachShadow({ mode: 'open' });
-	import('app')
-		.then((app) => {
+	import('@cwfc/app')
+		.then(({AppInit}) => {
 			const appContainer = document.createElement('div');
 			shadowRoot?.appendChild(appContainer);
-			app.render(wpCwfc, appContainer);
+			AppInit.render(wpCwfc, appContainer);
 		})
 		.catch((error: Error) => {
 			rootElement.innerHTML = `<h1>Error!</h1>\n<pre style="white-space: break-spaces">${JSON.stringify(

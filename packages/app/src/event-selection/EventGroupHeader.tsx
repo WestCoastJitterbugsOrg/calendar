@@ -5,7 +5,7 @@ import plusIcon from '../assets/plus.svg';
 import StateContext, { CategoryStore, EventStore } from '../store/model';
 import { getCategoryEvents } from '../store/utils';
 import style from './EventGroupHeader.module.scss';
-import type { WCJ } from 'types';
+import type WCJ from 'shared/types';
 
 type Props = {
 	category: CategoryStore;

@@ -8,19 +8,33 @@
 		"forceConsistentCasingInFileNames": true,
 		"noFallthroughCasesInSwitch": true,
 		"module": "ESNext",
-		"target": "ESNext",
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
 		"declaration": true,
 		"jsx": "react-jsx",
-		"sourceMap": true,
+		"emitDeclarationOnly": true,
+		"isolatedModules": true,
 		"baseUrl": ".",
-		"lib": ["ESNext", "dom"],
-		"paths": { "app/*": ["src/app/*"], "types/*": ["../shared/*"] },
+		"lib": [
+			"ESNext",
+			"dom"
+		],
+		"paths": {
+			"*": [
+				"src/*"
+			],
+			"shared/*": [
+				"../shared/*",
+				"src/shared/*"
+			]
+		},
 		"plugins": [
 			{
 				"name": "typescript-plugin-css-modules"
 			}
 		]
-	}
+	},
+	"include": [
+		"src"
+	]
 }

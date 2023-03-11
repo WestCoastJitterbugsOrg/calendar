@@ -1,4 +1,5 @@
-import type { CW, WCJ } from 'types';
+import type WCJ from 'shared/types';
+import type { CW } from 'types';
 import type { MaybeArray } from 'types/utils';
 
 export function initContext(cwEvents: MaybeArray<CW.Event>): WCJ.Context {

@@ -1,14 +1,14 @@
 {
-	"name": "wordpress",
+	"name": "@cwfc/wordpress",
+	"scripts": {
+		"build": "wp-scripts build --webpack-copy-php --output-path=build/cw-filter-calendar"
+	},
 	"dependencies": {
-		"app": "*",
+		"@cwfc/app": "*",
 		"logrocket": "^3.0.1",
 		"react": "^17.0.2"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.20.12",
-		"@babel/plugin-transform-react-jsx": "^7.20.13",
-		"@babel/preset-typescript": "^7.18.6",
 		"@types/react": "^17.0.53",
 		"@types/react-dom": "^17.0.19",
 		"@types/wordpress__block-editor": "^7.0.0",

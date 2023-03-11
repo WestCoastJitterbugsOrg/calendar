@@ -1,3 +1,4 @@
+import Loader from '../shared/Loader';
 import { stateContext } from '../store/StateWrapper';
 import './Calendar.scss';
 import { wcj2fcEvent } from './CalendarHelpers';
@@ -10,7 +11,6 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interaction from '@fullcalendar/interaction';
 import listPlugin from '@fullcalendar/list';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import Loader from 'app/shared/Loader';
 import { lazy, Suspense, useContext, useEffect, useRef, useState } from 'react';
 
 const FullCalendar = lazy(() => import('@fullcalendar/react'));

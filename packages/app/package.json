@@ -1,11 +1,16 @@
 {
-	"name": "app",
+	"name": "@cwfc/app",
 	"module": "dist/index.js",
 	"scripts": {
-		"build": "tsc",
+		"build": "npm run build:types && npm run build:js",
+		"build:types": "tsc",
+		"build:js": "node ./build.mjs",
 		"test": "wp-scripts test-unit-js"
 	},
-	"files": ["dist", "src"],
+	"files": [
+		"dist",
+		"src"
+	],
 	"dependencies": {
 		"@fullcalendar/core": "^6.1.4",
 		"@fullcalendar/daygrid": "^6.1.4",
@@ -18,15 +23,23 @@
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-modal": "^3.16.1",
-		"swr": "^2.0.3",
-		"@babel/core": "^7.20.12",
-		"@babel/plugin-transform-react-jsx": "^7.20.13",
-		"@babel/preset-typescript": "^7.18.6"
+		"swr": "^2.0.3"
 	},
 	"devDependencies": {
+		"@babel/cli": "^7.21.0",
+		"@babel/core": "^7.21.0",
+		"@babel/preset-env": "^7.20.2",
+		"@babel/preset-react": "^7.18.6",
+		"@babel/preset-typescript": "^7.21.0",
 		"@types/react": "^17.0.53",
 		"@types/react-dom": "^17.0.19",
 		"@types/react-modal": "^3.13.1",
-		"@types/testing-library__jest-dom": "^5.14.5"
+		"@types/testing-library__jest-dom": "^5.14.5",
+		"babel-plugin-react-css-modules": "^5.2.6",
+		"esbuild": "^0.17.11",
+		"esbuild-sass-plugin": "^2.6.0",
+		"esbuild-scss-modules-plugin": "^1.1.1",
+		"postcss": "^8.4.21",
+		"postcss-modules": "^6.0.0"
 	}
 }

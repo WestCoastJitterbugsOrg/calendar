@@ -94,5 +94,8 @@
 		".wp-env.json": ".wp-env.override.json",
 		"README.md": "CONTRIBUTING.md, LICENSE"
 	},
-	"jest.jestCommandLine": "npm run test:unit --"
+	"jest.jestCommandLine": "npm run test:unit --",
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	}
 }

@@ -1,4 +1,4 @@
 {
 	"core": null,
-	"plugins": ["./build/cw-filter-calendar"]
+	"plugins": ["./packages/wordpress/build/cw-filter-calendar"]
 }

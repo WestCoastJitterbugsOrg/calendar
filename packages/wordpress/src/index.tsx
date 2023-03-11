@@ -1,6 +1,6 @@
-import { App } from '../app/src/App';
-import metadata from './block.json';
+import metadata from '../block.json';
 import { mockContext } from './editMockData';
+import { App } from '@cwfc/app';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import { BlockConfiguration, registerBlockType } from '@wordpress/blocks';
 import {

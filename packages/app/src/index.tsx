@@ -1,7 +1,7 @@
-import type { WpCwfc } from '../../shared/index';
 import AppInit from './AppInit';
 import { StrictMode } from 'react';
 import { render as reactRender } from 'react-dom';
+import type { WpCwfc } from 'shared/types';
 import { SWRConfig } from 'swr';
 
 export function render(data: WpCwfc, container: Element) {
