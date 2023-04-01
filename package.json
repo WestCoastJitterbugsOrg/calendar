@@ -23,7 +23,7 @@
 		"@fullcalendar/core": "^6.1.4",
 		"@fullcalendar/daygrid": "^6.1.4",
 		"@fullcalendar/interaction": "^6.1.4",
-		"@fullcalendar/list": "^6.1.4",
+		"@fullcalendar/list": "^6.1.5",
 		"@fullcalendar/react": "^6.1.4",
 		"@fullcalendar/timegrid": "^6.1.4",
 		"@popperjs/core": "^2.11.6",
