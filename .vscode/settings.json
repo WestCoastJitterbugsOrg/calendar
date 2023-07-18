@@ -81,20 +81,18 @@
 	],
 	"typescript.enablePromptUseWorkspaceTsdk": true,
 	"typescript.tsdk": "./node_modules/typescript/lib",
-	"stylelint.snippet": ["css", "less", "postcss", "scss"],
-	"stylelint.validate": ["css", "less", "postcss", "scss"],
-	"explorer.sortOrder": "foldersNestsFiles",
-	"explorer.fileNesting.patterns": {
-		"*.ts": "${capture}.js",
-		"*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
-		"*.tsx": "${capture}.ts, ${capture}.js, ${capture}.module.scss, ${capture}.scss",
-		"tsconfig.json": "tsconfig.*.json",
-		"package.json": "package-lock.json",
-		".eslintrc.json": ".stylelintrc, .babelrc, .editorconfig, .npmpackagejsonlintrc.json",
-		".wp-env.json": ".wp-env.override.json",
-		"README.md": "CONTRIBUTING.md, LICENSE"
-	},
-	"jest.jestCommandLine": "npm run test:unit --",
+	"stylelint.snippet": [
+		"css",
+		"less",
+		"postcss",
+		"scss"
+	],
+	"stylelint.validate": [
+		"css",
+		"less",
+		"postcss",
+		"scss"
+	],
 	"[jsonc]": {
 		"editor.defaultFormatter": "vscode.json-language-features"
 	}

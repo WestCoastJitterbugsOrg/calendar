@@ -5,6 +5,7 @@
 		"esbenp.prettier-vscode",
 		"xdebug.php-debug",
 		"bmewburn.vscode-intelephense-client",
-		"mrmlnc.vscode-scss"
+		"mrmlnc.vscode-scss",
+		"orta.vscode-jest"
 	]
 }
