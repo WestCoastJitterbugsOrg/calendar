@@ -27,7 +27,7 @@ require_once __DIR__ . '/cwfc-fetch.php';
  */
 function cwfc_block_init()
 {
-	register_block_type(__DIR__ . '/js', [
+	register_block_type(__DIR__, [
 		'render_callback' => 'cwfc_block_render_callback',
 	]);
 }

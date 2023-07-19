@@ -63,11 +63,11 @@ registerBlockType(metadata as BlockConfiguration<Attributes>, {
 									<strong>{color}</strong>
 									<PanelRow key={color}>
 										<ColorPicker
-											disableAlpha={true}
+											enableAlpha={false}
 											color={Colors[color]}
-											onChangeComplete={(newColor) =>
+											onChange={(newColor) =>
 												setAttributes({
-													Colors: { ...Colors, [color]: newColor.hex },
+													Colors: { ...Colors, [color]: newColor },
 												})
 											}
 										/>

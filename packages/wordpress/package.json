@@ -1,7 +1,7 @@
 {
 	"name": "@cwfc/wordpress",
 	"scripts": {
-		"build": "wp-scripts build --webpack-copy-php --output-path=cw-filter-calendar/js"
+		"build": "wp-scripts build --webpack-copy-php --output-path=cw-filter-calendar"
 	},
 	"dependencies": {
 		"@cwfc/app": "*",

@@ -10,7 +10,7 @@
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
 		"declaration": true,
-		"jsx": "react-jsx",
+		"jsx": "preserve",
 		"emitDeclarationOnly": true,
 		"isolatedModules": true,
 		"baseUrl": ".",
