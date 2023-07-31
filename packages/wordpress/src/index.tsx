@@ -1,4 +1,4 @@
-import metadata from '../block.json';
+import metadata from './block.json';
 import { mockContext } from './editMockData';
 import { App } from '@cwfc/app';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';

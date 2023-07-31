@@ -10,10 +10,10 @@
 		"html": false
 	},
 	"textdomain": "cw-filter-calendar",
-	"editorScript": "file:src/index.tsx",
-	"editorStyle": "file:src/index.css",
-	"viewScript": "file:src/view.tsx",
-	"style": "file:src/view.css",
+	"editorScript": "file:./index.tsx",
+	"editorStyle": "file:./index.css",
+	"viewScript": "file:./view.tsx",
+	"style": "file:./view.css",
 	"attributes": {
 		"Organization": {
 			"type": "string",
