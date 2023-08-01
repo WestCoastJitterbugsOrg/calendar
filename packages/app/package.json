@@ -1,6 +1,6 @@
 {
 	"name": "@cwfc/app",
-	"module": "dist/index.js",
+	"module": "index.js",
 	"scripts": {
 		"build": "npm run build:types && npm run build:js",
 		"build:types": "tsc",

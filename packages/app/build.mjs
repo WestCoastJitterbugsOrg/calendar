@@ -11,8 +11,10 @@ const examplePlugin = {
 	},
 };
 const ctx = await esbuild.context({
-	entryPoints: ['src/index.tsx', 'src/App.tsx'],
+	entryPoints: ['src/index.tsx'],
 	bundle: true,
+	format: 'esm',
+	jsx: 'automatic',
 	outdir: 'dist',
 	loader: {
 		'.svg': 'dataurl',

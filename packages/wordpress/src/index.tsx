@@ -1,6 +1,6 @@
 import metadata from './block.json';
 import { mockContext } from './editMockData';
-import { App } from '@cwfc/app';
+import { App } from '@cwfc/app/src/App';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import { BlockConfiguration, registerBlockType } from '@wordpress/blocks';
 import {
@@ -30,12 +30,6 @@ registerBlockType(metadata as BlockConfiguration<Attributes>, {
 		setAttributes,
 	}) {
 		const props = useBlockProps();
-		const [wrapperRef, setRef] = useState<HTMLDivElement>();
-		const oldRefFn = props.ref;
-		props.ref = (el: HTMLDivElement) => {
-			oldRefFn(el);
-			setRef(el);
-		};
 		return (
 			<div {...props}>
 				<InspectorControls key="setting">
@@ -77,9 +71,7 @@ registerBlockType(metadata as BlockConfiguration<Attributes>, {
 						</PanelBody>
 					</Panel>
 				</InspectorControls>
-				{wrapperRef && (
-					<App parent={wrapperRef} {...mockContext} colors={Colors} />
-				)}
+				CogWork calendar dummy
 			</div>
 		);
 	},

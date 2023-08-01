@@ -32,7 +32,7 @@ window.onload = () => {
 		.then((app) => {
 			const appContainer = document.createElement('div');
 			shadowRoot?.appendChild(appContainer);
-			app.render(wpCwfc, appContainer);
+			app.renderCwfc(wpCwfc, appContainer);
 		})
 		.catch((error: Error) => {
 			rootElement.innerHTML = `<h1>Error!</h1>\n<pre style="white-space: break-spaces">${JSON.stringify(

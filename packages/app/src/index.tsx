@@ -1,17 +1,16 @@
 import AppInit from './AppInit';
 import { StrictMode } from 'react';
-import { render as reactRender } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import type { WpCwfc } from 'shared/types';
 import { SWRConfig } from 'swr';
 
-export function render(data: WpCwfc, container: Element) {
-	return reactRender(
+export function renderCwfc(data: WpCwfc, container: Element) {
+	return createRoot(container).render(
 		<StrictMode>
 			<SWRConfig value={{ provider: localStorageProvider }}>
 				<AppInit {...data} />
 			</SWRConfig>
-		</StrictMode>,
-		container
+		</StrictMode>
 	);
 }
 
@@ -27,6 +26,6 @@ function localStorageProvider() {
 		localStorage.setItem('cwfc-cache', appCache);
 	});
 
-	// We still use the map for write & read for performance.
+	// We still use the map for read & write performance.
 	return map;
 }
