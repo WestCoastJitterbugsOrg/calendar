@@ -6,8 +6,8 @@
 import * as esbuild from 'esbuild';
 import { sassPlugin, postcssModules } from 'esbuild-sass-plugin';
 
-const examplePlugin = {
-	name: 'example',
+const statusPlugin = {
+	name: 'status',
 	setup(build) {
 		build.onEnd((result) => {
 			console.log(`build ended with ${result.errors.length} errors`);
@@ -39,7 +39,7 @@ const buildOptions = {
 				}
 			},
 		}),
-		examplePlugin,
+		statusPlugin,
 	],
 };
 const watch = process.argv.includes('--watch');

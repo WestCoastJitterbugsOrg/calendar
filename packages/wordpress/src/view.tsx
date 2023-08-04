@@ -1,6 +1,6 @@
 import './view.scss';
 import LogRocket from 'logrocket';
-import type { WpCwfc } from 'shared/types';
+import type { WpCwfc } from 'types/wcj';
 
 declare const wpCwfcEnv: 'development' | 'production';
 declare const wpCwfc: WpCwfc;

@@ -1,5 +1,5 @@
 import { EventInput, EventSourceInput } from '@fullcalendar/core';
-import type WCJ from 'shared/types';
+import type WCJ from 'types/wcj';
 
 export function wcj2fcEvent(wcjEvent: WCJ.Event): EventSourceInput {
 	return {

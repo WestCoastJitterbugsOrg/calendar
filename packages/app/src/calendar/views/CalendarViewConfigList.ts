@@ -5,8 +5,8 @@ import {
 	ViewMountArg,
 } from '@fullcalendar/core';
 import { VerboseFormattingArg } from '@fullcalendar/core/internal';
-import type WCJ from 'shared/types';
 import type { FC } from 'types';
+import type WCJ from 'types/wcj';
 
 export function createListView(start: Date, end: Date): FC.ViewOptions {
 	return {
