@@ -5,12 +5,13 @@
 /* eslint-disable */
 import * as esbuild from 'esbuild';
 import { sassPlugin, postcssModules } from 'esbuild-sass-plugin';
+import child_process from 'node:child_process';
 
 const statusPlugin = {
 	name: 'status',
 	setup(build) {
 		build.onEnd((result) => {
-			console.log(`build ended with ${result.errors.length} errors`);
+			console.log(`esbuild: built with ${result.errors.length} errors`);
 		});
 	},
 };
@@ -43,9 +44,15 @@ const buildOptions = {
 	],
 };
 const watch = process.argv.includes('--watch');
+const isWin = process.platform === 'win32';
+const tscCommand = isWin ? 'tsc.cmd' : 'tsc';
+
 if (watch) {
-	const ctx = await esbuild.context(buildOptions);
-	await ctx.watch();
+	child_process.spawn(tscCommand, ['--watch'], { stdio: 'inherit' });
+
+	const esbuildContext = await esbuild.context(buildOptions);
+	esbuildContext.watch();
 } else {
-	await esbuild.build(buildOptions);
+	child_process.spawn(tscCommand, { stdio: 'inherit' });
+	esbuild.build(buildOptions);
 }

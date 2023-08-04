@@ -35,8 +35,7 @@
 	},
 	"include": [
 		"src",
-		"./index.js",
-		"./build.mjs",
+		"scripts",
 		"types"
 	]
 }
