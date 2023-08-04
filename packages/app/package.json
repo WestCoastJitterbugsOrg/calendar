@@ -1,10 +1,10 @@
 {
 	"name": "@cwfc/app",
-	"module": "index.js",
+	"module": "index.ts",
 	"scripts": {
 		"build": "npm run build:types && npm run build:js",
 		"build:types": "tsc",
-		"build:js": "node ./build.mjs",
+		"build:js": "node ./build.mjs --watch",
 		"test": "wp-scripts test-unit-js"
 	},
 	"files": [

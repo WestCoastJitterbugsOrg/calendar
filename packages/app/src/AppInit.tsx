@@ -21,13 +21,19 @@ export default function AppInit(props: Props) {
 
 	const { isLoading, error, data } = useSwr<MaybeArray<CW.Event>, string>(
 		'cwfc_fetch',
-		() =>
-			fetch(props.ajaxUrl, {
+		async () => {
+			const res = await fetch(props.ajaxUrl, {
 				method: 'POST',
 				body: formData,
-			}).then((res) =>
-				res.ok ? res.json() : res.text().then((text) => Promise.reject(text))
-			),
+			});
+
+			if (res.ok) {
+				return res.json();
+			}
+			const text = await res.text();
+			return Promise.reject(text);
+		},
+
 		{
 			loadingTimeout: 10000,
 		}

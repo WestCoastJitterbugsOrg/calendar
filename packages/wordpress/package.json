@@ -24,6 +24,7 @@
 		"@wordpress/browserslist-config": "^5.20.0",
 		"@wordpress/eslint-plugin": "^14.10.0",
 		"@wordpress/jest-preset-default": "^11.8.0",
-		"@wordpress/stylelint-config": "^21.20.0"
+		"@wordpress/stylelint-config": "^21.20.0",
+		"raw-loader": "^4.0.2"
 	}
 }

@@ -1,3 +1,7 @@
+/**
+ * @typedef { import("esbuild") } esbuild
+ */
+
 /* eslint-disable */
 import * as esbuild from 'esbuild';
 import { sassPlugin, postcssModules } from 'esbuild-sass-plugin';
@@ -10,7 +14,11 @@ const examplePlugin = {
 		});
 	},
 };
-const ctx = await esbuild.context({
+
+/**
+ * @type {esbuild.BuildOptions}
+ */
+const buildOptions = {
 	entryPoints: ['src/index.tsx'],
 	bundle: true,
 	format: 'esm',
@@ -20,12 +28,24 @@ const ctx = await esbuild.context({
 		'.svg': 'dataurl',
 		'.png': 'dataurl',
 	},
+	splitting: true,
 	plugins: [
 		sassPlugin({
-			transform: postcssModules({}),
+			transform: async (css, resolveDir, filePath) => {
+				if (filePath.endsWith('.module.scss')) {
+					return postcssModules({})(css, resolveDir, filePath);
+				} else {
+					return css;
+				}
+			},
 		}),
 		examplePlugin,
 	],
-});
-
-ctx.watch();
+};
+const watch = process.argv.includes('--watch');
+if (watch) {
+	const ctx = await esbuild.context(buildOptions);
+	await ctx.watch();
+} else {
+	await esbuild.build(buildOptions);
+}

@@ -28,11 +28,24 @@ window.onload = () => {
 	rootElement.append(loader);
 	rootElement.append(appDiv);
 	shadowRoot = appDiv.attachShadow({ mode: 'open' });
+	// eslint-disable-next-line import/no-unresolved
+	import('!!raw-loader!@cwfc/app/dist/index.css')
+		.then((style: { default: string }) => {
+			const styleContainer = document.createElement('style');
+			styleContainer.textContent = style.default;
+			shadowRoot?.appendChild(styleContainer);
+		})
+		.catch((error: Error) => {
+			throw new Error('Wordpress cwfc plugin style error', {
+				cause: error,
+			});
+		});
+
 	import('@cwfc/app')
 		.then((app) => {
 			const appContainer = document.createElement('div');
 			shadowRoot?.appendChild(appContainer);
-			app.renderCwfc(wpCwfc, appContainer);
+			app.render(wpCwfc, appContainer);
 		})
 		.catch((error: Error) => {
 			rootElement.innerHTML = `<h1>Error!</h1>\n<pre style="white-space: break-spaces">${JSON.stringify(

@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import type { WpCwfc } from 'shared/types';
 import { SWRConfig } from 'swr';
 
-export function renderCwfc(data: WpCwfc, container: Element) {
+export function render(data: WpCwfc, container: Element) {
 	return createRoot(container).render(
 		<StrictMode>
 			<SWRConfig value={{ provider: localStorageProvider }}>
