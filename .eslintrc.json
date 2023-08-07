@@ -2,7 +2,10 @@
 	"root": true,
 	"overrides": [
 		{
-			"files": ["./packages/**/*", "./test/**/*"]
+			"files": [
+				"./packages/app/**/*",
+				"./packages/wordpress/**/*"
+			]
 		}
 	],
 	"env": {
@@ -16,7 +19,10 @@
 			"./packages/wordpress/tsconfig.json"
 		]
 	},
-	"plugins": ["@typescript-eslint", "import"],
+	"plugins": [
+		"@typescript-eslint",
+		"import"
+	],
 	"extends": [
 		"eslint:recommended",
 		"plugin:@wordpress/eslint-plugin/recommended-with-formatting",
@@ -29,14 +35,28 @@
 		"plugin:import/typescript",
 		"prettier"
 	],
-	"ignorePatterns": ["build/**/*", "coverage/**/*", "*.config.js"],
+	"ignorePatterns": [
+		"build/**/*",
+		"coverage/**/*",
+		"*.config.js",
+		"*.config.ts"
+	],
 	"rules": {
-		"@typescript-eslint/consistent-type-definitions": ["warn", "type"],
-		"eqeqeq": ["error", "smart"]
+		"@typescript-eslint/consistent-type-definitions": [
+			"warn",
+			"type"
+		],
+		"eqeqeq": [
+			"error",
+			"smart"
+		]
 	},
 	"settings": {
 		"import/parsers": {
-			"@typescript-eslint/parser": [".ts", ".tsx"]
+			"@typescript-eslint/parser": [
+				".ts",
+				".tsx"
+			]
 		},
 		"import/resolver": {
 			"typescript": {

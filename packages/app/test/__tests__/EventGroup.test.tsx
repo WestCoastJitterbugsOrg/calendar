@@ -1,9 +1,9 @@
 import { mockStore } from '../__mocks__/stateContext';
 import '@testing-library/jest-dom';
 import { act, fireEvent, render } from '@testing-library/react';
-import { EventGroup } from 'app/event-selection/EventGroup';
-import { EventItem } from 'app/event-selection/EventItem';
-import { StateWrapper } from 'app/store/StateWrapper';
+import { EventGroup } from 'src/event-selection/EventGroup';
+import { EventItem } from 'src/event-selection/EventItem';
+import { StateWrapper } from 'src/store/StateWrapper';
 
 it('Unchecking a group causes all events to be unchecked', async () => {
 	const result = render(

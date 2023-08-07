@@ -2,11 +2,11 @@ import { defaultColors, defaultEventData } from '../__mocks__/cwEvents';
 import { mockStore } from '../__mocks__/stateContext';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
-import { App } from 'app/App';
-import { initContext } from 'app/services/cogwork';
-import { storeConsentCookie } from 'app/services/cookies';
-import * as ics from 'app/services/ics';
 import { act } from 'react-dom/test-utils';
+import { App } from 'src/App';
+import { initContext } from 'src/services/cogwork';
+import { storeConsentCookie } from 'src/services/cookies';
+import * as ics from 'src/services/ics';
 
 beforeEach(() => {
 	document.cookie = '';

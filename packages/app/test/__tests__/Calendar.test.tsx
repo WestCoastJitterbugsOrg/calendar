@@ -2,8 +2,8 @@ import { mockStore } from '../__mocks__/stateContext';
 import { createPopper } from '@popperjs/core';
 import '@testing-library/jest-dom';
 import { act, render } from '@testing-library/react';
-import { Calendar } from 'app/calendar/Calendar';
-import { StateWrapper } from 'app/store/StateWrapper';
+import { Calendar } from 'src/calendar/Calendar';
+import { StateWrapper } from 'src/store/StateWrapper';
 
 jest.mock('@popperjs/core', () => {
 	const originalModule = jest.requireActual<{

@@ -19,7 +19,7 @@
 			"dom"
 		],
 		"paths": {
-			"*": [
+			"src/*": [
 				"src/*"
 			],
 			"shared/*": [
@@ -36,6 +36,8 @@
 	"include": [
 		"src",
 		"scripts",
-		"types"
+		"test",
+		"types",
+		"./jest.config.ts"
 	]
 }
