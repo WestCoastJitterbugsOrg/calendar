@@ -1,15 +1,10 @@
 {
 	"name": "@cwfc/app",
-	"module": "index.ts",
+	"module": "build/index.mjs",
 	"scripts": {
-		"build": "node scripts/build.mjs",
-		"watch": "node scripts/build.mjs --watch",
+		"build": "tsup",
 		"test": "jest"
 	},
-	"files": [
-		"dist",
-		"src"
-	],
 	"dependencies": {
 		"@fullcalendar/core": "^6.1.8",
 		"@fullcalendar/daygrid": "^6.1.8",
@@ -38,13 +33,13 @@
 		"@types/react-modal": "^3.16.0",
 		"@types/testing-library__jest-dom": "^5.14.9",
 		"babel-jest": "^29.6.2",
-		"esbuild": "^0.18.14",
 		"esbuild-sass-plugin": "^2.10.0",
 		"esbuild-scss-modules-plugin": "^1.1.1",
 		"logrocket": "^4.0.4",
 		"postcss": "^8.4.26",
 		"postcss-modules": "^6.0.0",
 		"ts-jest": "^29.1.1",
-		"ts-node": "^10.9.1"
+		"ts-node": "^10.9.1",
+		"tsup": "^7.2.0"
 	}
 }

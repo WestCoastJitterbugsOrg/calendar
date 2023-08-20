@@ -1,43 +1,33 @@
 {
+	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
-		"outDir": "dist",
-		"skipLibCheck": true,
-		"strict": true,
-		"esModuleInterop": true,
-		"forceConsistentCasingInFileNames": true,
-		"noFallthroughCasesInSwitch": true,
-		"module": "ESNext",
-		"moduleResolution": "node",
-		"resolveJsonModule": true,
-		"declaration": true,
-		"jsx": "preserve",
-		"emitDeclarationOnly": true,
-		"isolatedModules": true,
+		"outDir": "./build",
 		"baseUrl": ".",
-		"lib": [
-			"ESNext",
-			"dom"
-		],
+		"sourceMap": true,
+		"jsx": "preserve",
+		"module": "ESNext",
 		"paths": {
-			"src/*": [
-				"src/*"
+			"@cwfc/app/*": [
+				"../app/*"
 			],
-			"shared/*": [
-				"../shared/*",
-				"src/shared/*"
+			"@cwfc/shared/*": [
+				"../shared/*"
 			]
 		},
 		"plugins": [
 			{
 				"name": "typescript-plugin-css-modules"
 			}
-		]
+		],
+		"target": "ESNext",
 	},
+	"references": [
+		{
+			"path": "../shared"
+		}
+	],
 	"include": [
-		"src",
-		"scripts",
-		"test",
-		"types",
-		"./jest.config.ts"
+		"src/**/*",
+		"test/**/*"
 	]
 }

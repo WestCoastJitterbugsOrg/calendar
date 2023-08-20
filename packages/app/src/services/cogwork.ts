@@ -1,6 +1,5 @@
-import type { CW } from 'types';
-import type { MaybeArray } from 'types/utils';
-import type WCJ from 'types/wcj';
+import { CW, WCJ } from 'src/types';
+import type { MaybeArray } from 'src/types/utils';
 
 export function initContext(cwEvents: MaybeArray<CW.Event>): WCJ.Context {
 	const response = asArray(cwEvents);

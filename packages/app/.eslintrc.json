@@ -1,0 +1,14 @@
+{
+	"extends": "../../.eslintrc.json",
+	"parserOptions": {
+		"project": "packages/app/tsconfig.json"
+	},
+	"settings": {
+		"import/resolver": {
+			"typescript": {
+				"alwaysTryTypes": true,
+				"project": "packages/app/tsconfig.json"
+			}
+		}
+	}
+}

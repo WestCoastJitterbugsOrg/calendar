@@ -3,11 +3,11 @@ import style from './AppInit.module.scss';
 import { initContext } from './services/cogwork';
 import { ErrorViewer } from './shared/ErrorViewer';
 import Loader from './shared/Loader';
+import type { CW } from './types';
+import type { MaybeArray } from './types/utils';
+import type { WpCwfc } from '@cwfc/shared';
 import { useState } from 'react';
-import type { WpCwfc } from 'shared/types';
 import useSwr from 'swr';
-import type { CW } from 'types';
-import type { MaybeArray } from 'types/utils';
 
 type Props = WpCwfc;
 
@@ -25,6 +25,7 @@ export default function AppInit(props: Props) {
 			const res = await fetch(props.ajaxUrl, {
 				method: 'POST',
 				body: formData,
+				cache: 'force-cache',
 			});
 
 			if (res.ok) {
@@ -39,29 +40,22 @@ export default function AppInit(props: Props) {
 		}
 	);
 
-	const getContent = () => {
-		if (isLoading) {
-			return <Loader />;
-		}
-
-		if (error) {
-			return <ErrorViewer message={JSON.stringify(error, null, 4)} />;
-		}
-
-		if (!data) {
-			return <h3>Didn&apos;t get any data</h3>;
-		}
-
-		if (rootRef)
-			return (
-				<App {...initContext(data)} colors={props.colors} parent={rootRef} />
-			);
-		return <></>;
-	};
+	let content = <></>;
+	if (isLoading) {
+		content = <Loader />;
+	} else if (error) {
+		content = <ErrorViewer message={JSON.stringify(error, null, 4)} />;
+	} else if (!data) {
+		content = <h3>Didn&apos;t get any data</h3>;
+	} else if (rootRef) {
+		content = (
+			<App {...initContext(data)} colors={props.colors} parent={rootRef} />
+		);
+	}
 
 	return (
 		<div className={style.root} ref={setRef}>
-			{getContent()}
+			{content}
 		</div>
 	);
 }

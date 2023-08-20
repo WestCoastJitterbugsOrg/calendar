@@ -3,7 +3,7 @@ import { CalendarTooltip } from './CalendarTooltip';
 import { EventApi, EventClickArg } from '@fullcalendar/core';
 import { createPopper, Instance } from '@popperjs/core';
 import { RefObject, useContext, useRef } from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 const highlightClass = ['bg-primary-alt'];
 
@@ -24,27 +24,21 @@ export function useTooltip(refObj: RefObject<HTMLElement>) {
 			root.appendChild(tooltipWrapper);
 		}
 
-		render(
+		createRoot(tooltipWrapper).render(
 			<CalendarTooltip
 				event={event}
 				openModal={() => setEventModal?.(event.extendedProps.id as string)}
-			/>,
-			tooltipWrapper,
-			() => {
-				if (!(tooltipWrapper?.firstElementChild instanceof HTMLElement)) {
-					return;
-				}
-				popper.current = createPopper(
-					target,
-					tooltipWrapper.firstElementChild,
-					{
-						placement: 'bottom',
-						strategy: 'absolute',
-					}
-				);
-				popperIsActive = true;
-			}
+			/>
 		);
+
+		if (!(tooltipWrapper?.firstElementChild instanceof HTMLElement)) {
+			return;
+		}
+		popper.current = createPopper(target, tooltipWrapper.firstElementChild, {
+			placement: 'bottom',
+			strategy: 'absolute',
+		});
+		popperIsActive = true;
 
 		target.firstElementChild?.classList.add(...highlightClass);
 	};

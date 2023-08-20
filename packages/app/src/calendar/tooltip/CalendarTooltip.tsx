@@ -1,6 +1,6 @@
 import style from './CalendarTooltip.module.scss';
 import { EventApi, formatRange } from '@fullcalendar/core';
-import type WCJ from 'types/wcj';
+import type { WCJ } from 'src/types';
 
 type Props = {
 	event: EventApi;

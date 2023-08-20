@@ -3,7 +3,7 @@ import { stateContext } from '../store/StateWrapper';
 import { EventGroup } from './EventGroup';
 import style from './EventSelection.module.scss';
 import { useContext } from 'react';
-import type WCJ from 'types/wcj';
+import type { WCJ } from 'src/types';
 
 export function EventSelection() {
 	const { categories, setEvents } = useContext(stateContext);

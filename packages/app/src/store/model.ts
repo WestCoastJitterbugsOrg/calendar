@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import type WCJ from 'types/wcj';
+import type { WCJ } from 'src/types';
 
 export type EventStore = {
 	categories: Record<string, CategoryStore>;

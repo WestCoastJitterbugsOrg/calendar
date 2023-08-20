@@ -1,24 +1,10 @@
 {
 	"root": true,
-	"overrides": [
-		{
-			"files": [
-				"./packages/app/**/*",
-				"./packages/wordpress/**/*"
-			]
-		}
-	],
 	"env": {
 		"browser": true,
 		"es2020": true
 	},
 	"parser": "@typescript-eslint/parser",
-	"parserOptions": {
-		"project": [
-			"./packages/app/tsconfig.json",
-			"./packages/wordpress/tsconfig.json"
-		]
-	},
 	"plugins": [
 		"@typescript-eslint",
 		"import"
@@ -36,8 +22,8 @@
 		"prettier"
 	],
 	"ignorePatterns": [
-		"build/**/*",
-		"coverage/**/*",
+		"build",
+		"coverage",
 		"*.config.js",
 		"*.config.ts"
 	],

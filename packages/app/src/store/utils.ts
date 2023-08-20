@@ -1,5 +1,5 @@
 import { CategoryStore } from './model';
-import type WCJ from 'types/wcj';
+import type { WCJ } from 'src/types';
 
 export function getCategoryEvents(
 	category: CategoryStore,

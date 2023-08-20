@@ -1,5 +1,5 @@
 import style from './Button.module.scss';
-import type { MaybeArray } from 'types/utils';
+import type { MaybeArray } from 'src/types/utils';
 
 type Props = {
 	size?: 'sm' | 'lg';

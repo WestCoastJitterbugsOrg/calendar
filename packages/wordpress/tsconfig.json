@@ -3,26 +3,21 @@
 		"outDir": "dist",
 		"allowJs": true,
 		"skipLibCheck": true,
+		"composite": true,
 		"strict": true,
-		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"noFallthroughCasesInSwitch": true,
 		"module": "ESNext",
 		"target": "ESNext",
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
-		"jsx": "react-jsx",
+		"jsx": "preserve",
 		"sourceMap": true,
 		"baseUrl": ".",
 		"lib": [
 			"ESNext",
 			"dom"
 		],
-		"paths": {
-			"shared/*": [
-				"../shared/*"
-			]
-		},
 		"plugins": [
 			{
 				"name": "typescript-plugin-css-modules"

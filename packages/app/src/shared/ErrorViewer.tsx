@@ -1,5 +1,5 @@
 import style from './ErrorViewer.module.scss';
-import LogRocket from 'logrocket';
+import { error as lrError } from 'logrocket';
 import { useEffect } from 'react';
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 
 export function ErrorViewer(props: Props) {
 	useEffect(() => {
-		LogRocket.error(props.message);
+		lrError(props.message);
 	});
 	return (
 		<div className={style.wrapper}>

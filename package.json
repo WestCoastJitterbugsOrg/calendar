@@ -18,6 +18,7 @@
 		"bestzip": "^2.2.1",
 		"eslint": "^8.45.0",
 		"eslint-config-prettier": "^8.8.0",
+		"eslint-import-resolver-typescript": "^3.6.0",
 		"eslint-plugin-import": "^2.27.5",
 		"eslint-plugin-react": "^7.32.2",
 		"prettier": "^2.8.8",
@@ -37,7 +38,7 @@
 	],
 	"workspaces": [
 		"packages/app",
-		"packages/types",
+		"packages/shared",
 		"packages/wordpress"
 	]
 }
