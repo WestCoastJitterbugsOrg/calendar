@@ -3,7 +3,7 @@
 	"module": "build/index.mjs",
 	"scripts": {
 		"build": "tsup",
-		"test": "jest"
+		"test": "jest -c jest.config.ts"
 	},
 	"dependencies": {
 		"@fullcalendar/core": "^6.1.8",
@@ -14,28 +14,22 @@
 		"@fullcalendar/timegrid": "^6.1.8",
 		"@popperjs/core": "^2.11.8",
 		"ics-js": "^0.10.2",
+		"logrocket": "^5.0.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-modal": "^3.16.1",
 		"swr": "^2.2.0"
 	},
 	"devDependencies": {
-		"@babel/cli": "^7.22.9",
-		"@babel/core": "^7.22.9",
-		"@babel/preset-env": "^7.22.9",
 		"@babel/preset-react": "^7.22.5",
-		"@babel/preset-typescript": "^7.22.5",
-		"@dr.pogodin/babel-plugin-react-css-modules": "^6.9.4",
-		"@testing-library/jest-dom": "^5.17.0",
+		"@testing-library/jest-dom": "^6.0.1",
 		"@testing-library/react": "^14.0.0",
 		"@types/react": "^18.2.15",
 		"@types/react-dom": "^18.2.7",
 		"@types/react-modal": "^3.16.0",
-		"@types/testing-library__jest-dom": "^5.14.9",
 		"babel-jest": "^29.6.2",
-		"esbuild-sass-plugin": "^2.10.0",
+		"esbuild-sass-plugin": "^2.12.0",
 		"esbuild-scss-modules-plugin": "^1.1.1",
-		"logrocket": "^4.0.4",
 		"postcss": "^8.4.26",
 		"postcss-modules": "^6.0.0",
 		"ts-jest": "^29.1.1",

@@ -11,16 +11,22 @@
 			}
 		},
 		{
+			"name": "Debug JS with Chrome",
+			"type": "chrome",
+			"request": "launch",
+			"url": "http://localhost:8888",
+			"pathMapping": {
+				"http://localhost:8888/wp-content/plugins/cw-filter-calendar": "${workspaceFolder}/"
+			}
+		},
+		{
 			"name": "Debug JS with Firefox",
 			"type": "firefox",
 			"request": "launch",
 			"url": "http://localhost:8888",
-			"pathMappings": [
-				{
-					"url": "http://localhost:8888/wp-content/plugins/cw-filter-calendar",
-					"path": "${workspaceFolder}/"
-				}
-			]
+			"pathMapping": {
+				"http://localhost:8888/wp-content/plugins/cw-filter-calendar": "${workspaceFolder}/"
+			}
 		},
 		{
 			"type": "node",
@@ -38,7 +44,10 @@
 			"console": "integratedTerminal",
 			"internalConsoleOptions": "neverOpen",
 			"disableOptimisticBPs": true,
-			"program": "${workspaceFolder}/node_modules/.bin/jest"
+			"program": "${workspaceFolder}/node_modules/.bin/jest",
+			"windows": {
+				"program": "${workspaceFolder}/node_modules/jest/bin/jest"
+			}
 		}
 	]
 }

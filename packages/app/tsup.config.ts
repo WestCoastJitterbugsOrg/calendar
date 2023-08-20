@@ -1,6 +1,7 @@
-import { Plugin } from 'esbuild';
 import { sassPlugin, postcssModules } from 'esbuild-sass-plugin';
 import * as tsup from 'tsup';
+
+type Plugin = NonNullable<tsup.Options['esbuildPlugins']>[0];
 
 const scssPlugin = sassPlugin({
 	transform: async (css, resolveDir, filePath) => {
@@ -10,7 +11,7 @@ const scssPlugin = sassPlugin({
 			return css;
 		}
 	},
-});
+}) as Plugin;
 
 const statusPlugin = {
 	name: 'status',

@@ -19,7 +19,7 @@
 				"name": "typescript-plugin-css-modules"
 			}
 		],
-		"target": "ESNext",
+		"target": "ESNext"
 	},
 	"references": [
 		{
