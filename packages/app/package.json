@@ -18,19 +18,20 @@
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-modal": "^3.16.1",
-		"swr": "^2.2.0"
+		"swr": "^2.2.1"
 	},
 	"devDependencies": {
 		"@babel/preset-react": "^7.22.5",
 		"@testing-library/jest-dom": "^6.0.1",
 		"@testing-library/react": "^14.0.0",
-		"@types/react": "^18.2.15",
+		"@types/jest": "^29.5.3",
+		"@types/react": "^18.2.20",
 		"@types/react-dom": "^18.2.7",
 		"@types/react-modal": "^3.16.0",
 		"babel-jest": "^29.6.2",
 		"esbuild-sass-plugin": "^2.12.0",
 		"esbuild-scss-modules-plugin": "^1.1.1",
-		"postcss": "^8.4.26",
+		"postcss": "^8.4.28",
 		"postcss-modules": "^6.0.0",
 		"ts-jest": "^29.1.1",
 		"ts-node": "^10.9.1",
