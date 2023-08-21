@@ -3,7 +3,7 @@
 	"module": "build/index.mjs",
 	"scripts": {
 		"build": "tsup",
-		"test": "jest -c jest.config.ts"
+		"test": "jest"
 	},
 	"dependencies": {
 		"@fullcalendar/core": "^6.1.8",

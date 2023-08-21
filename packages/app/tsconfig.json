@@ -4,8 +4,9 @@
 		"outDir": "./build",
 		"baseUrl": ".",
 		"sourceMap": true,
-		"jsx": "preserve",
+		"jsx": "react-jsx",
 		"module": "ESNext",
+		"esModuleInterop": true,
 		"paths": {
 			"@cwfc/app/*": [
 				"../app/*"
