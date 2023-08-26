@@ -40,7 +40,7 @@ function viewDidMount(mountArg: ViewMountArg) {
 	if (nextEvent != null) {
 		const eventStr = nextEvent.start?.toISOString().slice(0, 10);
 		const eventEl = mountArg.el.querySelector(
-			`[data-date="${eventStr ?? ''}"]`
+			`[data-date="${eventStr ?? ''}"]`,
 		);
 		const scrollContainer =
 			eventEl?.parentElement?.parentElement?.parentElement;
@@ -66,7 +66,7 @@ function viewDidMount(mountArg: ViewMountArg) {
 
 	return mountArg.el.parentElement?.parentElement
 		?.querySelectorAll<HTMLElement>(
-			'.fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)'
+			'.fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)',
 		)
 		.forEach((toolbarChunk) => {
 			toolbarChunk.style.width = '0';
@@ -98,7 +98,7 @@ function eventDidMount(e: EventMountArg) {
 function viewWillUnmount(mountArg: ViewMountArg) {
 	return mountArg.el.parentElement?.parentElement
 		?.querySelectorAll<HTMLElement>(
-			'.fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)'
+			'.fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:nth-child(-n+2)',
 		)
 		.forEach((toolbarChunk) => {
 			toolbarChunk.style.width = 'auto';

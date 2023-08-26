@@ -14,7 +14,7 @@ export function wcj2fcEvent(wcjEvent: WCJ.Event): EventSourceInput {
 				end: occasion.end,
 				groupId: wcjEvent.id,
 				extendedProps: wcjEvent,
-			})
+			}),
 		),
 	};
 }

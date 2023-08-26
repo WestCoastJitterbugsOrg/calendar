@@ -9,7 +9,7 @@ it('Unchecking a group causes all events to be unchecked', async () => {
 	const result = render(
 		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
 			<EventGroup category="Lindy Hop" />
-		</StateWrapper>
+		</StateWrapper>,
 	);
 
 	const el = (await result.findAllByAltText('☑'))[0];
@@ -19,7 +19,7 @@ it('Unchecking a group causes all events to be unchecked', async () => {
 	});
 
 	const allEventCheckboxes = (await result.findAllByRole(
-		'checkbox'
+		'checkbox',
 	)) as HTMLInputElement[];
 	expect(allEventCheckboxes.every((x) => x.checked)).toBeFalsy();
 });
@@ -28,7 +28,7 @@ it('Unchecking an event causes it to be unchecked', async () => {
 	const result = render(
 		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
 			<EventItem event={Object.values(mockStore.events)[0]} expanded={true} />
-		</StateWrapper>
+		</StateWrapper>,
 	);
 
 	const el = await result.findByRole('listitem');
@@ -38,7 +38,7 @@ it('Unchecking an event causes it to be unchecked', async () => {
 	});
 
 	const eventCheckbox = (await result.findByRole(
-		'checkbox'
+		'checkbox',
 	)) as HTMLInputElement;
 	expect(eventCheckbox.checked).toBeFalsy();
 });
@@ -47,7 +47,7 @@ it('Click info button opens modal', async () => {
 	const result = render(
 		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
 			<EventItem event={Object.values(mockStore.events)[0]} expanded={true} />
-		</StateWrapper>
+		</StateWrapper>,
 	);
 
 	const infoButton = await result.findByAltText('info');

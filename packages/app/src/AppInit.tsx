@@ -37,7 +37,7 @@ export default function AppInit(props: Props) {
 
 		{
 			loadingTimeout: 10000,
-		}
+		},
 	);
 
 	let content = <></>;

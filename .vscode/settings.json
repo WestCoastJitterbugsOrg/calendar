@@ -81,19 +81,6 @@
 	],
 	"typescript.enablePromptUseWorkspaceTsdk": true,
 	"typescript.tsdk": "./node_modules/typescript/lib",
-	"stylelint.snippet": [
-		"css",
-		"less",
-		"postcss",
-		"scss"
-	],
-	"stylelint.validate": [
-		"css",
-		"less",
-		"postcss",
-		"scss"
-	],
-	"[jsonc]": {
-		"editor.defaultFormatter": "vscode.json-language-features"
-	}
+	"stylelint.snippet": ["css", "less", "postcss", "scss"],
+	"stylelint.validate": ["css", "less", "postcss", "scss"]
 }

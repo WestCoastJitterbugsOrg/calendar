@@ -14,7 +14,7 @@ export async function wcj2ics(events: WCJ.Event[]) {
 			.join(',\n');
 		vevent.addProp(
 			'DTSTART',
-			new Date(Math.min(...event.occasions.map((occ) => occ.start.getTime())))
+			new Date(Math.min(...event.occasions.map((occ) => occ.start.getTime()))),
 		);
 		vevent.addProp('RDATE', occasions, { VALUE: 'PERIOD' });
 		vevent.addProp('DTSTAMP', new Date());
@@ -30,7 +30,7 @@ export async function wcj2ics(events: WCJ.Event[]) {
 
 export async function exportICS(events: Record<string, WCJ.Event>) {
 	const selectedEvents = Object.values(events).filter(
-		(event) => event.showInCalendar
+		(event) => event.showInCalendar,
 	);
 	const icsStr = await wcj2ics(selectedEvents);
 

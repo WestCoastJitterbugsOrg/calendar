@@ -60,7 +60,7 @@ export function Calendar(props: Props) {
 						timeGridWeek,
 						listRange: createListView(
 							new Date(firstOccasion),
-							new Date(lastOccasion)
+							new Date(lastOccasion),
 						),
 					}}
 					buttonText={{

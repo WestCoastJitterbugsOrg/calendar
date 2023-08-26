@@ -8,12 +8,8 @@
 		"module": "ESNext",
 		"esModuleInterop": true,
 		"paths": {
-			"@cwfc/app/*": [
-				"../app/*"
-			],
-			"@cwfc/shared/*": [
-				"../shared/*"
-			]
+			"@cwfc/app/*": ["../app/*"],
+			"@cwfc/shared/*": ["../shared/*"]
 		},
 		"plugins": [
 			{
@@ -27,8 +23,5 @@
 			"path": "../shared"
 		}
 	],
-	"include": [
-		"src/**/*",
-		"test/**/*"
-	]
+	"include": ["src/**/*", "test/**/*"]
 }

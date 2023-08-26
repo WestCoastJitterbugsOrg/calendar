@@ -11,7 +11,7 @@ type IVCalendar = {
 		name: string,
 		value: unknown,
 		props?: Record<string, unknown>,
-		skipTransformer?: boolean
+		skipTransformer?: boolean,
 	): void;
 	addComponent(component: IVEvent): void;
 	toString(): string;
@@ -32,7 +32,7 @@ type IVEvent = {
 		name: string,
 		value?: unknown,
 		props?: Record<string, unknown>,
-		skipTransformer?: boolean
+		skipTransformer?: boolean,
 	): void;
 };
 

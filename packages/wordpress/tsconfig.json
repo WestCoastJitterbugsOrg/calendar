@@ -14,14 +14,11 @@
 		"jsx": "preserve",
 		"sourceMap": true,
 		"baseUrl": ".",
-		"lib": [
-			"ESNext",
-			"dom"
-		],
+		"lib": ["ESNext", "dom"],
 		"plugins": [
 			{
 				"name": "typescript-plugin-css-modules"
 			}
-		],
+		]
 	}
 }

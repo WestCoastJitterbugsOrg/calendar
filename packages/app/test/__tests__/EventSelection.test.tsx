@@ -8,7 +8,7 @@ it('EventSelection Snapshot', () => {
 	const { baseElement } = render(
 		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
 			<EventSelection />
-		</StateWrapper>
+		</StateWrapper>,
 	);
 	expect(baseElement).toMatchSnapshot();
 });
@@ -17,7 +17,7 @@ it('Events are selected at start', async () => {
 	const renderResult = render(
 		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
 			<EventSelection />
-		</StateWrapper>
+		</StateWrapper>,
 	);
 
 	const [groupInput, eventInputs] = await getEventGroupInputs(renderResult);
@@ -29,7 +29,7 @@ it('Clicking deselect all deselects all events and groups', async () => {
 	const renderResult = render(
 		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
 			<EventSelection />
-		</StateWrapper>
+		</StateWrapper>,
 	);
 	const deselectAllBtn = await renderResult.findByText('Deselect all');
 
@@ -42,10 +42,10 @@ it('Clicking deselect all deselects all events and groups', async () => {
 
 async function getEventGroupInputs(
 	renderResult: RenderResult,
-	groupSelector = (collection: HTMLCollection) => collection[0]
+	groupSelector = (collection: HTMLCollection) => collection[0],
 ) {
 	const eventGroup = groupSelector(
-		(await renderResult.findByRole('list')).children
+		(await renderResult.findByRole('list')).children,
 	).children;
 
 	const group = eventGroup[0];
@@ -53,7 +53,7 @@ async function getEventGroupInputs(
 
 	const groupInput = group.querySelector("[role='checkbox']");
 	const eventInputs = Array.from(
-		eventsWrapper.children[0].querySelectorAll("[role='checkbox']")
+		eventsWrapper.children[0].querySelectorAll("[role='checkbox']"),
 	);
 
 	return [groupInput, eventInputs] as const;

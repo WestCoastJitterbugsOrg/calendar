@@ -28,7 +28,7 @@ export function useTooltip(refObj: RefObject<HTMLElement>) {
 			<CalendarTooltip
 				event={event}
 				openModal={() => setEventModal?.(event.extendedProps.id as string)}
-			/>
+			/>,
 		);
 
 		if (!(tooltipWrapper?.firstElementChild instanceof HTMLElement)) {

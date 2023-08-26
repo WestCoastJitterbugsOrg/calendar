@@ -5,7 +5,7 @@ export function initContext(cwEvents: MaybeArray<CW.Event>): WCJ.Context {
 	const response = asArray(cwEvents);
 
 	const cogworkEvents = response.filter(
-		(event) => event.schedule?.occasions?.occasion != null
+		(event) => event.schedule?.occasions?.occasion != null,
 	);
 
 	const uncheckedEventsStr = localStorage.getItem('uncheckedEvents');

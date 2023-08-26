@@ -22,11 +22,11 @@ type Props = {
 
 export function StateWrapper(props: Props) {
 	const [categories, setCategories] = useState<Record<string, CategoryStore>>(
-		props.categories
+		props.categories,
 	);
 	const [events, setEvents] = useState<EventMap>(props.events);
 	const [eventModal, setEventModal] = useState<string | undefined>(
-		props.eventModal
+		props.eventModal,
 	);
 
 	useEffect(() => {

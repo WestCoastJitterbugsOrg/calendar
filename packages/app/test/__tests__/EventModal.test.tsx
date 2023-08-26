@@ -15,7 +15,7 @@ it('EventModal Snapshot', () => {
 			eventModal={eventModal}
 		>
 			<EventSeriesModal parent={document.body} />
-		</StateWrapper>
+		</StateWrapper>,
 	);
 
 	expect(baseElement).toMatchSnapshot();
@@ -31,7 +31,7 @@ it('EventModal clicking on close button closes modal', async () => {
 			eventModal={eventModal}
 		>
 			<EventSeriesModal parent={document.body} />
-		</StateWrapper>
+		</StateWrapper>,
 	);
 	const modalCloseButton = await findByLabelText('modal-close-button');
 
@@ -52,7 +52,7 @@ it('EventModal clicking escape closes modal', () => {
 			eventModal={eventModal}
 		>
 			<EventSeriesModal parent={document.body} />
-		</StateWrapper>
+		</StateWrapper>,
 	);
 
 	act(() => {
@@ -60,7 +60,7 @@ it('EventModal clicking escape closes modal', () => {
 			baseElement.ownerDocument.activeElement ?? document.body,
 			{
 				keyCode: 27, // Escape
-			}
+			},
 		);
 	});
 

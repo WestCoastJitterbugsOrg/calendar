@@ -24,7 +24,7 @@ it('Click event in calendar opens popper', async () => {
 	const result = render(
 		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
 			<Calendar initialDate={initialDate} />
-		</StateWrapper>
+		</StateWrapper>,
 	);
 
 	const fcEventContainer = await result.findByText('Grundkurs Lindy Hop');
@@ -43,7 +43,7 @@ it('Can open list view', async () => {
 	const result = render(
 		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
 			<Calendar initialDate={initialDate} />
-		</StateWrapper>
+		</StateWrapper>,
 	);
 
 	const fcListRangeButton = await result.findByText('List');

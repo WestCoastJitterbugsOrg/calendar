@@ -1,7 +1,6 @@
 .contentWrapper {
 	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+	flex-flow: row wrap;
 	align-items: stretch;
 	background: #fff;
 }
