@@ -82,5 +82,7 @@
 	"typescript.enablePromptUseWorkspaceTsdk": true,
 	"typescript.tsdk": "./node_modules/typescript/lib",
 	"stylelint.snippet": ["css", "less", "postcss", "scss"],
-	"stylelint.validate": ["css", "less", "postcss", "scss"]
+	"stylelint.validate": ["css", "less", "postcss", "scss"],
+	"jest.rootPath": "packages/app",
+	"jest.jestCommandLine": "npm run test -w @cwfc/app --"
 }

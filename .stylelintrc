@@ -1,6 +1,6 @@
 {
 	"ignoreFiles": "**/build/**/*",
-	"extends": ["stylelint-config-prettier", "stylelint-config-standard-scss"],
+	"extends": ["stylelint-config-standard-scss"],
 	"rules": {
 		"selector-class-pattern": "[a-z]([A-Z][a-z]+)*",
 		"rule-empty-line-before": null

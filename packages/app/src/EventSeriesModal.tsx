@@ -2,7 +2,7 @@ import style from './EventSeriesModal.module.scss';
 import closeIcon from './assets/close.svg';
 import { stateContext } from './store/StateWrapper';
 import { useContext, useEffect, useRef } from 'react';
-import Modal from 'react-modal';
+import * as Modal from 'react-modal';
 
 type Props = {
 	parent: HTMLElement;
