@@ -1,12 +1,10 @@
-# Wordpress files
 .wp-env.override.json
 
-# Coverage directory used by tools like istanbul
 coverage
 
-# Compiled binary addons (https://nodejs.org/api/addons.html)
 build
 dist
 
-# Dependency directories
 node_modules/
+
+*.tsbuildinfo

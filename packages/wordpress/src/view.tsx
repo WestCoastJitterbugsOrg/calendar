@@ -1,6 +1,6 @@
 import './view.scss';
-import LogRocket from 'logrocket';
-import type { WpCwfc } from 'src/types/wcj';
+import * as LogRocket from 'logrocket';
+import type { WpCwfc } from '@cwfc/shared';
 
 declare const wpCwfcEnv: 'development' | 'production';
 declare const wpCwfc: WpCwfc;
@@ -21,7 +21,7 @@ window.onload = () => {
 	const rootElement = document.querySelector(rootElementSelector);
 	if (rootElement == null) {
 		throw Error(
-			`Could not find element matching selector "${rootElementSelector}"`
+			`Could not find element matching selector "${rootElementSelector}"`,
 		);
 	}
 
@@ -49,7 +49,7 @@ window.onload = () => {
 		})
 		.catch((error: Error) => {
 			rootElement.innerHTML = `<h1>Error!</h1>\n<pre style="white-space: break-spaces">${JSON.stringify(
-				error.message
+				error.message,
 			)}`;
 			throw new Error('Wordpress cwfc plugin rendering error', {
 				cause: error,
@@ -66,5 +66,5 @@ window.addEventListener(
 	(event) => {
 		shadowRoot?.appendChild((event as CustomEvent).detail);
 	},
-	{ once: true }
+	{ once: true },
 );
