@@ -28,8 +28,7 @@ window.onload = () => {
 	rootElement.append(loader);
 	rootElement.append(appDiv);
 	shadowRoot = appDiv.attachShadow({ mode: 'open' });
-	// eslint-disable-next-line import/no-unresolved
-	import('!!raw-loader!@cwfc/app/dist/index.css')
+	import('!!raw-loader!@cwfc/app/build/index.css')
 		.then((style: { default: string }) => {
 			const styleContainer = document.createElement('style');
 			styleContainer.textContent = style.default;

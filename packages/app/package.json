@@ -2,6 +2,7 @@
 	"name": "@cwfc/app",
 	"type": "module",
 	"module": "build/index.mjs",
+	"types": "build/index.d.mts",
 	"scripts": {
 		"build": "tsup",
 		"test": "jest"

@@ -1,0 +1,1 @@
+npm run wp-env run wordpress php %*

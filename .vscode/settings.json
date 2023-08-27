@@ -84,5 +84,6 @@
 	"stylelint.snippet": ["css", "less", "postcss", "scss"],
 	"stylelint.validate": ["css", "less", "postcss", "scss"],
 	"jest.rootPath": "packages/app",
-	"jest.jestCommandLine": "npm run test -w @cwfc/app --"
+	"jest.jestCommandLine": "npm run test -w @cwfc/app --",
+	"php.validate.executablePath": "exec_wp_php.bat"
 }
