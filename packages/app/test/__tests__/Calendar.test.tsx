@@ -31,8 +31,8 @@ it('Click event in calendar opens popper', async () => {
 
 	act(() => {
 		fcEventContainer.click();
-		jest.runAllTicks();
 	});
+	jest.runAllTimers();
 
 	expect(createPopper).toHaveBeenCalledTimes(1);
 });

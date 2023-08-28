@@ -1,10 +1,11 @@
 {
 	"name": "@cwfc/app",
 	"type": "module",
-	"module": "build/index.mjs",
-	"types": "build/index.d.mts",
+	"module": "build/index.js",
+	"types": "build/index.d.ts",
 	"scripts": {
 		"build": "tsup",
+		"watch": "tsup --watch",
 		"test": "jest"
 	},
 	"dependencies": {

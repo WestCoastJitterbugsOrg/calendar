@@ -7,9 +7,8 @@ type Props = {
 };
 
 export function ErrorViewer(props: Props) {
-	useEffect(() => {
-		lrError(props.message);
-	});
+	useEffect(() => lrError(props.message), [props.message]);
+
 	return (
 		<div className={style.wrapper}>
 			<h1>Error!</h1>

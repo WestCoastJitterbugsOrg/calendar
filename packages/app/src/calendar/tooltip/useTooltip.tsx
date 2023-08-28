@@ -5,8 +5,6 @@ import { createPopper, Instance } from '@popperjs/core';
 import { RefObject, useContext, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 
-const highlightClass = ['bg-primary-alt'];
-
 export function useTooltip(refObj: RefObject<HTMLElement>) {
 	const popper = useRef<Instance>();
 	const { setEventModal } = useContext(stateContext);
@@ -18,6 +16,8 @@ export function useTooltip(refObj: RefObject<HTMLElement>) {
 		if (tooltipWrapper == null) {
 			tooltipWrapper = document.createElement('div');
 		}
+		tooltipWrapper.style.zIndex = '1';
+
 		const root = refObj.current ?? document;
 
 		if (!root.contains(tooltipWrapper)) {
@@ -30,17 +30,23 @@ export function useTooltip(refObj: RefObject<HTMLElement>) {
 				openModal={() => setEventModal?.(event.extendedProps.id as string)}
 			/>,
 		);
+		setTimeout(() => {
+			if (!(tooltipWrapper?.firstElementChild instanceof HTMLElement)) {
+				return;
+			}
+			popper.current = createPopper(target, tooltipWrapper, {
+				placement: 'bottom',
+				strategy: 'absolute',
+				modifiers: [
+					{
+						data: {},
+					},
+				],
+			});
+			console.log(root, target, popper.current);
 
-		if (!(tooltipWrapper?.firstElementChild instanceof HTMLElement)) {
-			return;
-		}
-		popper.current = createPopper(target, tooltipWrapper.firstElementChild, {
-			placement: 'bottom',
-			strategy: 'absolute',
+			popperIsActive = true;
 		});
-		popperIsActive = true;
-
-		target.firstElementChild?.classList.add(...highlightClass);
 	};
 
 	const removeTooltip = () => {
@@ -48,7 +54,6 @@ export function useTooltip(refObj: RefObject<HTMLElement>) {
 		if (!element) {
 			return;
 		}
-		element.firstElementChild?.classList.remove(...highlightClass);
 		tooltipWrapper?.remove();
 		if (popper.current) {
 			popper.current.destroy();

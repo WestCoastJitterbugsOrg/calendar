@@ -25,7 +25,6 @@ export default function AppInit(props: Props) {
 			const res = await fetch(props.ajaxUrl, {
 				method: 'POST',
 				body: formData,
-				cache: 'force-cache',
 			});
 
 			if (res.ok) {
@@ -34,7 +33,6 @@ export default function AppInit(props: Props) {
 			const text = await res.text();
 			return Promise.reject(text);
 		},
-
 		{
 			loadingTimeout: 10000,
 		},
