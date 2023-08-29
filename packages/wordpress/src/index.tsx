@@ -1,6 +1,4 @@
 import metadata from './block.json';
-import { mockContext } from './editMockData';
-import { App } from '@cwfc/app/src/App';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import { BlockConfiguration, registerBlockType } from '@wordpress/blocks';
 import {
@@ -9,9 +7,11 @@ import {
 	PanelBody,
 	PanelRow,
 	ColorPicker,
+	Button,
 } from '@wordpress/components';
+import { Divider } from '@wordpress/components/build-types/divider';
 import { __ } from '@wordpress/i18n';
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 
 type Attributes = {
 	Organization: string;
@@ -29,6 +29,8 @@ registerBlockType(metadata as BlockConfiguration<Attributes>, {
 		attributes: { Organization, Password, Colors },
 		setAttributes,
 	}) {
+		const defaultColors: Record<string, string> =
+			metadata.attributes.Colors.default;
 		const props = useBlockProps();
 		return (
 			<div {...props}>
@@ -66,6 +68,17 @@ registerBlockType(metadata as BlockConfiguration<Attributes>, {
 											}
 										/>
 									</PanelRow>
+									<Button
+										variant="secondary"
+										onClick={() =>
+											setAttributes({
+												Colors: { ...Colors, [color]: defaultColors[color] },
+											})
+										}
+									>
+										Reset
+									</Button>
+									<hr />
 								</Fragment>
 							))}
 						</PanelBody>

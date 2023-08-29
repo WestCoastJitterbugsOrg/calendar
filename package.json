@@ -35,9 +35,6 @@
 		"node": ">=18.16.1 <19",
 		"npm": ">=9.8.0 <10"
 	},
-	"browserslist": [
-		"extends @wordpress/browserslist-config"
-	],
 	"workspaces": [
 		"packages/app",
 		"packages/shared",

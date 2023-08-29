@@ -58,12 +58,3 @@ window.onload = () => {
 			loader.remove();
 		});
 };
-// This event is emitted by our custom MiniCssExtractPlugin insert function in webpack.config.js
-// It contains all the style for the app, so we attach it to the shadow root.
-window.addEventListener(
-	'cw-filter-style-loaded',
-	(event) => {
-		shadowRoot?.appendChild((event as CustomEvent).detail);
-	},
-	{ once: true },
-);
