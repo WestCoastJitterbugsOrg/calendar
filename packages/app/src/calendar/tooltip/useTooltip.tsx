@@ -43,7 +43,6 @@ export function useTooltip(refObj: RefObject<HTMLElement>) {
 					},
 				],
 			});
-			console.log(root, target, popper.current);
 
 			popperIsActive = true;
 		});

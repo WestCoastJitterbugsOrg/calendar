@@ -1,5 +1,5 @@
 import { formatDate, FormatterInput } from '@fullcalendar/core';
-import type { FC } from 'src/types';
+import { FC } from 'src/types';
 
 const titleFormat: FormatterInput = (args) =>
 	`Week ${formatDate(args.date.marker, { week: 'numeric' })}, 

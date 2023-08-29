@@ -1,4 +1,4 @@
-import type { EventStore } from 'src/store/model';
+import { EventStore } from 'src/store/model';
 
 export const mockStore: EventStore = {
 	categories: {

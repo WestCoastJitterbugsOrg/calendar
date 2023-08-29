@@ -1,5 +1,5 @@
 import { compilerOptions } from './tsconfig.json';
-import type { Config } from 'jest';
+import { Config } from 'jest';
 import { pathsToModuleNameMapper } from 'ts-jest';
 
 const moduleNameMapper = pathsToModuleNameMapper(compilerOptions.paths, {

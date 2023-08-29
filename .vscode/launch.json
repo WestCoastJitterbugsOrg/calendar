@@ -11,24 +11,6 @@
 			}
 		},
 		{
-			"name": "Debug JS with Chrome",
-			"type": "chrome",
-			"request": "launch",
-			"url": "http://localhost:8888",
-			"pathMapping": {
-				"http://localhost:8888/wp-content/plugins/cw-filter-calendar": "${workspaceFolder}/"
-			}
-		},
-		{
-			"name": "Debug JS with Firefox",
-			"type": "firefox",
-			"request": "launch",
-			"url": "http://localhost:8888",
-			"pathMapping": {
-				"http://localhost:8888/wp-content/plugins/cw-filter-calendar": "${workspaceFolder}/"
-			}
-		},
-		{
 			"type": "node",
 			"name": "vscode-jest-tests.v2",
 			"request": "launch",

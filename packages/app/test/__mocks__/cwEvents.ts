@@ -1,5 +1,5 @@
-import type { CW } from 'src/types';
-import type { MaybeArray } from 'src/types/utils';
+import { CW } from 'src/types';
+import { MaybeArray } from 'src/types/utils';
 
 export const defaultColors = {
 	primary: '#ab2814',

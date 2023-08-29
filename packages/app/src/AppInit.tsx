@@ -3,9 +3,9 @@ import style from './AppInit.module.scss';
 import { initContext } from './services/cogwork';
 import { ErrorViewer } from './shared/ErrorViewer';
 import Loader from './shared/Loader';
-import type { CW } from './types';
-import type { MaybeArray } from './types/utils';
-import type { WpCwfc } from '@cwfc/shared';
+import { CW } from './types';
+import { MaybeArray } from './types/utils';
+import { WpCwfc } from '@cwfc/shared';
 import { useState } from 'react';
 import useSwr from 'swr';
 
