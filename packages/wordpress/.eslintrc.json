@@ -10,5 +10,6 @@
 				"project": "packages/wordpress/tsconfig.json"
 			}
 		}
-	}
+	},
+	"ignorePatterns": ["cw-filter-calendar"]
 }

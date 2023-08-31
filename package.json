@@ -4,9 +4,10 @@
 	"scripts": {
 		"setup-env": "wp-env start --xdebug",
 		"wp-env": "wp-env",
-		"prettier": "prettier .",
-		"lint:js": "eslint packages/app/",
-		"lint:style": "stylelint \"**/*.{css,scss}\""
+		"prettier": "prettier . --check",
+		"lint:js": "eslint .",
+		"lint:style": "stylelint \"**/*.{css,scss}\"",
+		"autofix": "eslint . --fix && stylelint \"**/*.{css,scss}\" --fix && prettier . --write"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.22.11",
@@ -28,8 +29,7 @@
 		"stylelint": "^15.10.3",
 		"stylelint-config-standard-scss": "^10.0.0",
 		"typescript": "^5.2.2",
-		"typescript-plugin-css-modules": "^5.0.1",
-		"webpack-merge": "^5.9.0"
+		"typescript-plugin-css-modules": "^5.0.1"
 	},
 	"engines": {
 		"node": ">=18.16.1 <19",
