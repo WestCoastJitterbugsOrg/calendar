@@ -58,3 +58,13 @@ function cwfc_block_render_callback($attributes, $content, $block_instance)
 add_action('init', 'cwfc_block_init');
 add_action('wp_ajax_cwfc_fetch', 'cwfc_fetch');
 add_action('wp_ajax_nopriv_cwfc_fetch', 'cwfc_fetch');
+
+function cwfc_get_pw_hash()
+{
+	$password = $_POST['pw'];
+	$pw_hash = password_hash($password, PASSWORD_DEFAULT);
+	wp_send_json_success($pw_hash);
+	wp_die();
+}
+
+add_action('wp_ajax_cwfc_get_pw_hash', 'cwfc_get_pw_hash');

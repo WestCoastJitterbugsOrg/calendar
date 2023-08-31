@@ -36,5 +36,6 @@ export default tsup.defineConfig({
 	esbuildPlugins: [scssPlugin, statusPlugin],
 	clean: true,
 	platform: 'browser',
+	sourcemap: true,
 	dts: true,
 });

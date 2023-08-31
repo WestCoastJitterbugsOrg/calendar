@@ -23,6 +23,7 @@
 		"@typescript-eslint/consistent-type-definitions": ["warn", "type"],
 		"eqeqeq": ["error", "smart"]
 	},
+	"reportUnusedDisableDirectives": true,
 	"settings": {
 		"import/parsers": {
 			"@typescript-eslint/parser": [".ts", ".tsx"]

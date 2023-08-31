@@ -9,9 +9,15 @@ import {
 	ColorPicker,
 	Button,
 } from '@wordpress/components';
-import { Divider } from '@wordpress/components/build-types/divider';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
+import { render } from './render';
+
+declare const wp: {
+	ajax: {
+		post<T>(action: string, data: Record<string, unknown>): Promise<T>;
+	};
+};
 
 type Attributes = {
 	Organization: string;
@@ -32,6 +38,27 @@ registerBlockType(metadata as BlockConfiguration<Attributes>, {
 		const defaultColors: Record<string, string> =
 			metadata.attributes.Colors.default;
 		const props = useBlockProps();
+		const [element, setElement] = useState<HTMLDivElement>();
+		const load = (el: HTMLDivElement) => {
+			setElement(() => el);
+		};
+
+		useEffect(() => {
+			if (element) {
+				void wp.ajax
+					.post<string>('cwfc_get_pw_hash', { pw: Password })
+					.then((pwHash) => {
+						element.innerHTML = '';
+						render(element, {
+							ajaxUrl: '/wp-admin/admin-ajax.php',
+							colors: Colors,
+							org: Organization,
+							pwHash,
+						});
+					});
+			}
+		}, [Colors, Organization, Password, element]);
+
 		return (
 			<div {...props}>
 				<InspectorControls key="setting">
@@ -84,7 +111,7 @@ registerBlockType(metadata as BlockConfiguration<Attributes>, {
 						</PanelBody>
 					</Panel>
 				</InspectorControls>
-				CogWork calendar dummy
+				<div ref={load}></div>
 			</div>
 		);
 	},

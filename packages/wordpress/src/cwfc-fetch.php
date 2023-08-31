@@ -17,6 +17,7 @@ function cwfc_fetch()
 		'httpversion' => '1.0',
 		'blocking' => true,
 		'cookies' => [],
+		'timeout' => 20
 	];
 
 	$response = wp_remote_post(

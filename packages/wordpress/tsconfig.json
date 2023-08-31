@@ -1,18 +1,23 @@
 {
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
-		"outDir": "dist",
-		"allowJs": true,
-		"skipLibCheck": true,
+		"outDir": "./build",
+		"baseUrl": ".",
+		"sourceMap": true,
+		"jsx": "react-jsx",
 		"module": "ESNext",
 		"target": "ESNext",
-		"moduleResolution": "node",
-		"resolveJsonModule": true,
-		"jsx": "react-jsx",
-		"sourceMap": true,
-		"baseUrl": ".",
+		"esModuleInterop": true,
 		"lib": ["ESNext", "dom"],
-		"allowSyntheticDefaultImports": true
+		"paths": {
+			"@cwfc/app/*": ["../app/*"],
+			"@cwfc/shared/*": ["../shared/*"]
+		},
+		"plugins": [
+			{
+				"name": "typescript-plugin-css-modules"
+			}
+		]
 	},
 	"include": ["src/**/*"]
 }
