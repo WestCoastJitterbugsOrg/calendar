@@ -4,7 +4,7 @@
 	"module": "build/index.js",
 	"types": "build/index.d.ts",
 	"scripts": {
-		"build": "tsup",
+		"build": "tsup --minify",
 		"watch": "tsup --watch",
 		"test": "jest"
 	},
