@@ -11,6 +11,7 @@ import { WCJ } from './types';
 type Props = WCJ.Context & {
 	colors: Record<string, string>;
 	parent: HTMLElement;
+	isLoading: boolean;
 };
 
 export function App(props: Props) {
@@ -27,6 +28,11 @@ export function App(props: Props) {
 			<div className={appStyle.contentWrapper}>
 				<aside className={appStyle.eventSelection}>
 					<EventSelection />
+					{props.isLoading && (
+						<div className={appStyle.loader}>
+							<div className={appStyle.loaderBar}></div>
+						</div>
+					)}
 				</aside>
 				<main className={appStyle.calendar}>
 					<Calendar />

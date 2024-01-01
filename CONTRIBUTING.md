@@ -2,7 +2,7 @@
 
 To get started, make sure you have the following installed:
 
-1. Node.js >= 18.14 (npm >= 8.19.2)
+1. Node.js (check package.json "engines" for version, I recommend using [nvm](https://github.com/coreybutler/nvm-windows#readme) for managing Node.js versions)
 2. [Docker Engine](https://docs.docker.com/engine/install/)
 
 I recommend using VS Code and installing the workspace recommendations.
