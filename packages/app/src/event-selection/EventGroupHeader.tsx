@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import checked from '../assets/checkbox-checked.svg';
-import indeterminate from '../assets/checkbox-indeterminate.svg';
-import unchecked from '../assets/checkbox-unchecked.svg';
-import plusIcon from '../assets/plus.svg';
+import checkedImg from '../assets/checkbox-checked.svg';
+import indeterminateImg from '../assets/checkbox-indeterminate.svg';
+import uncheckedImg from '../assets/checkbox-unchecked.svg';
+import plusImg from '../assets/plus.svg';
 import { stateContext } from '../state';
 import style from './EventGroupHeader.module.scss';
 import { WCJ } from 'src/types';
@@ -19,9 +19,9 @@ export function EventGroupHeader(props: Props) {
 	const { state, img, alt } = useGroupCheckboxState(props.events);
 
 	const toggleChecked = () => {
-		setCheckedEvents?.((checkedEvents) => {
+		setCheckedEvents?.((prevCheckedEvents) => {
 			// Start by uncheck all events in the category
-			const newCheckedEvents = checkedEvents.filter(
+			const newCheckedEvents = prevCheckedEvents.filter(
 				(eventId) => !props.events.find((e) => e.id === eventId),
 			);
 
@@ -48,7 +48,7 @@ export function EventGroupHeader(props: Props) {
 					className={
 						style.expandIcon + (props.expanded ? ' ' + style.rotate : '')
 					}
-					src={plusIcon}
+					src={plusImg}
 				/>
 				<span>{props.category}</span>
 			</div>
@@ -98,19 +98,19 @@ function useGroupCheckboxState(events: WCJ.Event[]): GroupCheckboxState {
 		case 0:
 			return {
 				state: false,
-				img: unchecked,
+				img: uncheckedImg,
 				alt: '☐',
 			};
 		case events.length:
 			return {
 				state: true,
-				img: checked,
+				img: checkedImg,
 				alt: '☑',
 			};
 		default:
 			return {
 				state: 'mixed',
-				img: indeterminate,
+				img: indeterminateImg,
 				alt: '▣',
 			};
 	}
