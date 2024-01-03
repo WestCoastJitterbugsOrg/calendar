@@ -4,9 +4,10 @@ import { Footer } from './Footer';
 import { Header } from './Header';
 import { Calendar } from './calendar/Calendar';
 import { EventSelection } from './event-selection/EventSelection';
-import { StateWrapper } from './store/StateWrapper';
-import { useEffect } from 'react';
+import { stateContext } from './state';
+import { useEffect, useState } from 'react';
 import { WCJ } from './types';
+import { useCheckedEvents } from './hooks/checked-events';
 
 type Props = WCJ.Context & {
 	colors: Record<string, string>;
@@ -22,24 +23,34 @@ export function App(props: Props) {
 		}
 	}, [props.colors, props.parent]);
 
+	const [eventModal, setEventModal] = useState<string>();
+	const [checkedEvents, setCheckedEvents] = useCheckedEvents(
+		props.events.map((x) => x.id),
+		props.selectedEventIds,
+	);
+
 	return (
-		<StateWrapper categories={props.categories} events={props.events}>
+		<stateContext.Provider
+			value={{
+				categories: props.categories,
+				events: props.events,
+				checkedEvents,
+				setCheckedEvents,
+				eventModal,
+				setEventModal,
+			}}
+		>
 			<Header />
 			<div className={appStyle.contentWrapper}>
-				<aside className={appStyle.eventSelection}>
-					<EventSelection />
-					{props.isLoading && (
-						<div className={appStyle.loader}>
-							<div className={appStyle.loaderBar}></div>
-						</div>
-					)}
-				</aside>
-				<main className={appStyle.calendar}>
+				<div className={appStyle.eventSelection}>
+					<EventSelection isLoading={props.isLoading} />
+				</div>
+				<div className={appStyle.calendar}>
 					<Calendar />
-				</main>
+				</div>
 			</div>
 			<Footer />
 			<EventSeriesModal parent={props.parent} />
-		</StateWrapper>
+		</stateContext.Provider>
 	);
 }

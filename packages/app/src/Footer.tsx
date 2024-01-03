@@ -3,16 +3,22 @@ import fileDownload from './assets/file-download.svg';
 import githubLogo from './assets/github-logo.png';
 import { exportICS } from './services/ics';
 import { Button } from './shared/Button';
-import { stateContext } from './store/StateWrapper';
+import { stateContext } from './state';
 import { useContext } from 'react';
 
 export function Footer() {
-	const { events } = useContext(stateContext);
+	const { events, checkedEvents } = useContext(stateContext);
 
 	return (
-		<footer className={style.footer}>
+		<div className={style.footer}>
 			<div className={style.exportIcsButton}>
-				<Button onClick={() => void exportICS(events)}>
+				<Button
+					onClick={() =>
+						void exportICS(
+							events.filter((event) => checkedEvents.includes(event.id)),
+						)
+					}
+				>
 					Export iCal{' '}
 					<img
 						alt="export icon"
@@ -34,6 +40,6 @@ export function Footer() {
 					className={style.githubLogo}
 				></img>
 			</a>
-		</footer>
+		</div>
 	);
 }

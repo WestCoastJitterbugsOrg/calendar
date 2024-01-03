@@ -8,31 +8,23 @@ export function initContext(cwEvents: MaybeArray<CW.Event>): WCJ.Context {
 		(event) => event.schedule?.occasions?.occasion != null,
 	);
 
+	const events = cogworkEvents.map(cogwork2wcjEvent);
+	const categories = Array.from(new Set(events.map((event) => event.category)));
+
+	let selectedEventIds: string[] = [];
 	const uncheckedEventsStr = localStorage.getItem('uncheckedEvents');
-	const uncheckedEvents: string[] = uncheckedEventsStr
+
+	const uncheckedEvents = uncheckedEventsStr
 		? (JSON.parse(uncheckedEventsStr) as string[])
 		: [];
-
-	const categories: Record<string, { id: string; events: string[] }> = {};
-	const events: Record<string, WCJ.Event> = {};
-
-	for (const cogworkEvent of cogworkEvents) {
-		const event = cogwork2wcjEvent(cogworkEvent);
-		event.showInCalendar = !uncheckedEvents.includes(event.id);
-
-		// Add event to store
-		events[event.id] = event;
-
-		// Add category if it hasn't been seen before,
-		if (!(event.category in categories)) {
-			categories[event.category] = { id: event.category, events: [] };
-		}
-		categories[event.category].events.push(event.id);
-	}
+	selectedEventIds = events
+		.map((event) => event.id)
+		.filter((eventId) => !uncheckedEvents.includes(eventId));
 
 	return {
-		categories,
 		events,
+		categories,
+		selectedEventIds,
 	};
 }
 

@@ -1,7 +1,7 @@
-import checked from '../assets/checkbox-checked.svg';
-import unchecked from '../assets/checkbox-unchecked.svg';
-import infoCircle from '../assets/info-circle.svg';
-import { stateContext } from '../store/StateWrapper';
+import checkedImg from '../assets/checkbox-checked.svg';
+import uncheckedImg from '../assets/checkbox-unchecked.svg';
+import infoCircleImg from '../assets/info-circle.svg';
+import { stateContext } from '../state';
 import style from './EventItem.module.scss';
 import { useContext } from 'react';
 import { WCJ } from 'src/types';
@@ -12,16 +12,24 @@ type Props = {
 };
 
 export function EventItem(props: Props) {
-	const { setEvents, setEventModal } = useContext(stateContext);
+	const { checkedEvents, setEventModal, setCheckedEvents } =
+		useContext(stateContext);
 
-	const toggle = () =>
-		setEvents?.((prevEvents) => ({
-			...prevEvents,
-			[props.event.id]: {
-				...prevEvents[props.event.id],
-				showInCalendar: !prevEvents[props.event.id].showInCalendar,
-			},
-		}));
+	const isChecked = checkedEvents.includes(props.event.id);
+
+	const toggleChecked = () => {
+		setCheckedEvents?.((prevCheckedEvents) => {
+			// Create a new array with the clicked event removed
+			const newChecked = prevCheckedEvents.filter(
+				(event) => event !== props.event.id,
+			);
+			if (newChecked.length === prevCheckedEvents.length) {
+				// The event didn't exist in the array, so it should be added
+				newChecked.push(props.event.id);
+			}
+			return newChecked;
+		});
+	};
 
 	return (
 		<div className={style.wrapper} role="listitem">
@@ -36,11 +44,10 @@ export function EventItem(props: Props) {
 					}
 				}}
 			>
-				<img alt="info" src={infoCircle} className={style.infoButton} />
+				<img alt="info" src={infoCircleImg} className={style.infoButton} />
 				<span
 					className={
-						style.title +
-						(props.event.showInCalendar ? ' ' + style.showInCalendar : '')
+						style.title + (isChecked ? ' ' + style.showInCalendar : '')
 					}
 				>
 					{props.event.title}
@@ -48,22 +55,22 @@ export function EventItem(props: Props) {
 			</button>
 			<div
 				role="checkbox"
-				aria-checked={props.event.showInCalendar}
+				aria-checked={isChecked}
 				tabIndex={props.expanded ? 0 : -1}
 				className={style.checkbox}
-				onClick={toggle}
+				onClick={() => toggleChecked()}
 				onKeyUp={(e) => {
 					if (['Enter', 'Space'].includes(e.code)) {
 						e.stopPropagation();
 						e.preventDefault();
-						toggle();
+						toggleChecked();
 					}
 				}}
 			>
-				{props.event.showInCalendar ? (
-					<img src={checked} width={16} height={16} alt="☑" />
+				{isChecked ? (
+					<img src={checkedImg} width={16} height={16} alt="☑" />
 				) : (
-					<img src={unchecked} width={16} height={16} alt="☐" />
+					<img src={uncheckedImg} width={16} height={16} alt="☐" />
 				)}
 			</div>
 		</div>

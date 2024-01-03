@@ -1,38 +1,44 @@
+import { useContext } from 'react';
 import checked from '../assets/checkbox-checked.svg';
 import indeterminate from '../assets/checkbox-indeterminate.svg';
 import unchecked from '../assets/checkbox-unchecked.svg';
 import plusIcon from '../assets/plus.svg';
-import StateContext, { CategoryStore, EventStore } from '../store/model';
-import { getCategoryEvents } from '../store/utils';
+import { stateContext } from '../state';
 import style from './EventGroupHeader.module.scss';
 import { WCJ } from 'src/types';
 
 type Props = {
-	category: CategoryStore;
-	events: EventStore['events'];
+	category: string;
+	events: WCJ.Event[];
 	expanded: boolean;
 	toggleExpanded: () => void;
-	setEvents: StateContext['setEvents'];
 };
 
 export function EventGroupHeader(props: Props) {
-	const catEvents = getCategoryEvents(props.category, props.events);
-	const { state, img, alt } = useGroupCheckboxState(catEvents);
+	const { setCheckedEvents } = useContext(stateContext);
+	const { state, img, alt } = useGroupCheckboxState(props.events);
 
-	const setAllChecked = (show: boolean) =>
-		props.setEvents?.((prevEvents) => {
-			const newEvents = { ...prevEvents };
-			for (const eventId of props.category.events) {
-				newEvents[eventId].showInCalendar = show;
+	const toggleChecked = () => {
+		setCheckedEvents?.((checkedEvents) => {
+			// Start by uncheck all events in the category
+			const newCheckedEvents = checkedEvents.filter(
+				(eventId) => !props.events.find((e) => e.id === eventId),
+			);
+
+			if (state !== true) {
+				// If the tristate-checkbox should become checked, add all events to the checked events
+				newCheckedEvents.push(...props.events.map((e) => e.id));
 			}
-			return newEvents;
+
+			return newCheckedEvents;
 		});
+	};
 
 	return (
 		<button
 			type="button"
 			aria-expanded={props.expanded}
-			aria-controls={`Event group ${props.category.id}`}
+			aria-controls={`Event group ${props.category}`}
 			className={style.headerWrapper}
 			onClick={props.toggleExpanded}
 		>
@@ -44,7 +50,7 @@ export function EventGroupHeader(props: Props) {
 					}
 					src={plusIcon}
 				/>
-				<span>{props.category.id}</span>
+				<span>{props.category}</span>
 			</div>
 
 			<div
@@ -54,13 +60,13 @@ export function EventGroupHeader(props: Props) {
 				tabIndex={0}
 				onClick={(e) => {
 					e.stopPropagation();
-					setAllChecked(state !== true);
+					toggleChecked();
 				}}
 				onKeyUp={(e) => {
 					if (['Enter', 'Space'].includes(e.code)) {
 						e.preventDefault();
 						e.stopPropagation();
-						setAllChecked(state !== true);
+						toggleChecked();
 					}
 				}}
 			>
@@ -83,8 +89,12 @@ type GroupCheckboxState = {
 };
 
 function useGroupCheckboxState(events: WCJ.Event[]): GroupCheckboxState {
-	const eventsShown = events.filter((event) => event.showInCalendar).length;
-	switch (eventsShown) {
+	const { checkedEvents } = useContext(stateContext);
+	const noOfCheckedEvents = events.filter((event) =>
+		checkedEvents.includes(event.id),
+	).length;
+
+	switch (noOfCheckedEvents) {
 		case 0:
 			return {
 				state: false,

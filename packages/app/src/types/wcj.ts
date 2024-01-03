@@ -8,8 +8,6 @@ export type Event = {
 	place?: string;
 	price?: string;
 	instructors?: string;
-	/* state */
-	showInCalendar?: boolean;
 };
 
 export type Occasion = {
@@ -18,6 +16,7 @@ export type Occasion = {
 };
 
 export type Context = {
-	categories: Record<string, { id: string; events: string[] }>;
-	events: Record<string, Event>;
+	categories: string[];
+	events: Event[];
+	selectedEventIds: string[];
 };

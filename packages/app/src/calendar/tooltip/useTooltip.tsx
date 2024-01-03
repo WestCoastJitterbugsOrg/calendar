@@ -1,4 +1,4 @@
-import { stateContext } from '../../store/StateWrapper';
+import { stateContext } from '../../state';
 import { CalendarTooltip } from './CalendarTooltip';
 import { EventApi, EventClickArg } from '@fullcalendar/core';
 import { createPopper, Instance } from '@popperjs/core';
@@ -16,7 +16,7 @@ export function useTooltip(refObj: RefObject<HTMLElement>) {
 		if (tooltipWrapper == null) {
 			tooltipWrapper = document.createElement('div');
 		}
-		tooltipWrapper.style.zIndex = '1';
+		tooltipWrapper.style.zIndex = '10';
 
 		const root = refObj.current ?? document;
 

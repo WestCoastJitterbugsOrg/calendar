@@ -1,6 +1,6 @@
 import style from './EventSeriesModal.module.scss';
 import closeIcon from './assets/close.svg';
-import { stateContext } from './store/StateWrapper';
+import { stateContext } from './state';
 import { useContext, useEffect, useRef } from 'react';
 import Modal from 'react-modal';
 
@@ -12,7 +12,7 @@ const rootHtmlElement = document.documentElement;
 
 export function EventSeriesModal(props: Props) {
 	const { events, eventModal, setEventModal } = useContext(stateContext);
-	const event = eventModal && events[eventModal];
+	const event = eventModal && events.find((e) => e.id === eventModal);
 
 	const previousOverflowStyle = useRef<string>();
 	useEffect(() => {

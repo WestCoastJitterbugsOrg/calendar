@@ -3,7 +3,7 @@ import { createPopper } from '@popperjs/core';
 import '@testing-library/jest-dom';
 import { act, render } from '@testing-library/react';
 import { Calendar } from 'src/calendar/Calendar';
-import { StateWrapper } from 'src/store/StateWrapper';
+import { StateWrapper } from 'src/state';
 
 jest.mock('@popperjs/core', () => {
 	const originalModule = jest.requireActual<{

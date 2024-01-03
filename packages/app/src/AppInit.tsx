@@ -2,7 +2,7 @@ import { App } from './App';
 import style from './AppInit.module.scss';
 import { initContext } from './services/cogwork';
 import { ErrorViewer } from './shared/ErrorViewer';
-import Loader from './shared/Loader';
+import { Loader } from './shared/Loader';
 import { CW } from './types';
 import { MaybeArray } from './types/utils';
 import { WpCwfc } from '@cwfc/shared';
@@ -57,13 +57,12 @@ function AppContent(props: Props & { rootRef: HTMLElement | null }) {
 	} else if (!data) {
 		return <h3>Didn&apos;t get any data</h3>;
 	} else if (props.rootRef) {
-		const { events, categories } = initContext(data);
-		// Setting the key attribute to the number representation of isValidating makes sure React remounts (and thus rerenders)
+		const { events, categories, selectedEventIds } = initContext(data);
 		return (
 			<App
-				key={Number(isValidating)}
 				events={events}
 				categories={categories}
+				selectedEventIds={selectedEventIds}
 				colors={props.colors}
 				parent={props.rootRef}
 				isLoading={isValidating}

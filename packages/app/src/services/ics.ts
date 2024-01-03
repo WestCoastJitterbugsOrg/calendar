@@ -28,11 +28,8 @@ export async function wcj2ics(events: WCJ.Event[]) {
 	return calendar.toString();
 }
 
-export async function exportICS(events: Record<string, WCJ.Event>) {
-	const selectedEvents = Object.values(events).filter(
-		(event) => event.showInCalendar,
-	);
-	const icsStr = await wcj2ics(selectedEvents);
+export async function exportICS(events: WCJ.Event[]) {
+	const icsStr = await wcj2ics(events);
 
 	const file = new Blob([icsStr], { type: 'text/calendar' });
 	const url = URL.createObjectURL(file);

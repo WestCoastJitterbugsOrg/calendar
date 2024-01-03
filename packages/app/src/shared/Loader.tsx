@@ -1,6 +1,6 @@
 import style from './Loader.module.scss';
 
-export default function Loader() {
+export function Loader() {
 	return (
 		<div className={style.loaderContainer}>
 			<div className={style.loader}></div>

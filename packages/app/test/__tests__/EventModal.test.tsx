@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { fireEvent, render } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import { EventSeriesModal } from 'src/EventSeriesModal';
-import { StateWrapper } from 'src/store/StateWrapper';
+import { StateWrapper } from 'src/state';
 
 it('EventModal Snapshot', () => {
 	const eventModal = Object.values(mockStore.events)[0].id;

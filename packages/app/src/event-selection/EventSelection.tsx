@@ -1,24 +1,22 @@
 import { Button } from '../shared/Button';
-import { stateContext } from '../store/StateWrapper';
+import { stateContext } from '../state';
 import { EventGroup } from './EventGroup';
 import style from './EventSelection.module.scss';
 import { useContext } from 'react';
-import { WCJ } from 'src/types';
 
-export function EventSelection() {
-	const { categories, setEvents } = useContext(stateContext);
+type Props = {
+	isLoading: boolean;
+};
+
+export function EventSelection(props: Props) {
+	const { events, categories, setCheckedEvents } = useContext(stateContext);
 
 	const select = (show: boolean) => {
-		setEvents?.((events) => {
-			const newEvents: Record<string, WCJ.Event> = {};
-			for (const eventId in events) {
-				newEvents[eventId] = {
-					...events[eventId],
-					showInCalendar: show,
-				};
-			}
-			return newEvents;
-		});
+		if (show) {
+			setCheckedEvents?.(() => events.map((event) => event.id));
+		} else {
+			setCheckedEvents?.(() => []);
+		}
 	};
 
 	return (
@@ -28,9 +26,15 @@ export function EventSelection() {
 				<Button onClick={() => select(false)}>Deselect all</Button>
 			</div>
 			<div className={style.eventGroupList} role="list">
-				{Object.keys(categories).map((categoryId) => (
+				{categories.map((categoryId) => (
 					<EventGroup key={categoryId} category={categoryId} />
 				))}
+
+				{props.isLoading && (
+					<div className={style.loader}>
+						<div className={style.loaderBar}></div>
+					</div>
+				)}
 			</div>
 		</>
 	);

@@ -1,5 +1,5 @@
-import Loader from '../shared/Loader';
-import { stateContext } from '../store/StateWrapper';
+import { Loader } from '../shared/Loader';
+import { stateContext } from '../state';
 import './Calendar.scss';
 import { wcj2fcEvent } from './CalendarHelpers';
 import { useTooltip } from './tooltip/useTooltip';
@@ -20,10 +20,11 @@ type Props = {
 };
 
 export function Calendar(props: Props) {
-	const { events } = useContext(stateContext);
+	const { events, checkedEvents } = useContext(stateContext);
 
-	const allWcjEvents = Object.values(events);
-	const shownWcjEvents = allWcjEvents.filter((event) => event.showInCalendar);
+	const shownWcjEvents = events.filter((event) =>
+		checkedEvents.includes(event.id),
+	);
 
 	const shownOccasions = shownWcjEvents.flatMap((event) => event.occasions);
 

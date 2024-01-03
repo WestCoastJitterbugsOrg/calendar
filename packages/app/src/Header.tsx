@@ -15,7 +15,7 @@ export function Header() {
 		return <></>;
 	}
 	return (
-		<header className={style.header}>
+		<div className={style.header}>
 			<div className={style.headerText}>
 				<p>
 					This calendar can remember which events are selected between sessions.
@@ -29,6 +29,6 @@ export function Header() {
 					Don&apos;t consent
 				</Button>
 			</div>
-		</header>
+		</div>
 	);
 }
