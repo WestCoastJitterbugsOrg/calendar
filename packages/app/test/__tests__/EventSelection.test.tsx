@@ -22,7 +22,7 @@ it('Events are selected at start', async () => {
 
 	const [groupInput, eventInputs] = await getEventGroupInputs(renderResult);
 	expect(groupInput).toBeChecked();
-	eventInputs.forEach((eventInput) => expect(eventInput).toBeChecked());
+	eventInputs.forEach((eventInput) => { expect(eventInput).toBeChecked(); });
 });
 
 it('Clicking deselect all deselects all events and groups', async () => {
@@ -33,11 +33,11 @@ it('Clicking deselect all deselects all events and groups', async () => {
 	);
 	const deselectAllBtn = await renderResult.findByText('Deselect all');
 
-	act(() => deselectAllBtn.click());
+	act(() => { deselectAllBtn.click(); });
 
 	const [groupInput, eventInputs] = await getEventGroupInputs(renderResult);
 	expect(groupInput).not.toBeChecked();
-	eventInputs.forEach((eventInput) => expect(eventInput).not.toBeChecked());
+	eventInputs.forEach((eventInput) => { expect(eventInput).not.toBeChecked(); });
 });
 
 async function getEventGroupInputs(

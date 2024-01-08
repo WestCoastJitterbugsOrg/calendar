@@ -15,19 +15,20 @@ type Props = {
 };
 
 export function EventGroupHeader(props: Props) {
+	const categoryEvents = props.events;
 	const { setCheckedEvents } = useContext(stateContext);
-	const { state, img, alt } = useGroupCheckboxState(props.events);
+	const { state, img, alt } = useGroupCheckboxState(categoryEvents);
 
 	const toggleChecked = () => {
 		setCheckedEvents?.((prevCheckedEvents) => {
-			// Start by uncheck all events in the category
+			// Start by unchecking all events in the category
 			const newCheckedEvents = prevCheckedEvents.filter(
-				(eventId) => !props.events.find((e) => e.id === eventId),
+				(eventId) => !categoryEvents.find((e) => e.id === eventId),
 			);
 
 			if (state !== true) {
-				// If the tristate-checkbox should become checked, add all events to the checked events
-				newCheckedEvents.push(...props.events.map((e) => e.id));
+				// If the tri-state-checkbox should become checked, add all events in the category
+				newCheckedEvents.push(...categoryEvents.map((e) => e.id));
 			}
 
 			return newCheckedEvents;

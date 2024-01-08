@@ -22,8 +22,20 @@ export function EventSelection(props: Props) {
 	return (
 		<>
 			<div className={style.actionButtons}>
-				<Button onClick={() => select(true)}>Select all</Button>
-				<Button onClick={() => select(false)}>Deselect all</Button>
+				<Button
+					onClick={() => {
+						select(true);
+					}}
+				>
+					Select all
+				</Button>
+				<Button
+					onClick={() => {
+						select(false);
+					}}
+				>
+					Deselect all
+				</Button>
 			</div>
 			<div className={style.eventGroupList} role="list">
 				{categories.map((categoryId) => (

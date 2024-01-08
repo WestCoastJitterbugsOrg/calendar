@@ -9,9 +9,7 @@
 	"extends": [
 		"eslint:recommended",
 		"plugin:@wordpress/eslint-plugin/recommended-with-formatting",
-		"plugin:@typescript-eslint/recommended",
-		"plugin:@typescript-eslint/recommended-requiring-type-checking",
-		"plugin:@typescript-eslint/strict",
+		"plugin:@typescript-eslint/strict-type-checked",
 		"plugin:react/recommended",
 		"plugin:react/jsx-runtime",
 		"plugin:import/recommended",

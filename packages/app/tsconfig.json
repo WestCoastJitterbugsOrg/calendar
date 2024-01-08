@@ -10,17 +10,12 @@
 		"esModuleInterop": true,
 		"paths": {
 			"@cwfc/shared/*": ["../shared/*"]
-		},
-		"plugins": [
-			{
-				"name": "typescript-plugin-css-modules"
-			}
-		]
+		}
 	},
 	"references": [
 		{
 			"path": "../shared"
 		}
 	],
-	"include": ["src/**/*", "test/**/*"]
+	"include": ["src/**/*", "*.module.scss", "test/**/*"]
 }

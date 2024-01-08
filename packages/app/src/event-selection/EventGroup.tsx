@@ -19,7 +19,9 @@ export function EventGroup(props: Props) {
 				category={props.category}
 				expanded={expanded}
 				events={catEvents}
-				toggleExpanded={() => setExpanded((e) => !e)}
+				toggleExpanded={() => {
+					setExpanded((e) => !e);
+				}}
 			/>
 
 			<div

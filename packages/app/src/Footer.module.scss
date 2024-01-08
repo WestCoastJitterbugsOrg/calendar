@@ -1,8 +1,7 @@
 .footer {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: center;
-	justify-items: center;
+	place-items: center center;
 	background-color: var(--cw-color-dark);
 	padding: 8px;
 }

@@ -58,7 +58,9 @@ export function EventItem(props: Props) {
 				aria-checked={isChecked}
 				tabIndex={props.expanded ? 0 : -1}
 				className={style.checkbox}
-				onClick={() => toggleChecked()}
+				onClick={() => {
+					toggleChecked();
+				}}
 				onKeyUp={(e) => {
 					if (['Enter', 'Space'].includes(e.code)) {
 						e.stopPropagation();

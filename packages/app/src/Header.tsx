@@ -24,8 +24,19 @@ export function Header() {
 				<p>Your consent is needed for this functionality.</p>
 			</div>
 			<div style={{ display: 'flex' }}>
-				<Button onClick={() => storeConsent(true)}>Consent</Button>
-				<Button type="ghost" onClick={() => storeConsent(false)}>
+				<Button
+					onClick={() => {
+						storeConsent(true);
+					}}
+				>
+					Consent
+				</Button>
+				<Button
+					type="ghost"
+					onClick={() => {
+						storeConsent(false);
+					}}
+				>
 					Don&apos;t consent
 				</Button>
 			</div>
