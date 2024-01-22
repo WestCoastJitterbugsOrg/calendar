@@ -17,10 +17,13 @@ it('Cookie header is shown by default', async () => {
 		<App
 			parent={document.documentElement}
 			{...initContext(defaultEventData)}
+			isLoading={false}
 			colors={defaultColors}
 		/>,
 	);
-	const cookieHeader = await renderResult.findByRole('banner');
+	const cookieHeader = await renderResult.findByText('Your consent is needed', {
+		exact: false,
+	});
 
 	expect(cookieHeader).toBeTruthy();
 });
@@ -33,10 +36,14 @@ it('Cookie header is hidden if there are cookies', () => {
 		<App
 			parent={document.documentElement}
 			{...initContext(defaultEventData)}
+			isLoading={false}
 			colors={defaultColors}
 		/>,
 	);
-	const cookieHeader = renderResult.queryByRole('banner');
+	const cookieHeader = renderResult.queryByText('Your consent is needed', {
+		exact: false,
+	});
+
 	expect(cookieHeader).toBeNull();
 });
 
@@ -45,6 +52,7 @@ it('Clicking on Download calls exportICS', () => {
 		<App
 			parent={document.documentElement}
 			{...initContext(defaultEventData)}
+			isLoading={false}
 			colors={defaultColors}
 		/>,
 	);

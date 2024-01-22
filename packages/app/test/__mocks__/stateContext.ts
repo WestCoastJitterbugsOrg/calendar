@@ -1,15 +1,10 @@
-import { EventStore } from 'src/store/model';
+import { EventStore } from 'src/state';
 
-export const mockStore: EventStore = {
-	categories: {
-		'Lindy Hop': {
-			events: ['1'],
-			id: 'Lindy Hop',
-		},
-	},
+export const mockStore = {
+	categories: ['Lindy Hop'],
 	eventModal: undefined,
-	events: {
-		'1': {
+	events: [
+		{
 			id: '1',
 			category: 'Lindy Hop',
 			instructors: undefined,
@@ -24,7 +19,7 @@ export const mockStore: EventStore = {
 			registrationUrl: 'https://example.com/registration',
 			title: 'Grundkurs Lindy Hop',
 			description: '',
-			showInCalendar: true,
 		},
-	},
-};
+	],
+	checkedEvents: [],
+} satisfies EventStore;
