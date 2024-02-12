@@ -6,10 +6,12 @@
 		"setup-env": "wp-env start --xdebug",
 		"wp-env": "wp-env",
 		"prettier": "prettier . --check",
+		"lint": "npm run lint:js && npm run lint:css",
 		"lint:js": "eslint .",
 		"lint:css": "stylelint \"**/*.{css,scss}\"",
 		"autofix": "eslint . --fix && stylelint \"**/*.{css,scss}\" --fix && prettier . --write",
-		"build": "turbo run build"
+		"build": "turbo run build",
+		"test": "npm run test -w @cwfc/app"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.23.9",

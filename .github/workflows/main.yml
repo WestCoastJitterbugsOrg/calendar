@@ -17,7 +17,7 @@ jobs:
       - name: Install Dependencies
         run: npm ci
       - name: Check types
-        run: npx tsc --project tsconfig.json --noEmit --skipLibCheck
+        run: npx tsc --project packages/app/tsconfig.json --noEmit --skipLibCheck
 
   eslint:
     runs-on: ubuntu-latest
