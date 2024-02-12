@@ -42,15 +42,21 @@ export function App(props: Props) {
 		>
 			<Header />
 			<div className={appStyle.contentWrapper}>
-				<div className={appStyle.eventSelection}>
+				<div className={appStyle.eventSelection} data-testid="event-selection">
 					<EventSelection isLoading={props.isLoading} />
 				</div>
-				<div className={appStyle.calendar}>
-					<Calendar />
+				<div className={appStyle.calendar} data-testid="calendar">
+					<Calendar events={props.events} checkedEvents={checkedEvents} />
 				</div>
 			</div>
 			<Footer />
-			<EventSeriesModal parent={props.parent} />
+			<EventSeriesModal
+				parent={props.parent}
+				event={props.events.find((event) => event.id === eventModal)}
+				close={() => {
+					setEventModal(undefined);
+				}}
+			/>
 		</stateContext.Provider>
 	);
 }

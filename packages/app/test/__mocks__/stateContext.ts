@@ -21,5 +21,5 @@ export const mockStore = {
 			description: '',
 		},
 	],
-	checkedEvents: [],
+	checkedEvents: ['1'],
 } satisfies EventStore;

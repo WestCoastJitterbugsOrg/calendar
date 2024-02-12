@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EventModal Snapshot 1`] = `
+exports[`EventSeriesModal Snapshot 1`] = `
 <body
   aria-hidden="true"
   class="ReactModal__Body--open"

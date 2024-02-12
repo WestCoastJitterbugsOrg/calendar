@@ -1,8 +1,7 @@
 import { defaultColors, defaultEventData } from '../__mocks__/cwEvents';
 import { mockStore } from '../__mocks__/stateContext';
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
+import { act, render } from '@testing-library/react';
 import { App } from 'src/App';
 import { initContext } from 'src/services/cogwork';
 import { storeConsentCookie } from 'src/services/cookies';
@@ -21,6 +20,7 @@ it('Cookie header is shown by default', async () => {
 			colors={defaultColors}
 		/>,
 	);
+
 	const cookieHeader = await renderResult.findByText('Your consent is needed', {
 		exact: false,
 	});

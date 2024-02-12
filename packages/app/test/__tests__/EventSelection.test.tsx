@@ -1,43 +1,35 @@
-import { mockStore } from '../__mocks__/stateContext';
 import '@testing-library/jest-dom';
 import { act, render, RenderResult } from '@testing-library/react';
-import { EventSelection } from 'src/event-selection/EventSelection';
-import { StateWrapper } from 'src/state';
+import AppMock from '../__mocks__/appMock';
 
-it('EventSelection Snapshot', () => {
-	const { baseElement } = render(
-		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
-			<EventSelection />
-		</StateWrapper>,
-	);
-	expect(baseElement).toMatchSnapshot();
+it('EventSelection Snapshot', async () => {
+	const app = render(<AppMock />);
+	const element = await app.findByTestId('event-selection');
+	expect(element).toMatchSnapshot();
 });
 
 it('Events are selected at start', async () => {
-	const renderResult = render(
-		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
-			<EventSelection />
-		</StateWrapper>,
-	);
-
-	const [groupInput, eventInputs] = await getEventGroupInputs(renderResult);
+	const app = render(<AppMock />);
+	const [groupInput, eventInputs] = await getEventGroupInputs(app);
 	expect(groupInput).toBeChecked();
-	eventInputs.forEach((eventInput) => { expect(eventInput).toBeChecked(); });
+	eventInputs.forEach((eventInput) => {
+		expect(eventInput).toBeChecked();
+	});
 });
 
 it('Clicking deselect all deselects all events and groups', async () => {
-	const renderResult = render(
-		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
-			<EventSelection />
-		</StateWrapper>,
-	);
-	const deselectAllBtn = await renderResult.findByText('Deselect all');
+	const app = render(<AppMock />);
+	const deselectAllBtn = app.getByText('Deselect all');
 
-	act(() => { deselectAllBtn.click(); });
+	act(() => {
+		deselectAllBtn.click();
+	});
 
-	const [groupInput, eventInputs] = await getEventGroupInputs(renderResult);
+	const [groupInput, eventInputs] = await getEventGroupInputs(app);
 	expect(groupInput).not.toBeChecked();
-	eventInputs.forEach((eventInput) => { expect(eventInput).not.toBeChecked(); });
+	eventInputs.forEach((eventInput) => {
+		expect(eventInput).not.toBeChecked();
+	});
 });
 
 async function getEventGroupInputs(

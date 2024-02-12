@@ -1,16 +1,10 @@
-import { mockStore } from '../__mocks__/stateContext';
 import '@testing-library/jest-dom';
 import { act, fireEvent, render } from '@testing-library/react';
-import { EventGroup } from 'src/event-selection/EventGroup';
-import { EventItem } from 'src/event-selection/EventItem';
-import { StateWrapper } from 'src/state';
+import MockApp from '../__mocks__/appMock';
+import { mockStore } from '../__mocks__/stateContext';
 
 it('Unchecking a group causes all events to be unchecked', async () => {
-	const result = render(
-		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
-			<EventGroup category="Lindy Hop" />
-		</StateWrapper>,
-	);
+	const result = render(<MockApp />);
 
 	const el = (await result.findAllByAltText('☑'))[0];
 
@@ -24,39 +18,37 @@ it('Unchecking a group causes all events to be unchecked', async () => {
 	expect(allEventCheckboxes.every((x) => x.checked)).toBeFalsy();
 });
 
-it('Unchecking an event causes it to be unchecked', async () => {
-	const result = render(
-		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
-			<EventItem event={Object.values(mockStore.events)[0]} expanded={true} />
-		</StateWrapper>,
-	);
-
-	const el = await result.findByRole('listitem');
+it('Unchecking an event causes it to be unchecked', () => {
+	const result = render(<MockApp />);
+	const el = result.getByText(mockStore.categories[0]);
 
 	act(() => {
+		// Click on the category to expand it
 		fireEvent.click(el);
 	});
 
-	const eventCheckbox = (await result.findByRole(
-		'checkbox',
-	)) as HTMLInputElement;
+	// First checkbox is the group checkbox, so we take the second one
+	const eventCheckbox = result.getAllByRole('checkbox')[1] as HTMLInputElement;
 	expect(eventCheckbox.checked).toBeFalsy();
 });
 
-it('Click info button opens modal', async () => {
-	const result = render(
-		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
-			<EventItem event={Object.values(mockStore.events)[0]} expanded={true} />
-		</StateWrapper>,
-	);
+it('Click info button opens modal', () => {
+	jest.useFakeTimers();
+	const result = render(<MockApp />);
 
-	const infoButton = await result.findByAltText('info');
+	const categoryElement = result.getByText(mockStore.categories[0]);
 
 	act(() => {
-		infoButton.click();
+		// Click on the category to expand it
+		fireEvent.click(categoryElement);
+		jest.runAllTimers();
+
+		const infoButton = result.getByAltText('info');
+		fireEvent.click(infoButton);
+		jest.runAllTimers();
 	});
 
-	const modalContent = result.findByRole('dialog');
+	const modalContent = result.baseElement.querySelector('.ReactModalPortal');
 
 	expect(modalContent).toBeTruthy();
 });

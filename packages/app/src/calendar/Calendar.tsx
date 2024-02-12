@@ -1,5 +1,5 @@
+import { Event } from 'src/types/wcj';
 import { Loader } from '../shared/Loader';
-import { stateContext } from '../state';
 import './Calendar.scss';
 import { wcj2fcEvent } from './CalendarHelpers';
 import { useTooltip } from './tooltip/useTooltip';
@@ -11,19 +11,19 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interaction from '@fullcalendar/interaction';
 import listPlugin from '@fullcalendar/list';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import { lazy, Suspense, useContext, useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 
 const FullCalendar = lazy(() => import('@fullcalendar/react'));
 
 type Props = {
 	initialDate?: DateInput;
+	events: Event[];
+	checkedEvents: string[];
 };
 
 export function Calendar(props: Props) {
-	const { events, checkedEvents } = useContext(stateContext);
-
-	const shownWcjEvents = events.filter((event) =>
-		checkedEvents.includes(event.id),
+	const shownWcjEvents = props.events.filter((event) =>
+		props.checkedEvents.includes(event.id),
 	);
 
 	const shownOccasions = shownWcjEvents.flatMap((event) => event.occasions);

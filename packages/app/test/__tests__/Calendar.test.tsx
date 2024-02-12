@@ -3,7 +3,6 @@ import { createPopper } from '@popperjs/core';
 import '@testing-library/jest-dom';
 import { act, render } from '@testing-library/react';
 import { Calendar } from 'src/calendar/Calendar';
-import { StateWrapper } from 'src/state';
 
 jest.mock('@popperjs/core', () => {
 	const originalModule = jest.requireActual<{
@@ -19,12 +18,14 @@ jest.mock('@popperjs/core', () => {
 it('Click event in calendar opens popper', async () => {
 	jest.useFakeTimers();
 
-	const initialDate = mockStore.events['1'].occasions[0].start;
+	const initialDate = mockStore.events[0].occasions[0].start;
 
 	const result = render(
-		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
-			<Calendar initialDate={initialDate} />
-		</StateWrapper>,
+		<Calendar
+			initialDate={initialDate}
+			events={mockStore.events}
+			checkedEvents={mockStore.checkedEvents}
+		/>,
 	);
 
 	const fcEventContainer = await result.findByText('Grundkurs Lindy Hop');
@@ -37,16 +38,18 @@ it('Click event in calendar opens popper', async () => {
 	expect(createPopper).toHaveBeenCalledTimes(1);
 });
 
-it('Can open list view', async () => {
-	const initialDate = mockStore.events['1'].occasions[0].start;
+it('Can open list view', () => {
+	const initialDate = mockStore.events[0].occasions[0].start;
 
 	const result = render(
-		<StateWrapper categories={mockStore.categories} events={mockStore.events}>
-			<Calendar initialDate={initialDate} />
-		</StateWrapper>,
+		<Calendar
+			initialDate={initialDate}
+			events={mockStore.events}
+			checkedEvents={mockStore.checkedEvents}
+		/>,
 	);
 
-	const fcListRangeButton = await result.findByText('List');
+	const fcListRangeButton = result.getByText('List');
 
 	act(() => {
 		fcListRangeButton.click();
