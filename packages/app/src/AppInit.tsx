@@ -42,7 +42,7 @@ function AppContent(props: Props & { rootRef: HTMLElement | null }) {
 				return res.json();
 			}
 			const text = await res.text();
-			return Promise.reject(text);
+			return Promise.reject(new Error(text));
 		},
 		{
 			loadingTimeout: 10000,

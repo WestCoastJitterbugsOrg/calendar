@@ -68,7 +68,9 @@ registerBlockType(metadata as BlockConfiguration<Attributes>, {
 								<TextControl
 									value={Organization}
 									label={__('Organization', 'cw-filter-calendar')}
-									onChange={(org) => { setAttributes({ Organization: org }); }}
+									onChange={(org) => {
+										setAttributes({ Organization: org });
+									}}
 								/>
 							</PanelRow>
 							<PanelRow>
@@ -76,7 +78,9 @@ registerBlockType(metadata as BlockConfiguration<Attributes>, {
 									value={Password}
 									label={__('Password', 'cw-filter-calendar')}
 									type="password"
-									onChange={(pw) => { setAttributes({ Password: pw }); }}
+									onChange={(pw) => {
+										setAttributes({ Password: pw });
+									}}
 								/>
 							</PanelRow>
 						</PanelBody>
@@ -97,11 +101,11 @@ registerBlockType(metadata as BlockConfiguration<Attributes>, {
 									</PanelRow>
 									<Button
 										variant="secondary"
-										onClick={() =>
-											{ setAttributes({
+										onClick={() => {
+											setAttributes({
 												Colors: { ...Colors, [color]: defaultColors[color] },
-											}); }
-										}
+											});
+										}}
 									>
 										Reset
 									</Button>
