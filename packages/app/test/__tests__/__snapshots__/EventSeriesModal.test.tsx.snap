@@ -3,7 +3,7 @@
 exports[`EventSeriesModal Snapshot 1`] = `
 <body
   aria-hidden="true"
-  class="ReactModal__Body--open"
+  class="cwfc-modal-open"
 >
   <div
     data-react-modal-body-trap=""
