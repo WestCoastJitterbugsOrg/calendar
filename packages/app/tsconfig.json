@@ -1,0 +1,21 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"outDir": "./build",
+		"baseUrl": ".",
+		"sourceMap": true,
+		"jsx": "react-jsx",
+		"module": "ESNext",
+		"target": "ESNext",
+		"esModuleInterop": true,
+		"paths": {
+			"@cwfc/shared/*": ["../shared/*"]
+		}
+	},
+	"references": [
+		{
+			"path": "../shared"
+		}
+	],
+	"include": ["src/**/*", "*.module.scss", "test/**/*"]
+}

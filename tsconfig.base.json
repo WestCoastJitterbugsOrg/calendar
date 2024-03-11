@@ -1,0 +1,11 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"resolveJsonModule": true,
+		"moduleResolution": "node",
+		"forceConsistentCasingInFileNames": true,
+		"noFallthroughCasesInSwitch": true
+	},
+	"include": [],
+	"exclude": ["**/node_modules/**/*", "**/build/**/*"]
+}

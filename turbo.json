@@ -1,0 +1,24 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"pipeline": {
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": ["build/**"]
+		},
+		"test": {
+			"dependsOn": ["build"],
+			"inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts", "test/**/*.tsx"]
+		},
+		"lint": {},
+		"setup-env": {},
+		"watch": {
+			"cache": false,
+			"dependsOn": ["@cwfc/app#build"]
+		},
+		"dev": {
+			"cache": false,
+			"persistent": true,
+			"dependsOn": ["^watch", "@cwfc/wordpress#setup-env"]
+		}
+	}
+}

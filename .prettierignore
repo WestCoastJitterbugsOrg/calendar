@@ -1,2 +1,3 @@
 build
 coverage
+packages/wordpress/cw-filter-calendar

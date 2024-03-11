@@ -1,0 +1,21 @@
+.contentWrapper {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: stretch;
+	background: #fff;
+}
+
+.eventSelection {
+	display: flex;
+	max-height: calc(100vh - 128px);
+	width: 384px;
+	flex-grow: 1;
+	flex-direction: column;
+}
+
+.calendar {
+	min-height: calc(100vh - 128px);
+	min-width: max(calc(100% - 384px), 300px);
+	flex-shrink: 0;
+	flex-grow: 1;
+}

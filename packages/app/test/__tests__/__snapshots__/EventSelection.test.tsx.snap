@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventSelection Snapshot 1`] = `
+<div
+  data-testid="event-selection"
+>
+  <div>
+    <button
+      class="undefined  "
+      type="button"
+    >
+      Select all
+    </button>
+    <button
+      class="undefined  "
+      type="button"
+    >
+      Deselect all
+    </button>
+  </div>
+  <div
+    role="list"
+  >
+    <div
+      role="group"
+    >
+      <button
+        aria-controls="Event group Lindy Hop"
+        aria-expanded="false"
+        type="button"
+      >
+        <div>
+          <img
+            alt="+"
+            class="undefined"
+            src="test-file-stub"
+          />
+          <span>
+            Lindy Hop
+          </span>
+        </div>
+        <div
+          aria-checked="true"
+          role="checkbox"
+          tabindex="0"
+        >
+          <img
+            alt="☑"
+            height="16"
+            src="test-file-stub"
+            width="16"
+          />
+        </div>
+      </button>
+      <div
+        class="undefined"
+        id="Event group Lindy Hop"
+      >
+        <div
+          role="listitem"
+        >
+          <button
+            tabindex="-1"
+          >
+            <img
+              alt="info"
+              src="test-file-stub"
+            />
+            <span
+              class="undefined undefined"
+            >
+              Grundkurs Lindy Hop
+            </span>
+          </button>
+          <div
+            aria-checked="true"
+            role="checkbox"
+            tabindex="-1"
+          >
+            <img
+              alt="☑"
+              height="16"
+              src="test-file-stub"
+              width="16"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

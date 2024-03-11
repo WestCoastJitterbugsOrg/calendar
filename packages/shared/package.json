@@ -1,0 +1,7 @@
+{
+	"name": "@cwfc/shared",
+	"types": "build/index.d.ts",
+	"scripts": {
+		"build": "tsc"
+	}
+}

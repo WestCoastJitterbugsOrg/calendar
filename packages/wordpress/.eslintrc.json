@@ -1,0 +1,15 @@
+{
+	"extends": "../../.eslintrc.json",
+	"parserOptions": {
+		"project": "packages/wordpress/tsconfig.json"
+	},
+	"settings": {
+		"import/resolver": {
+			"typescript": {
+				"alwaysTryTypes": true,
+				"project": "packages/wordpress/tsconfig.json"
+			}
+		}
+	},
+	"ignorePatterns": ["cw-filter-calendar"]
+}

@@ -1,0 +1,56 @@
+.wrapper {
+	display: flex;
+	align-items: center;
+
+	&:not(:last-child) {
+		border-bottom: 1px solid rgba(0 0 0 / 10%);
+	}
+}
+
+.content {
+	display: flex;
+	align-items: center;
+	flex-grow: 1;
+	cursor: help;
+	background: transparent;
+	border: 4px solid transparent;
+	text-align: left;
+	padding: 4px;
+
+	&:focus-visible {
+		outline: none;
+		border-color: var(--cw-color-secondary-alt);
+	}
+}
+
+.infoButton {
+	margin-right: 2px;
+	display: block;
+	height: 16px;
+	width: 16px;
+	flex: none;
+	color: #000;
+	opacity: 0.5;
+
+	.content:hover & {
+		opacity: 1;
+	}
+}
+
+.title {
+	flex-grow: 1;
+	padding-right: 8px;
+	opacity: 0.5;
+	line-height: 16px;
+
+	&.showInCalendar {
+		opacity: 1;
+	}
+}
+
+.checkbox {
+	display: flex;
+	cursor: pointer;
+	min-width: 16px;
+	margin-right: 8px;
+}

@@ -1,0 +1,18 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"outDir": "./build",
+		"declarationDir": "./build",
+		"baseUrl": ".",
+		"rootDir": "src",
+		"declaration": true,
+		"declarationMap": true,
+		"emitDeclarationOnly": true,
+		"composite": true,
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"target": "ESNext",
+		"skipLibCheck": true
+	},
+	"include": ["src/**/*"]
+}

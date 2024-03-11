@@ -1,0 +1,42 @@
+.overlay {
+	position: fixed;
+	z-index: 50;
+	inset: 0;
+	background-color: rgb(0 0 0 / 75%);
+}
+
+.modal {
+	position: absolute;
+	inset: 50% auto auto 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+	height: max(80vh, 200px);
+	max-width: 900px;
+	width: 100%;
+	padding: 0;
+	border: 0;
+	padding-top: 32px;
+	background-color: var(--cw-color-dark);
+}
+
+.content {
+	height: 100%;
+	width: min(900px, 100vw);
+}
+
+.closeButton {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+	background-color: transparent;
+	border: none;
+}
+
+.iframe {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	border: none;
+	outline: none;
+}

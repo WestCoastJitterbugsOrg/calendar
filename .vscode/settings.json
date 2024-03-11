@@ -83,16 +83,7 @@
 	"typescript.tsdk": "./node_modules/typescript/lib",
 	"stylelint.snippet": ["css", "less", "postcss", "scss"],
 	"stylelint.validate": ["css", "less", "postcss", "scss"],
-	"explorer.sortOrder": "foldersNestsFiles",
-	"explorer.fileNesting.patterns": {
-		"*.ts": "${capture}.js",
-		"*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
-		"*.tsx": "${capture}.ts, ${capture}.js, ${capture}.module.scss, ${capture}.scss",
-		"tsconfig.json": "tsconfig.*.json",
-		"package.json": "package-lock.json",
-		".eslintrc.json": ".stylelintrc, .babelrc, .editorconfig, .npmpackagejsonlintrc.json",
-		".wp-env.json": ".wp-env.override.json",
-		"README.md": "CONTRIBUTING.md, LICENSE"
-	},
-	"jest.jestCommandLine": "npm run test:unit --"
+	"jest.rootPath": "packages/app",
+	"jest.jestCommandLine": "npm run test -w @cwfc/app --",
+	"php.validate.executablePath": "exec_wp_php.bat"
 }

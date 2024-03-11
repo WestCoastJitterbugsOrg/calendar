@@ -7,20 +7,8 @@
 			"request": "launch",
 			"port": 9003,
 			"pathMappings": {
-				"/var/www/html/wp-content/plugins/cw-filter-calendar": "${workspaceFolder}/src/"
+				"/var/www/html/wp-content/plugins/cw-filter-calendar": "${workspaceFolder}/packages/wordpress/src/"
 			}
-		},
-		{
-			"name": "Debug JS with Firefox",
-			"type": "firefox",
-			"request": "launch",
-			"url": "http://localhost:8888",
-			"pathMappings": [
-				{
-					"url": "http://localhost:8888/wp-content/plugins/cw-filter-calendar",
-					"path": "${workspaceFolder}/"
-				}
-			]
 		},
 		{
 			"type": "node",
@@ -38,7 +26,10 @@
 			"console": "integratedTerminal",
 			"internalConsoleOptions": "neverOpen",
 			"disableOptimisticBPs": true,
-			"program": "${workspaceFolder}/node_modules/.bin/jest"
+			"program": "${workspaceFolder}/node_modules/.bin/jest",
+			"windows": {
+				"program": "${workspaceFolder}/node_modules/jest/bin/jest"
+			}
 		}
 	]
 }
