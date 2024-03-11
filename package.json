@@ -11,7 +11,9 @@
 		"lint:css": "stylelint \"**/*.{css,scss}\"",
 		"autofix": "eslint . --fix && stylelint \"**/*.{css,scss}\" --fix && prettier . --write",
 		"build": "turbo run build",
-		"test": "npm run test -w @cwfc/app"
+		"test": "npm run test -w @cwfc/app",
+		"dev": "turbo run dev",
+		"watch": "npm run watch -w @cwfc/app"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.23.9",

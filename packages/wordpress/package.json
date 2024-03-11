@@ -3,7 +3,8 @@
 	"scripts": {
 		"build": "wp-scripts build --webpack-copy-php --output-path=cw-filter-calendar",
 		"watch": "wp-scripts build --watch --webpack-copy-php --output-path=cw-filter-calendar --node-env development",
-		"help": "wp-scripts build --help"
+		"help": "wp-scripts build --help",
+		"setup-env": "wp-env start --xdebug"
 	},
 	"dependencies": {
 		"@cwfc/app": "*",
