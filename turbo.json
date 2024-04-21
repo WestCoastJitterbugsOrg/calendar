@@ -3,7 +3,7 @@
 	"pipeline": {
 		"build": {
 			"dependsOn": ["^build"],
-			"outputs": ["build/**"]
+			"outputs": ["build/**", "cw-filter-calendar/**"]
 		},
 		"test": {
 			"dependsOn": ["build"],
@@ -14,7 +14,7 @@
 			"cache": false
 		},
 		"@cwfc/wordpress#watch": {
-			"outputMode": "none"
+			"outputMode": "hash-only"
 		},
 		"watch": {
 			"cache": false,
