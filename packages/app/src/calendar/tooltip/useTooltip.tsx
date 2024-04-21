@@ -1,13 +1,14 @@
-import { stateContext } from '../../state';
 import { CalendarTooltip } from './CalendarTooltip';
 import { EventApi, EventClickArg } from '@fullcalendar/core';
 import { createPopper, Instance } from '@popperjs/core';
-import { RefObject, useContext, useRef } from 'react';
+import { RefObject, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 
-export function useTooltip(refObj: RefObject<HTMLElement>) {
+export function useTooltip(
+	refObj: RefObject<HTMLElement>,
+	setEventModal?: (eventId: string) => void,
+) {
 	const popper = useRef<Instance>();
-	const { setEventModal } = useContext(stateContext);
 
 	let tooltipWrapper: HTMLElement | null;
 	let popperIsActive = false;
@@ -27,7 +28,9 @@ export function useTooltip(refObj: RefObject<HTMLElement>) {
 		createRoot(tooltipWrapper).render(
 			<CalendarTooltip
 				event={event}
-				openModal={() => setEventModal?.(event.extendedProps.id as string)}
+				openModal={() => {
+					setEventModal?.(event.extendedProps.id as string);
+				}}
 			/>,
 		);
 		setTimeout(() => {

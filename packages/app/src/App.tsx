@@ -35,18 +35,24 @@ export function App(props: Props) {
 				categories: props.categories,
 				events: props.events,
 				checkedEvents,
-				setCheckedEvents,
 				eventModal,
-				setEventModal,
 			}}
 		>
 			<Header />
 			<div className={appStyle.contentWrapper}>
 				<div className={appStyle.eventSelection} data-testid="event-selection">
-					<EventSelection isLoading={props.isLoading} />
+					<EventSelection
+						isLoading={props.isLoading}
+						setCheckedEvents={setCheckedEvents}
+						setEventModal={setEventModal}
+					/>
 				</div>
 				<div className={appStyle.calendar} data-testid="calendar">
-					<Calendar events={props.events} checkedEvents={checkedEvents} />
+					<Calendar
+						events={props.events}
+						checkedEvents={checkedEvents}
+						setEventModal={setEventModal}
+					/>
 				</div>
 			</div>
 			<Footer />

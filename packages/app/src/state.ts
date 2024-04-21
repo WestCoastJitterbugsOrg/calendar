@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, createContext } from 'react';
+import { createContext } from 'react';
 import { WCJ } from 'src/types';
 
 export type EventStore = {
@@ -9,12 +9,7 @@ export type EventStore = {
 	eventModal?: string;
 };
 
-export type StateContext = {
-	setCheckedEvents?: Dispatch<SetStateAction<string[]>>;
-	setEventModal?: Dispatch<SetStateAction<string | undefined>>;
-} & EventStore;
-
-export const stateContext = createContext<StateContext>({
+export const stateContext = createContext<EventStore>({
 	categories: [],
 	events: [],
 	checkedEvents: [],

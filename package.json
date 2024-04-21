@@ -3,7 +3,7 @@
 	"author": "Jean-Philippe Green",
 	"type": "module",
 	"scripts": {
-		"setup-env": "wp-env start --xdebug",
+		"setup-env": "npm run setup-env -w @cwfc/wordpress",
 		"wp-env": "wp-env",
 		"prettier": "prettier . --check",
 		"lint": "npm run lint:js && npm run lint:css",
@@ -12,8 +12,7 @@
 		"autofix": "eslint . --fix && stylelint \"**/*.{css,scss}\" --fix && prettier . --write",
 		"build": "turbo run build",
 		"test": "npm run test -w @cwfc/app",
-		"dev": "turbo run dev",
-		"watch": "npm run watch -w @cwfc/app"
+		"watch": "turbo run watch"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.24.0",
@@ -21,7 +20,6 @@
 		"@babel/preset-react": "^7.23.3",
 		"@babel/preset-typescript": "^7.23.3",
 		"@prettier/plugin-php": "^0.22.2",
-		"@trivago/prettier-plugin-sort-imports": "^4.3.0",
 		"@typescript-eslint/eslint-plugin": "^6.21.0",
 		"@typescript-eslint/parser": "^6.21.0",
 		"@wordpress/env": "^9.5.0",

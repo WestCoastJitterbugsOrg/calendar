@@ -9,38 +9,27 @@ import { WCJ } from 'src/types';
 type Props = {
 	event: WCJ.Event;
 	expanded: boolean;
+	toggleChecked: () => void;
+	clickInfoButton: () => void;
 };
 
 export function EventItem(props: Props) {
-	const { checkedEvents, setEventModal, setCheckedEvents } =
-		useContext(stateContext);
+	const { checkedEvents } = useContext(stateContext);
 
 	const isChecked = checkedEvents.includes(props.event.id);
-
-	const toggleChecked = () => {
-		setCheckedEvents?.((prevCheckedEvents) => {
-			// Create a new array with the clicked event removed
-			const newChecked = prevCheckedEvents.filter(
-				(event) => event !== props.event.id,
-			);
-			if (newChecked.length === prevCheckedEvents.length) {
-				// The event didn't exist in the array, so it should be added
-				newChecked.push(props.event.id);
-			}
-			return newChecked;
-		});
-	};
 
 	return (
 		<div className={style.wrapper} role="listitem">
 			<button
 				className={style.content}
-				onClick={() => setEventModal?.(props.event.id)}
+				onClick={() => {
+					props.clickInfoButton();
+				}}
 				tabIndex={props.expanded ? 0 : -1}
 				onKeyUp={(e) => {
 					if (['Enter', 'Space'].includes(e.code)) {
 						e.stopPropagation();
-						setEventModal?.(props.event.id);
+						props.clickInfoButton();
 					}
 				}}
 			>
@@ -59,13 +48,13 @@ export function EventItem(props: Props) {
 				tabIndex={props.expanded ? 0 : -1}
 				className={style.checkbox}
 				onClick={() => {
-					toggleChecked();
+					props.toggleChecked();
 				}}
 				onKeyUp={(e) => {
 					if (['Enter', 'Space'].includes(e.code)) {
 						e.stopPropagation();
 						e.preventDefault();
-						toggleChecked();
+						props.toggleChecked();
 					}
 				}}
 			>

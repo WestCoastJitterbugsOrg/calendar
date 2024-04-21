@@ -5,6 +5,9 @@
 	"[php]": {
 		"editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
 	},
+	"editor.codeActionsOnSave": {
+		"source.fixAll": "always"
+	},
 	"intelephense.stubs": [
 		"apache",
 		"bcmath",

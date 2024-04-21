@@ -1,9 +1,8 @@
-import { useContext } from 'react';
+import { useGroupCheckboxState } from 'src/hooks/group-checkbox-state';
 import checkedImg from '../assets/checkbox-checked.svg';
 import indeterminateImg from '../assets/checkbox-indeterminate.svg';
 import uncheckedImg from '../assets/checkbox-unchecked.svg';
 import plusImg from '../assets/plus.svg';
-import { stateContext } from '../state';
 import style from './EventGroupHeader.module.scss';
 import { WCJ } from 'src/types';
 
@@ -12,28 +11,30 @@ type Props = {
 	events: WCJ.Event[];
 	expanded: boolean;
 	toggleExpanded: () => void;
+	toggleGroupChecked: () => void;
 };
 
 export function EventGroupHeader(props: Props) {
 	const categoryEvents = props.events;
-	const { setCheckedEvents } = useContext(stateContext);
-	const { state, img, alt } = useGroupCheckboxState(categoryEvents);
+	const state = useGroupCheckboxState(categoryEvents);
 
-	const toggleChecked = () => {
-		setCheckedEvents?.((prevCheckedEvents) => {
-			// Start by unchecking all events in the category
-			const newCheckedEvents = prevCheckedEvents.filter(
-				(eventId) => !categoryEvents.find((e) => e.id === eventId),
-			);
+	let img: string | undefined;
+	let alt: string;
 
-			if (state !== true) {
-				// If the tri-state-checkbox should become checked, add all events in the category
-				newCheckedEvents.push(...categoryEvents.map((e) => e.id));
-			}
-
-			return newCheckedEvents;
-		});
-	};
+	switch (state) {
+		case false:
+			img = uncheckedImg;
+			alt = '☐';
+			break;
+		case true:
+			img = checkedImg;
+			alt = '☑';
+			break;
+		default:
+			img = indeterminateImg;
+			alt = '▣';
+			break;
+	}
 
 	return (
 		<button
@@ -61,13 +62,13 @@ export function EventGroupHeader(props: Props) {
 				tabIndex={0}
 				onClick={(e) => {
 					e.stopPropagation();
-					toggleChecked();
+					props.toggleGroupChecked();
 				}}
 				onKeyUp={(e) => {
 					if (['Enter', 'Space'].includes(e.code)) {
 						e.preventDefault();
 						e.stopPropagation();
-						toggleChecked();
+						props.toggleGroupChecked();
 					}
 				}}
 			>
@@ -81,38 +82,4 @@ export function EventGroupHeader(props: Props) {
 			</div>
 		</button>
 	);
-}
-
-type GroupCheckboxState = {
-	state: boolean | 'mixed';
-	img: string | undefined;
-	alt: string;
-};
-
-function useGroupCheckboxState(events: WCJ.Event[]): GroupCheckboxState {
-	const { checkedEvents } = useContext(stateContext);
-	const noOfCheckedEvents = events.filter((event) =>
-		checkedEvents.includes(event.id),
-	).length;
-
-	switch (noOfCheckedEvents) {
-		case 0:
-			return {
-				state: false,
-				img: uncheckedImg,
-				alt: '☐',
-			};
-		case events.length:
-			return {
-				state: true,
-				img: checkedImg,
-				alt: '☑',
-			};
-		default:
-			return {
-				state: 'mixed',
-				img: indeterminateImg,
-				alt: '▣',
-			};
-	}
 }
