@@ -6,7 +6,7 @@ import { Loader } from './shared/Loader';
 import { CW } from './types';
 import { MaybeArray } from './types/utils';
 import { WpCwfc } from '@cwfc/shared';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useSwr from 'swr';
 
 type Props = WpCwfc;
@@ -22,15 +22,19 @@ export default function AppInit(props: Props) {
 }
 
 function AppContent(props: Props & { rootRef: HTMLElement | null }) {
+	useEffect(() => {
+		for (const color in props.colors) {
+			const colorVal = props.colors[color];
+			props.rootRef?.style.setProperty(`--cw-color-${color}`, colorVal);
+		}
+	}, [props.colors, props.rootRef]);
+
 	const formData = new FormData();
 	formData.append('action', 'cwfc_fetch');
 	formData.append('org', props.org);
 	formData.append('pw_hash', props.pwHash);
 
-	const { isLoading, error, data, isValidating } = useSwr<
-		MaybeArray<CW.Event>,
-		string
-	>(
+	const swrResponse = useSwr<MaybeArray<CW.Event>, string>(
 		'cwfc_fetch',
 		async () => {
 			const res = await fetch(props.ajaxUrl, {
@@ -49,6 +53,8 @@ function AppContent(props: Props & { rootRef: HTMLElement | null }) {
 		},
 	);
 
+	const { isLoading, error, data, isValidating } = swrResponse;
+
 	if (isLoading) {
 		return <Loader />;
 	} else if (error && !data) {
@@ -63,7 +69,6 @@ function AppContent(props: Props & { rootRef: HTMLElement | null }) {
 				events={events}
 				categories={categories}
 				selectedEventIds={selectedEventIds}
-				colors={props.colors}
 				parent={props.rootRef}
 				isLoading={isValidating}
 			/>

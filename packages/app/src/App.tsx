@@ -10,19 +10,11 @@ import { WCJ } from './types';
 import { canStoreSelection } from './services/cookies';
 
 type Props = WCJ.Context & {
-	colors: Record<string, string>;
 	parent: HTMLElement;
 	isLoading: boolean;
 };
 
 export function App(props: Props) {
-	useEffect(() => {
-		for (const color in props.colors) {
-			const colorVal = props.colors[color];
-			props.parent.style.setProperty(`--cw-color-${color}`, colorVal);
-		}
-	}, [props.colors, props.parent]);
-
 	const [eventModal, setEventModal] = useState<string>();
 	const [checkedEvents, setCheckedEvents] = useCheckedEvents(
 		props.events.map((x) => x.id),
