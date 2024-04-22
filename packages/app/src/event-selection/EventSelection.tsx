@@ -2,7 +2,7 @@ import { Button } from '../shared/Button';
 import { stateContext } from '../state';
 import { EventGroup } from './EventGroup';
 import style from './EventSelection.module.scss';
-import { useContext } from 'react';
+import { useCallback, useContext } from 'react';
 
 type Props = {
 	isLoading: boolean;
@@ -13,58 +13,53 @@ type Props = {
 export function EventSelection(props: Props) {
 	const { events, categories, checkedEvents } = useContext(stateContext);
 
-	const select = (show: boolean) => {
-		if (show) {
-			props.setCheckedEvents(events.map((event) => event.id));
-		} else {
-			props.setCheckedEvents([]);
-		}
-	};
+	const setEventCheckboxState = useCallback(
+		(eventId: string, check: boolean) => {
+			const checkedEventsSet = new Set(checkedEvents);
+			if (check) {
+				checkedEventsSet.add(eventId);
+			} else {
+				checkedEventsSet.delete(eventId);
+			}
+			props.setCheckedEvents([...checkedEventsSet]);
+		},
+		[props, checkedEvents],
+	);
 
-	const setEventCheckboxState = (eventId: string, check: boolean) => {
-		const checkedEventsSet = new Set(checkedEvents);
-		if (check) {
-			checkedEventsSet.add(eventId);
-		} else {
-			checkedEventsSet.delete(eventId);
-		}
-		props.setCheckedEvents([...checkedEventsSet]);
-	};
+	const setGroupCheckboxState = useCallback(
+		(categoryId: string, state: boolean | 'mixed') => {
+			const catEventIds = events
+				.filter((e) => e.category === categoryId)
+				.map((e) => e.id);
 
-	const setGroupCheckboxState = (
-		categoryId: string,
-		state: boolean | 'mixed',
-	) => {
-		const catEventIds = events
-			.filter((e) => e.category === categoryId)
-			.map((e) => e.id);
+			// Start by unchecking all events in the category
+			const newCheckedEvents = checkedEvents.filter(
+				(eventId) => !catEventIds.includes(eventId),
+			);
 
-		// Start by unchecking all events in the category
-		const newCheckedEvents = checkedEvents.filter(
-			(eventId) => !catEventIds.includes(eventId),
-		);
+			if (state === true) {
+				// If the tri-state-checkbox should become checked, add all events in the category
+				newCheckedEvents.push(...catEventIds);
+			}
 
-		if (state === true) {
-			// If the tri-state-checkbox should become checked, add all events in the category
-			newCheckedEvents.push(...catEventIds);
-		}
-
-		props.setCheckedEvents(newCheckedEvents);
-	};
+			props.setCheckedEvents(newCheckedEvents);
+		},
+		[props, events, checkedEvents],
+	);
 
 	return (
 		<>
 			<div className={style.actionButtons}>
 				<Button
 					onClick={() => {
-						select(true);
+						props.setCheckedEvents(events.map((event) => event.id));
 					}}
 				>
 					Select all
 				</Button>
 				<Button
 					onClick={() => {
-						select(false);
+						props.setCheckedEvents([]);
 					}}
 				>
 					Deselect all
