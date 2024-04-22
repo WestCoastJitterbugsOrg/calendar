@@ -1,4 +1,4 @@
-import { defaultColors, defaultEventData } from '../__mocks__/cwEvents';
+import { defaultEventData } from '../__mocks__/cwEvents';
 import { mockStore } from '../__mocks__/stateContext';
 import '@testing-library/jest-dom';
 import { act, render } from '@testing-library/react';
@@ -17,7 +17,6 @@ it('Cookie header is shown by default', async () => {
 			parent={document.documentElement}
 			{...initContext(defaultEventData)}
 			isLoading={false}
-			colors={defaultColors}
 		/>,
 	);
 
@@ -37,7 +36,6 @@ it('Cookie header is hidden if there are cookies', () => {
 			parent={document.documentElement}
 			{...initContext(defaultEventData)}
 			isLoading={false}
-			colors={defaultColors}
 		/>,
 	);
 	const cookieHeader = renderResult.queryByText('Your consent is needed', {
@@ -53,7 +51,6 @@ it('Clicking on Download calls exportICS', () => {
 			parent={document.documentElement}
 			{...initContext(defaultEventData)}
 			isLoading={false}
-			colors={defaultColors}
 		/>,
 	);
 
