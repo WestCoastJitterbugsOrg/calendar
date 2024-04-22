@@ -14,7 +14,8 @@
 			"cache": false
 		},
 		"@cwfc/wordpress#watch": {
-			"outputMode": "hash-only"
+			"outputMode": "hash-only",
+			"dependsOn": ["@cwfc/app#build"]
 		},
 		"watch": {
 			"cache": false,
