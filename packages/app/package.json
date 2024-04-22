@@ -36,6 +36,7 @@
 		"postcss": "^8.4.38",
 		"postcss-modules": "^6.0.0",
 		"ts-jest": "^29.1.2",
+		"ts-node": "^10.9.2",
 		"tsup": "^8.0.2"
 	}
 }
