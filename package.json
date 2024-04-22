@@ -12,7 +12,8 @@
 		"autofix": "eslint . --fix && stylelint \"**/*.{css,scss}\" --fix && prettier . --write",
 		"build": "turbo run build",
 		"test": "npm run test -w @cwfc/app",
-		"watch": "turbo run watch"
+		"watch": "turbo run watch",
+		"zip": "mkdir build & cross-zip packages/wordpress/cw-filter-calendar build/cw-filter-calendar.zip"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.24.4",
@@ -24,6 +25,7 @@
 		"@typescript-eslint/parser": "^6.21.0",
 		"@wordpress/env": "^9.8.0",
 		"@wordpress/scripts": "^27.7.0",
+		"cross-zip-cli": "^1.0.0",
 		"eslint": "^8.57.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-import-resolver-typescript": "^3.6.1",
