@@ -1,25 +1,17 @@
-import { FormatterInput, formatDate } from '@fullcalendar/core';
-import { capitalizeFirstLetter } from 'src/services/utils';
+import { formatDate, FormatterInput } from '@fullcalendar/core';
 import { FC } from 'src/types';
 
-const titleFormat: FormatterInput = (args) => {
-	const monthAndYear = formatDate(args.date.marker, {
-		year: 'numeric',
-		month: 'long',
-		locale: 'sv',
-	});
-	const week = formatDate(args.date.marker, { week: 'numeric' });
-	return `Vecka ${week}, ${capitalizeFirstLetter(monthAndYear)}`;
-};
+const titleFormat: FormatterInput = (args) =>
+	`Week ${formatDate(args.date.marker, { week: 'numeric' })}, 
+      ${formatDate(args.date.marker, {
+				year: 'numeric',
+				month: 'long',
+			})}`;
 
-const dayHeaderFormat: FormatterInput = (args) => {
-	const weekday = formatDate(args.date.marker, {
-		weekday: 'long',
-		locale: 'sv',
-	});
-	const dayOfTheMonth = formatDate(args.date.marker, { day: 'numeric' });
-	return `${capitalizeFirstLetter(weekday)}\n${dayOfTheMonth}`;
-};
+const dayHeaderFormat: FormatterInput = (args) =>
+	formatDate(args.date.marker, { weekday: 'long' }) +
+	'\n' +
+	formatDate(args.date.marker, { day: 'numeric' });
 
 const viewOptions: FC.ViewOptions = {
 	scrollTimeReset: false,

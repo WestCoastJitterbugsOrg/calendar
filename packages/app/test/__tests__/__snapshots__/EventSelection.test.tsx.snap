@@ -9,13 +9,13 @@ exports[`EventSelection Snapshot 1`] = `
       class="undefined  "
       type="button"
     >
-      Markera allt
+      Select all
     </button>
     <button
       class="undefined  "
       type="button"
     >
-      Avmarkera allt
+      Deselect all
     </button>
   </div>
   <div

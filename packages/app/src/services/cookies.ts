@@ -1,14 +1,5 @@
 // Due to EU law, we need to check that user has consented to storing functional information
-// There are two cookies that we check to see if the user has consented,
-// the default consent cookie is this plugin's own cookie that is set when consenting from the calendar itself.
-// The second cookie is a cookie set by the CookieYes plugin, which is used in wcj.se. This cookie
-// tells us whether the user has selected the "Functional cookies" checkbox on the webpage.
-// If the user has already accepted the use of functional cookies, we don't need to ask about it again.
-
-type KVPair = {
-	key: string;
-	value: string;
-};
+// There are two cookies that we check to see if the user has consented
 
 const defaultConsentCookie = 'wcjcal-accept-storing';
 
@@ -31,7 +22,7 @@ export function canStoreSelection() {
 	return getConsentCookie()?.value === 'yes';
 }
 
-function getCookies(): KVPair[] {
+function getCookies() {
 	return document.cookie
 		.replace(/\s/g, '') // remove all whitespace
 		.split(';') // cookies are separated by ";"

@@ -55,14 +55,14 @@ export function EventSelection(props: Props) {
 						props.setCheckedEvents(events.map((event) => event.id));
 					}}
 				>
-					Markera allt
+					Select all
 				</Button>
 				<Button
 					onClick={() => {
 						props.setCheckedEvents([]);
 					}}
 				>
-					Avmarkera allt
+					Deselect all
 				</Button>
 			</div>
 			<div className={style.eventGroupList} role="list">

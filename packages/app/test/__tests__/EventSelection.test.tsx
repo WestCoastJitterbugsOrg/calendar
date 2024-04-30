@@ -19,7 +19,7 @@ it('Events are selected at start', async () => {
 
 it('Clicking deselect all deselects all events and groups', async () => {
 	const app = render(<AppMock />);
-	const deselectAllBtn = app.getByText('Avmarkera allt');
+	const deselectAllBtn = app.getByText('Deselect all');
 
 	act(() => {
 		deselectAllBtn.click();

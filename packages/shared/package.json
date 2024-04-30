@@ -3,8 +3,5 @@
 	"types": "build/index.d.ts",
 	"scripts": {
 		"build": "tsc"
-	},
-	"dependencies": {
-		"logrocket": "^8.1.0"
 	}
 }
