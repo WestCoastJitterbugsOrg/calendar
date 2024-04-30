@@ -11,13 +11,13 @@ export function initContext(cwEvents: MaybeArray<CW.Event>): WCJ.Context {
 	const events = cogworkEvents.map(cogwork2wcjEvent);
 	const categories = Array.from(new Set(events.map((event) => event.category)));
 
-	let selectedEventIds: string[] = [];
 	const uncheckedEventsStr = localStorage.getItem('uncheckedEvents');
 
-	const uncheckedEvents = uncheckedEventsStr
-		? (JSON.parse(uncheckedEventsStr) as string[])
-		: [];
-	selectedEventIds = events
+	const uncheckedEvents =
+		uncheckedEventsStr != null
+			? (JSON.parse(uncheckedEventsStr) as string[])
+			: [];
+	const selectedEventIds = events
 		.map((event) => event.id)
 		.filter((eventId) => !uncheckedEvents.includes(eventId));
 

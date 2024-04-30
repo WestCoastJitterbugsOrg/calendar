@@ -1,3 +1,10 @@
+import { DateInput } from '@fullcalendar/core';
+import svLocale from '@fullcalendar/core/locales/sv';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interaction from '@fullcalendar/interaction';
+import listPlugin from '@fullcalendar/list';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Event } from 'src/types/wcj';
 import { Loader } from '../shared/Loader';
 import './Calendar.scss';
@@ -6,12 +13,6 @@ import { useTooltip } from './tooltip/useTooltip';
 import { createListView } from './views/CalendarViewConfigList';
 import dayGridMonth from './views/CalendarViewConfigMonth';
 import timeGridWeek from './views/CalendarViewConfigWeek';
-import { DateInput } from '@fullcalendar/core';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interaction from '@fullcalendar/interaction';
-import listPlugin from '@fullcalendar/list';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 
 const FullCalendar = lazy(() => import('@fullcalendar/react'));
 
@@ -57,6 +58,7 @@ export function Calendar(props: Props) {
 					initialDate={props.initialDate}
 					initialView={initialView}
 					height="100%"
+					locale={svLocale}
 					views={{
 						dayGridMonth,
 						timeGridWeek,
@@ -66,25 +68,15 @@ export function Calendar(props: Props) {
 						),
 					}}
 					buttonText={{
-						today: 'Today',
-						month: 'Month',
-						week: 'Week',
-						list: 'List',
+						list: 'Lista',
 					}}
 					headerToolbar={{
 						start: 'today,prev,next',
 						center: 'title',
 						end: 'timeGridWeek,dayGridMonth,listRange',
 					}}
-					firstDay={1}
 					nowIndicator
 					displayEventEnd
-					eventTimeFormat={{
-						hour: '2-digit',
-						minute: '2-digit',
-						meridiem: false,
-						hour12: false,
-					}}
 					eventDisplay="block"
 					allDaySlot={false}
 					eventSources={shownWcjEvents.map(wcj2fcEvent)}

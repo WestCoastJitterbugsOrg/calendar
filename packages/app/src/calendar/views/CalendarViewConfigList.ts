@@ -107,11 +107,12 @@ function viewWillUnmount(mountArg: ViewMountArg) {
 }
 
 function listDaySideFormat(args: VerboseFormattingArg) {
-	return (
-		formatDate(args.date.marker, { weekday: 'long' }) +
-		', Week ' +
-		formatDate(args.date.marker, { week: 'numeric' })
-	);
+	const weekday = formatDate(args.date.marker, {
+		weekday: 'long',
+		locale: 'sv',
+	});
+	const weekNumber = formatDate(args.date.marker, { week: 'numeric' });
+	return `${weekday}, vecka ${weekNumber}`;
 }
 
 function byStartTime(a: EventApi, b: EventApi) {

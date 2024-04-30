@@ -25,7 +25,7 @@ export function CalendarTooltip(props: Props) {
 			<div>{cwfcEvent.instructors}</div>
 			<div>
 				<button type="button" className={style.about} onClick={props.openModal}>
-					About event series
+					Om eventserien
 				</button>
 			</div>
 			<div id="wcj-arrow" data-popper-arrow className={style.arrow}></div>

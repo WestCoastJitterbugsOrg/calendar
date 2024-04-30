@@ -57,7 +57,7 @@ it('Clicking on Download calls exportICS', () => {
 	const exportICS = jest.spyOn(ics, 'exportICS').mockImplementation();
 
 	const downloadButton = renderResult.getByText(
-		'Export iCal',
+		'Exportera iCal',
 	) as HTMLButtonElement;
 	act(() => {
 		downloadButton.click();

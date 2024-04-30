@@ -50,7 +50,7 @@ it('Can open list view', () => {
 		/>,
 	);
 
-	const fcListRangeButton = result.getByText('List');
+	const fcListRangeButton = result.getByText('Lista');
 
 	act(() => {
 		fcListRangeButton.click();

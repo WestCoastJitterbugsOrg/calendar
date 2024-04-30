@@ -19,7 +19,7 @@ export function Footer() {
 						)
 					}
 				>
-					Export iCal{' '}
+					Exportera iCal{' '}
 					<img
 						alt="export icon"
 						src={fileDownload}
@@ -32,7 +32,7 @@ export function Footer() {
 				href="https://github.com/WestCoastJitterbugsOrg/Personalized-Calendar"
 			>
 				<span className={style.githubText}>
-					Help with development or report an issue
+					Hjälp till med utveckling eller rapportera problem
 				</span>
 				<img
 					alt="GitHub logo"

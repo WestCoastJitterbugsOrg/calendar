@@ -61,7 +61,9 @@ function AppContent(props: Props & { rootRef: HTMLElement | null }) {
 		const message = JSON.stringify(error, null, 4);
 		return <ErrorViewer message={message} />;
 	} else if (!data) {
-		return <h3>Didn&apos;t get any data</h3>;
+		return (
+			<ErrorViewer message={'Kunde inte hämta kurs- och eventinformation'} />
+		);
 	} else if (props.rootRef) {
 		const { events, categories, selectedEventIds } = initContext(data);
 		return (
