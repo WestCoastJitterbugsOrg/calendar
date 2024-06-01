@@ -16,7 +16,7 @@
 		"zip": "mkdir build & cross-zip packages/wordpress/cw-filter-calendar build/cw-filter-calendar.zip"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.24.4",
+		"@babel/core": "^7.24.6",
 		"@babel/preset-env": "^7.24.4",
 		"@babel/preset-react": "^7.24.1",
 		"@babel/preset-typescript": "^7.24.1",
