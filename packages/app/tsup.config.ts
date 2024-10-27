@@ -27,4 +27,5 @@ export default tsup.defineConfig({
 	platform: 'browser',
 	sourcemap: true,
 	dts: true,
+	minify: false,
 });

@@ -12,8 +12,7 @@
 		"autofix": "eslint . --fix && stylelint \"**/*.{css,scss}\" --fix && prettier . --write",
 		"build": "turbo run build",
 		"test": "npm run test -w @cwfc/app",
-		"watch": "turbo run watch",
-		"zip": "mkdir build & cross-zip packages/wordpress/cw-filter-calendar build/cw-filter-calendar.zip"
+		"watch": "turbo run watch"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.25.2",
