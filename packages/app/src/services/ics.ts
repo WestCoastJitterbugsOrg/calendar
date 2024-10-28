@@ -1,37 +1,24 @@
+import { EventAttributes } from 'ics';
 import { WCJ } from 'src/types';
 
 export async function wcj2ics(events: WCJ.Event[]) {
-	const { VCALENDAR, VEVENT } = await import('ics-js');
-	const calendar = new VCALENDAR();
-	calendar.addProp('PRODID', 'WCJ personal calendar');
-	calendar.addProp('VERSION', 1);
+	const { createEvents } = await import('ics');
 
-	for (const event of events) {
-		const vevent = new VEVENT();
-		vevent.addProp('UID');
-		const occasions = event.occasions
-			.map((occ) => `${occ.start.toISOString()}/${occ.end.toISOString()}`)
-			.join(',\n');
-		vevent.addProp(
-			'DTSTART',
-			new Date(Math.min(...event.occasions.map((occ) => occ.start.getTime()))),
-		);
-		vevent.addProp('RDATE', occasions, { VALUE: 'PERIOD' });
-		vevent.addProp('DTSTAMP', new Date());
-		vevent.addProp('SUMMARY', event.title);
-		vevent.addProp('DESCRIPTION', event.description);
-		vevent.addProp('URL', event.registrationUrl);
-		vevent.addProp('LOCATION', event.place);
-		vevent.addProp('CATEGORIES', [event.category]);
-		calendar.addComponent(vevent);
-	}
-	return calendar.toString();
+	return createEvents(
+		events.flatMap((event) =>
+			event.occasions.map((occasion) => createEventAttribute(event, occasion)),
+		),
+	);
 }
 
 export async function exportICS(events: WCJ.Event[]) {
-	const icsStr = await wcj2ics(events);
+	const { value, error } = await wcj2ics(events);
 
-	const file = new Blob([icsStr], { type: 'text/calendar' });
+	if (error || value == null) {
+		return;
+	}
+
+	const file = new Blob([value], { type: 'text/calendar' });
 	const url = URL.createObjectURL(file);
 	const a = document.createElement('a');
 	a.href = url;
@@ -42,4 +29,26 @@ export async function exportICS(events: WCJ.Event[]) {
 		document.body.removeChild(a);
 		window.URL.revokeObjectURL(url);
 	});
+}
+
+function createEventAttribute(
+	event: WCJ.Event,
+	occasion: WCJ.Occasion,
+): EventAttributes {
+	return {
+		start: occasion.start.getTime(),
+		end: occasion.end.getTime(),
+		title: event.title,
+		description:
+			event.description == null ? undefined : stripHtml(event.description),
+		htmlContent: event.description,
+		url: event.registrationUrl,
+		location: event.place,
+		categories: [event.category],
+	};
+}
+
+function stripHtml(html: string) {
+	const doc = new DOMParser().parseFromString(html, 'text/html');
+	return doc.body.textContent || '';
 }
