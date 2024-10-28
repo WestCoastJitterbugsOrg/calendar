@@ -1,12 +1,39 @@
+.top {
+	box-sizing: border-box;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	background-color: var(--cw-color-dark);
+	justify-content: space-evenly;
+	width: 100%;
+	padding: 8px;
+	gap: 8px;
+}
+
 .actionButtons {
 	display: flex;
-	height: 64px;
 	flex-shrink: 0;
 	flex-direction: row;
 	align-items: center;
 	gap: 16px;
 	justify-content: center;
+}
+
+.rememberSelection {
+	display: flex;
+	align-items: center;
+	color: #fff;
 	background-color: var(--cw-color-dark);
+	font-weight: 700;
+	font-size: 16px;
+	outline: none;
+	border: none;
+	border-radius: 0;
+	justify-content: center;
+}
+
+.rememberSelectionLabel {
+	padding: 4px;
 }
 
 .eventGroupList {
