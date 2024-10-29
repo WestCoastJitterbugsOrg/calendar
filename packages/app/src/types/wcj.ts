@@ -19,4 +19,5 @@ export type Context = {
 	categories: string[];
 	events: Event[];
 	selectedEventIds: string[];
+	rememberSelection: boolean;
 };

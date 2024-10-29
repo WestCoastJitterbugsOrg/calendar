@@ -12,19 +12,27 @@ export function initContext(cwEvents: MaybeArray<CW.Event>): WCJ.Context {
 	const categories = Array.from(new Set(events.map((event) => event.category)));
 
 	let selectedEventIds: string[] = [];
-	const uncheckedEventsStr = localStorage.getItem('uncheckedEvents');
+	const allEventIds = events.map((event) => event.id);
+	const rememberSelection =
+		localStorage.getItem('rememberSelection') !== 'false';
+	if (rememberSelection) {
+		const uncheckedEventsStr = localStorage.getItem('uncheckedEvents');
 
-	const uncheckedEvents = uncheckedEventsStr
-		? (JSON.parse(uncheckedEventsStr) as string[])
-		: [];
-	selectedEventIds = events
-		.map((event) => event.id)
-		.filter((eventId) => !uncheckedEvents.includes(eventId));
+		const uncheckedEvents = uncheckedEventsStr
+			? (JSON.parse(uncheckedEventsStr) as string[])
+			: [];
+		selectedEventIds = allEventIds.filter(
+			(eventId) => !uncheckedEvents.includes(eventId),
+		);
+	} else {
+		selectedEventIds = allEventIds;
+	}
 
 	return {
 		events,
 		categories,
 		selectedEventIds,
+		rememberSelection,
 	};
 }
 

@@ -34,4 +34,13 @@
 	&.ghost {
 		background-color: var(--cw-color-dark);
 	}
+
+	&.link {
+		background-color: transparent;
+		font-weight: revert;
+
+		&:hover {
+			text-decoration-line: underline;
+		}
+	}
 }

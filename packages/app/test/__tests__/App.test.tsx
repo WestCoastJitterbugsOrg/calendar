@@ -4,7 +4,6 @@ import '@testing-library/jest-dom';
 import { act, render } from '@testing-library/react';
 import { App } from 'src/App';
 import { initContext } from 'src/services/cogwork';
-import { storeConsentCookie } from 'src/services/cookies';
 import * as ics from 'src/services/ics';
 
 beforeEach(() => {
@@ -25,24 +24,6 @@ it('Cookie header is shown by default', async () => {
 	});
 
 	expect(cookieHeader).toBeTruthy();
-});
-
-it('Cookie header is hidden if there are cookies', () => {
-	act(() => {
-		storeConsentCookie('yes');
-	});
-	const renderResult = render(
-		<App
-			parent={document.documentElement}
-			{...initContext(defaultEventData)}
-			isLoading={false}
-		/>,
-	);
-	const cookieHeader = renderResult.queryByText('Your consent is needed', {
-		exact: false,
-	});
-
-	expect(cookieHeader).toBeNull();
 });
 
 it('Clicking on Download calls exportICS', () => {

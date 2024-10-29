@@ -7,6 +7,7 @@ export type EventStore = {
 	checkedEvents: string[];
 	// If string, show modal with event matching that id. If undefined, don't show modal
 	eventModal?: string;
+	rememberSelection: boolean;
 };
 
 export const stateContext = createContext<EventStore>({
@@ -14,4 +15,5 @@ export const stateContext = createContext<EventStore>({
 	events: [],
 	checkedEvents: [],
 	eventModal: undefined,
+	rememberSelection: true,
 });

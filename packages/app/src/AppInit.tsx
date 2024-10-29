@@ -63,7 +63,8 @@ function AppContent(props: Props & { rootRef: HTMLElement | null }) {
 	} else if (!data) {
 		return <h3>Didn&apos;t get any data</h3>;
 	} else if (props.rootRef) {
-		const { events, categories, selectedEventIds } = initContext(data);
+		const { events, categories, selectedEventIds, rememberSelection } =
+			initContext(data);
 		return (
 			<App
 				events={events}
@@ -71,6 +72,7 @@ function AppContent(props: Props & { rootRef: HTMLElement | null }) {
 				selectedEventIds={selectedEventIds}
 				parent={props.rootRef}
 				isLoading={isValidating}
+				rememberSelection={rememberSelection}
 			/>
 		);
 	}

@@ -1,3 +1,4 @@
+import './index.scss';
 import AppInit from './AppInit';
 import { WpCwfc } from '@cwfc/shared';
 import { StrictMode } from 'react';
