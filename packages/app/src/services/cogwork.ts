@@ -14,7 +14,7 @@ export function initContext(cwEvents: MaybeArray<CW.Event>): WCJ.Context {
 	let selectedEventIds: string[] = [];
 	const allEventIds = events.map((event) => event.id);
 	const rememberSelection =
-		localStorage.getItem('rememberSelection') === 'true';
+		localStorage.getItem('rememberSelection') !== 'false';
 	if (rememberSelection) {
 		const uncheckedEventsStr = localStorage.getItem('uncheckedEvents');
 

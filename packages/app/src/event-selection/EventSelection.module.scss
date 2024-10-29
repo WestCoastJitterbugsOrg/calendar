@@ -4,8 +4,9 @@
 	flex-wrap: wrap;
 	align-items: center;
 	background-color: var(--cw-color-dark);
-	justify-content: space-evenly;
+	justify-content: space-between;
 	width: 100%;
+	min-height: 64px;
 	padding: 8px;
 	gap: 8px;
 }
@@ -24,8 +25,8 @@
 	align-items: center;
 	color: #fff;
 	background-color: var(--cw-color-dark);
-	font-weight: 700;
-	font-size: 16px;
+	text-wrap: wrap;
+	line-height: 0;
 	outline: none;
 	border: none;
 	border-radius: 0;
@@ -42,6 +43,7 @@
 	overflow: auto;
 	background-color: #fff;
 	border-right: 1px solid rgb(0 0 0);
+	scrollbar-width: thin;
 }
 
 .loader {

@@ -1,0 +1,13 @@
+:host {
+	min-height: calc(100vh - 128px);
+	font-size: 16px;
+
+	* {
+		font-family: Raleway, ui-sans-serif, system-ui;
+		box-sizing: border-box;
+	}
+
+	button {
+		font-family: Raleway, ui-sans-serif, system-ui;
+	}
+}

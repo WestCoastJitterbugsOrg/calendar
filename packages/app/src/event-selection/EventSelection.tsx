@@ -67,7 +67,6 @@ export function EventSelection(props: Props) {
 						}
 					}}
 				>
-					<div className={style.rememberSelectionLabel}>Remember selection</div>
 					<div
 						role="checkbox"
 						aria-checked={rememberSelection}
@@ -80,21 +79,21 @@ export function EventSelection(props: Props) {
 							<img src={uncheckedImg} width={16} height={16} alt="☐" />
 						)}
 					</div>
+					<div className={style.rememberSelectionLabel}>Remember selection</div>
 				</button>
 				<div className={style.actionButtons}>
 					<Button
+						type="link"
+						size="sm"
 						onClick={() => {
-							props.setCheckedEvents(events.map((event) => event.id));
+							if (checkedEvents.length === events.length) {
+								props.setCheckedEvents([]);
+							} else {
+								props.setCheckedEvents(events.map((event) => event.id));
+							}
 						}}
 					>
-						Select all
-					</Button>
-					<Button
-						onClick={() => {
-							props.setCheckedEvents([]);
-						}}
-					>
-						Deselect all
+						{checkedEvents.length === events.length ? 'Deselect' : 'Select'} all
 					</Button>
 				</div>
 			</div>

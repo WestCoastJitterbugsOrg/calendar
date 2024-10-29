@@ -83,7 +83,7 @@ export function useCheckedEvents(
 			localStorage.setItem('uncheckedEvents', JSON.stringify(uncheckedEvents));
 			localStorage.setItem('rememberSelection', 'true');
 		} else {
-			localStorage.removeItem('rememberSelection');
+			localStorage.setItem('rememberSelection', 'false');
 		}
 	}, [allEventIds, checkedEvents, rememberSelection]);
 
