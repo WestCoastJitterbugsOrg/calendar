@@ -3,15 +3,19 @@ import { stateContext } from '../state';
 import { EventGroup } from './EventGroup';
 import style from './EventSelection.module.scss';
 import { useCallback, useContext } from 'react';
+import checkedImg from '../assets/checkbox-checked.svg';
+import uncheckedImg from '../assets/checkbox-unchecked.svg';
 
 type Props = {
 	isLoading: boolean;
 	setCheckedEvents: (events: string[]) => void;
 	setEventModal: (eventId: string) => void;
+	setRememberSelection: (value: boolean) => void;
 };
 
 export function EventSelection(props: Props) {
-	const { events, categories, checkedEvents } = useContext(stateContext);
+	const { events, categories, checkedEvents, rememberSelection } =
+		useContext(stateContext);
 
 	const setEventCheckboxState = useCallback(
 		(eventId: string, check: boolean) => {
@@ -49,21 +53,49 @@ export function EventSelection(props: Props) {
 
 	return (
 		<>
-			<div className={style.actionButtons}>
-				<Button
+			<div className={style.top}>
+				<button
+					className={style.rememberSelection}
 					onClick={() => {
-						props.setCheckedEvents(events.map((event) => event.id));
+						props.setRememberSelection(!rememberSelection);
+					}}
+					onKeyUp={(e) => {
+						if (['Enter', 'Space'].includes(e.code)) {
+							e.stopPropagation();
+							e.preventDefault();
+							props.setRememberSelection(!rememberSelection);
+						}
 					}}
 				>
-					Select all
-				</Button>
-				<Button
-					onClick={() => {
-						props.setCheckedEvents([]);
-					}}
-				>
-					Deselect all
-				</Button>
+					<div
+						role="checkbox"
+						aria-checked={rememberSelection}
+						tabIndex={0}
+						className={style.checkbox}
+					>
+						{rememberSelection ? (
+							<img src={checkedImg} width={16} height={16} alt="☑" />
+						) : (
+							<img src={uncheckedImg} width={16} height={16} alt="☐" />
+						)}
+					</div>
+					<div className={style.rememberSelectionLabel}>Remember selection</div>
+				</button>
+				<div className={style.actionButtons}>
+					<Button
+						type="link"
+						size="sm"
+						onClick={() => {
+							if (checkedEvents.length === events.length) {
+								props.setCheckedEvents([]);
+							} else {
+								props.setCheckedEvents(events.map((event) => event.id));
+							}
+						}}
+					>
+						{checkedEvents.length === events.length ? 'Deselect' : 'Select'} all
+					</Button>
+				</div>
 			</div>
 			<div className={style.eventGroupList} role="list">
 				{categories.map((categoryId) => (

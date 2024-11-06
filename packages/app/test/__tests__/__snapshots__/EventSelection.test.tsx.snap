@@ -5,18 +5,32 @@ exports[`EventSelection Snapshot 1`] = `
   data-testid="event-selection"
 >
   <div>
-    <button
-      class="undefined  "
-      type="button"
-    >
-      Select all
+    <button>
+      <div
+        aria-checked="true"
+        role="checkbox"
+        tabindex="0"
+      >
+        <img
+          alt="☑"
+          height="16"
+          src="test-file-stub"
+          width="16"
+        />
+      </div>
+      <div>
+        Remember selection
+      </div>
     </button>
-    <button
-      class="undefined  "
-      type="button"
-    >
-      Deselect all
-    </button>
+    <div>
+      <button
+        class="undefined undefined undefined"
+        type="button"
+      >
+        Deselect
+         all
+      </button>
+    </div>
   </div>
   <div
     role="list"

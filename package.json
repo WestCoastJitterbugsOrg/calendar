@@ -12,6 +12,7 @@
 		"autofix": "eslint . --fix && stylelint \"**/*.{css,scss}\" --fix && prettier . --write",
 		"build": "turbo run build",
 		"test": "npm run test -w @cwfc/app",
+		"test-update": "npm run test -w @cwfc/app -- -u",
 		"watch": "turbo run watch"
 	},
 	"devDependencies": {

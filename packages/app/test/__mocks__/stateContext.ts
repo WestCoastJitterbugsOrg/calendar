@@ -22,4 +22,5 @@ export const mockStore = {
 		},
 	],
 	checkedEvents: ['1'],
+	rememberSelection: true,
 } satisfies EventStore;
