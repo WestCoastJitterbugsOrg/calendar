@@ -15,6 +15,7 @@ const MockApp = () => {
 					isLoading={false}
 					parent={rootRef}
 					selectedEventIds={events.map((event) => event.id)}
+					rememberSelection={true}
 				/>
 			)}
 		</div>
