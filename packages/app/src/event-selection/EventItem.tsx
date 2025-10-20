@@ -10,7 +10,6 @@ type Props = {
 	event: WCJ.Event;
 	expanded: boolean;
 	toggleChecked: () => void;
-	clickInfoButton: () => void;
 };
 
 export function EventItem(props: Props) {
@@ -20,18 +19,12 @@ export function EventItem(props: Props) {
 
 	return (
 		<div className={style.wrapper} role="listitem">
-			<button
+			<a
 				className={style.content}
-				onClick={() => {
-					props.clickInfoButton();
-				}}
+				href={props.event.registrationUrl}
+				target="_blank"
+				rel=" noreferrer"
 				tabIndex={props.expanded ? 0 : -1}
-				onKeyUp={(e) => {
-					if (['Enter', 'Space'].includes(e.code)) {
-						e.stopPropagation();
-						props.clickInfoButton();
-					}
-				}}
 			>
 				<img alt="info" src={infoCircleImg} className={style.infoButton} />
 				<span
@@ -41,7 +34,7 @@ export function EventItem(props: Props) {
 				>
 					{props.event.title}
 				</span>
-			</button>
+			</a>
 			<div
 				role="checkbox"
 				aria-checked={isChecked}

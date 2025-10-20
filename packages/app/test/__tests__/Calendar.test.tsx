@@ -46,7 +46,6 @@ it('Can open list view', () => {
 			initialDate={initialDate}
 			events={mockStore.events}
 			checkedEvents={mockStore.checkedEvents}
-			setEventModal={() => {}}
 		/>,
 	);
 

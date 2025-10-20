@@ -9,7 +9,6 @@ type Props = {
 	category: string;
 	setGroupCheckboxState: (state: boolean | 'mixed') => void;
 	setEventCheckboxstate: (eventId: string, state: boolean) => void;
-	setEventModal: (eventId: string) => void;
 };
 
 export function EventGroup(props: Props) {
@@ -49,9 +48,6 @@ export function EventGroup(props: Props) {
 							toggleChecked={() => {
 								const newState = !checkedEvents.includes(event.id);
 								props.setEventCheckboxstate(event.id, newState);
-							}}
-							clickInfoButton={() => {
-								props.setEventModal(event.id);
 							}}
 						/>
 					);

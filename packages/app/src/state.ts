@@ -5,8 +5,6 @@ export type EventStore = {
 	categories: string[];
 	events: WCJ.Event[];
 	checkedEvents: string[];
-	// If string, show modal with event matching that id. If undefined, don't show modal
-	eventModal?: string;
 	rememberSelection: boolean;
 };
 
@@ -14,6 +12,5 @@ export const stateContext = createContext<EventStore>({
 	categories: [],
 	events: [],
 	checkedEvents: [],
-	eventModal: undefined,
 	rememberSelection: true,
 });

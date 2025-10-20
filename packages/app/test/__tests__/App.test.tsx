@@ -29,7 +29,7 @@ it('Clicking on Download calls exportICS', async () => {
 	jest.restoreAllMocks();
 });
 
-xit('exportICS creates an ics-file', async () => {
+it('exportICS creates an ics-file', async () => {
 	const link = document.createElement('a');
 	jest.spyOn(document, 'createElement').mockImplementation(() => link);
 	URL.createObjectURL = jest.fn(() => 'data:mock');

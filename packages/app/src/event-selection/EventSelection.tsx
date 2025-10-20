@@ -9,7 +9,6 @@ import uncheckedImg from '../assets/checkbox-unchecked.svg';
 type Props = {
 	isLoading: boolean;
 	setCheckedEvents: (events: string[]) => void;
-	setEventModal: (eventId: string) => void;
 	setRememberSelection: (value: boolean) => void;
 };
 
@@ -106,7 +105,6 @@ export function EventSelection(props: Props) {
 							setGroupCheckboxState(categoryId, state);
 						}}
 						setEventCheckboxstate={setEventCheckboxState}
-						setEventModal={props.setEventModal}
 					/>
 				))}
 

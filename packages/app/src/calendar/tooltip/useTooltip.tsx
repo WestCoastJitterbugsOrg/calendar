@@ -4,10 +4,7 @@ import { createPopper, Instance } from '@popperjs/core';
 import { RefObject, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 
-export function useTooltip(
-	refObj: RefObject<HTMLElement>,
-	setEventModal?: (eventId: string) => void,
-) {
+export function useTooltip(refObj: RefObject<HTMLElement>) {
 	const popper = useRef<Instance>();
 
 	let tooltipWrapper: HTMLElement | null;
@@ -25,14 +22,7 @@ export function useTooltip(
 			root.appendChild(tooltipWrapper);
 		}
 
-		createRoot(tooltipWrapper).render(
-			<CalendarTooltip
-				event={event}
-				openModal={() => {
-					setEventModal?.(event.extendedProps.id as string);
-				}}
-			/>,
-		);
+		createRoot(tooltipWrapper).render(<CalendarTooltip event={event} />);
 		setTimeout(() => {
 			if (!(tooltipWrapper?.firstElementChild instanceof HTMLElement)) {
 				return;

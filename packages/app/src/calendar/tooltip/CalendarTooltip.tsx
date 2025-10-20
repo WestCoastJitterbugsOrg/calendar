@@ -4,7 +4,6 @@ import { WCJ } from 'src/types';
 
 type Props = {
 	event: EventApi;
-	openModal: () => void;
 };
 
 export function CalendarTooltip(props: Props) {
@@ -24,9 +23,14 @@ export function CalendarTooltip(props: Props) {
 			<div>{cwfcEvent.place}</div>
 			<div>{cwfcEvent.instructors}</div>
 			<div>
-				<button type="button" className={style.about} onClick={props.openModal}>
+				<a
+					className={style.about}
+					href={cwfcEvent.registrationUrl}
+					target="_blank"
+					rel="noreferrer"
+				>
 					About event series
-				</button>
+				</a>
 			</div>
 			<div id="wcj-arrow" data-popper-arrow className={style.arrow}></div>
 		</div>

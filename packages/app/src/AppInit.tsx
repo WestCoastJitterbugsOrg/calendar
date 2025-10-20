@@ -6,8 +6,8 @@ import { Loader } from './shared/Loader';
 import { CW } from './types';
 import { MaybeArray } from './types/utils';
 import { WpCwfc } from '@cwfc/shared';
-import { useEffect, useState } from 'react';
-import useSwr from 'swr';
+import { StrictMode, useEffect, useState } from 'react';
+import useSwr, { SWRConfig } from 'swr';
 
 type Props = WpCwfc;
 
@@ -16,7 +16,12 @@ export default function AppInit(props: Props) {
 
 	return (
 		<div className={style.root} ref={setRef}>
-			<AppContent {...props} rootRef={rootRef} />
+			<StrictMode>
+				<SWRConfig value={{ provider: localStorageProvider }}>
+					<AppContent {...props} rootRef={rootRef} />
+				</SWRConfig>
+			</StrictMode>
+			,
 		</div>
 	);
 }
@@ -78,4 +83,25 @@ function AppContent(props: Props & { rootRef: HTMLElement | null }) {
 	}
 
 	return <></>;
+}
+
+// A local storage provider for SWR,
+// to quickly load all the events before SWR gets a response from CogWork
+function localStorageProvider() {
+	// When initializing, we restore the data from `localStorage` into a map, if it exists.
+	// The map is returned from this function so it can be provided to SWR
+	const map = new Map(
+		JSON.parse(localStorage.getItem('cwfc-cache') ?? '[]') as [
+			string,
+			object,
+		][],
+	);
+
+	// Before unloading the app, we write back all the data into `localStorage`.
+	window.addEventListener('beforeunload', () => {
+		const appCache = JSON.stringify(Array.from(map.entries()));
+		localStorage.setItem('cwfc-cache', appCache);
+	});
+
+	return map;
 }

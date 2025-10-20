@@ -73,8 +73,11 @@ exports[`EventSelection Snapshot 1`] = `
         <div
           role="listitem"
         >
-          <button
+          <a
+            href="https://example.com/registration"
+            rel=" noreferrer"
             tabindex="-1"
+            target="_blank"
           >
             <img
               alt="info"
@@ -85,7 +88,7 @@ exports[`EventSelection Snapshot 1`] = `
             >
               Grundkurs Lindy Hop
             </span>
-          </button>
+          </a>
           <div
             aria-checked="true"
             role="checkbox"

@@ -19,7 +19,6 @@ type Props = {
 	initialDate?: DateInput;
 	events: Event[];
 	checkedEvents: string[];
-	setEventModal?: (eventId: string) => void;
 };
 
 export function Calendar(props: Props) {
@@ -38,7 +37,7 @@ export function Calendar(props: Props) {
 	}
 
 	const fcRootRef = useRef<HTMLDivElement>(null);
-	const tooltipHandler = useTooltip(fcRootRef, props.setEventModal);
+	const tooltipHandler = useTooltip(fcRootRef);
 
 	const [initialView, setInitialView] = useState('listRange');
 	useEffect(() => {

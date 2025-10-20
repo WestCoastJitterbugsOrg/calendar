@@ -31,24 +31,3 @@ it('Unchecking an event causes it to be unchecked', () => {
 	const eventCheckbox = result.getAllByRole('checkbox')[1] as HTMLInputElement;
 	expect(eventCheckbox.checked).toBeFalsy();
 });
-
-it('Click info button opens modal', () => {
-	jest.useFakeTimers();
-	const result = render(<MockApp />);
-
-	const categoryElement = result.getByText(mockStore.categories[0]);
-
-	act(() => {
-		// Click on the category to expand it
-		fireEvent.click(categoryElement);
-		jest.runAllTimers();
-
-		const infoButton = result.getByAltText('info');
-		fireEvent.click(infoButton);
-		jest.runAllTimers();
-	});
-
-	const modalContent = result.baseElement.querySelector('.ReactModalPortal');
-
-	expect(modalContent).toBeTruthy();
-});

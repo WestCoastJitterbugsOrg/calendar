@@ -1,5 +1,4 @@
 import appStyle from './App.module.scss';
-import { EventSeriesModal } from './EventSeriesModal';
 import { Footer } from './Footer';
 import { Calendar } from './calendar/Calendar';
 import { EventSelection } from './event-selection/EventSelection';
@@ -13,7 +12,6 @@ type Props = WCJ.Context & {
 };
 
 export function App(props: Props) {
-	const [eventModal, setEventModal] = useState<string>();
 	const [rememberSelection, setRememberSelection] = useState<boolean>(
 		props.rememberSelection,
 	);
@@ -29,7 +27,6 @@ export function App(props: Props) {
 				categories: props.categories,
 				events: props.events,
 				checkedEvents,
-				eventModal,
 				rememberSelection,
 			}}
 		>
@@ -38,26 +35,14 @@ export function App(props: Props) {
 					<EventSelection
 						isLoading={props.isLoading}
 						setCheckedEvents={setCheckedEvents}
-						setEventModal={setEventModal}
 						setRememberSelection={setRememberSelection}
 					/>
 				</div>
 				<div className={appStyle.calendar} data-testid="calendar">
-					<Calendar
-						events={props.events}
-						checkedEvents={checkedEvents}
-						setEventModal={setEventModal}
-					/>
+					<Calendar events={props.events} checkedEvents={checkedEvents} />
 				</div>
 			</div>
 			<Footer />
-			<EventSeriesModal
-				parent={props.parent}
-				event={props.events.find((event) => event.id === eventModal)}
-				close={() => {
-					setEventModal(undefined);
-				}}
-			/>
 		</stateContext.Provider>
 	);
 }

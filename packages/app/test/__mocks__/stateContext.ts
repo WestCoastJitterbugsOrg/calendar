@@ -2,7 +2,6 @@ import { EventStore } from 'src/state';
 
 export const mockStore = {
 	categories: ['Lindy Hop'],
-	eventModal: undefined,
 	events: [
 		{
 			id: '1',
